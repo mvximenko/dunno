@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import useToggle from '../hooks/useToggle';
 import Menu from '../assets/menu.png';
 import Profile from '../assets/profile.png';
 import {
@@ -15,7 +16,7 @@ import {
 } from './HeaderStyles';
 
 const Header: React.FC = () => {
-  const [drawer, setDrawer] = useState(false);
+  const [drawer, toggleDrawer] = useToggle(false);
   return (
     <>
       <StyledHeader>
@@ -41,10 +42,10 @@ const Header: React.FC = () => {
         <Link to='/signin'>
           <ProfileIcon src={Profile} />
         </Link>
-        <MenuIcon src={Menu} onClick={() => setDrawer(!drawer)} />
+        <MenuIcon src={Menu} onClick={toggleDrawer} />
       </StyledHeader>
 
-      <Drawer active={drawer} onClick={() => setDrawer(!drawer)}>
+      <Drawer active={drawer} onClick={toggleDrawer}>
         <DrawerLink to='/tv'>TV Shows</DrawerLink>
         <DrawerLink to='/movie'>Movies</DrawerLink>
         <DrawerLink to='/randomizer'>Randomizer</DrawerLink>
