@@ -12,7 +12,7 @@ const App: React.FC = () => {
   return (
     <>
       <GlobalStyle />
-       <Header />
+      <Header />
       <Switch>
         <Route exact path='/' component={Home} />
         <Route exact path='/tv' component={Tv} />

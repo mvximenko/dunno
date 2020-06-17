@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { API_URL, API_KEY } from '../config';
+import { SET_DATA } from '../types';
 
 interface Data {
   type: string;
@@ -15,7 +16,7 @@ const useFetch = (data: Data, dispatch: any) => {
     )
       .then((res) => res.json())
       .then((titles) => {
-        dispatch({ type: 'SET_DATA', titles });
+        dispatch({ type: SET_DATA, titles });
       });
   }, [dispatch, page, type, category]);
 };
