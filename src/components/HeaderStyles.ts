@@ -75,7 +75,7 @@ export const ProfileIcon = styled.img`
   }
 `;
 
-export const Drawer = styled.div<{ active: boolean }>`
+export const Menu = styled.div<{ active: boolean }>`
   top: 0;
   right: 0;
   width: 0;
@@ -92,7 +92,7 @@ export const Drawer = styled.div<{ active: boolean }>`
   `}
 `;
 
-export const DrawerLink = styled(RouterLink)`
+export const MenuLink = styled(RouterLink)`
   display: block;
   padding: 10px 0;
   font-size: 28px;

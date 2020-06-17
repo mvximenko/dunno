@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import useToggle from '../hooks/useToggle';
-import Menu from '../assets/menu.png';
-import Profile from '../assets/profile.png';
+import MenuPng from '../assets/menu.png';
+import ProfilePng from '../assets/profile.png';
 import {
   StyledHeader,
   Logo,
@@ -11,8 +11,8 @@ import {
   NavLink,
   MenuIcon,
   ProfileIcon,
-  Drawer,
-  DrawerLink,
+  Menu,
+  MenuLink,
 } from './HeaderStyles';
 
 const Header: React.FC = () => {
@@ -40,18 +40,18 @@ const Header: React.FC = () => {
         </Nav>
 
         <Link to='/signin'>
-          <ProfileIcon src={Profile} />
+          <ProfileIcon src={ProfilePng} />
         </Link>
-        <MenuIcon src={Menu} onClick={toggleDrawer} />
+        <MenuIcon src={MenuPng} onClick={toggleDrawer} />
       </StyledHeader>
 
-      <Drawer active={drawer} onClick={toggleDrawer}>
-        <DrawerLink to='/tv'>TV Shows</DrawerLink>
-        <DrawerLink to='/movie'>Movies</DrawerLink>
-        <DrawerLink to='/randomizer'>Randomizer</DrawerLink>
-        <DrawerLink to='/favorites'>Favorites</DrawerLink>
-        <DrawerLink to='/signin'>Sign In</DrawerLink>
-      </Drawer>
+      <Menu active={drawer} onClick={toggleDrawer}>
+        <MenuLink to='/tv'>TV Shows</MenuLink>
+        <MenuLink to='/movie'>Movies</MenuLink>
+        <MenuLink to='/randomizer'>Randomizer</MenuLink>
+        <MenuLink to='/favorites'>Favorites</MenuLink>
+        <MenuLink to='/signin'>Sign In</MenuLink>
+      </Menu>
     </>
   );
 };
