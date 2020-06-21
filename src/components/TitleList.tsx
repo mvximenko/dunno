@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import ScrollContainer from 'react-indiana-drag-scroll';
 import TitlePoster from './TitlePoster';
 import Placeholder from '../assets/placeholder.png';
 import { IMAGE_BASE_URL, POSTER_SIZE } from '../config';
+import useInfiniteScroll from '../hooks/useInfiniteScroll';
 import {
   Heading,
   TitleListContainer,
@@ -21,9 +22,17 @@ interface Props {
   titles: titleProps[];
   category: string;
   type: string;
+  pageDispatch: any;
 }
 
-const TitleList: React.FC<Props> = ({ titles, category, type }) => {
+const TitleList: React.FC<Props> = ({
+  titles,
+  category,
+  type,
+  pageDispatch,
+}) => {
+  let bottomBoundaryRef = useRef(null);
+  useInfiniteScroll(bottomBoundaryRef, pageDispatch);
   return (
     <>
       <Heading>{category}</Heading>
@@ -45,7 +54,7 @@ const TitleList: React.FC<Props> = ({ titles, category, type }) => {
                 />
               ))}
           </InitialSpace>
-          <LoadMore>Loading...</LoadMore>
+          <LoadMore ref={bottomBoundaryRef}>Loading...</LoadMore>
         </TitleListContainer>
       </ScrollContainer>
     </>
