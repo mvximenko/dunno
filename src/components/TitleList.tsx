@@ -1,5 +1,6 @@
 import React from 'react';
 import { IMAGE_BASE_URL, POSTER_SIZE } from '../config';
+import { Heading, TitleListContainer, InitialSpace } from './TitleListStyles';
 
 interface titleProps {
   poster_path?: string;
@@ -12,16 +13,19 @@ interface Props {
 }
 
 const TitleList: React.FC<Props> = ({ titles, category, type }) => {
-  console.log(titles);
   return (
     <>
-      <h1>{category}</h1>
-      <div>
-        {titles &&
-          titles.map((title) => (
-            <img src={`${IMAGE_BASE_URL}${POSTER_SIZE}${title.poster_path}`} />
-          ))}
-      </div>
+      <Heading>{category}</Heading>
+      <TitleListContainer>
+        <InitialSpace>
+          {titles &&
+            titles.map((title) => (
+              <img
+                src={`${IMAGE_BASE_URL}${POSTER_SIZE}${title.poster_path}`}
+              />
+            ))}
+        </InitialSpace>
+      </TitleListContainer>
     </>
   );
 };
