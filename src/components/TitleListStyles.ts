@@ -39,11 +39,12 @@ export const TitleListContainer = styled.div`
 `;
 
 export const InitialSpace = styled.div`
+  display: inline-flex;
   padding-left: 5vw;
+  min-width: 100vw;
   ${[sizes.up('xs')]} {
     display: flex;
     padding-left: 3vw;
-    min-width: 100vw;
   }
 `;
 

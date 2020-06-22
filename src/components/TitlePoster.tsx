@@ -22,6 +22,7 @@ const TitlePoster: React.FC<Props> = ({
           alt={titleName}
           className='lazy'
           data-src={posterPath}
+          fade={loaded ? true : false}
           hide={loaded ? false : true}
           onLoad={() => setLoaded(true)}
         />

@@ -1,10 +1,10 @@
 import { useEffect, useCallback, useRef } from 'react';
 
-const useLazyLoading = (imgSelector: string, items: any) => {
-  const imgObserver = useCallback((node: HTMLImageElement) => {
-    const intObs = new IntersectionObserver((entries: any) => {
+function useLazyLoading(imgSelector: string, items: object[]): void {
+  const imgObserver = useCallback((node: HTMLImageElement): void => {
+    const intObs = new IntersectionObserver((entries: any): void => {
       entries.forEach(
-        (en: { intersectionRatio: number; target: HTMLImageElement }) => {
+        (en: { intersectionRatio: number; target: HTMLImageElement }): void => {
           if (en.intersectionRatio > 0) {
             const currentImg = en.target;
             const newImgSrc = currentImg.dataset.src;
@@ -32,6 +32,6 @@ const useLazyLoading = (imgSelector: string, items: any) => {
       imagesRef.current.forEach((img) => imgObserver(img));
     }
   }, [imgObserver, imagesRef, imgSelector, items]);
-};
+}
 
 export default useLazyLoading;
