@@ -29,11 +29,17 @@ export const Link = styled(RouterLink)`
   }
 `;
 
-export const Img = styled.img`
+export const Img = styled.img<{ hide: boolean }>`
   height: 100%;
   max-width: 100%;
   position: absolute;
   top: 0;
   left: 0;
   user-drag: none;
+
+  ${({ hide }) =>
+    hide &&
+    `
+  visibility: hidden;
+`}
 `;

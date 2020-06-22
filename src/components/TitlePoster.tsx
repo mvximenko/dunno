@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, Img } from './TitlePosterStyles';
 
 interface Props {
@@ -14,9 +14,18 @@ const TitlePoster: React.FC<Props> = ({
   posterPath,
   titleName,
 }) => {
+  const [loaded, setLoaded] = useState(false);
   return (
     <Link to={`${type}/${titleId}`}>
-      {posterPath && <Img alt={titleName} src={posterPath} />}
+      {posterPath && (
+        <Img
+          alt={titleName}
+          className='lazy'
+          data-src={posterPath}
+          hide={loaded ? false : true}
+          onLoad={() => setLoaded(true)}
+        />
+      )}
     </Link>
   );
 };
