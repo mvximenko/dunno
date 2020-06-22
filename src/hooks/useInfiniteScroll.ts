@@ -1,10 +1,13 @@
 import { useEffect, useCallback } from 'react';
-import { ADVANCE_PAGE } from '../types';
+import { ADVANCE_PAGE, AdvancePageAction } from '../types';
 
-function useInfiniteScroll(scrollRef: any, dispatch: any): void {
+function useInfiniteScroll(
+  scrollRef: React.RefObject<HTMLDivElement>,
+  dispatch: React.Dispatch<AdvancePageAction>
+): void {
   const scrollObserver = useCallback(
-    (node) => {
-      new IntersectionObserver((entries) => {
+    (node: HTMLDivElement) => {
+      new IntersectionObserver((entries): void => {
         entries.forEach((en) => {
           if (en.intersectionRatio > 0) {
             dispatch({ type: ADVANCE_PAGE });

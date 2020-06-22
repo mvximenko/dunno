@@ -1,14 +1,9 @@
-import { ADVANCE_PAGE } from '../types';
+import { ADVANCE_PAGE, AdvancePage, AdvancePageAction } from '../types';
 
-interface AdvancePageAction {
-  type: typeof ADVANCE_PAGE;
-}
-
-interface State {
-  page: number;
-}
-
-function pageReducer(state: State, action: AdvancePageAction): any {
+function pageReducer(
+  state: AdvancePage,
+  action: AdvancePageAction
+): AdvancePage {
   switch (action.type) {
     case ADVANCE_PAGE:
       return { ...state, page: state.page + 1 };

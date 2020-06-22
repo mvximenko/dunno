@@ -1,11 +1,4 @@
-import { SET_DATA } from '../types';
-
-interface SetDataAction {
-  type: typeof SET_DATA;
-  titles: {
-    results: object[];
-  };
-}
+import { SET_DATA, SetDataAction } from '../types';
 
 function titleReducer(state: object[], action: SetDataAction): object[] {
   switch (action.type) {

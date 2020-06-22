@@ -1,14 +1,11 @@
 import { useEffect } from 'react';
 import { API_URL, API_KEY } from '../config';
-import { SET_DATA } from '../types';
+import { SET_DATA, AdvancePage, SetDataAction } from '../types';
 
-interface Data {
-  type: string;
-  category: string;
-  page: number;
-}
-
-const useFetch = (data: Data, dispatch: any) => {
+function useFetch(
+  data: AdvancePage,
+  dispatch: React.Dispatch<SetDataAction>
+): void {
   const { type, category, page } = data;
   useEffect(() => {
     fetch(
@@ -19,6 +16,6 @@ const useFetch = (data: Data, dispatch: any) => {
         dispatch({ type: SET_DATA, titles });
       });
   }, [dispatch, page, type, category]);
-};
+}
 
 export default useFetch;
