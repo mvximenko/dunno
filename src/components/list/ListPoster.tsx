@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, Img } from './TitlePosterStyles';
+import { Link, Img } from './ListPosterStyles';
 
 interface Props {
   type: string;
@@ -8,7 +8,7 @@ interface Props {
   titleName: string | undefined;
 }
 
-const TitlePoster: React.FC<Props> = ({
+const ListPoster: React.FC<Props> = ({
   type,
   titleId,
   posterPath,
@@ -31,4 +31,4 @@ const TitlePoster: React.FC<Props> = ({
   );
 };
 
-export default TitlePoster;
+export default ListPoster;

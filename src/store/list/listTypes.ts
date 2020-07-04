@@ -1,11 +1,9 @@
-export const SET_DATA = 'SET_DATA';
+export const SET_LIST = 'SET_DATA';
 export const ADVANCE_PAGE = 'ADVANCE_PAGE';
 
-export interface SetDataAction {
-  type: typeof SET_DATA;
-  titles: {
-    results: object[];
-  };
+export interface GetListAction {
+  type: typeof SET_LIST;
+  payload: object[];
 }
 
 export interface AdvancePage {

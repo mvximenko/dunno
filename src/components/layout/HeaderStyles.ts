@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import { Link as RouterLink, NavLink as RouterNavLink } from 'react-router-dom';
-import sizes from '../sizes';
+import sizes from '../../sizes';
 
 const blur = css`
   background-color: rgba(0, 0, 0, 0.8);

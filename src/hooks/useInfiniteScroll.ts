@@ -1,5 +1,5 @@
 import { useEffect, useCallback } from 'react';
-import { ADVANCE_PAGE, AdvancePageAction } from '../types';
+import { ADVANCE_PAGE, AdvancePageAction } from '../store/list/listTypes';
 
 function useInfiniteScroll(
   scrollRef: React.RefObject<HTMLDivElement>,

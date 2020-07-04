@@ -1,11 +1,11 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Home from './pages/Home';
-import Tv from './pages/Tv';
-import Movies from './pages/Movies';
-import Title from './pages/Title';
-import Person from './pages/Person';
-import Header from './components/Header';
+import Home from './components/Home';
+import Tv from './components/Tv';
+import Movies from './components/Movies';
+import Title from './components/Title';
+import Person from './components/Person';
+import Header from './components/layout/Header';
 import { GlobalStyle } from './GlobalStyles';
 
 const App: React.FC = () => {

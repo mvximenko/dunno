@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import useToggle from '../hooks/useToggle';
-import MenuPng from '../assets/menu.png';
-import ProfilePng from '../assets/profile.png';
+import useToggle from '../../hooks/useToggle';
+import MenuPng from '../../assets/menu.png';
+import ProfilePng from '../../assets/profile.png';
 import {
   StyledHeader,
   Logo,

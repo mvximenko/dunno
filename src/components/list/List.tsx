@@ -1,38 +1,33 @@
 import React, { useRef } from 'react';
 import ScrollContainer from 'react-indiana-drag-scroll';
-import TitlePoster from './TitlePoster';
-import useInfiniteScroll from '../hooks/useInfiniteScroll';
-import useLazyLoading from '../hooks/useLazyLoading';
-import Placeholder from '../assets/placeholder.png';
-import { IMAGE_BASE_URL, POSTER_SIZE } from '../config';
-import { AdvancePageAction } from '../types';
+import ListPoster from './ListPoster';
+import useInfiniteScroll from '../../hooks/useInfiniteScroll';
+import useLazyLoading from '../../hooks/useLazyLoading';
+import Placeholder from '../../assets/placeholder.png';
+import { IMAGE_BASE_URL, POSTER_SIZE } from '../../config';
+import { AdvancePageAction } from '../../store/list/listTypes';
 import {
   Heading,
   TitleListContainer,
   InitialSpace,
   LoadMore,
-} from './TitleListStyles';
+} from './ListStyles';
 
-interface titleProps {
-  poster_path?: string;
+interface Titles {
   id?: number;
-  title?: string;
   name?: string;
+  title?: string;
+  poster_path?: string;
 }
 
 interface Props {
-  titles: titleProps[];
+  titles: Titles[];
   category: string;
   type: string;
   pageDispatch: React.Dispatch<AdvancePageAction>;
 }
 
-const TitleList: React.FC<Props> = ({
-  titles,
-  category,
-  type,
-  pageDispatch,
-}) => {
+const List: React.FC<Props> = ({ titles, category, type, pageDispatch }) => {
   let bottomBoundaryRef = useRef<HTMLDivElement>(null);
   useInfiniteScroll(bottomBoundaryRef, pageDispatch);
   useLazyLoading('.lazy', titles);
@@ -44,7 +39,7 @@ const TitleList: React.FC<Props> = ({
           <InitialSpace>
             {titles &&
               titles.map((title) => (
-                <TitlePoster
+                <ListPoster
                   posterPath={
                     title.poster_path
                       ? `${IMAGE_BASE_URL}${POSTER_SIZE}${title.poster_path}`
@@ -64,4 +59,4 @@ const TitleList: React.FC<Props> = ({
   );
 };
 
-export default TitleList;
+export default List;

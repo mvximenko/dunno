@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Link as RouterLink } from 'react-router-dom';
-import sizes from '../sizes';
-import { fadeEffect, fadeEffectTypes } from '../CommonStyles';
+import sizes from '../../sizes';
+import { fadeEffect, fadeEffectTypes } from '../../CommonStyles';
 
 export const Link = styled(RouterLink)`
   width: 29vw;
