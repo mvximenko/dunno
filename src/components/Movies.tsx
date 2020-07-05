@@ -1,6 +1,6 @@
 import React, { useReducer } from 'react';
 import List from './list/List';
-import { useGetList } from '../store/list/listActions';
+import { useFetchList } from '../store/list/listActions';
 import { listReducer, pageReducer } from '../store/list/listReducer';
 
 const Movies: React.FC = () => {
@@ -26,9 +26,9 @@ const Movies: React.FC = () => {
     category: 'now_playing',
   });
 
-  useGetList(popPage, popDispatch);
-  useGetList(topPage, topDispatch);
-  useGetList(nowPage, nowDispatch);
+  useFetchList(popPage, popDispatch);
+  useFetchList(topPage, topDispatch);
+  useFetchList(nowPage, nowDispatch);
 
   return (
     <>

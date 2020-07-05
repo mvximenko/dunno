@@ -1,7 +1,7 @@
 export const SET_LIST = 'SET_DATA';
 export const ADVANCE_PAGE = 'ADVANCE_PAGE';
 
-export interface GetListAction {
+export interface FetchListAction {
   type: typeof SET_LIST;
   titles: object[];
 }

@@ -1,14 +1,14 @@
 import {
   SET_LIST,
   ADVANCE_PAGE,
-  GetListAction,
+  FetchListAction,
   AdvancePage,
   AdvancePageAction,
 } from './listTypes';
 
 export const listReducer = (
   state: object[],
-  action: GetListAction
+  action: FetchListAction
 ): object[] => {
   switch (action.type) {
     case SET_LIST:
