@@ -1,14 +1,26 @@
-import { SET_TITLE, FetchTitle, FetchTitleAction } from './titleTypes';
+import {
+  SET_DATA,
+  SET_LOADING,
+  FetchTitle,
+  titleActionTypes,
+} from './titleTypes';
 
 export const titleReducer = (
   state: FetchTitle,
-  { type, payload }: FetchTitleAction
+  action: titleActionTypes
 ): FetchTitle => {
-  switch (type) {
-    case SET_TITLE:
+  switch (action.type) {
+    case SET_DATA:
       return {
         ...state,
-        title: payload,
+        title: action.title,
+        cast: action.cast,
+        videos: action.videos,
+      };
+    case SET_LOADING:
+      return {
+        ...state,
+        loading: action.loading,
       };
     default:
       return state;

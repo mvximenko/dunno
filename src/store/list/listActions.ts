@@ -11,8 +11,8 @@ export const useGetList = (
       `${API_URL}${type}/${category}?api_key=${API_KEY}&language=en-US&page=${page}`
     )
       .then((res) => res.json())
-      .then((payload) => {
-        dispatch({ type: SET_LIST, payload: payload.results });
+      .then((data) => {
+        dispatch({ type: SET_LIST, titles: data.results });
       });
   }, [dispatch, page, type, category]);
 };

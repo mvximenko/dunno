@@ -1,6 +1,6 @@
 import React, { useReducer } from 'react';
 import titleReducer from '../store/title/titleReducer';
-import { useFetchTitle } from '../store/title/titleAction';
+import { useFetchTitle } from '../store/title/titleActions';
 import { FetchTitle } from '../store/title/titleTypes';
 
 interface Props {
@@ -12,7 +12,7 @@ interface Props {
 const Title: React.FC<Props> = ({ match: { url } }) => {
   const [, type, titleId] = url.split('/');
 
-  const initState: FetchTitle = {
+  const initialState: FetchTitle = {
     type,
     titleId,
     title: {},
@@ -21,13 +21,13 @@ const Title: React.FC<Props> = ({ match: { url } }) => {
     loading: false,
   };
 
-  const [data, dataDispatch] = useReducer(titleReducer, initState);
+  const [data, dataDispatch] = useReducer(titleReducer, initialState);
+
+  useFetchTitle(data, dataDispatch);
 
   const {
     title: { title, name, backdrop_path, poster_path, overview, vote_average },
   }: any = data;
-
-  useFetchTitle(data, dataDispatch);
 
   return (
     <>

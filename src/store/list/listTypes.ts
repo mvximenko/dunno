@@ -3,7 +3,7 @@ export const ADVANCE_PAGE = 'ADVANCE_PAGE';
 
 export interface GetListAction {
   type: typeof SET_LIST;
-  payload: object[];
+  titles: object[];
 }
 
 export interface AdvancePage {
