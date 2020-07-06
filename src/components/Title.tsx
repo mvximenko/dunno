@@ -2,6 +2,18 @@ import React, { useReducer } from 'react';
 import titleReducer from '../store/title/titleReducer';
 import { useFetchTitle } from '../store/title/titleActions';
 import { FetchTitle } from '../store/title/titleTypes';
+import ImdbImg from '../assets/imdb.png';
+import StarImg from '../assets/star.png';
+import TitlePoster from './title/TitlePoster';
+import {
+  Heading,
+  Overview,
+  Info,
+  Rating,
+  Imdb,
+  Star,
+  Rank,
+} from './TitleStyles';
 
 interface Props {
   match: {
@@ -31,12 +43,17 @@ const Title: React.FC<Props> = ({ match: { url } }) => {
 
   return (
     <>
-      {console.log(data)}
-      <h1>{title || name}</h1>
-      <h3>{backdrop_path}</h3>
-      <h3>{poster_path}</h3>
-      <h3>{overview}</h3>
-      <h3>{vote_average}</h3>
+      <TitlePoster title={title || name} backdropPath={backdrop_path} />
+
+      <Info>
+        <Heading>{title || name}</Heading>
+        <Overview>{overview}</Overview>
+        <Rating>
+          <Imdb src={ImdbImg} alt='imdb' />
+          <Rank>{vote_average}/10</Rank>
+          <Star src={StarImg} alt='star' />
+        </Rating>
+      </Info>
     </>
   );
 };

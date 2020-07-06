@@ -5,7 +5,7 @@ import {
   titleActionTypes,
 } from './titleTypes';
 
-export const titleReducer = (
+const titleReducer = (
   state: FetchTitle,
   action: titleActionTypes
 ): FetchTitle => {

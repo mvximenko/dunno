@@ -3,7 +3,7 @@ import ScrollContainer from 'react-indiana-drag-scroll';
 import ListPoster from './ListPoster';
 import useInfiniteScroll from '../../hooks/useInfiniteScroll';
 import useLazyLoading from '../../hooks/useLazyLoading';
-import Placeholder from '../../assets/placeholder.png';
+import Poster from '../../assets/poster.png';
 import { IMAGE_BASE_URL, POSTER_SIZE } from '../../config';
 import { AdvancePageAction } from '../../store/list/listTypes';
 import {
@@ -43,7 +43,7 @@ const List: React.FC<Props> = ({ titles, category, type, pageDispatch }) => {
                   posterPath={
                     title.poster_path
                       ? `${IMAGE_BASE_URL}${POSTER_SIZE}${title.poster_path}`
-                      : `${Placeholder}`
+                      : `${Poster}`
                   }
                   titleId={title.id}
                   titleName={title.title || title.name}
