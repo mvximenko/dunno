@@ -1,4 +1,5 @@
 import React, { useReducer } from 'react';
+import useToggle from '../hooks/useToggle';
 import titleReducer from '../store/title/titleReducer';
 import { useFetchTitle } from '../store/title/titleActions';
 import { FetchTitle } from '../store/title/titleTypes';
@@ -6,6 +7,7 @@ import ImdbImg from '../assets/imdb.png';
 import StarImg from '../assets/star.png';
 import TitlePoster from './title/TitlePoster';
 import TitleCast from './title/TitleCast';
+import TitleButtons from './title/TitleButtons';
 import {
   Heading,
   Overview,
@@ -50,7 +52,10 @@ const Title: React.FC<Props> = ({ match: { url } }) => {
   const {
     title: { title, name, backdrop_path, poster_path, overview, vote_average },
     cast,
+    videos,
   }: any = data;
+
+  const [modal, toggleModal] = useToggle(false);
 
   return (
     <>
@@ -65,7 +70,7 @@ const Title: React.FC<Props> = ({ match: { url } }) => {
           <Star src={StarImg} alt='star' />
         </Rating>
 
-        {cast.length > 0 && (
+        {cast.length && (
           <>
             <Cast>Cast</Cast>
             <Row>
@@ -82,6 +87,13 @@ const Title: React.FC<Props> = ({ match: { url } }) => {
             </Row>
           </>
         )}
+
+        <TitleButtons
+          video={videos.length ? videos[0].key : null}
+          toggleModal={toggleModal}
+        />
+
+        {modal && console.log('MODAL:', modal)}
       </Info>
     </>
   );
