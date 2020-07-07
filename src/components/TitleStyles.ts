@@ -1,4 +1,50 @@
 import styled from 'styled-components';
+import sizes from '../sizes';
+import { fadeEffect, FadeEffectTypes } from '../CommonStyles';
+
+export const Container = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`;
+
+export const Background = styled.img<FadeEffectTypes>`
+  display: none;
+  ${[sizes.up('lg')]} {
+    top: 0;
+    left: 0;
+    width: 100%;
+    position: fixed;
+    display: block;
+    ${fadeEffect}
+  }
+`;
+
+export const OuterDiv = styled.div`
+  width: 100%;
+  margin-top: auto;
+  position: relative;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  ${[sizes.up('md')]} {
+    top: 0;
+    width: 1000px;
+    height: 530px;
+    margin-top: 85px;
+    position: absolute;
+    backdrop-filter: blur(5px);
+    webkit-backdrop-filter: blur(5px);
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+`;
+
+export const InnerDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  ${[sizes.up('md')]} {
+    flex-direction: row;
+  }
+`;
 
 export const Info = styled.div`
   margin: 0 4vw;
@@ -6,6 +52,10 @@ export const Info = styled.div`
   font-size: 15px;
   font-weight: lighter;
   font-family: sans-serif;
+  ${[sizes.up('md')]} {
+    margin-left: 15px;
+    margin-right: 22px;
+  }
 `;
 
 export const Heading = styled.h1`
@@ -13,6 +63,10 @@ export const Heading = styled.h1`
   font-weight: 500;
   letter-spacing: 1px;
   text-transform: uppercase;
+  ${[sizes.up('md')]} {
+    padding-top: 20px;
+    font-weight: 600;
+  }
 `;
 
 export const Overview = styled.span`
@@ -44,14 +98,9 @@ export const Star = styled.img`
   width: 30px;
 `;
 
-export const Cast = styled.h1`
-  padding-top: 10px;
-  font-size: 1.2rem;
-`;
-
 export const Row = styled.div`
   display: flex;
-  margin-top: 12px;
+  margin-top: 20px;
   flex-direction: row;
   justify-content: center;
 `;

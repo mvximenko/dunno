@@ -3,7 +3,12 @@ import Backdrop from '../../assets/backdrop.png';
 import { IMAGE_BASE_URL, BACKDROP_SIZE } from '../../config';
 import { Poster, Img } from './TitlePosterStyles';
 
-const TitlePoster: React.FC<any> = ({ title, backdropPath }) => {
+interface Props {
+  title: string;
+  backdropPath: string;
+}
+
+const TitlePoster: React.FC<Props> = ({ title, backdropPath }) => {
   const [loaded, setLoaded] = useState(false);
   return (
     <Poster>
@@ -14,8 +19,8 @@ const TitlePoster: React.FC<any> = ({ title, backdropPath }) => {
             ? `${IMAGE_BASE_URL}${BACKDROP_SIZE}${backdropPath}`
             : Backdrop
         }
-        hide={loaded ? false : true}
-        fade={loaded ? true : false}
+        hide={!loaded}
+        fade={loaded}
         onLoad={() => setLoaded(true)}
       />
     </Poster>

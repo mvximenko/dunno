@@ -5,10 +5,15 @@ import { useFetchTitle } from '../store/title/titleActions';
 import { FetchTitle } from '../store/title/titleTypes';
 import ImdbImg from '../assets/imdb.png';
 import StarImg from '../assets/star.png';
+import TitleBackground from './title/TitleBackground';
+import TitlePosterDesktop from './title/TitlePosterDesktop';
 import TitlePoster from './title/TitlePoster';
 import TitleCast from './title/TitleCast';
 import TitleButtons from './title/TitleButtons';
 import {
+  Container,
+  OuterDiv,
+  InnerDiv,
   Heading,
   Overview,
   Info,
@@ -17,7 +22,6 @@ import {
   Star,
   Rank,
   Row,
-  Cast,
 } from './TitleStyles';
 
 interface Props {
@@ -57,45 +61,49 @@ const Title: React.FC<Props> = ({ match: { url } }) => {
 
   const [modal, toggleModal] = useToggle(false);
 
+  const heading: string = title || name;
   return (
-    <>
-      <TitlePoster title={title || name} backdropPath={backdrop_path} />
+    <Container>
+      <TitleBackground title={heading} backdropPath={backdrop_path} />
+      <OuterDiv>
+        <InnerDiv>
+          <TitlePosterDesktop title={heading} posterPath={poster_path} />
+          <TitlePoster title={heading} backdropPath={backdrop_path} />
 
-      <Info>
-        <Heading>{title || name}</Heading>
-        <Overview>{overview}</Overview>
-        <Rating>
-          <Imdb src={ImdbImg} alt='imdb' />
-          <Rank>{vote_average}/10</Rank>
-          <Star src={StarImg} alt='star' />
-        </Rating>
+          <Info>
+            <Heading>{heading}</Heading>
+            <Overview>{overview}</Overview>
+            <Rating>
+              <Imdb src={ImdbImg} alt='imdb' />
+              <Rank>{vote_average}/10</Rank>
+              <Star src={StarImg} alt='star' />
+            </Rating>
 
-        {cast.length && (
-          <>
-            <Cast>Cast</Cast>
-            <Row>
-              {cast
-                .filter((person: Person, index: number) => index < 4)
-                .map((person: Person) => (
-                  <TitleCast
-                    profile_path={person.profile_path}
-                    name={person.name}
-                    id={person.id}
-                    key={person.credit_id}
-                  />
-                ))}
-            </Row>
-          </>
-        )}
+            {cast.length && (
+              <Row>
+                {cast
+                  .filter((person: Person, index: number) => index < 4)
+                  .map((person: Person) => (
+                    <TitleCast
+                      profile_path={person.profile_path}
+                      name={person.name}
+                      id={person.id}
+                      key={person.credit_id}
+                    />
+                  ))}
+              </Row>
+            )}
 
-        <TitleButtons
-          video={videos.length ? videos[0].key : null}
-          toggleModal={toggleModal}
-        />
+            <TitleButtons
+              video={videos.length ? videos[0].key : null}
+              toggleModal={toggleModal}
+            />
 
-        {modal && console.log('MODAL:', modal)}
-      </Info>
-    </>
+            {modal && console.log('MODAL:', modal)}
+          </Info>
+        </InnerDiv>
+      </OuterDiv>
+    </Container>
   );
 };
 
