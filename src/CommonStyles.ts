@@ -1,11 +1,11 @@
 import { css } from 'styled-components';
 
-export interface fadeEffectTypes {
+export interface FadeEffectTypes {
   fade: boolean;
   hide: boolean;
 }
 
-export const fadeEffect = css<fadeEffectTypes>`
+export const fadeEffect = css<FadeEffectTypes>`
   ${({ fade }) =>
     fade &&
     `

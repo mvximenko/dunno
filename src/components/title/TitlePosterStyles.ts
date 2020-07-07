@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import sizes from '../../sizes';
-import { fadeEffect, fadeEffectTypes } from '../../CommonStyles';
+import { fadeEffect, FadeEffectTypes } from '../../CommonStyles';
 
 export const Poster = styled.div`
   position: relative;
@@ -11,14 +11,11 @@ export const Poster = styled.div`
   }
 `;
 
-export const Img = styled.img<fadeEffectTypes>`
+export const Img = styled.img<FadeEffectTypes>`
   position: absolute;
   top: 0;
   left: 0;
   height: auto;
   max-width: 100%;
-  ${[sizes.up('lg')]} {
-    display: none;
-  }
   ${fadeEffect}
 `;

@@ -34,12 +34,24 @@ export const Imdb = styled.img`
   width: 50px;
 `;
 
-export const Star = styled.img`
-  width: 30px;
-`;
-
 export const Rank = styled.span`
   margin-top: 3px;
   margin-left: 7px;
   font-size: 1.1rem;
+`;
+
+export const Star = styled.img`
+  width: 30px;
+`;
+
+export const Cast = styled.h1`
+  padding-top: 10px;
+  font-size: 1.2rem;
+`;
+
+export const Row = styled.div`
+  display: flex;
+  margin-top: 12px;
+  flex-direction: row;
+  justify-content: center;
 `;

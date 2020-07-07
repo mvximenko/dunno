@@ -5,6 +5,7 @@ import { FetchTitle } from '../store/title/titleTypes';
 import ImdbImg from '../assets/imdb.png';
 import StarImg from '../assets/star.png';
 import TitlePoster from './title/TitlePoster';
+import TitleCast from './title/TitleCast';
 import {
   Heading,
   Overview,
@@ -13,12 +14,21 @@ import {
   Imdb,
   Star,
   Rank,
+  Row,
+  Cast,
 } from './TitleStyles';
 
 interface Props {
   match: {
     url: string;
   };
+}
+
+interface Person {
+  credit_id: number;
+  profile_path: string;
+  name: string;
+  id: number;
 }
 
 const Title: React.FC<Props> = ({ match: { url } }) => {
@@ -39,6 +49,7 @@ const Title: React.FC<Props> = ({ match: { url } }) => {
 
   const {
     title: { title, name, backdrop_path, poster_path, overview, vote_average },
+    cast,
   }: any = data;
 
   return (
@@ -53,6 +64,24 @@ const Title: React.FC<Props> = ({ match: { url } }) => {
           <Rank>{vote_average}/10</Rank>
           <Star src={StarImg} alt='star' />
         </Rating>
+
+        {cast.length > 0 && (
+          <>
+            <Cast>Cast</Cast>
+            <Row>
+              {cast
+                .filter((person: Person, index: number) => index < 4)
+                .map((person: Person) => (
+                  <TitleCast
+                    profile_path={person.profile_path}
+                    name={person.name}
+                    id={person.id}
+                    key={person.credit_id}
+                  />
+                ))}
+            </Row>
+          </>
+        )}
       </Info>
     </>
   );
