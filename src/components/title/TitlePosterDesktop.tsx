@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import PosterPng from '../../assets/backdrop.png';
+import PosterPng from '../../assets/poster.png';
 import { IMAGE_BASE_URL, POSTER_SIZE } from '../../config';
 import { Poster, Img } from './TitlePosterDesktopStyles';
 
