@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
+import SearchBar from './SearchBar';
 import SearchPng from '../../assets/search.png';
 import { SearchIcon, Overlay } from './ModalStyles';
 
@@ -22,7 +23,7 @@ const Modal: React.FC = () => {
       <SearchIcon src={SearchPng} onClick={() => setIsOpen(!isOpen)} />
       {isOpen && (
         <Overlay open={isOpen}>
-          <h1>Hello</h1>
+          <SearchBar />
         </Overlay>
       )}
     </div>
