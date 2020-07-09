@@ -14,13 +14,12 @@ export const useFetchPerson = (
   useEffect(() => {
     const key: string = `person_${personId}`;
     if (localStorage.getItem(key)) {
-      const toJson: any = localStorage.getItem(key);
-      const data = JSON.parse(toJson);
+      const data = JSON.parse(localStorage.getItem(key) as string);
       dispatch({ type: SET_DATA, person: data.person, titles: data.titles });
     } else {
       dispatch({ type: SET_LOADING, loading: true });
       fetch(`${API_URL}person/${personId}?api_key=${API_KEY}&language=en-US`)
-        .then((res) => res.json())
+        .then((res: Response) => res.json())
         .then((person) => {
           if (person.status_code) {
             dispatch({ type: SET_LOADING, loading: false });

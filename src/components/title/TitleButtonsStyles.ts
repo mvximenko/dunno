@@ -11,6 +11,7 @@ export const Button = styled.button`
   color: #fff;
   width: 150px;
   border: none;
+  cursor: pointer;
   padding: 9px 11px;
   font-size: 14px;
   font-weight: 400;
@@ -18,7 +19,6 @@ export const Button = styled.button`
   text-transform: capitalize;
   background-color: rgba(51, 51, 51, 0.7);
   ${[sizes.up('md')]} {
-    cursor: pointer;
     transition: all 350ms;
     &:hover {
       background-color: rgba(255, 255, 255, 0.2);

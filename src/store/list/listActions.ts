@@ -9,8 +9,7 @@ export const useFetchList = (
   useEffect(() => {
     const key: string = `${type}_${category}_${page}`;
     if (sessionStorage.getItem(key)) {
-      const toJson: any = sessionStorage.getItem(key);
-      const data = JSON.parse(toJson);
+      const data = JSON.parse(sessionStorage.getItem(key) as string);
       dispatch({ type: SET_LIST, titles: data.results });
     } else {
       fetch(

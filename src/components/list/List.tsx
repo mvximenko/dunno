@@ -28,7 +28,7 @@ interface Props {
 }
 
 const List: React.FC<Props> = ({ titles, category, type, pageDispatch }) => {
-  let bottomBoundaryRef = useRef<HTMLDivElement>(null);
+  const bottomBoundaryRef = useRef<HTMLDivElement>(null);
   useInfiniteScroll(bottomBoundaryRef, pageDispatch);
   useLazyLoading('.lazy', titles);
   return (

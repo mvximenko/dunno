@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Modal from './Modal';
 import useToggle from '../../hooks/useToggle';
 import MenuPng from '../../assets/menu.png';
 import ProfilePng from '../../assets/profile.png';
@@ -39,6 +40,7 @@ const Header: React.FC = () => {
           </NavLink>
         </Nav>
 
+        <Modal />
         <Link to='/signin'>
           <ProfileIcon src={ProfilePng} />
         </Link>

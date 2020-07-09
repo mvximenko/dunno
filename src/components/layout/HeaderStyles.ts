@@ -68,10 +68,10 @@ export const MenuIcon = styled.img`
 
 export const ProfileIcon = styled.img`
   display: none;
+  cursor: pointer;
   ${[sizes.up('sm')]} {
     display: block;
     width: 26px;
-    cursor: pointer;
   }
 `;
 

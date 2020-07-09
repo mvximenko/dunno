@@ -44,8 +44,8 @@ const Title: React.FC<Props> = ({ match: { url } }) => {
     type,
     titleId,
     title: {},
-    cast: {},
-    videos: {},
+    cast: [],
+    videos: [],
     loading: false,
   };
 
@@ -79,7 +79,7 @@ const Title: React.FC<Props> = ({ match: { url } }) => {
               <Star src={StarImg} alt='star' />
             </Rating>
 
-            {cast.length && (
+            {cast.length > 0 && (
               <Row>
                 {cast
                   .filter((person: Person, index: number) => index < 4)

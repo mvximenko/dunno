@@ -14,8 +14,7 @@ export const useFetchTitle = (
   useEffect(() => {
     const key: string = `${type}_${titleId}`;
     if (localStorage.getItem(key)) {
-      const toJson: any = localStorage.getItem(key);
-      const data = JSON.parse(toJson);
+      const data = JSON.parse(localStorage.getItem(key) as string);
       dispatch({
         type: SET_DATA,
         title: data,
@@ -27,7 +26,7 @@ export const useFetchTitle = (
       fetch(
         `${API_URL}${type}/${titleId}?api_key=${API_KEY}&append_to_response=videos,credits`
       )
-        .then((res) => res.json())
+        .then((res: Response) => res.json())
         .then((data) => {
           if (data.status_code) {
             dispatch({ type: SET_LOADING, loading: false });
