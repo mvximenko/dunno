@@ -23,7 +23,7 @@ const Modal: React.FC = () => {
       <SearchIcon src={SearchPng} onClick={() => setIsOpen(!isOpen)} />
       {isOpen && (
         <Overlay open={isOpen}>
-          <SearchBar />
+          <SearchBar closeMenu={() => setIsOpen(!isOpen)} />
         </Overlay>
       )}
     </div>
