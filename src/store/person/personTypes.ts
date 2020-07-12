@@ -19,4 +19,4 @@ interface SetLoadingAction {
   loading: boolean;
 }
 
-export type personActionTypes = FetchPersonAction | SetLoadingAction;
+export type PersonActionTypes = FetchPersonAction | SetLoadingAction;

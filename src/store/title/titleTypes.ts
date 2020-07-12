@@ -2,8 +2,6 @@ export const SET_DATA = 'SET_TITLE';
 export const SET_LOADING = 'SET_LOADING';
 
 export interface FetchTitle {
-  type: string;
-  titleId: string;
   title: object;
   cast: object;
   videos: object;
@@ -22,4 +20,4 @@ interface SetLoadingAction {
   loading: boolean;
 }
 
-export type titleActionTypes = FetchTitleAction | SetLoadingAction;
+export type TitleActionTypes = FetchTitleAction | SetLoadingAction;

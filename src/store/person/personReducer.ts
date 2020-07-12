@@ -2,12 +2,12 @@ import {
   SET_DATA,
   SET_LOADING,
   FetchPerson,
-  personActionTypes,
+  PersonActionTypes,
 } from './personTypes';
 
 const personReducer = (
   state: FetchPerson,
-  action: personActionTypes
+  action: PersonActionTypes
 ): FetchPerson => {
   switch (action.type) {
     case SET_DATA:

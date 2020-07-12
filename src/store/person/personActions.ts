@@ -4,12 +4,12 @@ import {
   SET_DATA,
   SET_LOADING,
   FetchPerson,
-  personActionTypes,
+  PersonActionTypes,
 } from './personTypes';
 
 export const useFetchPerson = (
   { personId }: FetchPerson,
-  dispatch: React.Dispatch<personActionTypes>
+  dispatch: React.Dispatch<PersonActionTypes>
 ): void => {
   useEffect(() => {
     const key: string = `person_${personId}`;

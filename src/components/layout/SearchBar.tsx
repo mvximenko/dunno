@@ -60,7 +60,11 @@ const SearchBar: React.FC<Props> = ({ closeMenu }) => {
           search
             .filter((item: Item, index: number) => index < 5)
             .map((item: Item) => (
-              <Link to={`/${item.media_type}/${item.id}`} onClick={closeMenu}>
+              <Link
+                to={`/${item.media_type}/${item.id}`}
+                onClick={closeMenu}
+                key={item.id}
+              >
                 <Item>{item.original_title || item.name} </Item>
               </Link>
             ))}

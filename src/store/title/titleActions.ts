@@ -1,18 +1,14 @@
 import { useEffect } from 'react';
 import { API_URL, API_KEY } from '../../config';
-import {
-  SET_DATA,
-  SET_LOADING,
-  FetchTitle,
-  titleActionTypes,
-} from './titleTypes';
+import { SET_DATA, SET_LOADING, TitleActionTypes } from './titleTypes';
 
 export const useFetchTitle = (
-  { type, titleId }: FetchTitle,
-  dispatch: React.Dispatch<titleActionTypes>
+  url: string,
+  dispatch: React.Dispatch<TitleActionTypes>
 ): void => {
   useEffect(() => {
-    const key: string = `${type}_${titleId}`;
+    const [, mediaType, titleId] = url.split('/');
+    const key: string = `${mediaType}_${titleId}`;
     if (localStorage.getItem(key)) {
       const data = JSON.parse(localStorage.getItem(key) as string);
       dispatch({
@@ -24,7 +20,7 @@ export const useFetchTitle = (
     } else {
       dispatch({ type: SET_LOADING, loading: true });
       fetch(
-        `${API_URL}${type}/${titleId}?api_key=${API_KEY}&append_to_response=videos,credits`
+        `${API_URL}${mediaType}/${titleId}?api_key=${API_KEY}&append_to_response=videos,credits`
       )
         .then((res: Response) => res.json())
         .then((data) => {
@@ -42,5 +38,5 @@ export const useFetchTitle = (
           }
         });
     }
-  }, [dispatch, titleId, type]);
+  }, [dispatch, url]);
 };

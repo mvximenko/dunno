@@ -2,7 +2,6 @@ import React, { useReducer } from 'react';
 import useToggle from '../hooks/useToggle';
 import titleReducer from '../store/title/titleReducer';
 import { useFetchTitle } from '../store/title/titleActions';
-import { FetchTitle } from '../store/title/titleTypes';
 import ImdbImg from '../assets/imdb.png';
 import StarImg from '../assets/star.png';
 import TitleBackground from './title/TitleBackground';
@@ -38,20 +37,14 @@ interface Person {
 }
 
 const Title: React.FC<Props> = ({ match: { url } }) => {
-  const [, type, titleId] = url.split('/');
-
-  const initialState: FetchTitle = {
-    type,
-    titleId,
+  const [data, dataDispatch] = useReducer(titleReducer, {
     title: {},
     cast: [],
     videos: [],
     loading: false,
-  };
+  });
 
-  const [data, dataDispatch] = useReducer(titleReducer, initialState);
-
-  useFetchTitle(data, dataDispatch);
+  useFetchTitle(url, dataDispatch);
 
   const {
     title: { title, name, backdrop_path, poster_path, overview, vote_average },
@@ -95,7 +88,7 @@ const Title: React.FC<Props> = ({ match: { url } }) => {
             )}
 
             <TitleButtons
-              video={videos.length ? videos[0].key : null}
+              video={videos.length > 0 && videos[0].key}
               toggleModal={toggleModal}
             />
 

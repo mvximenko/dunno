@@ -2,12 +2,12 @@ import {
   SET_DATA,
   SET_LOADING,
   FetchTitle,
-  titleActionTypes,
+  TitleActionTypes,
 } from './titleTypes';
 
 const titleReducer = (
   state: FetchTitle,
-  action: titleActionTypes
+  action: TitleActionTypes
 ): FetchTitle => {
   switch (action.type) {
     case SET_DATA:
