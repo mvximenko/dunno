@@ -5,10 +5,7 @@ import {
   FetchList,
 } from './listTypes';
 
-export const listReducer = (
-  state: FetchList,
-  action: ListActionsTypes
-): FetchList => {
+const listReducer = (state: FetchList, action: ListActionsTypes): FetchList => {
   switch (action.type) {
     case SET_LIST:
       return {
@@ -24,3 +21,5 @@ export const listReducer = (
       return state;
   }
 };
+
+export default listReducer;

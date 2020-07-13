@@ -2,13 +2,13 @@ import styled from 'styled-components';
 import sizes from '../../sizes';
 
 export const SearchIcon = styled.img`
-  width: 1.3rem; /* ----- rem vs vh ------ */
-  padding-top: 0.25rem;
-  margin-right: 1.5rem;
+  width: 20.8px;
+  padding-top: 4px;
+  margin-right: 24px;
   cursor: pointer;
   ${[sizes.up('sm')]} {
-    width: 1.5rem;
-    margin-right: 1.8rem;
+    width: 24px;
+    margin-right: 28.8px;
   }
 `;
 

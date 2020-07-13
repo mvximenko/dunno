@@ -1,5 +1,6 @@
 import React, { useReducer } from 'react';
 import { Link } from 'react-router-dom';
+import Spinner from './layout/Spinner';
 import personReducer from '../store/person/personReducer';
 import { useFetchPerson } from '../store/person/personActions';
 import { FetchPerson } from '../store/person/personTypes';
@@ -58,7 +59,9 @@ const Person: React.FC<Props> = ({ match }) => {
             </Link>
           ))}
         </>
-      ) : null}
+      ) : (
+        <Spinner />
+      )}
     </>
   );
 };

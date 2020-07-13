@@ -4,6 +4,7 @@ import titleReducer from '../store/title/titleReducer';
 import { useFetchTitle } from '../store/title/titleActions';
 import ImdbImg from '../assets/imdb.png';
 import StarImg from '../assets/star.png';
+import Spinner from './layout/Spinner';
 import TitleBackground from './title/TitleBackground';
 import TitlePosterDesktop from './title/TitlePosterDesktop';
 import TitlePoster from './title/TitlePoster';
@@ -100,7 +101,9 @@ const Title: React.FC<Props> = ({ match: { url } }) => {
             </InnerDiv>
           </OuterDiv>
         </Container>
-      ) : null}
+      ) : (
+        <Spinner />
+      )}
     </>
   );
 };
