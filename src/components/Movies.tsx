@@ -1,55 +1,37 @@
 import React, { useReducer } from 'react';
 import List from './list/List';
 import { useFetchList } from '../store/list/listActions';
-import { listReducer, pageReducer } from '../store/list/listReducer';
+import { listReducer } from '../store/list/listReducer';
 
 const Movies: React.FC = () => {
-  const type = 'movie';
-  const initialState = { page: 1, type };
+  const initialState = { page: 1, type: 'movie', titles: [] };
 
-  const [pop, popDispatch] = useReducer(listReducer, [] as object[]);
-  const [top, topDispatch] = useReducer(listReducer, [] as object[]);
-  const [now, nowDispatch] = useReducer(listReducer, [] as object[]);
-
-  const [popPage, popPageDispatch] = useReducer(pageReducer, {
+  const [pop, popDispatch] = useReducer(listReducer, {
     ...initialState,
     category: 'popular',
   });
-
-  const [topPage, topPageDispatch] = useReducer(pageReducer, {
+  const [top, topDispatch] = useReducer(listReducer, {
     ...initialState,
     category: 'top_rated',
   });
-
-  const [nowPage, nowPageDispatch] = useReducer(pageReducer, {
+  const [now, nowDispatch] = useReducer(listReducer, {
     ...initialState,
     category: 'now_playing',
   });
 
-  useFetchList(popPage, popDispatch);
-  useFetchList(topPage, topDispatch);
-  useFetchList(nowPage, nowDispatch);
+  useFetchList(pop, popDispatch);
+  useFetchList(top, topDispatch);
+  useFetchList(now, nowDispatch);
 
   return (
     <>
-      <List
-        titles={pop}
-        category='Popular'
-        type={type}
-        pageDispatch={popPageDispatch}
-      />
-      <List
-        titles={top}
-        category='Top Rated'
-        type={type}
-        pageDispatch={topPageDispatch}
-      />
-      <List
-        titles={now}
-        category='Now Playing'
-        type={type}
-        pageDispatch={nowPageDispatch}
-      />
+      {now.titles ? (
+        <>
+          <List titles={pop} dispatch={popDispatch} />
+          <List titles={top} dispatch={topDispatch} />
+          <List titles={now} dispatch={nowDispatch} />
+        </>
+      ) : null}
     </>
   );
 };

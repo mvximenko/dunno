@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { API_URL, API_KEY } from '../../config';
-import { SET_LIST, FetchListAction, AdvancePage } from './listTypes';
+import { SET_LIST, FetchListAction, FetchList } from './listTypes';
 
 export const useFetchList = (
-  { type, category, page }: AdvancePage,
+  { type, category, page }: FetchList,
   dispatch: React.Dispatch<FetchListAction>
 ): void => {
   useEffect(() => {

@@ -65,7 +65,7 @@ const SearchBar: React.FC<Props> = ({ closeMenu }) => {
                 onClick={closeMenu}
                 key={item.id}
               >
-                <Item>{item.original_title || item.name} </Item>
+                <Item>{item.original_title || item.name}</Item>
               </Link>
             ))}
 

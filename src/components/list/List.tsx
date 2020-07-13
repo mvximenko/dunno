@@ -5,7 +5,8 @@ import useInfiniteScroll from '../../hooks/useInfiniteScroll';
 import useLazyLoading from '../../hooks/useLazyLoading';
 import Poster from '../../assets/poster.png';
 import { IMAGE_BASE_URL, POSTER_SIZE } from '../../config';
-import { AdvancePageAction } from '../../store/list/listTypes';
+import { AdvancePageAction, Titles } from '../../store/list/listTypes';
+import { titleCase } from '../../helpers';
 import {
   Heading,
   TitleListContainer,
@@ -13,27 +14,25 @@ import {
   LoadMore,
 } from './ListStyles';
 
-interface Titles {
-  id?: number;
-  name?: string;
-  title?: string;
-  poster_path?: string;
-}
-
 interface Props {
-  titles: Titles[];
-  category: string;
-  type: string;
-  pageDispatch: React.Dispatch<AdvancePageAction>;
+  titles: {
+    titles: Titles[];
+    category: string;
+    type: string;
+  };
+  dispatch: React.Dispatch<AdvancePageAction>;
 }
 
-const List: React.FC<Props> = ({ titles, category, type, pageDispatch }) => {
+const List: React.FC<Props> = ({
+  titles: { titles, category, type },
+  dispatch,
+}) => {
   const bottomBoundaryRef = useRef<HTMLDivElement>(null);
-  useInfiniteScroll(bottomBoundaryRef, pageDispatch);
+  useInfiniteScroll(bottomBoundaryRef, dispatch);
   useLazyLoading('.lazy', titles);
   return (
     <>
-      <Heading>{category}</Heading>
+      <Heading>{titleCase(category)}</Heading>
       <ScrollContainer vertical={false}>
         <TitleListContainer>
           <InitialSpace>

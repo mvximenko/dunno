@@ -35,14 +35,14 @@ const Person: React.FC<Props> = ({ match }) => {
   useFetchPerson(data, dataDispatch);
 
   const {
-    person: { profile_path, name, title, biography },
+    person: { profile_path, name, biography },
     titles,
     loading,
   }: any = data;
 
   return (
     <>
-      {!loading && (name || title) ? (
+      {!loading && name ? (
         <>
           <img
             style={{ width: '300px' }}

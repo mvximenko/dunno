@@ -50,53 +50,58 @@ const Title: React.FC<Props> = ({ match: { url } }) => {
     title: { title, name, backdrop_path, poster_path, overview, vote_average },
     cast,
     videos,
+    loading,
   }: any = data;
 
   const [modal, toggleModal] = useToggle(false);
 
   const heading: string = title || name;
   return (
-    <Container>
-      <TitleBackground title={heading} backdropPath={backdrop_path} />
-      <OuterDiv>
-        <InnerDiv>
-          <TitlePosterDesktop title={heading} posterPath={poster_path} />
-          <TitlePoster title={heading} backdropPath={backdrop_path} />
+    <>
+      {!loading && cast.length ? (
+        <Container>
+          {backdrop_path && (
+            <TitleBackground title={heading} backdropPath={backdrop_path} />
+          )}
+          <OuterDiv>
+            <InnerDiv>
+              <TitlePosterDesktop title={heading} posterPath={poster_path} />
+              <TitlePoster title={heading} backdropPath={backdrop_path} />
 
-          <Info>
-            <Heading>{heading}</Heading>
-            <Overview>{overview}</Overview>
-            <Rating>
-              <Imdb src={ImdbImg} alt='imdb' />
-              <Rank>{vote_average}/10</Rank>
-              <Star src={StarImg} alt='star' />
-            </Rating>
+              <Info>
+                <Heading>{heading}</Heading>
+                <Overview>{overview}</Overview>
+                <Rating>
+                  <Imdb src={ImdbImg} alt='imdb' />
+                  <Rank>{vote_average}/10</Rank>
+                  <Star src={StarImg} alt='star' />
+                </Rating>
 
-            {cast.length > 0 && (
-              <Row>
-                {cast
-                  .filter((person: Person, index: number) => index < 4)
-                  .map((person: Person) => (
-                    <TitleCast
-                      profile_path={person.profile_path}
-                      name={person.name}
-                      id={person.id}
-                      key={person.credit_id}
-                    />
-                  ))}
-              </Row>
-            )}
+                <Row>
+                  {cast
+                    .filter((person: Person, index: number) => index < 4)
+                    .map((person: Person) => (
+                      <TitleCast
+                        profile_path={person.profile_path}
+                        name={person.name}
+                        id={person.id}
+                        key={person.credit_id}
+                      />
+                    ))}
+                </Row>
 
-            <TitleButtons
-              video={videos.length > 0 && videos[0].key}
-              toggleModal={toggleModal}
-            />
+                <TitleButtons
+                  video={videos.length > 0 && videos[0].key}
+                  toggleModal={toggleModal}
+                />
 
-            {modal && console.log('MODAL:', modal)}
-          </Info>
-        </InnerDiv>
-      </OuterDiv>
-    </Container>
+                {modal && console.log('MODAL:', modal)}
+              </Info>
+            </InnerDiv>
+          </OuterDiv>
+        </Container>
+      ) : null}
+    </>
   );
 };
 
