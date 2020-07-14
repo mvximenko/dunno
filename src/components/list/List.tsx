@@ -8,6 +8,7 @@ import { IMAGE_BASE_URL, POSTER_SIZE } from '../../config';
 import { AdvancePageAction, Titles } from '../../store/list/listTypes';
 import { titleCase } from '../../helpers';
 import {
+  Container,
   Heading,
   TitleListContainer,
   InitialSpace,
@@ -31,7 +32,7 @@ const List: React.FC<Props> = ({
   useInfiniteScroll(bottomBoundaryRef, dispatch);
   useLazyLoading('.lazy', titles);
   return (
-    <>
+    <Container>
       <Heading>{titleCase(category)}</Heading>
       <ScrollContainer vertical={false}>
         <TitleListContainer>
@@ -54,7 +55,7 @@ const List: React.FC<Props> = ({
           <LoadMore ref={bottomBoundaryRef}>Loading...</LoadMore>
         </TitleListContainer>
       </ScrollContainer>
-    </>
+    </Container>
   );
 };
 

@@ -26,7 +26,7 @@ const Header: React.FC = () => {
         </Logo>
 
         <Nav>
-          <NavLink exact to='/tv'>
+          <NavLink exact to='/'>
             TV Shows
           </NavLink>
           <NavLink exact to='/movie'>

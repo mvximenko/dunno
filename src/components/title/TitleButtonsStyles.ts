@@ -5,6 +5,7 @@ export const Row = styled.div`
   display: flex;
   justify-content: space-around;
   margin-top: 25px;
+  margin-bottom: 20px;
 `;
 
 export const Button = styled.button`

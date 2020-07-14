@@ -1,6 +1,12 @@
 import styled from 'styled-components';
 import sizes from '../../sizes';
 
+export const Container = styled.div`
+  :nth-last-child(1) {
+    margin-bottom: 20px;
+  }
+`;
+
 export const Heading = styled.h1`
   font-size: 18px;
   font-weight: 300;
@@ -9,8 +15,8 @@ export const Heading = styled.h1`
   margin-left: 5vw;
   ${[sizes.up('xs')]} {
     font-size: 3.5vw;
-    margin-top: 0.67em;
-    margin-bottom: 0.67em;
+    margin-top: 12px;
+    margin-bottom: 12px;
     margin-left: 3vw;
   }
   ${[sizes.up('sm')]} {

@@ -32,7 +32,7 @@ export const Link = styled(RouterLink)`
 
 export const Img = styled.img<FadeEffectTypes>`
   height: auto;
-  max-width: 100%;
+  width: 100%;
   position: absolute;
   top: 0;
   left: 0;
