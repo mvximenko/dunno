@@ -1,8 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import PosterPng from '../assets/poster.png';
-import { API_URL, API_KEY, IMAGE_BASE_URL, POSTER_SIZE } from '../config';
+import {
+  API_URL,
+  API_KEY,
+  IMAGE_BASE_URL,
+  POSTER_SIZE,
+  BACKDROP_SIZE,
+} from '../config';
 import {
   Container,
+  Background,
   Column,
   Link,
   Img,
@@ -19,10 +26,12 @@ interface Title {
   name: string;
   title: string;
   poster_path: string;
+  backdrop_path: string;
 }
 
 const Randomizer: React.FC = () => {
   const [loaded, setLoaded] = useState(false);
+  const [bkgLoaded, setBkgLoaded] = useState(false);
   const [mediaType, setMediaType] = useState('');
   const [genres, setGenres] = useState<Genres>({ tv: [], movie: [] });
   const [title, setTitle] = useState<Title>({
@@ -30,6 +39,7 @@ const Randomizer: React.FC = () => {
     name: '',
     title: '',
     poster_path: '',
+    backdrop_path: '',
   });
 
   useEffect(() => {
@@ -55,8 +65,8 @@ const Randomizer: React.FC = () => {
         .then((res: Response) => res.json())
         .then(({ results }) => {
           let title = results[Math.floor(Math.random() * results.length)];
-          if (!title.poster_path) {
-            while (!title.poster_path) {
+          if (!title.poster_path || !title.backdrop_path) {
+            while (!title.poster_path || !title.backdrop_path) {
               title = results[Math.floor(Math.random() * results.length)];
             }
           }
@@ -66,9 +76,24 @@ const Randomizer: React.FC = () => {
     }
   }, [mediaType, genres]);
 
-  const { poster_path, name, title: t, id } = title;
+  function getTitle(type: string) {
+    setMediaType(type);
+    setBkgLoaded(false);
+    setLoaded(false);
+  }
+
+  const { backdrop_path, poster_path, name, title: t, id } = title;
   return (
     <Container>
+      {backdrop_path && (
+        <Background
+          src={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${backdrop_path}`}
+          alt={name ? name : t}
+          hide={!bkgLoaded}
+          fade={bkgLoaded}
+          onLoad={() => setBkgLoaded(true)}
+        />
+      )}
       <Column>
         <Link to={poster_path ? `${name ? 'tv' : 'movie'}/${id}` : `#`}>
           <Img
@@ -84,8 +109,8 @@ const Randomizer: React.FC = () => {
           />
         </Link>
         <Buttons>
-          <Button onClick={() => setMediaType('tv')}>TV</Button>
-          <Button onClick={() => setMediaType('movie')}>MOVIE</Button>
+          <Button onClick={() => getTitle('tv')}>TV SHOW</Button>
+          <Button onClick={() => getTitle('movie')}>MOVIE</Button>
         </Buttons>
       </Column>
     </Container>

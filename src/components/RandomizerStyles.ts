@@ -5,17 +5,28 @@ import { fadeEffect, FadeEffectTypes } from '../CommonStyles';
 
 export const Container = styled.div`
   width: 100%;
+  margin: 40px 0;
   display: flex;
-  align-items: center;
   justify-content: center;
-  margin-bottom: 40px;
+`;
+
+export const Background = styled.img<FadeEffectTypes>`
+  display: none;
+  filter: brightness(70%);
+  ${[sizes.up('lg')]} {
+    top: 0;
+    left: 0;
+    width: 100%;
+    position: fixed;
+    display: block;
+    ${fadeEffect}
+  }
 `;
 
 export const Column = styled.div`
   width: 73.33vw;
   display: flex;
   flex-direction: column;
-  margin-top: 40px;
   ${[sizes.up('xs')]} {
     width: 70vw;
   }
@@ -31,7 +42,7 @@ export const Column = styled.div`
 `;
 
 export const Link = styled(RouterLink)`
-  width: auto;
+  width: 100%;
   height: 110vw;
   position: relative;
   background-color: #101010;
@@ -48,10 +59,6 @@ export const Link = styled(RouterLink)`
   }
   ${[sizes.up('lg')]} {
     height: 37.5vw;
-    transition: all 350ms;
-    &:hover {
-      filter: brightness(1.15);
-    }
   }
 `;
 
@@ -63,22 +70,33 @@ export const Img = styled.img<FadeEffectTypes>`
   left: 0;
   user-drag: none;
   ${fadeEffect}
+  ${[sizes.up('lg')]} {
+    transition: all 350ms;
+    &:hover {
+      filter: brightness(1.15);
+    }
+  }
 `;
 
 export const Buttons = styled.div`
   width: 100%;
+  position: relative;
   flex-direction: row;
 `;
 
 export const Button = styled.button`
   width: 50%;
-  padding: 15px 0 15px 0;
-  border: none;
-  background-color: rgba(5, 5, 5, 1);
-  outline: none;
+  padding: 15px 0;
   color: white;
-
-  &:focus {
-    background-color: rgba(5, 5, 5, 0.5);
+  background-color: #0d0c0c;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: all 350ms;
+  &:focus,
+  &:hover {
+    background-color: #101010;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
   }
 `;

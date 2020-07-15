@@ -38,6 +38,7 @@ interface Person {
 }
 
 const Title: React.FC<Props> = ({ match: { url } }) => {
+  const [modal, toggleModal] = useToggle(false);
   const [data, dataDispatch] = useReducer(titleReducer, {
     title: {},
     cast: [],
@@ -54,12 +55,10 @@ const Title: React.FC<Props> = ({ match: { url } }) => {
     loading,
   }: any = data;
 
-  const [modal, toggleModal] = useToggle(false);
-
   const heading: string = title || name;
   return (
     <>
-      {!loading && cast.length ? (
+      {!loading && heading ? (
         <Container>
           {backdrop_path && (
             <TitleBackground title={heading} backdropPath={backdrop_path} />
@@ -79,16 +78,17 @@ const Title: React.FC<Props> = ({ match: { url } }) => {
                 </Rating>
 
                 <Row>
-                  {cast
-                    .filter((person: Person, index: number) => index < 4)
-                    .map((person: Person) => (
-                      <TitleCast
-                        profile_path={person.profile_path}
-                        name={person.name}
-                        id={person.id}
-                        key={person.credit_id}
-                      />
-                    ))}
+                  {cast.length > 0 &&
+                    cast
+                      .filter((person: Person, index: number) => index < 4)
+                      .map((person: Person) => (
+                        <TitleCast
+                          profile_path={person.profile_path}
+                          name={person.name}
+                          id={person.id}
+                          key={person.credit_id}
+                        />
+                      ))}
                 </Row>
 
                 <TitleButtons
