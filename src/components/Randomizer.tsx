@@ -1,7 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import PosterPng from '../assets/poster.png';
 import { API_URL, API_KEY, IMAGE_BASE_URL, POSTER_SIZE } from '../config';
+import {
+  Container,
+  Column,
+  Link,
+  Img,
+  Buttons,
+  Button,
+} from './RandomizerStyles';
 
 interface Genres {
   [x: string]: any[];
@@ -15,6 +22,7 @@ interface Title {
 }
 
 const Randomizer: React.FC = () => {
+  const [loaded, setLoaded] = useState(false);
   const [mediaType, setMediaType] = useState('');
   const [genres, setGenres] = useState<Genres>({ tv: [], movie: [] });
   const [title, setTitle] = useState<Title>({
@@ -46,13 +54,13 @@ const Randomizer: React.FC = () => {
       )
         .then((res: Response) => res.json())
         .then(({ results }) => {
-          let title = null;
-          while (!title) {
-            title = results[Math.floor(Math.random() * results.length)];
-            if (title.poster_path) {
-              setTitle(title);
+          let title = results[Math.floor(Math.random() * results.length)];
+          if (!title.poster_path) {
+            while (!title.poster_path) {
+              title = results[Math.floor(Math.random() * results.length)];
             }
           }
+          setTitle(title);
         });
       setMediaType('');
     }
@@ -60,20 +68,27 @@ const Randomizer: React.FC = () => {
 
   const { poster_path, name, title: t, id } = title;
   return (
-    <>
-      <Link to={poster_path ? `${name ? 'tv' : 'movie'}/${id}` : `randomizer`}>
-        <img
-          alt={name ? name : t}
-          src={
-            poster_path
-              ? `${IMAGE_BASE_URL}${POSTER_SIZE}${poster_path}`
-              : PosterPng
-          }
-        />
-      </Link>
-      <button onClick={() => setMediaType('tv')}>TV</button>
-      <button onClick={() => setMediaType('movie')}>MOVIE</button>
-    </>
+    <Container>
+      <Column>
+        <Link to={poster_path ? `${name ? 'tv' : 'movie'}/${id}` : `#`}>
+          <Img
+            hide={!loaded}
+            fade={loaded}
+            onLoad={() => setLoaded(true)}
+            alt={name ? name : t}
+            src={
+              poster_path
+                ? `${IMAGE_BASE_URL}${POSTER_SIZE}${poster_path}`
+                : PosterPng
+            }
+          />
+        </Link>
+        <Buttons>
+          <Button onClick={() => setMediaType('tv')}>TV</Button>
+          <Button onClick={() => setMediaType('movie')}>MOVIE</Button>
+        </Buttons>
+      </Column>
+    </Container>
   );
 };
 
