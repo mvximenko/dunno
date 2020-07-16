@@ -1,5 +1,4 @@
 import React, { useReducer } from 'react';
-import useToggle from '../hooks/useToggle';
 import titleReducer from '../store/title/titleReducer';
 import { useFetchTitle } from '../store/title/titleActions';
 import ImdbImg from '../assets/imdb.png';
@@ -38,7 +37,6 @@ interface Person {
 }
 
 const Title: React.FC<Props> = ({ match: { url } }) => {
-  const [modal, toggleModal] = useToggle(false);
   const [data, dataDispatch] = useReducer(titleReducer, {
     title: {},
     cast: [],
@@ -91,12 +89,7 @@ const Title: React.FC<Props> = ({ match: { url } }) => {
                       ))}
                 </Row>
 
-                <TitleButtons
-                  video={videos.length > 0 && videos[0].key}
-                  toggleModal={toggleModal}
-                />
-
-                {modal && console.log('MODAL:', modal)}
+                <TitleButtons video={videos.length > 0 && videos[0].key} />
               </Info>
             </InnerDiv>
           </OuterDiv>

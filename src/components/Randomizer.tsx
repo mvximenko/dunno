@@ -78,8 +78,8 @@ const Randomizer: React.FC = () => {
 
   function getTitle(type: string) {
     setMediaType(type);
-    setBkgLoaded(false);
     setLoaded(false);
+    setBkgLoaded(false);
   }
 
   const { backdrop_path, poster_path, name, title: t, id } = title;

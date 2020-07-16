@@ -5,10 +5,9 @@ import { Row, Button } from './TitleButtonsStyles';
 
 interface Props {
   video: string;
-  toggleModal: () => void;
 }
 
-const TitleButtons: React.FC<Props> = ({ video, toggleModal }) => (
+const TitleButtons: React.FC<Props> = ({ video }) => (
   <Row>
     <Button>
       <TitleSvgPlus />
@@ -16,10 +15,16 @@ const TitleButtons: React.FC<Props> = ({ video, toggleModal }) => (
     </Button>
 
     {video && (
-      <Button onClick={toggleModal}>
-        <TitleSvgPlay />
-        Watch Trailer
-      </Button>
+      <a
+        rel='noopener noreferrer'
+        href={`https://www.youtube.com/watch?v=${video}`}
+        target='_blank'
+      >
+        <Button>
+          <TitleSvgPlay />
+          Watch Trailer
+        </Button>
+      </a>
     )}
   </Row>
 );
