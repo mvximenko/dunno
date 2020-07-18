@@ -32,7 +32,7 @@ export const OuterDiv = styled.div`
     position: absolute;
     backdrop-filter: blur(5px);
     webkit-backdrop-filter: blur(5px);
-    background-color: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.8);
   }
 `;
 
@@ -77,7 +77,7 @@ export const Rating = styled.div`
   padding: 5px;
   margin-top: 15px;
   border-radius: 5px;
-  background-color: #000;
+  background: #000;
   display: inline-flex;
   align-items: center;
 `;

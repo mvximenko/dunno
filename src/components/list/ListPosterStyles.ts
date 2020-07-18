@@ -8,7 +8,7 @@ export const Link = styled(RouterLink)`
   height: 100%;
   margin-right: 6px;
   position: relative;
-  background-color: #101010;
+  background: #101010;
   user-drag: none;
   user-select: none;
   ${[sizes.up('xs')]} {

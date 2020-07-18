@@ -18,11 +18,11 @@ export const Button = styled.button`
   font-weight: 400;
   text-decoration: none;
   text-transform: capitalize;
-  background-color: rgba(51, 51, 51, 0.7);
+  background: rgba(51, 51, 51, 0.7);
   ${[sizes.up('md')]} {
     transition: all 350ms;
     &:hover {
-      background-color: rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.2);
     }
   }
 `;

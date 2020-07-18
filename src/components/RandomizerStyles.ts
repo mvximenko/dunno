@@ -43,7 +43,7 @@ export const Link = styled(RouterLink)`
   width: 100%;
   height: 110vw;
   position: relative;
-  background-color: #101010;
+  background: #101010;
   user-drag: none;
   user-select: none;
   ${[sizes.up('xs')]} {
@@ -86,14 +86,14 @@ export const Button = styled.button`
   width: 50%;
   padding: 15px 0;
   color: white;
-  background-color: #0d0c0c;
+  background: #0d0c0c;
   border: none;
   outline: none;
   cursor: pointer;
   transition: all 350ms;
   &:focus,
   &:hover {
-    background-color: #101010;
+    background: #101010;
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
   }

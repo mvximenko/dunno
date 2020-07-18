@@ -6,7 +6,7 @@ export const Container = styled.div`
   margin: auto;
   border: none;
   position: absolute;
-  background-color: #161616;
+  background: #161616;
 `;
 
 export const Input = styled.input`
@@ -17,7 +17,7 @@ export const Input = styled.input`
   font-size: 16px;
   padding: 8.5px 20px;
   box-sizing: border-box;
-  background-color: #212121;
+  background: #212121;
   ${[sizes.up('md')]} {
     padding: 18px 20px;
   }
@@ -36,14 +36,14 @@ export const Item = styled.li<{ noPointer?: boolean }>`
   box-sizing: border-box;
   z-index: 3;
   &:hover {
-    background-color: rgb(128, 128, 128, 0.2);
+    background: rgb(128, 128, 128, 0.2);
   }
   ${({ noPointer }) =>
     noPointer &&
     `
     cursor: default;
     &:hover {
-      background-color: #161616;  
+      background: #161616;  
     }
   `}
 `;

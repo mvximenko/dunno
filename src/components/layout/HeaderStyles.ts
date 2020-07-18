@@ -3,7 +3,7 @@ import { Link as RouterLink, NavLink as RouterNavLink } from 'react-router-dom';
 import sizes from '../../sizes';
 
 const blur = css`
-  background-color: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.8);
   -webkit-backdrop-filter: blur(5px);
   backdrop-filter: blur(5px);
 `;
