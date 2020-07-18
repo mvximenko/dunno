@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import useWindowDimensions from '../hooks/useWindowDimensions';
 import PosterPng from '../assets/poster.png';
 import {
   API_URL,
@@ -83,9 +84,11 @@ const Randomizer: React.FC = () => {
   }
 
   const { backdrop_path, poster_path, name, title: t, id } = title;
+  const { width } = useWindowDimensions();
+
   return (
     <Container>
-      {backdrop_path && (
+      {backdrop_path && width > 1199.98 && (
         <Background
           src={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${backdrop_path}`}
           alt={name ? name : t}

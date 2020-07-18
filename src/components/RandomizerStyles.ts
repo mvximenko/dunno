@@ -11,14 +11,12 @@ export const Container = styled.div`
 `;
 
 export const Background = styled.img<FadeEffectTypes>`
-  display: none;
-  filter: brightness(70%);
   ${[sizes.up('lg')]} {
     top: 0;
     left: 0;
     width: 100%;
     position: fixed;
-    display: block;
+    filter: brightness(70%);
     ${fadeEffect}
   }
 `;
