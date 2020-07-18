@@ -1,6 +1,9 @@
 import { useEffect, useCallback, useRef } from 'react';
 
-function useLazyLoading(imgSelector: string, items: object[]): void {
+export default function useLazyLoading(
+  imgSelector: string,
+  items: object[]
+): void {
   const imgObserver = useCallback((node: HTMLImageElement): void => {
     const intObs = new IntersectionObserver((entries: any): void => {
       entries.forEach(
@@ -33,5 +36,3 @@ function useLazyLoading(imgSelector: string, items: object[]): void {
     }
   }, [imgObserver, imagesRef, imgSelector, items]);
 }
-
-export default useLazyLoading;

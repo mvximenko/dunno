@@ -2,10 +2,10 @@ import { useEffect } from 'react';
 import { API_URL, API_KEY } from '../../config';
 import { SET_DATA, SET_LOADING, TitleActionTypes } from './titleTypes';
 
-export const useFetchTitle = (
+export function useFetchTitle(
   url: string,
   dispatch: React.Dispatch<TitleActionTypes>
-): void => {
+): void {
   useEffect(() => {
     const [, mediaType, titleId] = url.split('/');
     const key: string = `${mediaType}_${titleId}`;
@@ -39,4 +39,4 @@ export const useFetchTitle = (
         });
     }
   }, [dispatch, url]);
-};
+}

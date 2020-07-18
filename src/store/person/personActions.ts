@@ -7,10 +7,10 @@ import {
   PersonActionTypes,
 } from './personTypes';
 
-export const useFetchPerson = (
+export function useFetchPerson(
   { personId }: FetchPerson,
   dispatch: React.Dispatch<PersonActionTypes>
-): void => {
+): void {
   useEffect(() => {
     const key: string = `person_${personId}`;
     if (localStorage.getItem(key)) {
@@ -40,4 +40,4 @@ export const useFetchPerson = (
         });
     }
   }, [dispatch, personId]);
-};
+}

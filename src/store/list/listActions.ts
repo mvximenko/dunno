@@ -2,10 +2,10 @@ import { useEffect } from 'react';
 import { API_URL, API_KEY } from '../../config';
 import { SET_LIST, FetchListAction, FetchList } from './listTypes';
 
-export const useFetchList = (
+export function useFetchList(
   { type, category, page }: FetchList,
   dispatch: React.Dispatch<FetchListAction>
-): void => {
+): void {
   useEffect(() => {
     const key: string = `${type}_${category}_${page}`;
     if (sessionStorage.getItem(key)) {
@@ -22,4 +22,4 @@ export const useFetchList = (
         });
     }
   }, [dispatch, page, type, category]);
-};
+}

@@ -13,7 +13,7 @@ export const Column = styled.div`
       margin-left: 17px;
     }
     &:not(:last-child) {
-      margin-right: 50px;
+      margin-right: 60px;
     }
   }
 `;
@@ -54,12 +54,9 @@ export const Name = styled.span`
   width: 70px;
   display: flex;
   text-align: center;
-  vertical-align: middle;
   justify-content: center;
   padding: 50px 3px 0 3px;
   ${[sizes.up('md')]} {
-    width: 100px;
-    margin-left: -10px;
-    padding-top: 50px 0;
+    width: 80px;
   }
 `;

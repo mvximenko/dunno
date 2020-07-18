@@ -5,10 +5,10 @@ import {
   TitleActionTypes,
 } from './titleTypes';
 
-const titleReducer = (
+export default function titleReducer(
   state: FetchTitle,
   action: TitleActionTypes
-): FetchTitle => {
+): FetchTitle {
   switch (action.type) {
     case SET_DATA:
       return {
@@ -25,6 +25,4 @@ const titleReducer = (
     default:
       return state;
   }
-};
-
-export default titleReducer;
+}

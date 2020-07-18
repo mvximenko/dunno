@@ -1,7 +1,7 @@
 import { useEffect, useCallback } from 'react';
 import { ADVANCE_PAGE, AdvancePageAction } from '../store/list/listTypes';
 
-function useInfiniteScroll(
+export default function useInfiniteScroll(
   scrollRef: React.RefObject<HTMLDivElement>,
   dispatch: React.Dispatch<AdvancePageAction>
 ): void {
@@ -25,5 +25,3 @@ function useInfiniteScroll(
     }
   }, [scrollObserver, scrollRef]);
 }
-
-export default useInfiniteScroll;

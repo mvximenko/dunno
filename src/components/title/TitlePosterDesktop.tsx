@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PosterPng from '../../assets/poster.png';
 import { IMAGE_BASE_URL, POSTER_SIZE } from '../../config';
-import { Poster, Img } from './TitlePosterDesktopStyles';
+import { Img } from './TitlePosterDesktopStyles';
 
 interface Props {
   title: string;
@@ -11,7 +11,7 @@ interface Props {
 const TitlePosterDesktop: React.FC<Props> = ({ title, posterPath }) => {
   const [loaded, setLoaded] = useState(false);
   return (
-    <Poster>
+    <div>
       <Img
         alt={title}
         src={
@@ -23,7 +23,7 @@ const TitlePosterDesktop: React.FC<Props> = ({ title, posterPath }) => {
         fade={loaded}
         onLoad={() => setLoaded(true)}
       />
-    </Poster>
+    </div>
   );
 };
 

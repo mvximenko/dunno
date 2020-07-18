@@ -1,4 +1,5 @@
 import React, { useReducer } from 'react';
+import useWindowDimensions from '../hooks/useWindowDimensions';
 import titleReducer from '../store/title/titleReducer';
 import { useFetchTitle } from '../store/title/titleActions';
 import ImdbImg from '../assets/imdb.png';
@@ -53,7 +54,9 @@ const Title: React.FC<Props> = ({ match: { url } }) => {
     loading,
   }: any = data;
 
+  const { width } = useWindowDimensions();
   const heading: string = title || name;
+
   return (
     <>
       {!loading && heading ? (
@@ -63,7 +66,9 @@ const Title: React.FC<Props> = ({ match: { url } }) => {
           )}
           <OuterDiv>
             <InnerDiv>
-              <TitlePosterDesktop title={heading} posterPath={poster_path} />
+              {width >= 991.98 && (
+                <TitlePosterDesktop title={heading} posterPath={poster_path} />
+              )}
               <TitlePoster title={heading} backdropPath={backdrop_path} />
 
               <Info>

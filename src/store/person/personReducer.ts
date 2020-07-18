@@ -5,10 +5,10 @@ import {
   PersonActionTypes,
 } from './personTypes';
 
-const personReducer = (
+export default function personReducer(
   state: FetchPerson,
   action: PersonActionTypes
-): FetchPerson => {
+): FetchPerson {
   switch (action.type) {
     case SET_DATA:
       return {
@@ -24,6 +24,4 @@ const personReducer = (
     default:
       return state;
   }
-};
-
-export default personReducer;
+}

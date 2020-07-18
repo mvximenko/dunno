@@ -24,8 +24,6 @@ export const OuterDiv = styled.div`
   width: 100%;
   margin-top: auto;
   position: relative;
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
   ${[sizes.up('md')]} {
     top: 0;
     width: 1000px;
