@@ -4,6 +4,8 @@ import Modal from './Modal';
 import useToggle from '../../hooks/useToggle';
 import MenuPng from '../../assets/menu.png';
 import ProfilePng from '../../assets/profile.png';
+import SignOutPng from '../../assets/signout.png';
+import { auth } from '../../firebase/firebaseUtils';
 import {
   StyledHeader,
   Logo,
@@ -14,9 +16,14 @@ import {
   ProfileIcon,
   Menu,
   MenuLink,
+  SignOut,
 } from './HeaderStyles';
 
-const Header: React.FC = () => {
+interface Props {
+  currentUser: object | null;
+}
+
+const Header: React.FC<Props> = ({ currentUser }) => {
   const [drawer, toggleDrawer] = useToggle(false);
   return (
     <>
@@ -41,18 +48,26 @@ const Header: React.FC = () => {
         </Nav>
 
         <Modal />
-        <Link to='/signin'>
-          <ProfileIcon src={ProfilePng} />
-        </Link>
+        {currentUser ? (
+          <ProfileIcon src={SignOutPng} onClick={() => auth.signOut()} />
+        ) : (
+          <Link to='/auth'>
+            <ProfileIcon src={ProfilePng} />
+          </Link>
+        )}
         <MenuIcon src={MenuPng} onClick={toggleDrawer} />
       </StyledHeader>
 
       <Menu active={drawer} onClick={toggleDrawer}>
-        <MenuLink to='/tv'>TV Shows</MenuLink>
+        <MenuLink to='/'>TV Shows</MenuLink>
         <MenuLink to='/movie'>Movies</MenuLink>
         <MenuLink to='/randomizer'>Randomizer</MenuLink>
         <MenuLink to='/favorites'>Favorites</MenuLink>
-        <MenuLink to='/signin'>Sign In</MenuLink>
+        {currentUser ? (
+          <SignOut onClick={() => auth.signOut()}>Sign Out</SignOut>
+        ) : (
+          <MenuLink to='/auth'>Sign In</MenuLink>
+        )}
       </Menu>
     </>
   );

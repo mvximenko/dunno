@@ -5,10 +5,10 @@ export const SearchIcon = styled.img`
   width: 20.8px;
   padding-top: 4px;
   margin-right: 24px;
-  cursor: pointer;
   ${[sizes.up('sm')]} {
     width: 24px;
     margin-right: 28.8px;
+    cursor: pointer;
   }
 `;
 

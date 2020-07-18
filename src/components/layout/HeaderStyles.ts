@@ -8,6 +8,14 @@ const blur = css`
   backdrop-filter: blur(5px);
 `;
 
+const menuLink = css`
+  display: block;
+  padding: 10px 0;
+  font-size: 28px;
+  text-align: center;
+  text-decoration: none;
+`;
+
 export const StyledHeader = styled.header`
   width: 100%;
   height: 36px;
@@ -35,6 +43,10 @@ export const LogoLink = styled(RouterLink)`
   font-size: 22px;
   font-weight: 600;
   font-family: sans-serif;
+  cursor: none;
+  ${[sizes.up('sm')]} {
+    cursor: pointer;
+  }
 `;
 
 export const Nav = styled.nav`
@@ -68,8 +80,8 @@ export const MenuIcon = styled.img`
 
 export const ProfileIcon = styled.img`
   display: none;
-  cursor: pointer;
   ${[sizes.up('sm')]} {
+    cursor: pointer;
     display: block;
     width: 26px;
   }
@@ -93,9 +105,9 @@ export const Menu = styled.div<{ active: boolean }>`
 `;
 
 export const MenuLink = styled(RouterLink)`
-  display: block;
-  padding: 10px 0;
-  font-size: 28px;
-  text-align: center;
-  text-decoration: none;
+  ${menuLink}
+`;
+
+export const SignOut = styled.div`
+  ${menuLink}
 `;
