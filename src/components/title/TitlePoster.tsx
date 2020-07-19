@@ -5,7 +5,7 @@ import { Poster, Img } from './TitlePosterStyles';
 
 interface Props {
   title: string;
-  backdropPath: string;
+  backdropPath: string | null;
 }
 
 const TitlePoster: React.FC<Props> = ({ title, backdropPath }) => {

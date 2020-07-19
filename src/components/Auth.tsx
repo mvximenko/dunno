@@ -1,6 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, FormEvent } from 'react';
 import { signInWithGoogle } from '../firebase/firebaseUtils';
 import { Container, Form, Heading, Input, Button, Span } from './AuthStyles';
+
+interface Event {
+  target: {
+    name: string;
+    value: string;
+  };
+}
 
 const Auth: React.FC = () => {
   const [userCredentials, setCredentials] = useState({
@@ -9,12 +16,12 @@ const Auth: React.FC = () => {
   });
   const { email, password } = userCredentials;
 
-  const handleSubmit = async (event: any) => {
+  const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
     console.log('Submit');
   };
 
-  const handleChange = (event: any) => {
+  const handleChange = (event: Event) => {
     const { value, name } = event.target;
     setCredentials({ ...userCredentials, [name]: value });
   };

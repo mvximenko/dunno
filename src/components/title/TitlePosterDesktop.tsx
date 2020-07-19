@@ -5,7 +5,7 @@ import { Img } from './TitlePosterDesktopStyles';
 
 interface Props {
   title: string;
-  posterPath: string;
+  posterPath: string | null;
 }
 
 const TitlePosterDesktop: React.FC<Props> = ({ title, posterPath }) => {

@@ -14,19 +14,15 @@ interface Props {
   };
 }
 
-interface Title {
-  id: number;
-  name: string;
-  title: string;
-  media_type: string;
-}
-
 const Person: React.FC<Props> = ({ match }) => {
   const { personId } = match.params;
-
   const initialState: FetchPerson = {
     personId,
-    person: {},
+    person: {
+      profile_path: '',
+      name: '',
+      biography: '',
+    },
     titles: [],
     loading: false,
   };
@@ -39,7 +35,7 @@ const Person: React.FC<Props> = ({ match }) => {
     person: { profile_path, name, biography },
     titles,
     loading,
-  }: any = data;
+  } = data;
 
   return (
     <>
@@ -53,7 +49,7 @@ const Person: React.FC<Props> = ({ match }) => {
           <h1>{name}</h1>
           <p>{biography}</p>
 
-          {titles.map((title: Title) => (
+          {titles.map((title) => (
             <Link to={`/${title.media_type}/${title.id}`} key={title.id}>
               <p>{title.name || title.title}</p>
             </Link>

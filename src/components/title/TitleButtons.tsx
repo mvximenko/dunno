@@ -4,7 +4,7 @@ import TitleSvgPlay from './TitleSvgPlay';
 import { Row, Button } from './TitleButtonsStyles';
 
 interface Props {
-  video: string;
+  video: string | false;
 }
 
 const TitleButtons: React.FC<Props> = ({ video }) => (

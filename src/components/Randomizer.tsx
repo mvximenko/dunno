@@ -19,7 +19,7 @@ import {
 } from './RandomizerStyles';
 
 interface Genres {
-  [x: string]: any[];
+  [x: string]: { id: number; name: string }[];
 }
 
 interface Title {

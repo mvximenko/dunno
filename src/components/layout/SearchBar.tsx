@@ -7,15 +7,13 @@ interface Props {
   closeMenu: () => void;
 }
 
-interface Item {
-  id: number;
-  name: string;
-  media_type: string;
-  original_title: string;
-}
-
 interface State {
-  search: Item[];
+  search: {
+    id: number;
+    name: string;
+    media_type: string;
+    original_title: string;
+  }[];
   loading: boolean;
 }
 
@@ -58,8 +56,8 @@ const SearchBar: React.FC<Props> = ({ closeMenu }) => {
       <List>
         {search.length > 0 &&
           search
-            .filter((item: Item, index: number) => index < 5)
-            .map((item: Item) => (
+            .filter((item, index) => index < 5)
+            .map((item) => (
               <Link
                 to={`/${item.media_type}/${item.id}`}
                 onClick={closeMenu}

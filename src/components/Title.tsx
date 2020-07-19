@@ -2,6 +2,7 @@ import React, { useReducer } from 'react';
 import useWindowDimensions from '../hooks/useWindowDimensions';
 import titleReducer from '../store/title/titleReducer';
 import { useFetchTitle } from '../store/title/titleActions';
+
 import ImdbImg from '../assets/imdb.png';
 import StarImg from '../assets/star.png';
 import Spinner from './layout/Spinner';
@@ -30,16 +31,16 @@ interface Props {
   };
 }
 
-interface Person {
-  credit_id: number;
-  profile_path: string;
-  name: string;
-  id: number;
-}
-
 const Title: React.FC<Props> = ({ match: { url } }) => {
   const [data, dataDispatch] = useReducer(titleReducer, {
-    title: {},
+    title: {
+      title: '',
+      name: '',
+      backdrop_path: null,
+      poster_path: null,
+      overview: '',
+      vote_average: 0,
+    },
     cast: [],
     videos: [],
     loading: false,
@@ -52,7 +53,7 @@ const Title: React.FC<Props> = ({ match: { url } }) => {
     cast,
     videos,
     loading,
-  }: any = data;
+  } = data;
 
   const { width } = useWindowDimensions();
   const heading: string = title || name;
@@ -83,8 +84,8 @@ const Title: React.FC<Props> = ({ match: { url } }) => {
                 <Row>
                   {cast.length > 0 &&
                     cast
-                      .filter((person: Person, index: number) => index < 4)
-                      .map((person: Person) => (
+                      .filter((person, index) => index < 4)
+                      .map((person) => (
                         <TitleCast
                           profile_path={person.profile_path}
                           name={person.name}
@@ -93,7 +94,6 @@ const Title: React.FC<Props> = ({ match: { url } }) => {
                         />
                       ))}
                 </Row>
-
                 <TitleButtons video={videos.length > 0 && videos[0].key} />
               </Info>
             </InnerDiv>
