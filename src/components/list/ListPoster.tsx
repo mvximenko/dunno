@@ -2,25 +2,20 @@ import React, { useState } from 'react';
 import { Link, Img } from './ListPosterStyles';
 
 interface Props {
+  id: number;
   type: string;
-  titleId: number;
+  title: string;
   posterPath: string;
-  titleName: string;
 }
 
-const ListPoster: React.FC<Props> = ({
-  type,
-  titleId,
-  posterPath,
-  titleName,
-}) => {
+const ListPoster: React.FC<Props> = ({ id, type, title, posterPath }) => {
   const [loaded, setLoaded] = useState(false);
   return (
-    <Link to={`${type}/${titleId}`}>
+    <Link to={`${type}/${id}`}>
       <Img
-        alt={titleName}
-        className='lazy'
-        data-src={posterPath}
+        loading='lazy'
+        alt={title}
+        src={posterPath}
         hide={!loaded}
         fade={loaded}
         onLoad={() => setLoaded(true)}

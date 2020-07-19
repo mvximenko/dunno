@@ -2,7 +2,6 @@ import React, { useRef } from 'react';
 import ScrollContainer from 'react-indiana-drag-scroll';
 import ListPoster from './ListPoster';
 import useInfiniteScroll from '../../hooks/useInfiniteScroll';
-import useLazyLoading from '../../hooks/useLazyLoading';
 import Poster from '../../assets/poster.png';
 import { IMAGE_BASE_URL, POSTER_SIZE } from '../../config';
 import { AdvancePageAction, Titles } from '../../store/list/listTypes';
@@ -30,7 +29,6 @@ const List: React.FC<Props> = ({
 }) => {
   const bottomBoundaryRef = useRef<HTMLDivElement>(null);
   useInfiniteScroll(bottomBoundaryRef, dispatch);
-  useLazyLoading('.lazy', titles);
   return (
     <Container>
       <Heading>{titleCase(category)}</Heading>
@@ -45,8 +43,8 @@ const List: React.FC<Props> = ({
                       ? `${IMAGE_BASE_URL}${POSTER_SIZE}${title.poster_path}`
                       : `${Poster}`
                   }
-                  titleId={title.id}
-                  titleName={title.title || title.name}
+                  id={title.id}
+                  title={title.title || title.name}
                   type={type}
                   key={title.id}
                 />

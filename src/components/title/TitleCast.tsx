@@ -5,12 +5,12 @@ import Poster from '../../assets/poster.png';
 import { Column, Photo, Img, Name } from './TitleCastStyles';
 
 interface Props {
-  profile_path: string;
-  name: string;
   id: number;
+  name: string;
+  profilePath: string;
 }
 
-const TitleCast: React.FC<Props> = ({ profile_path, name, id }) => {
+const TitleCast: React.FC<Props> = ({ id, name, profilePath }) => {
   const [loaded, setLoaded] = useState(false);
   return (
     <Column>
@@ -18,8 +18,8 @@ const TitleCast: React.FC<Props> = ({ profile_path, name, id }) => {
         <Photo>
           <Img
             src={
-              profile_path
-                ? `${IMAGE_BASE_URL}${POSTER_SIZE}${profile_path}`
+              profilePath
+                ? `${IMAGE_BASE_URL}${POSTER_SIZE}${profilePath}`
                 : Poster
             }
             alt={name}

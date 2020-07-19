@@ -2,7 +2,6 @@ import React, { useReducer } from 'react';
 import useWindowDimensions from '../hooks/useWindowDimensions';
 import titleReducer from '../store/title/titleReducer';
 import { useFetchTitle } from '../store/title/titleActions';
-
 import ImdbImg from '../assets/imdb.png';
 import StarImg from '../assets/star.png';
 import Spinner from './layout/Spinner';
@@ -87,7 +86,7 @@ const Title: React.FC<Props> = ({ match: { url } }) => {
                       .filter((person, index) => index < 4)
                       .map((person) => (
                         <TitleCast
-                          profile_path={person.profile_path}
+                          profilePath={person.profile_path}
                           name={person.name}
                           id={person.id}
                           key={person.credit_id}
