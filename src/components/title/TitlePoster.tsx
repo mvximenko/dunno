@@ -19,7 +19,6 @@ const TitlePoster: React.FC<Props> = ({ title, backdropPath }) => {
             ? `${IMAGE_BASE_URL}${BACKDROP_SIZE}${backdropPath}`
             : Backdrop
         }
-        hide={!loaded}
         fade={loaded}
         onLoad={() => setLoaded(true)}
       />

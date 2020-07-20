@@ -13,7 +13,6 @@ const TitleBackground: React.FC<Props> = ({ title, backdropPath }) => {
     <Background
       src={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${backdropPath}`}
       alt={title}
-      hide={!loaded}
       fade={loaded}
       onLoad={() => setLoaded(true)}
     />

@@ -19,7 +19,6 @@ const TitlePosterDesktop: React.FC<Props> = ({ title, posterPath }) => {
             ? `${IMAGE_BASE_URL}${POSTER_SIZE}${posterPath}`
             : PosterPng
         }
-        hide={!loaded}
         fade={loaded}
         onLoad={() => setLoaded(true)}
       />

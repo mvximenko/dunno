@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import sizes from '../../sizes';
 
 export const Container = styled.div`
-  :nth-last-child(1) {
+  &:nth-last-child(1) {
     margin-bottom: 20px;
   }
 `;

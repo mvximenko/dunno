@@ -16,7 +16,6 @@ const ListPoster: React.FC<Props> = ({ id, type, title, posterPath }) => {
         loading='lazy'
         alt={title}
         src={posterPath}
-        hide={!loaded}
         fade={loaded}
         onLoad={() => setLoaded(true)}
       />

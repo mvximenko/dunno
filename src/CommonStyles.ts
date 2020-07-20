@@ -2,13 +2,12 @@ import { css } from 'styled-components';
 
 export interface FadeEffectTypes {
   fade: boolean;
-  hide: boolean;
 }
 
 export const fadeEffect = css<FadeEffectTypes>`
   ${({ fade }) =>
-    fade &&
-    `
+    fade
+      ? `
     -webkit-animation: fadein 0.5s; /* Safari, Chrome and Opera > 12.1 */
     -moz-animation: fadein 0.5s; /* Firefox < 16 */
     -ms-animation: fadein 0.5s; /* Internet Explorer */
@@ -54,11 +53,8 @@ export const fadeEffect = css<FadeEffectTypes>`
         opacity: 1;
       }
     }
-  `}
-
-  ${({ hide }) =>
-    hide &&
-    `
-    visibility: hidden;
-  `}
+  `
+      : `
+      visibility: hidden;
+    `}
 `;

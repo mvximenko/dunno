@@ -23,7 +23,6 @@ const TitleCast: React.FC<Props> = ({ id, name, profilePath }) => {
                 : Poster
             }
             alt={name}
-            hide={!loaded}
             fade={loaded}
             onLoad={() => setLoaded(true)}
           />

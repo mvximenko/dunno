@@ -92,7 +92,6 @@ const Randomizer: React.FC = () => {
         <Background
           src={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${backdrop_path}`}
           alt={name ? name : t}
-          hide={!bkgLoaded}
           fade={bkgLoaded}
           onLoad={() => setBkgLoaded(true)}
         />
@@ -100,7 +99,6 @@ const Randomizer: React.FC = () => {
       <Column>
         <Link to={poster_path ? `${name ? 'tv' : 'movie'}/${id}` : `#`}>
           <Img
-            hide={!loaded}
             fade={loaded}
             onLoad={() => setLoaded(true)}
             alt={name ? name : t}
