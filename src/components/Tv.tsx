@@ -5,7 +5,7 @@ import { useFetchList } from '../store/list/listActions';
 import listReducer from '../store/list/listReducer';
 
 const Tv: React.FC = () => {
-  const initialState = { page: 1, type: 'tv', titles: [] };
+  const initialState = { page: 1, mediaType: 'tv', titles: [] };
 
   const [pop, popDispatch] = useReducer(listReducer, {
     ...initialState,

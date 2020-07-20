@@ -9,10 +9,10 @@ export interface Titles {
 }
 
 export interface FetchList {
-  type: string;
+  page: number;
+  mediaType: string;
   category: string;
   titles: Titles[];
-  page: number;
 }
 
 export interface FetchListAction {

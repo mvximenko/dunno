@@ -22,20 +22,12 @@ interface Genres {
   [x: string]: { id: number; name: string }[];
 }
 
-interface Title {
-  id: number;
-  name: string;
-  title: string;
-  poster_path: string;
-  backdrop_path: string;
-}
-
 const Randomizer: React.FC = () => {
   const [loaded, setLoaded] = useState(false);
   const [bkgLoaded, setBkgLoaded] = useState(false);
   const [mediaType, setMediaType] = useState('');
   const [genres, setGenres] = useState<Genres>({ tv: [], movie: [] });
-  const [title, setTitle] = useState<Title>({
+  const [data, setData] = useState({
     id: 0,
     name: '',
     title: '',
@@ -71,27 +63,27 @@ const Randomizer: React.FC = () => {
               title = results[Math.floor(Math.random() * results.length)];
             }
           }
-          setTitle(title);
+          setData(title);
         });
       setMediaType('');
     }
   }, [mediaType, genres]);
 
-  function getTitle(type: string) {
+  const getTitle = (type: string) => {
     setMediaType(type);
     setLoaded(false);
     setBkgLoaded(false);
-  }
+  };
 
-  const { backdrop_path, poster_path, name, title: t, id } = title;
+  const { backdrop_path, poster_path, name, title, id } = data;
   const { width } = useWindowDimensions();
 
   return (
     <Container>
       {backdrop_path && width >= 1199.98 && (
         <Background
+          alt={name ? name : title}
           src={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${backdrop_path}`}
-          alt={name ? name : t}
           fade={bkgLoaded}
           onLoad={() => setBkgLoaded(true)}
         />
@@ -99,14 +91,14 @@ const Randomizer: React.FC = () => {
       <Column>
         <Link to={poster_path ? `${name ? 'tv' : 'movie'}/${id}` : `#`}>
           <Img
-            fade={loaded}
-            onLoad={() => setLoaded(true)}
-            alt={name ? name : t}
+            alt={name ? name : title}
             src={
               poster_path
                 ? `${IMAGE_BASE_URL}${POSTER_SIZE}${poster_path}`
                 : PosterPng
             }
+            fade={loaded}
+            onLoad={() => setLoaded(true)}
           />
         </Link>
         <Buttons>

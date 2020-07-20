@@ -24,7 +24,7 @@ const SearchBar: React.FC<Props> = ({ closeMenu }) => {
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      if (value !== '') {
+      if (value) {
         setState({ search: [], loading: true });
         fetch(
           `${API_URL}search/multi?api_key=${API_KEY}&language=en-US&query=${value}`

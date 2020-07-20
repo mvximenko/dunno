@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import Spinner from './layout/Spinner';
 import personReducer from '../store/person/personReducer';
 import { useFetchPerson } from '../store/person/personActions';
-import { FetchPerson } from '../store/person/personTypes';
 import { IMAGE_BASE_URL, POSTER_SIZE } from '../config';
 
 interface Props {
@@ -16,11 +15,11 @@ interface Props {
 
 const Person: React.FC<Props> = ({ match }) => {
   const { personId } = match.params;
-  const initialState: FetchPerson = {
+  const initialState = {
     personId,
     person: {
-      profile_path: '',
       name: '',
+      profile_path: '',
       biography: '',
     },
     titles: [],
@@ -32,7 +31,7 @@ const Person: React.FC<Props> = ({ match }) => {
   useFetchPerson(data, dataDispatch);
 
   const {
-    person: { profile_path, name, biography },
+    person: { name, profile_path, biography },
     titles,
     loading,
   } = data;

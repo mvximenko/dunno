@@ -3,17 +3,17 @@ import { API_URL, API_KEY } from '../../config';
 import { SET_LIST, FetchListAction, FetchList } from './listTypes';
 
 export function useFetchList(
-  { type, category, page }: FetchList,
+  { mediaType, category, page }: FetchList,
   dispatch: React.Dispatch<FetchListAction>
 ): void {
   useEffect(() => {
-    const key: string = `${type}_${category}_${page}`;
+    const key: string = `${mediaType}_${category}_${page}`;
     if (sessionStorage.getItem(key)) {
       const data = JSON.parse(sessionStorage.getItem(key) as string);
       dispatch({ type: SET_LIST, titles: data.results });
     } else {
       fetch(
-        `${API_URL}${type}/${category}?api_key=${API_KEY}&language=en-US&page=${page}`
+        `${API_URL}${mediaType}/${category}?api_key=${API_KEY}&language=en-US&page=${page}`
       )
         .then((res) => res.json())
         .then((data) => {
@@ -21,5 +21,5 @@ export function useFetchList(
           sessionStorage.setItem(key, JSON.stringify(data));
         });
     }
-  }, [dispatch, page, type, category]);
+  }, [dispatch, page, mediaType, category]);
 }

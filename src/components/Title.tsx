@@ -5,8 +5,7 @@ import { useFetchTitle } from '../store/title/titleActions';
 import ImdbImg from '../assets/imdb.png';
 import StarImg from '../assets/star.png';
 import Spinner from './layout/Spinner';
-import TitleBackground from './title/TitleBackground';
-import TitlePosterDesktop from './title/TitlePosterDesktop';
+import TitleBackdrop from './title/TitleBackdrop';
 import TitlePoster from './title/TitlePoster';
 import TitleCast from './title/TitleCast';
 import TitleButtons from './title/TitleButtons';
@@ -42,7 +41,7 @@ const Title: React.FC<Props> = ({ match: { url } }) => {
     },
     cast: [],
     videos: [],
-    loading: false,
+    error: false,
   });
 
   useFetchTitle(url, dataDispatch);
@@ -51,7 +50,7 @@ const Title: React.FC<Props> = ({ match: { url } }) => {
     title: { title, name, backdrop_path, poster_path, overview, vote_average },
     cast,
     videos,
-    loading,
+    error,
   } = data;
 
   const { width } = useWindowDimensions();
@@ -59,18 +58,16 @@ const Title: React.FC<Props> = ({ match: { url } }) => {
 
   return (
     <>
-      {!loading && heading ? (
+      {heading && (
         <Container>
           {backdrop_path && (
-            <TitleBackground title={heading} backdropPath={backdrop_path} />
+            <TitleBackdrop title={heading} backdropPath={backdrop_path} />
           )}
           <OuterDiv>
             <InnerDiv>
               {width >= 991.98 && (
-                <TitlePosterDesktop title={heading} posterPath={poster_path} />
+                <TitlePoster title={heading} posterPath={poster_path} />
               )}
-              <TitlePoster title={heading} backdropPath={backdrop_path} />
-
               <Info>
                 <Heading>{heading}</Heading>
                 <Overview>{overview}</Overview>
@@ -98,9 +95,9 @@ const Title: React.FC<Props> = ({ match: { url } }) => {
             </InnerDiv>
           </OuterDiv>
         </Container>
-      ) : (
-        <Spinner />
       )}
+      {!error && !heading && <Spinner />}
+      {error && 'NOT FOUND 404'}
     </>
   );
 };

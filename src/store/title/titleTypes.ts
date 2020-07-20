@@ -1,5 +1,5 @@
 export const SET_DATA = 'SET_TITLE';
-export const SET_LOADING = 'SET_LOADING';
+export const SET_ERROR = 'SET_ERROR';
 
 interface Title {
   title: string;
@@ -25,7 +25,7 @@ export interface FetchTitle {
   title: Title;
   cast: Cast[];
   videos: Videos[];
-  loading: boolean;
+  error: boolean;
 }
 
 interface FetchTitleAction {
@@ -36,8 +36,8 @@ interface FetchTitleAction {
 }
 
 interface SetLoadingAction {
-  type: typeof SET_LOADING;
-  loading: boolean;
+  type: typeof SET_ERROR;
+  error: boolean;
 }
 
 export type TitleActionTypes = FetchTitleAction | SetLoadingAction;

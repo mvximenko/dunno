@@ -1,29 +1,29 @@
 import React, { useState } from 'react';
-import Backdrop from '../../assets/backdrop.png';
-import { IMAGE_BASE_URL, BACKDROP_SIZE } from '../../config';
-import { Poster, Img } from './TitlePosterStyles';
+import PosterPng from '../../assets/poster.png';
+import { IMAGE_BASE_URL, POSTER_SIZE } from '../../config';
+import { Img } from './TitlePosterStyles';
 
 interface Props {
   title: string;
-  backdropPath: string | null;
+  posterPath: string | null;
 }
 
-const TitlePoster: React.FC<Props> = ({ title, backdropPath }) => {
+const TitlePosterDesktop: React.FC<Props> = ({ title, posterPath }) => {
   const [loaded, setLoaded] = useState(false);
   return (
-    <Poster>
+    <div>
       <Img
         alt={title}
         src={
-          backdropPath !== null
-            ? `${IMAGE_BASE_URL}${BACKDROP_SIZE}${backdropPath}`
-            : Backdrop
+          posterPath
+            ? `${IMAGE_BASE_URL}${POSTER_SIZE}${posterPath}`
+            : PosterPng
         }
         fade={loaded}
         onLoad={() => setLoaded(true)}
       />
-    </Poster>
+    </div>
   );
 };
 
-export default TitlePoster;
+export default TitlePosterDesktop;

@@ -1,22 +1,11 @@
 import styled from 'styled-components';
 import sizes from '../sizes';
-import { fadeEffect, FadeEffectTypes } from '../CommonStyles';
 
 export const Container = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-`;
-
-export const Background = styled.img<FadeEffectTypes>`
-  display: none;
-  ${[sizes.up('lg')]} {
-    top: 0;
-    left: 0;
+  ${[sizes.up('md')]} {
     width: 100%;
-    position: fixed;
-    display: block;
-    ${fadeEffect}
+    display: flex;
+    justify-content: center;
   }
 `;
 

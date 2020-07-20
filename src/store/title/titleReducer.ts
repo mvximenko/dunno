@@ -1,6 +1,6 @@
 import {
   SET_DATA,
-  SET_LOADING,
+  SET_ERROR,
   FetchTitle,
   TitleActionTypes,
 } from './titleTypes';
@@ -17,10 +17,10 @@ export default function titleReducer(
         cast: action.cast,
         videos: action.videos,
       };
-    case SET_LOADING:
+    case SET_ERROR:
       return {
         ...state,
-        loading: action.loading,
+        error: action.error,
       };
     default:
       return state;

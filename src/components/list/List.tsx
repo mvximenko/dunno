@@ -18,13 +18,13 @@ interface Props {
   titles: {
     titles: Titles[];
     category: string;
-    type: string;
+    mediaType: string;
   };
   dispatch: React.Dispatch<AdvancePageAction>;
 }
 
 const List: React.FC<Props> = ({
-  titles: { titles, category, type },
+  titles: { titles, category, mediaType },
   dispatch,
 }) => {
   const bottomBoundaryRef = useRef<HTMLDivElement>(null);
@@ -45,7 +45,7 @@ const List: React.FC<Props> = ({
                   }
                   id={title.id}
                   title={title.title || title.name}
-                  type={type}
+                  mediaType={mediaType}
                   key={title.id}
                 />
               ))}
