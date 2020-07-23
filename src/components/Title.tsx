@@ -2,6 +2,7 @@ import React, { useReducer } from 'react';
 import useWindowDimensions from '../hooks/useWindowDimensions';
 import titleReducer from '../store/title/titleReducer';
 import { useFetchTitle } from '../store/title/titleActions';
+import { sliceOverview } from '../helpers';
 import ImdbImg from '../assets/imdb.png';
 import StarImg from '../assets/star.png';
 import Spinner from './layout/Spinner';
@@ -68,7 +69,9 @@ const Title: React.FC<Props> = ({ match: { url } }) => {
               )}
               <Info>
                 <Heading>{heading}</Heading>
-                <Overview>{overview}</Overview>
+                <Overview>
+                  {width >= 991.98 ? sliceOverview(overview) : overview}
+                </Overview>
                 <Rating>
                   <Imdb src={ImdbImg} alt='imdb' />
                   <Rank>{vote_average}/10</Rank>
