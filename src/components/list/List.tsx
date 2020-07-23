@@ -50,7 +50,7 @@ const List: React.FC<Props> = ({
                 />
               ))}
           </InitialSpace>
-          <LoadMore ref={bottomBoundaryRef}>Loading...</LoadMore>
+          <LoadMore ref={bottomBoundaryRef}></LoadMore>
         </TitleListContainer>
       </ScrollContainer>
     </Container>

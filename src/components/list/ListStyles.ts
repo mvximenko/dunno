@@ -56,6 +56,30 @@ export const InitialSpace = styled.div`
 
 export const LoadMore = styled.div`
   position: relative;
-  padding-right: 10vw;
-  background: green;
+  margin-right: 15px;
+  padding-right: 29vw;
+  ${[sizes.up('xs')]} {
+    padding-right: 22vw;
+  }
+  ${[sizes.up('sm')]} {
+    padding-right: 18vw;
+  }
+  ${[sizes.up('md')]} {
+    padding-right: 15vw;
+  }
+  ${[sizes.up('lg')]} {
+    padding-right: 11.26vw;
+  }
+  animation: pulse 1s infinite ease-in-out;
+  @keyframes pulse {
+    0% {
+      background: #1c1c1c;
+    }
+    50% {
+      background: #101010;
+    }
+    100% {
+      background: #1c1c1c;
+    }
+  }
 `;

@@ -4,6 +4,7 @@ import { fadeEffect, FadeEffectTypes } from '../../CommonStyles';
 
 export const Placeholder = styled.div`
   position: relative;
+  background: #101010;
   padding-top: calc(720 / 1280 * 100%);
   ${[sizes.up('md')]} {
     display: none;
