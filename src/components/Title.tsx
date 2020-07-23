@@ -60,9 +60,7 @@ const Title: React.FC<Props> = ({ match: { url } }) => {
     <>
       {heading && (
         <Container>
-          {backdrop_path && (
-            <TitleBackdrop title={heading} backdropPath={backdrop_path} />
-          )}
+          <TitleBackdrop title={heading} backdropPath={backdrop_path} />
           <OuterDiv>
             <InnerDiv>
               {width >= 991.98 && (

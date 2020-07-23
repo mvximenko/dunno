@@ -35,9 +35,9 @@ interface FetchTitleAction {
   videos: Videos[];
 }
 
-interface SetLoadingAction {
+interface SetErrorAction {
   type: typeof SET_ERROR;
   error: boolean;
 }
 
-export type TitleActionTypes = FetchTitleAction | SetLoadingAction;
+export type TitleActionTypes = FetchTitleAction | SetErrorAction;

@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+import useLoaded from '../../hooks/useLoaded';
 import PosterPng from '../../assets/poster.png';
 import { IMAGE_BASE_URL, POSTER_SIZE } from '../../config';
 import { Img } from './TitlePosterStyles';
@@ -9,7 +10,7 @@ interface Props {
 }
 
 const TitlePosterDesktop: React.FC<Props> = ({ title, posterPath }) => {
-  const [loaded, setLoaded] = useState(false);
+  const [loaded, setLoaded] = useLoaded(posterPath);
   return (
     <div>
       <Img
@@ -20,7 +21,7 @@ const TitlePosterDesktop: React.FC<Props> = ({ title, posterPath }) => {
             : PosterPng
         }
         fade={loaded}
-        onLoad={() => setLoaded(true)}
+        onLoad={setLoaded}
       />
     </div>
   );

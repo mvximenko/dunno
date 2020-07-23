@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Backdrop from '../../assets/backdrop.png';
+import useLoaded from '../../hooks/useLoaded';
 import { IMAGE_BASE_URL, BACKDROP_SIZE } from '../../config';
 import { Placeholder, Img, Background } from './TitleBackdropStyles';
 
@@ -9,7 +10,7 @@ interface Props {
 }
 
 const TitleBackdrop: React.FC<Props> = ({ title, backdropPath }) => {
-  const [loaded, setLoaded] = useState(false);
+  const [loaded, setLoaded] = useLoaded(backdropPath);
   return (
     <>
       <Placeholder>
@@ -21,16 +22,18 @@ const TitleBackdrop: React.FC<Props> = ({ title, backdropPath }) => {
               : Backdrop
           }
           fade={loaded}
-          onLoad={() => setLoaded(true)}
+          onLoad={setLoaded}
         />
       </Placeholder>
 
-      <Background
-        alt={title}
-        src={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${backdropPath}`}
-        fade={loaded}
-        onLoad={() => setLoaded(true)}
-      />
+      {backdropPath && (
+        <Background
+          alt={title}
+          src={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${backdropPath}`}
+          fade={loaded}
+          onLoad={setLoaded}
+        />
+      )}
     </>
   );
 };

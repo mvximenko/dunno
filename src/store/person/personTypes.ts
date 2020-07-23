@@ -1,35 +1,29 @@
 export const SET_DATA = 'SET_DATA';
-export const SET_LOADING = 'SET_LOADING';
-
-interface Person {
-  profile_path: string;
-  name: string;
-  biography: string;
-}
+export const SET_ERROR = 'SET_ERROR';
 
 interface Titles {
   id: number;
   name: string;
   title: string;
   media_type: string;
+  poster_path: string;
 }
 
 export interface FetchPerson {
-  personId: number;
-  person: Person;
+  name: string;
   titles: Titles[];
-  loading: boolean;
+  error: boolean;
 }
 
 interface FetchPersonAction {
   type: typeof SET_DATA;
-  person: Person;
+  name: string;
   titles: Titles[];
 }
 
-interface SetLoadingAction {
-  type: typeof SET_LOADING;
-  loading: boolean;
+interface SetErrorAction {
+  type: typeof SET_ERROR;
+  error: boolean;
 }
 
-export type PersonActionTypes = FetchPersonAction | SetLoadingAction;
+export type PersonActionTypes = FetchPersonAction | SetErrorAction;

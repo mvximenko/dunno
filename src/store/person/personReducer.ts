@@ -1,6 +1,6 @@
 import {
   SET_DATA,
-  SET_LOADING,
+  SET_ERROR,
   FetchPerson,
   PersonActionTypes,
 } from './personTypes';
@@ -13,13 +13,13 @@ export default function personReducer(
     case SET_DATA:
       return {
         ...state,
-        person: action.person,
+        name: action.name,
         titles: action.titles,
       };
-    case SET_LOADING:
+    case SET_ERROR:
       return {
         ...state,
-        loading: action.loading,
+        error: action.error,
       };
     default:
       return state;

@@ -29,20 +29,20 @@ const Header: React.FC<Props> = ({ currentUser }) => {
     <>
       <StyledHeader>
         <Logo>
-          <LogoLink to='/'>dunno</LogoLink>
+          <LogoLink to='/dunno'>dunno</LogoLink>
         </Logo>
 
         <Nav>
-          <NavLink exact to='/'>
+          <NavLink exact to='/dunno'>
             TV Shows
           </NavLink>
-          <NavLink exact to='/movie'>
+          <NavLink exact to='/dunno/movie'>
             Movies
           </NavLink>
-          <NavLink exact to='/randomizer'>
+          <NavLink exact to='/dunno/randomizer'>
             Randomizer
           </NavLink>
-          <NavLink exact to='/favorites'>
+          <NavLink exact to='/dunno/favorites'>
             Favorites
           </NavLink>
         </Nav>
@@ -51,7 +51,7 @@ const Header: React.FC<Props> = ({ currentUser }) => {
         {currentUser ? (
           <ProfileIcon src={SignOutPng} onClick={() => auth.signOut()} />
         ) : (
-          <Link to='/auth'>
+          <Link to='/dunno/auth'>
             <ProfileIcon src={ProfilePng} />
           </Link>
         )}
@@ -59,14 +59,14 @@ const Header: React.FC<Props> = ({ currentUser }) => {
       </StyledHeader>
 
       <Menu active={drawer} onClick={toggleDrawer}>
-        <MenuLink to='/'>TV Shows</MenuLink>
-        <MenuLink to='/movie'>Movies</MenuLink>
-        <MenuLink to='/randomizer'>Randomizer</MenuLink>
-        <MenuLink to='/favorites'>Favorites</MenuLink>
+        <MenuLink to='/dunno'>TV Shows</MenuLink>
+        <MenuLink to='/dunno/movie'>Movies</MenuLink>
+        <MenuLink to='/dunno/randomizer'>Randomizer</MenuLink>
+        <MenuLink to='/dunno/favorites'>Favorites</MenuLink>
         {currentUser ? (
           <SignOut onClick={() => auth.signOut()}>Sign Out</SignOut>
         ) : (
-          <MenuLink to='/auth'>Sign In</MenuLink>
+          <MenuLink to='/dunno/auth'>Sign In</MenuLink>
         )}
       </Menu>
     </>

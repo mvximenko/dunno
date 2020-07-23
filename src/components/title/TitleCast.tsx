@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { IMAGE_BASE_URL, POSTER_SIZE } from '../../config';
+import { IMAGE_BASE_URL, PHOTO_SIZE } from '../../config';
 import Poster from '../../assets/poster.png';
 import { Column, Photo, Img, Name } from './TitleCastStyles';
 
@@ -14,12 +14,12 @@ const TitleCast: React.FC<Props> = ({ id, name, profilePath }) => {
   const [loaded, setLoaded] = useState(false);
   return (
     <Column>
-      <Link to={`/person/${id}`}>
+      <Link to={`/dunno/person/${id}`}>
         <Photo>
           <Img
             src={
               profilePath
-                ? `${IMAGE_BASE_URL}${POSTER_SIZE}${profilePath}`
+                ? `${IMAGE_BASE_URL}${PHOTO_SIZE}${profilePath}`
                 : Poster
             }
             alt={name}

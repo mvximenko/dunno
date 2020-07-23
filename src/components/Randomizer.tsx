@@ -27,7 +27,7 @@ const Randomizer: React.FC = () => {
   const [bkgLoaded, setBkgLoaded] = useState(false);
   const [mediaType, setMediaType] = useState('');
   const [genres, setGenres] = useState<Genres>({ tv: [], movie: [] });
-  const [data, setData] = useState({
+  const [state, setState] = useState({
     id: 0,
     name: '',
     title: '',
@@ -63,7 +63,7 @@ const Randomizer: React.FC = () => {
               title = results[Math.floor(Math.random() * results.length)];
             }
           }
-          setData(title);
+          setState(title);
         });
       setMediaType('');
     }
@@ -75,7 +75,7 @@ const Randomizer: React.FC = () => {
     setBkgLoaded(false);
   };
 
-  const { backdrop_path, poster_path, name, title, id } = data;
+  const { backdrop_path, poster_path, name, title, id } = state;
   const { width } = useWindowDimensions();
 
   return (
