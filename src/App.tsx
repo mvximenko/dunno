@@ -7,16 +7,29 @@ import Randomizer from './components/Randomizer';
 import Person from './components/Person';
 import Auth from './components/Auth';
 import Header from './components/layout/Header';
-import { auth } from './firebase/firebaseUtils';
+import { auth, createUserProfileDocument } from './firebase/firebaseUtils';
 import { GlobalStyle } from './GlobalStyles';
 
+type UserAuth = { id: string } | null;
+
 const App: React.FC = () => {
-  const [currentUser, setCurrentUser] = useState<firebase.User | null>(null);
+  const [currentUser, setCurrentUser] = useState<UserAuth>({ id: '' });
 
   useEffect(() => {
-    const unsubscribeFromAuth = auth.onAuthStateChanged((user) => {
-      setCurrentUser(user);
+    const unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
+      if (userAuth) {
+        const userRef = await createUserProfileDocument(userAuth);
+        userRef!.onSnapshot((snapShot) =>
+          setCurrentUser({
+            id: snapShot.id,
+            ...snapShot.data(),
+          })
+        );
+      } else {
+        setCurrentUser(userAuth);
+      }
     });
+
     return () => {
       unsubscribeFromAuth();
     };

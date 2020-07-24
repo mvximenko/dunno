@@ -9,9 +9,6 @@ export const Column = styled.div`
     margin-right: 6px;
   }
   ${[sizes.up('md')]} {
-    &:first-child {
-      margin-left: 17px;
-    }
     &:not(:last-child) {
       margin-right: 60px;
     }
