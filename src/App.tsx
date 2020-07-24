@@ -5,7 +5,8 @@ import Movies from './components/Movies';
 import Title from './components/Title';
 import Randomizer from './components/Randomizer';
 import Person from './components/Person';
-import Auth from './components/Auth';
+import SignIn from './components/SignIn';
+import SignUp from './components/SignUp';
 import Header from './components/layout/Header';
 import { auth, createUserProfileDocument } from './firebase/firebaseUtils';
 import { GlobalStyle } from './GlobalStyles';
@@ -46,7 +47,8 @@ const App: React.FC = () => {
         <Route exact path='/dunno/tv/:titleId' component={Title} />
         <Route exact path='/dunno/movie/:titleId' component={Title} />
         <Route exact path='/dunno/person/:personId' component={Person} />
-        <Route exact path='/dunno/auth' component={Auth} />
+        <Route exact path='/dunno/signin' component={SignIn} />
+        <Route exact path='/dunno/signup' component={SignUp} />
       </Switch>
     </>
   );

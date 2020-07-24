@@ -51,7 +51,7 @@ const Header: React.FC<Props> = ({ currentUser }) => {
         {currentUser ? (
           <ProfileIcon src={SignOutPng} onClick={() => auth.signOut()} />
         ) : (
-          <Link to='/dunno/auth'>
+          <Link to='/dunno/signin'>
             <ProfileIcon src={ProfilePng} />
           </Link>
         )}
@@ -66,7 +66,7 @@ const Header: React.FC<Props> = ({ currentUser }) => {
         {currentUser ? (
           <SignOut onClick={() => auth.signOut()}>Sign Out</SignOut>
         ) : (
-          <MenuLink to='/dunno/auth'>Sign In</MenuLink>
+          <MenuLink to='/dunno/signin'>Sign In</MenuLink>
         )}
       </Menu>
     </>

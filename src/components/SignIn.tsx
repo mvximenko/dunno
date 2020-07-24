@@ -1,6 +1,6 @@
 import React, { useState, FormEvent } from 'react';
 import { signInWithGoogle } from '../firebase/firebaseUtils';
-import { Container, Form, Heading, Input, Button, Span } from './AuthStyles';
+import { Container, Form, Heading, Input, Button, Link } from './SignInStyles';
 
 interface Event {
   target: {
@@ -9,14 +9,15 @@ interface Event {
   };
 }
 
-const Auth: React.FC = () => {
+const SignIn: React.FC = () => {
   const [userCredentials, setCredentials] = useState({
     email: '',
     password: '',
   });
+
   const { email, password } = userCredentials;
 
-  const handleSubmit = async (event: FormEvent) => {
+  const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
     console.log('Submit');
   };
@@ -33,7 +34,7 @@ const Auth: React.FC = () => {
         <Input
           name='email'
           type='email'
-          onChange={(e) => handleChange(e)}
+          onChange={handleChange}
           value={email}
           placeholder='Email'
           required
@@ -42,7 +43,7 @@ const Auth: React.FC = () => {
           name='password'
           type='password'
           value={password}
-          onChange={(e) => handleChange(e)}
+          onChange={handleChange}
           placeholder='Password'
           required
         />
@@ -50,10 +51,10 @@ const Auth: React.FC = () => {
         <Button type='button' google={true} onClick={signInWithGoogle}>
           Sign in with Google
         </Button>
-        <Span>{"Don't have an account? Sign up"}</Span>
+        <Link to='/dunno/signup'>{'New to Dunno? Sign up'}</Link>
       </Form>
     </Container>
   );
 };
 
-export default Auth;
+export default SignIn;

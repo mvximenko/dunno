@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { Link as RouterLink } from 'react-router-dom';
 import sizes from '../sizes';
 
 const common = css`
@@ -8,10 +9,18 @@ const common = css`
   color: #fff;
 `;
 
-export const Container = styled.div`
+export const Container = styled.div<{ signUp?: boolean }>`
   display: flex;
   justify-content: center;
   margin-top: 40px;
+  ${({ signUp }) =>
+    signUp &&
+    `
+    margin-top: 8px;
+    ${[sizes.up('xs')]} {
+      margin-top: 40px;
+    }
+  `}
 `;
 
 export const Form = styled.form`
@@ -54,6 +63,7 @@ export const Button = styled.button<{ google?: boolean }>`
   `}
 `;
 
-export const Span = styled.span`
+export const Link = styled(RouterLink)`
   text-align: center;
+  cursor: pointer;
 `;
