@@ -14,7 +14,7 @@ const TitleCast: React.FC<Props> = ({ id, name, profilePath }) => {
   const [loaded, setLoaded] = useState(false);
   return (
     <Column>
-      <Link to={`/dunno/person/${id}`}>
+      <Link to={`/person/${id}`}>
         <Photo>
           <Img
             src={

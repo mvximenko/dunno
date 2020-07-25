@@ -69,7 +69,7 @@ const SignUp: React.FC = () => {
           required
         />
         <Button type='submit'>Sign Up</Button>
-        <Link to='/dunno/signin'>{'Already have an account? Sign in'}</Link>
+        <Link to='/signin'>{'Already have an account? Sign in'}</Link>
       </Form>
     </Container>
   );

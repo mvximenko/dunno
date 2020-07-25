@@ -29,7 +29,7 @@ const Person: React.FC<Props> = ({ match }) => {
         <Wrapper>
           <Heading>{name}</Heading>
           {titles.map((title) => (
-            <Link to={`/dunno/${title.media_type}/${title.id}`} key={title.id}>
+            <Link to={`/${title.media_type}/${title.id}`} key={title.id}>
               <Row>
                 <Placeholder>
                   <Img

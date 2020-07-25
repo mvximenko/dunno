@@ -7,7 +7,7 @@ export function useFetchTitle(
   dispatch: React.Dispatch<TitleActionTypes>
 ): void {
   useEffect(() => {
-    const [, , mediaType, titleId] = url.split('/');
+    const [, mediaType, titleId] = url.split('/');
     const key: string = `${mediaType}_${titleId}`;
     if (localStorage.getItem(key)) {
       const data = JSON.parse(localStorage.getItem(key) as string);

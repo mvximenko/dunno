@@ -11,7 +11,7 @@ interface Props {
 const ListPoster: React.FC<Props> = ({ id, mediaType, title, posterPath }) => {
   const [loaded, setLoaded] = useState(false);
   return (
-    <Link to={`/dunno/${mediaType}/${id}`}>
+    <Link to={`/${mediaType}/${id}`}>
       <Img
         loading='lazy'
         alt={title}

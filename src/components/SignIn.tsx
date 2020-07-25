@@ -51,7 +51,7 @@ const SignIn: React.FC = () => {
         <Button type='button' google={true} onClick={signInWithGoogle}>
           Sign in with Google
         </Button>
-        <Link to='/dunno/signup'>{'New to Dunno? Sign up'}</Link>
+        <Link to='/signup'>{'New to Dunno? Sign up'}</Link>
       </Form>
     </Container>
   );

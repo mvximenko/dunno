@@ -41,14 +41,14 @@ const App: React.FC = () => {
       <GlobalStyle />
       <Header currentUser={currentUser} />
       <Switch>
-        <Route exact path='/dunno' component={Tv} />
-        <Route exact path='/dunno/movie' component={Movies} />
-        <Route exact path='/dunno/randomizer' component={Randomizer} />
-        <Route exact path='/dunno/tv/:titleId' component={Title} />
-        <Route exact path='/dunno/movie/:titleId' component={Title} />
-        <Route exact path='/dunno/person/:personId' component={Person} />
-        <Route exact path='/dunno/signin' component={SignIn} />
-        <Route exact path='/dunno/signup' component={SignUp} />
+        <Route exact path='/' component={Tv} />
+        <Route exact path='/movie' component={Movies} />
+        <Route exact path='/randomizer' component={Randomizer} />
+        <Route exact path='/tv/:titleId' component={Title} />
+        <Route exact path='/movie/:titleId' component={Title} />
+        <Route exact path='/person/:personId' component={Person} />
+        <Route exact path='/signin' component={SignIn} />
+        <Route exact path='/signup' component={SignUp} />
       </Switch>
     </>
   );

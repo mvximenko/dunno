@@ -10,6 +10,7 @@ export default function useLoaded(
 
   useEffect(() => {
     if (state) setState(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [backdropPath]);
 
   return [state, loaded];
