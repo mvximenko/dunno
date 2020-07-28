@@ -14,7 +14,8 @@ const config = {
 };
 
 export const createUserProfileDocument = async (
-  userAuth: firebase.User | null
+  userAuth: firebase.User | null,
+  additionalData?: object
 ) => {
   if (!userAuth) return;
 
@@ -25,7 +26,7 @@ export const createUserProfileDocument = async (
     const { displayName, email } = userAuth;
     const createdAt = new Date();
     try {
-      await userRef.set({ displayName, email, createdAt });
+      await userRef.set({ displayName, email, createdAt, ...additionalData });
     } catch (error) {
       console.log('error creating user', error.message);
     }

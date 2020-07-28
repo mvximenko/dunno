@@ -1,4 +1,5 @@
 import React, { useState, FormEvent } from 'react';
+import { auth, createUserProfileDocument } from '../firebase/firebaseUtils';
 import { Container, Form, Heading, Input, Button, Link } from './SignInStyles';
 
 interface Event {
@@ -9,27 +10,41 @@ interface Event {
 }
 
 const SignUp: React.FC = () => {
-  const [userCredentials, setCredentials] = useState({
-    name: '',
+  const [userCredentials, setUserCredentials] = useState({
+    displayName: '',
     email: '',
     password: '',
     confirmPassword: '',
   });
 
-  const { name, email, password, confirmPassword } = userCredentials;
+  const { displayName, email, password, confirmPassword } = userCredentials;
 
-  const handleSubmit = (event: FormEvent) => {
+  const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
     if (password !== confirmPassword) {
       alert("Passwords don't match");
       return;
     }
-    console.log('Submit');
+    try {
+      const { user } = await auth.createUserWithEmailAndPassword(
+        email,
+        password
+      );
+      await createUserProfileDocument(user, { displayName });
+      setUserCredentials({
+        displayName: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
+      });
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const handleChange = (event: Event) => {
     const { value, name } = event.target;
-    setCredentials({ ...userCredentials, [name]: value });
+    setUserCredentials({ ...userCredentials, [name]: value });
   };
 
   return (
@@ -38,8 +53,8 @@ const SignUp: React.FC = () => {
         <Heading>Sign Up</Heading>
         <Input
           type='text'
-          name='name'
-          value={name}
+          name='displayName'
+          value={displayName}
           onChange={handleChange}
           placeholder='Name'
           required
