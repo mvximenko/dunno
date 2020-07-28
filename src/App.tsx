@@ -14,26 +14,21 @@ import { GlobalStyle } from './GlobalStyles';
 type UserAuth = { id: string } | null;
 
 const App: React.FC = () => {
-  const [currentUser, setCurrentUser] = useState<UserAuth>({ id: '' });
+  const [currentUser, setCurrentUser] = useState<UserAuth>(null);
 
   useEffect(() => {
     const unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
         userRef!.onSnapshot((snapShot) =>
-          setCurrentUser({
-            id: snapShot.id,
-            ...snapShot.data(),
-          })
+          setCurrentUser({ id: snapShot.id, ...snapShot.data() })
         );
       } else {
         setCurrentUser(userAuth);
       }
     });
 
-    return () => {
-      unsubscribeFromAuth();
-    };
+    return () => unsubscribeFromAuth();
   }, []);
 
   return (

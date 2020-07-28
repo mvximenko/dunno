@@ -65,6 +65,7 @@ const SignUp: React.FC = () => {
           value={email}
           onChange={handleChange}
           placeholder='Email'
+          autoComplete='email'
           required
         />
         <Input
@@ -73,6 +74,7 @@ const SignUp: React.FC = () => {
           value={password}
           onChange={handleChange}
           placeholder='Password'
+          autoComplete='new-password'
           required
         />
         <Input
@@ -81,6 +83,7 @@ const SignUp: React.FC = () => {
           value={confirmPassword}
           onChange={handleChange}
           placeholder='Confirm Password'
+          autoComplete='new-password'
           required
         />
         <Button type='submit'>Sign Up</Button>

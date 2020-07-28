@@ -1,5 +1,5 @@
 import React, { useState, FormEvent } from 'react';
-import { signInWithGoogle } from '../firebase/firebaseUtils';
+import { auth, signInWithGoogle } from '../firebase/firebaseUtils';
 import { Container, Form, Heading, Input, Button, Link } from './SignInStyles';
 
 interface Event {
@@ -17,9 +17,15 @@ const SignIn: React.FC = () => {
 
   const { email, password } = userCredentials;
 
-  const handleSubmit = (event: FormEvent) => {
+  const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
-    console.log('Submit');
+    const { email, password } = userCredentials;
+    try {
+      await auth.signInWithEmailAndPassword(email, password);
+      setCredentials({ email: '', password: '' });
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const handleChange = (event: Event) => {
@@ -37,6 +43,7 @@ const SignIn: React.FC = () => {
           onChange={handleChange}
           value={email}
           placeholder='Email'
+          autoComplete='email'
           required
         />
         <Input
@@ -45,6 +52,7 @@ const SignIn: React.FC = () => {
           value={password}
           onChange={handleChange}
           placeholder='Password'
+          autoComplete='current-password'
           required
         />
         <Button type='submit'>Sign In</Button>
