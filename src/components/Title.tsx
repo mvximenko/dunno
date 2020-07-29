@@ -25,7 +25,11 @@ import {
   Row,
 } from './TitleStyles';
 
-const Title: React.FC = () => {
+interface Props {
+  userId: string | null;
+}
+
+const Title: React.FC<Props> = ({ userId }) => {
   const [data, dataDispatch] = useReducer(titleReducer, {
     title: {
       title: '',
@@ -41,7 +45,8 @@ const Title: React.FC = () => {
   });
 
   const { url } = useRouteMatch<{ url: string }>();
-  useFetchTitle(url, dataDispatch);
+  const [, mediaType, titleId] = url.split('/');
+  useFetchTitle(mediaType, titleId, dataDispatch);
 
   const {
     title: { title, name, backdrop_path, poster_path, overview, vote_average },
@@ -87,7 +92,14 @@ const Title: React.FC = () => {
                         />
                       ))}
                 </Row>
-                <TitleButtons video={videos.length > 0 && videos[0].key} />
+                <TitleButtons
+                  title={heading}
+                  userId={userId}
+                  id={titleId}
+                  mediaType={mediaType}
+                  posterPath={poster_path}
+                  video={videos.length ? videos[0].key : null}
+                />
               </Info>
             </InnerDiv>
           </OuterDiv>

@@ -3,11 +3,11 @@ import { API_URL, API_KEY } from '../../config';
 import { SET_DATA, SET_ERROR, TitleActionTypes } from './titleTypes';
 
 export function useFetchTitle(
-  url: string,
+  mediaType: string,
+  titleId: string,
   dispatch: React.Dispatch<TitleActionTypes>
 ): void {
   useEffect(() => {
-    const [, mediaType, titleId] = url.split('/');
     const key: string = `${mediaType}_${titleId}`;
     if (localStorage.getItem(key)) {
       const data = JSON.parse(localStorage.getItem(key) as string);
@@ -37,5 +37,5 @@ export function useFetchTitle(
           }
         });
     }
-  }, [dispatch, url]);
+  }, [dispatch, mediaType, titleId]);
 }

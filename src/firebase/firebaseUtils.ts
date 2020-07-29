@@ -34,6 +34,23 @@ export const createUserProfileDocument = async (
   return userRef;
 };
 
+export const addTitle = (
+  userId: string | null,
+  id: string,
+  mediaType: string,
+  posterPath: string | null,
+  title: string
+) => {
+  if (!userId) return;
+
+  firestore()
+    .collection('users')
+    .doc(userId)
+    .collection('titles')
+    .doc(`${mediaType}_${id}`)
+    .set({ id, mediaType, posterPath, title });
+};
+
 firebase.initializeApp(config);
 
 export const auth = firebase.auth();

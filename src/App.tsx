@@ -46,10 +46,10 @@ const App: React.FC = () => {
           <Randomizer />
         </Route>
         <Route exact path='/tv/:titleId'>
-          <Title />
+          <Title userId={currentUser ? currentUser.id : null} />
         </Route>
         <Route exact path='/movie/:titleId'>
-          <Title />
+          <Title userId={currentUser ? currentUser.id : null} />
         </Route>
         <Route exact path='/person/:personId'>
           <Person />
