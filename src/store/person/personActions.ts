@@ -3,7 +3,7 @@ import { API_URL, API_KEY } from '../../config';
 import { SET_DATA, SET_ERROR, PersonActionTypes } from './personTypes';
 
 export function useFetchPerson(
-  personId: number,
+  personId: string,
   dispatch: React.Dispatch<PersonActionTypes>
 ): void {
   useEffect(() => {

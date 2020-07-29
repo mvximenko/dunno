@@ -1,4 +1,5 @@
 import React, { useReducer } from 'react';
+import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import Spinner from './layout/Spinner';
 import PosterPng from '../assets/poster.png';
@@ -7,19 +8,14 @@ import { useFetchPerson } from '../store/person/personActions';
 import { IMAGE_BASE_URL, TINY_POSTER_SIZE } from '../config';
 import { Wrapper, Heading, Row, Placeholder, Img, Span } from './PersonStyles';
 
-interface Props {
-  match: {
-    params: {
-      personId: number;
-    };
-  };
-}
+const Person: React.FC = () => {
+  const [state, dispatch] = useReducer(personReducer, {
+    name: '',
+    titles: [],
+    error: false,
+  });
 
-const Person: React.FC<Props> = ({ match }) => {
-  const { personId } = match.params;
-  const initialState = { name: '', titles: [], error: false };
-
-  const [state, dispatch] = useReducer(personReducer, initialState);
+  const { personId } = useParams<{ personId: string }>();
   useFetchPerson(personId, dispatch);
 
   const { name, titles, error } = state;

@@ -1,4 +1,5 @@
 import React, { useReducer } from 'react';
+import { useRouteMatch } from 'react-router-dom';
 import useWindowDimensions from '../hooks/useWindowDimensions';
 import titleReducer from '../store/title/titleReducer';
 import { useFetchTitle } from '../store/title/titleActions';
@@ -24,13 +25,7 @@ import {
   Row,
 } from './TitleStyles';
 
-interface Props {
-  match: {
-    url: string;
-  };
-}
-
-const Title: React.FC<Props> = ({ match: { url } }) => {
+const Title: React.FC = () => {
   const [data, dataDispatch] = useReducer(titleReducer, {
     title: {
       title: '',
@@ -45,6 +40,7 @@ const Title: React.FC<Props> = ({ match: { url } }) => {
     error: false,
   });
 
+  const { url } = useRouteMatch<{ url: string }>();
   useFetchTitle(url, dataDispatch);
 
   const {

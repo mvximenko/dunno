@@ -36,14 +36,30 @@ const App: React.FC = () => {
       <GlobalStyle />
       <Header currentUser={currentUser} />
       <Switch>
-        <Route exact path='/' component={Tv} />
-        <Route exact path='/movie' component={Movies} />
-        <Route exact path='/randomizer' component={Randomizer} />
-        <Route exact path='/tv/:titleId' component={Title} />
-        <Route exact path='/movie/:titleId' component={Title} />
-        <Route exact path='/person/:personId' component={Person} />
-        <Route exact path='/signin' component={SignIn} />
-        <Route exact path='/signup' component={SignUp} />
+        <Route exact path='/'>
+          <Tv />
+        </Route>
+        <Route exact path='/movie'>
+          <Movies />
+        </Route>
+        <Route exact path='/randomizer'>
+          <Randomizer />
+        </Route>
+        <Route exact path='/tv/:titleId'>
+          <Title />
+        </Route>
+        <Route exact path='/movie/:titleId'>
+          <Title />
+        </Route>
+        <Route exact path='/person/:personId'>
+          <Person />
+        </Route>
+        <Route exact path='/signin'>
+          <SignIn />
+        </Route>
+        <Route exact path='/signup'>
+          <SignUp />
+        </Route>
       </Switch>
     </>
   );
