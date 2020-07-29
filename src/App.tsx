@@ -5,6 +5,7 @@ import Movies from './components/Movies';
 import Title from './components/Title';
 import Randomizer from './components/Randomizer';
 import Person from './components/Person';
+import Favorites from './components/Favorites';
 import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
 import Header from './components/layout/Header';
@@ -53,6 +54,9 @@ const App: React.FC = () => {
         </Route>
         <Route exact path='/person/:personId'>
           <Person />
+        </Route>
+        <Route exact path='/favorites'>
+          <Favorites userId={currentUser ? currentUser.id : null} />
         </Route>
         <Route exact path='/signin'>
           <SignIn />

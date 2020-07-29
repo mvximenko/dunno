@@ -51,6 +51,27 @@ export const addTitle = (
     .set({ id, mediaType, posterPath, title });
 };
 
+export const displayTitles = async (userId: string | null) => {
+  if (!userId) return null;
+
+  let titles: any[] = [];
+  const titleRef = await firestore()
+    .collection('users')
+    .doc(userId)
+    .collection('titles')
+    .get();
+
+  try {
+    titleRef.forEach((doc) => {
+      titles.push(doc.data());
+    });
+  } catch (error) {
+    console.log(error);
+  }
+
+  return titles;
+};
+
 firebase.initializeApp(config);
 
 export const auth = firebase.auth();
