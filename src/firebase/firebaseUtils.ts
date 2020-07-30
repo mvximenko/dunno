@@ -72,6 +72,15 @@ export const displayTitles = async (userId: string | null) => {
   return titles;
 };
 
+export const deleteTitle = (userId: string, id: string) => {
+  firestore()
+    .collection('users')
+    .doc(userId)
+    .collection('titles')
+    .doc(id)
+    .delete();
+};
+
 firebase.initializeApp(config);
 
 export const auth = firebase.auth();

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { displayTitles } from '../firebase/firebaseUtils';
+import { displayTitles, deleteTitle } from '../firebase/firebaseUtils';
 
 interface Props {
   userId: string | null;
@@ -21,11 +21,27 @@ const Favorites: React.FC<Props> = ({ userId }) => {
     });
   }, [userId]);
 
+  const handleDelete = (userId: string, id: string) => {
+    deleteTitle(userId, id);
+    setTitles(
+      titles!.filter((title) => `${title.mediaType}_${title.id}` !== id)
+    );
+  };
+
   return (
     <>
       {titles &&
         titles.map((title) => (
-          <p key={`${title.mediaType}_${title.title}`}>{title.title}</p>
+          <div key={`${title.mediaType}_${title.id}`}>
+            {title.title}
+            <button
+              onClick={() =>
+                handleDelete(userId as string, `${title.mediaType}_${title.id}`)
+              }
+            >
+              Delete
+            </button>
+          </div>
         ))}
     </>
   );
