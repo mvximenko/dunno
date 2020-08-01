@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { displayTitles, deleteTitle } from '../firebase/firebaseUtils';
+import { IMAGE_BASE_URL, POSTER_SIZE } from '../config';
+import { Container, Link, Img, Button } from './FavoritesStyles';
 
 interface Props {
   userId: string | null;
@@ -29,21 +31,31 @@ const Favorites: React.FC<Props> = ({ userId }) => {
   };
 
   return (
-    <>
+    <Container>
       {titles &&
         titles.map((title) => (
-          <div key={`${title.mediaType}_${title.id}`}>
-            {title.title}
-            <button
-              onClick={() =>
-                handleDelete(userId as string, `${title.mediaType}_${title.id}`)
-              }
+          <Link
+            to={`/${title.mediaType}/${title.id}`}
+            key={`${title.mediaType}_${title.id}`}
+          >
+            <Img
+              alt={title.title}
+              src={`${IMAGE_BASE_URL}${POSTER_SIZE}${title.posterPath}`}
+            />
+            <Button
+              onClick={(e) => {
+                e.preventDefault();
+                handleDelete(
+                  userId as string,
+                  `${title.mediaType}_${title.id}`
+                );
+              }}
             >
-              Delete
-            </button>
-          </div>
+              X
+            </Button>
+          </Link>
         ))}
-    </>
+    </Container>
   );
 };
 
