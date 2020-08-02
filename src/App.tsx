@@ -59,10 +59,10 @@ const App: React.FC = () => {
           <Favorites userId={currentUser ? currentUser.id : null} />
         </Route>
         <Route exact path='/signin'>
-          <SignIn />
+          <SignIn isAuthenticated={currentUser ? true : false} />
         </Route>
         <Route exact path='/signup'>
-          <SignUp />
+          <SignUp isAuthenticated={currentUser ? true : false} />
         </Route>
       </Switch>
     </>

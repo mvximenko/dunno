@@ -1,6 +1,11 @@
 import React, { useState, FormEvent } from 'react';
+import { Redirect } from 'react-router-dom';
 import { auth, signInWithGoogle } from '../firebase/firebaseUtils';
 import { Container, Form, Heading, Input, Button, Link } from './SignInStyles';
+
+interface Props {
+  isAuthenticated: boolean;
+}
 
 interface Event {
   target: {
@@ -9,7 +14,7 @@ interface Event {
   };
 }
 
-const SignIn: React.FC = () => {
+const SignIn: React.FC<Props> = ({ isAuthenticated }) => {
   const [userCredentials, setCredentials] = useState({
     email: '',
     password: '',
@@ -32,6 +37,10 @@ const SignIn: React.FC = () => {
     const { value, name } = event.target;
     setCredentials({ ...userCredentials, [name]: value });
   };
+
+  if (isAuthenticated) {
+    return <Redirect to='/' />;
+  }
 
   return (
     <Container>
