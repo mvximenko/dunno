@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import SearchBar from './SearchBar';
-import SearchPng from '../../assets/search.png';
-import { SearchIcon, Overlay } from './ModalStyles';
+import SearchIcon from '../assets/SearchIcon';
+import { SearchWrapper, Overlay } from './ModalStyles';
 
 const Modal: React.FC = () => {
   const outside = useRef<HTMLDivElement>(null);
@@ -20,7 +20,10 @@ const Modal: React.FC = () => {
 
   return (
     <div ref={outside}>
-      <SearchIcon src={SearchPng} onClick={() => setIsOpen(!isOpen)} />
+      <SearchWrapper onClick={() => setIsOpen(!isOpen)}>
+        <SearchIcon />
+      </SearchWrapper>
+
       {isOpen && (
         <Overlay open={isOpen}>
           <SearchBar closeMenu={() => setIsOpen(!isOpen)} />

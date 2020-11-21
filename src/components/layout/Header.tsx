@@ -2,9 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Modal from './Modal';
 import useToggle from '../../hooks/useToggle';
-import MenuPng from '../../assets/menu.png';
-import ProfilePng from '../../assets/profile.png';
-import SignOutPng from '../../assets/signout.png';
+import MenuIcon from '../assets/MenuIcon';
+import SignOutIcon from '../assets/SignOutIcon';
+import ProfileIcon from '../assets/ProfileIcon';
 import { auth } from '../../firebase/firebaseUtils';
 import {
   StyledHeader,
@@ -12,8 +12,8 @@ import {
   LogoLink,
   Nav,
   NavLink,
-  MenuIcon,
-  ProfileIcon,
+  MenuWrapper,
+  ProfileWrapper,
   Menu,
   MenuLink,
   SignOut,
@@ -48,14 +48,21 @@ const Header: React.FC<Props> = ({ currentUser }) => {
         </Nav>
 
         <Modal />
+
         {currentUser ? (
-          <ProfileIcon src={SignOutPng} onClick={() => auth.signOut()} />
+          <ProfileWrapper onClick={() => auth.signOut()}>
+            <SignOutIcon />
+          </ProfileWrapper>
         ) : (
           <Link to='/signin'>
-            <ProfileIcon src={ProfilePng} />
+            <ProfileWrapper>
+              <ProfileIcon />
+            </ProfileWrapper>
           </Link>
         )}
-        <MenuIcon src={MenuPng} onClick={toggleDrawer} />
+        <MenuWrapper onClick={toggleDrawer}>
+          <MenuIcon />
+        </MenuWrapper>
       </StyledHeader>
 
       <Menu active={drawer} onClick={toggleDrawer}>

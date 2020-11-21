@@ -23,4 +23,8 @@ export const GlobalStyle = createGlobalStyle`
     list-style: none;
     padding: 0;
   }
+
+  svg { 
+    display: block; 
+  }
 `;

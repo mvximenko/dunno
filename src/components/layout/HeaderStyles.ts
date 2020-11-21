@@ -70,20 +70,16 @@ export const NavLink = styled(RouterNavLink)`
   }
 `;
 
-export const MenuIcon = styled.img`
-  width: 24px;
-  flex-shrink: 0;
+export const MenuWrapper = styled.div`
   ${[sizes.up('sm')]} {
     display: none;
   }
 `;
 
-export const ProfileIcon = styled.img`
+export const ProfileWrapper = styled.div`
   display: none;
   ${[sizes.up('sm')]} {
-    cursor: pointer;
     display: block;
-    width: 26px;
   }
 `;
 
@@ -108,6 +104,6 @@ export const MenuLink = styled(RouterLink)`
   ${menuLink}
 `;
 
-export const SignOut = styled.div`
+export const SignOut = styled.span`
   ${menuLink}
 `;
