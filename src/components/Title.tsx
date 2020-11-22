@@ -4,8 +4,8 @@ import useWindowDimensions from '../hooks/useWindowDimensions';
 import titleReducer from '../store/title/titleReducer';
 import { useFetchTitle } from '../store/title/titleActions';
 import { sliceOverview } from '../helpers';
-import ImdbImg from '../assets/imdb.png';
-import StarImg from '../assets/star.png';
+import StarIcon from './assets/StarIcon';
+import Imdb from './assets/Imdb';
 import Spinner from './layout/Spinner';
 import TitleBackdrop from './title/TitleBackdrop';
 import TitlePoster from './title/TitlePoster';
@@ -19,8 +19,6 @@ import {
   Overview,
   Info,
   Rating,
-  Imdb,
-  Star,
   Rank,
   Row,
 } from './TitleStyles';
@@ -74,11 +72,10 @@ const Title: React.FC<Props> = ({ userId }) => {
                   {width >= 991.98 ? sliceOverview(overview) : overview}
                 </Overview>
                 <Rating>
-                  <Imdb src={ImdbImg} alt='imdb' />
+                  <Imdb />
                   <Rank>{vote_average}/10</Rank>
-                  <Star src={StarImg} alt='star' />
+                  <StarIcon />
                 </Rating>
-
                 <Row>
                   {cast.length > 0 &&
                     cast

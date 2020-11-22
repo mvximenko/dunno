@@ -71,18 +71,9 @@ export const Rating = styled.div`
   align-items: center;
 `;
 
-export const Imdb = styled.img`
-  width: 50px;
-`;
-
 export const Rank = styled.span`
-  margin-top: 3px;
-  margin-left: 7px;
-  font-size: 1.1rem;
-`;
-
-export const Star = styled.img`
-  width: 30px;
+  margin: 0 7px;
+  font-size: 18px;
 `;
 
 export const Row = styled.div`
