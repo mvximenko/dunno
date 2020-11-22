@@ -1,12 +1,25 @@
 import styled from 'styled-components';
 import sizes from '../../sizes';
 
-export const Container = styled.div`
-  width: 100%;
+export const Container = styled.div<{ isOpen: boolean }>`
+  top: 0;
+  left: 0;
   margin: auto;
   border: none;
   position: absolute;
   background: #161616;
+  z-index: 1000;
+
+  ${({ isOpen }) =>
+    isOpen &&
+    `    
+    left: 13vw;
+    width: 74vw;
+    ${[sizes.up('sm')]} {
+      left: 20vw;
+      width: 60vw;
+    }
+  `}
 `;
 
 export const Input = styled.input`
@@ -15,7 +28,7 @@ export const Input = styled.input`
   border: none;
   outline: none;
   font-size: 16px;
-  padding: 8.5px 20px;
+  padding: 10.5px 20px;
   box-sizing: border-box;
   background: #212121;
   ${[sizes.up('md')]} {

@@ -5,6 +5,7 @@ import { Container, Input, List, Item } from './SearchBarStyles';
 
 interface Props {
   closeMenu: () => void;
+  isOpen: boolean;
 }
 
 interface State {
@@ -17,7 +18,7 @@ interface State {
   loading: boolean;
 }
 
-const SearchBar: React.FC<Props> = ({ closeMenu }) => {
+const SearchBar: React.FC<Props> = ({ closeMenu, isOpen }) => {
   const [state, setState] = useState<State>({ search: [], loading: true });
   const [value, setValue] = useState('');
   const searchInput = useRef<HTMLInputElement>(null);
@@ -46,7 +47,7 @@ const SearchBar: React.FC<Props> = ({ closeMenu }) => {
 
   const { search, loading } = state;
   return (
-    <Container>
+    <Container isOpen={isOpen}>
       <Input
         type='text'
         value={value}

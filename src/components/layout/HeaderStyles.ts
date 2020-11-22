@@ -18,7 +18,7 @@ const menuLink = css`
 
 export const StyledHeader = styled.header`
   width: 100%;
-  height: 36px;
+  height: 40px;
   display: flex;
   padding: 0 5vw;
   position: relative;
@@ -70,6 +70,19 @@ export const NavLink = styled(RouterNavLink)`
   }
 `;
 
+export const Icons = styled.div`
+  width: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const SearchWrapper = styled.div`
+  ${[sizes.up('sm')]} {
+    cursor: pointer;
+  }
+`;
+
 export const MenuWrapper = styled.div`
   ${[sizes.up('sm')]} {
     display: none;
@@ -80,6 +93,7 @@ export const ProfileWrapper = styled.div`
   display: none;
   ${[sizes.up('sm')]} {
     display: block;
+    cursor: pointer;
   }
 `;
 

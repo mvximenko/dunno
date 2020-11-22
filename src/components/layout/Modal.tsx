@@ -1,14 +1,21 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import SearchBar from './SearchBar';
-import SearchIcon from '../assets/SearchIcon';
-import { SearchWrapper, Overlay } from './ModalStyles';
+import { Overlay } from './ModalStyles';
 
-const Modal: React.FC = () => {
+interface Props {
+  isOpen: boolean;
+  setIsOpen: (boolean: boolean) => void;
+  searchIcon: React.RefObject<HTMLDivElement>;
+}
+
+const Modal: React.FC<Props> = ({ isOpen, setIsOpen, searchIcon }) => {
   const outside = useRef<HTMLDivElement>(null);
-  const [isOpen, setIsOpen] = useState(false);
 
   const handleClick = ({ target }: MouseEvent) => {
-    if (outside.current!.contains(target as Node)) {
+    if (
+      outside.current!.contains(target as Node) ||
+      searchIcon.current!.contains(target as Node)
+    ) {
       return;
     }
     setIsOpen(false);
@@ -16,20 +23,18 @@ const Modal: React.FC = () => {
 
   useEffect(() => {
     document.addEventListener('click', handleClick);
+    return () => document.removeEventListener('click', handleClick);
   }, []);
 
   return (
-    <div ref={outside}>
-      <SearchWrapper onClick={() => setIsOpen(!isOpen)}>
-        <SearchIcon />
-      </SearchWrapper>
-
-      {isOpen && (
-        <Overlay open={isOpen}>
-          <SearchBar closeMenu={() => setIsOpen(!isOpen)} />
-        </Overlay>
-      )}
-    </div>
+    <>
+      <Overlay isOpen={isOpen} />
+      <div ref={outside}>
+        {isOpen && (
+          <SearchBar isOpen={isOpen} closeMenu={() => setIsOpen(!isOpen)} />
+        )}
+      </div>
+    </>
   );
 };
 
