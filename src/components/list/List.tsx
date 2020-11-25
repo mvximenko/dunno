@@ -1,10 +1,12 @@
-import React, { useRef } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
+import { connect } from 'react-redux';
 import ScrollContainer from 'react-indiana-drag-scroll';
 import ListPoster from './ListPoster';
 import useInfiniteScroll from '../../hooks/useInfiniteScroll';
 import Poster from '../../assets/poster.png';
+import { loadTitles, loadNewPage } from '../../redux/actions/movieAction';
+import { LoadTitles, LoadNewPage, Title } from '../../redux/types/movieTypes';
 import { IMAGE_BASE_URL, POSTER_SIZE } from '../../config';
-import { AdvancePageAction, Titles } from '../../store/list/listTypes';
 import { titleCase } from '../../helpers';
 import {
   Container,
@@ -15,20 +17,33 @@ import {
 } from './ListStyles';
 
 interface Props {
-  titles: {
-    titles: Titles[];
-    category: string;
-    mediaType: string;
-  };
-  dispatch: React.Dispatch<AdvancePageAction>;
+  loadTitles: LoadTitles;
+  loadNewPage: LoadNewPage;
+  mediaType: string;
+  category: string;
+  titles: [];
+  page: number;
 }
 
 const List: React.FC<Props> = ({
-  titles: { titles, category, mediaType },
-  dispatch,
+  loadTitles,
+  loadNewPage,
+  mediaType,
+  category,
+  titles,
+  page,
 }) => {
+  useEffect(() => {
+    loadTitles(category, page, mediaType);
+  }, [category, page, mediaType, loadTitles]);
+
+  const handleLoad = useCallback(() => loadNewPage(category), [
+    loadNewPage,
+    category,
+  ]);
+
   const bottomBoundaryRef = useRef<HTMLDivElement>(null);
-  useInfiniteScroll(bottomBoundaryRef, dispatch);
+  useInfiniteScroll(bottomBoundaryRef, handleLoad);
   return (
     <Container>
       <Heading>{titleCase(category)}</Heading>
@@ -36,7 +51,7 @@ const List: React.FC<Props> = ({
         <TitleListContainer>
           <InitialSpace>
             {titles &&
-              titles.map((title) => (
+              titles.map((title: Title) => (
                 <ListPoster
                   posterPath={
                     title.poster_path
@@ -57,4 +72,9 @@ const List: React.FC<Props> = ({
   );
 };
 
-export default List;
+const mapStateToProps = (state: any, { category }: any) => ({
+  titles: state.movies[category].titles,
+  page: state.movies[category].page,
+});
+
+export default connect(mapStateToProps, { loadTitles, loadNewPage })(List);
