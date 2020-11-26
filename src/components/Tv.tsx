@@ -1,13 +1,12 @@
 import React from 'react';
 import List from './list/List';
-
-// const categories = ['popular', 'top_rated'];
+import { TV } from '../config';
 
 const Tv = () => (
   <>
-    {/* {categories.map((category) => (
+    {TV.map((category) => (
       <List category={category} mediaType='tv' />
-    ))} */}
+    ))}
   </>
 );
 

@@ -1,4 +1,4 @@
 import { combineReducers } from 'redux';
-import movieReducer from './reducers/movieReducer';
+import listReducer from './reducers/listReducer';
 
-export default combineReducers({ movies: movieReducer });
+export default combineReducers({ list: listReducer });

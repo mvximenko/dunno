@@ -11,3 +11,6 @@ export const BACKDROP_SIZE = 'w1280';
 export const POSTER_SIZE = 'w500';
 export const PHOTO_SIZE = 'w342';
 export const TINY_POSTER_SIZE = 'w185';
+
+export const MOVIES = ['popular', 'top_rated', 'now_playing'];
+export const TV = ['popular', 'top_rated', 'on_the_air', 'airing_today'];

@@ -1,10 +1,10 @@
 import React from 'react';
 import List from './list/List';
-import { categories } from '../redux/reducers/movieReducer';
+import { MOVIES } from '../config';
 
 const Movie = () => (
   <>
-    {categories.map((category) => (
+    {MOVIES.map((category) => (
       <List category={category} mediaType='movie' />
     ))}
   </>

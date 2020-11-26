@@ -4,8 +4,12 @@ import ScrollContainer from 'react-indiana-drag-scroll';
 import ListPoster from './ListPoster';
 import useInfiniteScroll from '../../hooks/useInfiniteScroll';
 import Poster from '../../assets/poster.png';
-import { loadTitles, loadNewPage } from '../../redux/actions/movieAction';
-import { LoadTitles, LoadNewPage, Title } from '../../redux/types/movieTypes';
+import {
+  loadList,
+  resetList,
+  incrementPage,
+} from '../../redux/actions/listAction';
+import { Props } from '../../redux/types/listTypes';
 import { IMAGE_BASE_URL, POSTER_SIZE } from '../../config';
 import { titleCase } from '../../helpers';
 import {
@@ -16,30 +20,27 @@ import {
   LoadMore,
 } from './ListStyles';
 
-interface Props {
-  loadTitles: LoadTitles;
-  loadNewPage: LoadNewPage;
-  mediaType: string;
-  category: string;
-  titles: [];
-  page: number;
-}
-
 const List: React.FC<Props> = ({
-  loadTitles,
-  loadNewPage,
+  loadList,
+  resetList,
+  incrementPage,
   mediaType,
   category,
   titles,
   page,
 }) => {
   useEffect(() => {
-    loadTitles(category, page, mediaType);
-  }, [category, page, mediaType, loadTitles]);
+    loadList(category, page, mediaType);
+  }, [category, page, mediaType, loadList]);
 
-  const handleLoad = useCallback(() => loadNewPage(category), [
-    loadNewPage,
+  useEffect(() => {
+    return () => resetList(category, mediaType);
+  }, [category, mediaType, resetList]);
+
+  const handleLoad = useCallback(() => incrementPage(category, mediaType), [
+    incrementPage,
     category,
+    mediaType,
   ]);
 
   const bottomBoundaryRef = useRef<HTMLDivElement>(null);
@@ -51,7 +52,7 @@ const List: React.FC<Props> = ({
         <TitleListContainer>
           <InitialSpace>
             {titles &&
-              titles.map((title: Title) => (
+              titles.map((title) => (
                 <ListPoster
                   posterPath={
                     title.poster_path
@@ -72,9 +73,13 @@ const List: React.FC<Props> = ({
   );
 };
 
-const mapStateToProps = (state: any, { category }: any) => ({
-  titles: state.movies[category].titles,
-  page: state.movies[category].page,
+const mapStateToProps = (state: any, { category, mediaType }: any) => ({
+  titles: state.list[`${category}_${mediaType}`].titles,
+  page: state.list[`${category}_${mediaType}`].page,
 });
 
-export default connect(mapStateToProps, { loadTitles, loadNewPage })(List);
+export default connect(mapStateToProps, {
+  loadList,
+  resetList,
+  incrementPage,
+})(List);
