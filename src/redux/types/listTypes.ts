@@ -12,8 +12,9 @@ export interface InitialState {
 }
 
 interface Payload {
-  category: string;
   mediaType: string;
+  category?: string;
+  company?: string;
 }
 
 export interface SetListAction {
@@ -40,8 +41,8 @@ export type ListActionTypes =
 
 export type LoadList = (
   category: string,
-  page: number,
-  mediaType: string
+  mediaType: string,
+  page: number
 ) => void;
 
 export type IncrementPage = (category: string, mediaType: string) => void;
@@ -55,12 +56,21 @@ export interface Title {
   poster_path: string;
 }
 
-export interface Props {
-  loadList: LoadList;
-  incrementPage: IncrementPage;
-  resetList: IncrementPage;
-  mediaType: string;
-  category: string;
+interface Props {
   titles: Title[];
+  mediaType: string;
+  resetList: IncrementPage;
+}
+
+export interface ListProps extends Props {
+  incrementPage: IncrementPage;
+  loadList: LoadList;
+  category: string;
   page: number;
+}
+
+export interface SimpleListProps extends Props {
+  loadSimpleList: LoadList;
+  company: string;
+  id: number;
 }

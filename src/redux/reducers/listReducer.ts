@@ -1,4 +1,4 @@
-import { MOVIES, TV } from '../../config';
+import { MOVIES, TV, NETWORKS, COMPANIES } from '../../config';
 import {
   SET_LIST,
   RESET_LIST,
@@ -9,17 +9,32 @@ import {
 
 const entries = { titles: [], page: 1 };
 
-const movies: InitialState = MOVIES.reduce(
-  (object, category) => ({ ...object, [`${category}_movie`]: entries }),
-  {}
-);
-
 const tv: InitialState = TV.reduce(
   (object, category) => ({ ...object, [`${category}_tv`]: entries }),
   {}
 );
 
-const initialState: InitialState = { ...movies, ...tv };
+const movies: InitialState = MOVIES.reduce(
+  (object, category) => ({ ...object, [`${category}_movie`]: entries }),
+  {}
+);
+
+const networks: InitialState = NETWORKS.reduce(
+  (object, network) => ({ ...object, [`${network.name}_tv`]: entries }),
+  {}
+);
+
+const companies: InitialState = COMPANIES.reduce(
+  (object, company) => ({ ...object, [`${company.name}_movie`]: entries }),
+  {}
+);
+
+const initialState: InitialState = {
+  ...movies,
+  ...tv,
+  ...networks,
+  ...companies,
+};
 
 export default function listReducer(
   state: InitialState = initialState,

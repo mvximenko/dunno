@@ -9,7 +9,7 @@ import {
   resetList,
   incrementPage,
 } from '../../redux/actions/listAction';
-import { Props } from '../../redux/types/listTypes';
+import { ListProps } from '../../redux/types/listTypes';
 import { IMAGE_BASE_URL, POSTER_SIZE } from '../../config';
 import { titleCase } from '../../helpers';
 import {
@@ -20,7 +20,7 @@ import {
   LoadMore,
 } from './ListStyles';
 
-const List: React.FC<Props> = ({
+const List: React.FC<ListProps> = ({
   loadList,
   resetList,
   incrementPage,
@@ -30,8 +30,8 @@ const List: React.FC<Props> = ({
   page,
 }) => {
   useEffect(() => {
-    loadList(category, page, mediaType);
-  }, [category, page, mediaType, loadList]);
+    loadList(category, mediaType, page);
+  }, [category, mediaType, page, loadList]);
 
   useEffect(() => {
     return () => resetList(category, mediaType);

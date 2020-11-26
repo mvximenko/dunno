@@ -8,7 +8,24 @@ import {
   ListDispatch,
 } from '../types/listTypes';
 
-export const loadList: LoadList = (category, page, mediaType) => async (
+export const loadSimpleList: LoadList = (company, mediaType, id) => async (
+  dispatch: ListDispatch
+) => {
+  const endpoint =
+    mediaType === 'tv'
+      ? `${API_URL}discover/tv?api_key=${API_KEY}&language=en-US&with_networks=${id}`
+      : `${API_URL}discover/movie?api_key=${API_KEY}&language=en-US&with_companies=${id}`;
+
+  const response = await fetch(endpoint);
+  const { results } = await response.json();
+
+  dispatch({
+    type: SET_LIST,
+    payload: { results, category: company, mediaType },
+  });
+};
+
+export const loadList: LoadList = (category, mediaType, page) => async (
   dispatch: ListDispatch
 ) => {
   const endpoint = `${API_URL}${mediaType}/${category}?api_key=${API_KEY}&language=en-US&page=${page}`;

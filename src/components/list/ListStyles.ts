@@ -44,7 +44,7 @@ export const TitleListContainer = styled.div`
   }
 `;
 
-export const InitialSpace = styled.div`
+export const InitialSpace = styled.div<{ additionalSpace?: boolean }>`
   display: inline-flex;
   padding-left: 5vw;
   min-width: 100vw;
@@ -52,6 +52,26 @@ export const InitialSpace = styled.div`
     display: flex;
     padding-left: 3vw;
   }
+
+  ${({ additionalSpace }) =>
+    additionalSpace &&
+    `
+    &:last-child {
+      margin-right: 50px;
+      ${[sizes.up('xs')]} {
+        margin-right: 60px;
+      }
+      ${[sizes.up('sm')]} {
+        margin-right: 70px;
+      }
+      ${[sizes.up('md')]} {
+        margin-right: 80px;
+      }
+      ${[sizes.up('lg')]} {
+        margin-right: 90px;
+      }
+    }
+`}
 `;
 
 export const LoadMore = styled.div`
