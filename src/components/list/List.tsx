@@ -3,13 +3,12 @@ import { connect } from 'react-redux';
 import ScrollContainer from 'react-indiana-drag-scroll';
 import ListPoster from './ListPoster';
 import useInfiniteScroll from '../../hooks/useInfiniteScroll';
-import Poster from '../../assets/poster.png';
 import {
   loadList,
   resetList,
-  incrementPage,
+  loadNewPage,
 } from '../../redux/actions/listAction';
-import { ListProps } from '../../redux/types/listTypes';
+import { Props } from '../../redux/types/listTypes';
 import { IMAGE_BASE_URL, POSTER_SIZE } from '../../config';
 import { titleCase } from '../../helpers';
 import {
@@ -20,27 +19,29 @@ import {
   LoadMore,
 } from './ListStyles';
 
-const List: React.FC<ListProps> = ({
+const List: React.FC<Props> = ({
   loadList,
   resetList,
-  incrementPage,
+  loadNewPage,
+  totalPages,
   mediaType,
   category,
   titles,
   page,
+  id,
 }) => {
   useEffect(() => {
-    loadList(category, mediaType, page);
-  }, [category, mediaType, page, loadList]);
+    loadList(category, mediaType, page, id);
+  }, [category, mediaType, page, id, loadList]);
 
   useEffect(() => {
     return () => resetList(category, mediaType);
   }, [category, mediaType, resetList]);
 
-  const handleLoad = useCallback(() => incrementPage(category, mediaType), [
-    incrementPage,
+  const handleLoad = useCallback(() => loadNewPage(category, mediaType), [
     category,
     mediaType,
+    loadNewPage,
   ]);
 
   const bottomBoundaryRef = useRef<HTMLDivElement>(null);
@@ -50,23 +51,22 @@ const List: React.FC<ListProps> = ({
       <Heading>{titleCase(category)}</Heading>
       <ScrollContainer vertical={false}>
         <TitleListContainer>
-          <InitialSpace>
+          <InitialSpace additionalSpace={page === totalPages && true}>
             {titles &&
-              titles.map((title) => (
-                <ListPoster
-                  posterPath={
-                    title.poster_path
-                      ? `${IMAGE_BASE_URL}${POSTER_SIZE}${title.poster_path}`
-                      : `${Poster}`
-                  }
-                  id={title.id}
-                  title={title.title || title.name}
-                  mediaType={mediaType}
-                  key={title.id}
-                />
-              ))}
+              titles.map(
+                (title) =>
+                  title.poster_path && (
+                    <ListPoster
+                      posterPath={`${IMAGE_BASE_URL}${POSTER_SIZE}${title.poster_path}`}
+                      id={title.id}
+                      title={title.title || title.name}
+                      mediaType={mediaType}
+                      key={title.id}
+                    />
+                  )
+              )}
           </InitialSpace>
-          <LoadMore ref={bottomBoundaryRef}></LoadMore>
+          {page < totalPages && <LoadMore ref={bottomBoundaryRef}></LoadMore>}
         </TitleListContainer>
       </ScrollContainer>
     </Container>
@@ -76,10 +76,11 @@ const List: React.FC<ListProps> = ({
 const mapStateToProps = (state: any, { category, mediaType }: any) => ({
   titles: state.list[`${category}_${mediaType}`].titles,
   page: state.list[`${category}_${mediaType}`].page,
+  totalPages: state.list[`${category}_${mediaType}`].totalPages,
 });
 
 export default connect(mapStateToProps, {
   loadList,
   resetList,
-  incrementPage,
+  loadNewPage,
 })(List);

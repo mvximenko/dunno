@@ -2,7 +2,8 @@ import { ThunkDispatch } from 'redux-thunk';
 
 export const SET_LIST = 'SET_LIST';
 export const RESET_LIST = 'RESET_LIST';
-export const INCREMENT_PAGE = 'INCREMENT_PAGE';
+export const LOAD_NEW_PAGE = 'LOAD_NEW_PAGE';
+export const SET_TOTAL_PAGES = 'SET_TOTAL_PAGES';
 
 export interface InitialState {
   [x: string]: {
@@ -13,8 +14,8 @@ export interface InitialState {
 
 interface Payload {
   mediaType: string;
-  category?: string;
-  company?: string;
+  category: string;
+  totalPages?: number;
 }
 
 export interface SetListAction {
@@ -30,22 +31,29 @@ export interface ResetListAction {
 }
 
 export interface LoadNewPageAction {
-  type: typeof INCREMENT_PAGE;
+  type: typeof LOAD_NEW_PAGE;
+  payload: Payload;
+}
+
+export interface SetTotalPagesAction {
+  type: typeof SET_TOTAL_PAGES;
   payload: Payload;
 }
 
 export type ListActionTypes =
   | SetListAction
+  | ResetListAction
   | LoadNewPageAction
-  | ResetListAction;
+  | SetTotalPagesAction;
 
 export type LoadList = (
   category: string,
   mediaType: string,
-  page: number
+  page: number,
+  id?: number
 ) => void;
 
-export type IncrementPage = (category: string, mediaType: string) => void;
+export type LoadNewPage = (category: string, mediaType: string) => void;
 
 export type ListDispatch = ThunkDispatch<{}, void, ListActionTypes>;
 
@@ -56,21 +64,14 @@ export interface Title {
   poster_path: string;
 }
 
-interface Props {
+export interface Props {
   titles: Title[];
-  mediaType: string;
-  resetList: IncrementPage;
-}
-
-export interface ListProps extends Props {
-  incrementPage: IncrementPage;
-  loadList: LoadList;
   category: string;
+  mediaType: string;
+  loadNewPage: LoadNewPage;
+  resetList: LoadNewPage;
+  loadList: LoadList;
+  totalPages: number;
   page: number;
-}
-
-export interface SimpleListProps extends Props {
-  loadSimpleList: LoadList;
-  company: string;
-  id: number;
+  id?: number;
 }

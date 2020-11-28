@@ -2,12 +2,13 @@ import { MOVIES, TV, NETWORKS, COMPANIES } from '../../config';
 import {
   SET_LIST,
   RESET_LIST,
-  INCREMENT_PAGE,
+  LOAD_NEW_PAGE,
+  SET_TOTAL_PAGES,
   ListActionTypes,
   InitialState,
 } from '../types/listTypes';
 
-const entries = { titles: [], page: 1 };
+const entries = { titles: [], page: 1, totalPages: 2 };
 
 const tv: InitialState = TV.reduce(
   (object, category) => ({ ...object, [`${category}_tv`]: entries }),
@@ -58,17 +59,22 @@ export default function listReducer(
     case RESET_LIST:
       return {
         ...state,
-        [key]: {
-          titles: [],
-          page: 1,
-        },
+        [key]: entries,
       };
-    case INCREMENT_PAGE:
+    case LOAD_NEW_PAGE:
       return {
         ...state,
         [key]: {
           ...state[key],
           page: state[key].page + 1,
+        },
+      };
+    case SET_TOTAL_PAGES:
+      return {
+        ...state,
+        [key]: {
+          ...state[key],
+          totalPages: action.payload.totalPages,
         },
       };
     default:

@@ -49,9 +49,11 @@ const Header: React.FC<Props> = ({ currentUser }) => {
           <NavLink exact to='/randomizer'>
             Randomizer
           </NavLink>
-          <NavLink exact to='/favorites'>
-            Favorites
-          </NavLink>
+          {currentUser && (
+            <NavLink exact to='/favorites'>
+              Favorites
+            </NavLink>
+          )}
         </Nav>
 
         <Icons>

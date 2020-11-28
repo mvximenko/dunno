@@ -2,46 +2,45 @@ import { API_URL, API_KEY } from '../../config';
 import {
   SET_LIST,
   RESET_LIST,
-  INCREMENT_PAGE,
+  SET_TOTAL_PAGES,
+  LOAD_NEW_PAGE,
   LoadList,
-  IncrementPage,
+  LoadNewPage,
   ListDispatch,
 } from '../types/listTypes';
 
-export const loadSimpleList: LoadList = (company, mediaType, id) => async (
+export const loadList: LoadList = (category, mediaType, page, id) => async (
   dispatch: ListDispatch
 ) => {
-  const endpoint =
-    mediaType === 'tv'
-      ? `${API_URL}discover/tv?api_key=${API_KEY}&language=en-US&with_networks=${id}`
-      : `${API_URL}discover/movie?api_key=${API_KEY}&language=en-US&with_companies=${id}`;
+  let endpoint = '';
+
+  id
+    ? mediaType === 'tv'
+      ? (endpoint = `${API_URL}discover/tv?api_key=${API_KEY}&language=en-US&with_networks=${id}&page=${page}`)
+      : (endpoint = `${API_URL}discover/movie?api_key=${API_KEY}&language=en-US&with_companies=${id}&page=${page}`)
+    : (endpoint = `${API_URL}${mediaType}/${category}?api_key=${API_KEY}&language=en-US&page=${page}`);
 
   const response = await fetch(endpoint);
-  const { results } = await response.json();
+  const { results, total_pages } = await response.json();
 
-  dispatch({
-    type: SET_LIST,
-    payload: { results, category: company, mediaType },
-  });
-};
+  if (page === 1) {
+    dispatch({
+      type: SET_TOTAL_PAGES,
+      payload: { totalPages: total_pages, category, mediaType },
+    });
+  }
 
-export const loadList: LoadList = (category, mediaType, page) => async (
-  dispatch: ListDispatch
-) => {
-  const endpoint = `${API_URL}${mediaType}/${category}?api_key=${API_KEY}&language=en-US&page=${page}`;
-  const response = await fetch(endpoint);
-  const { results } = await response.json();
   dispatch({ type: SET_LIST, payload: { results, category, mediaType } });
 };
 
-export const resetList: IncrementPage = (category, mediaType) => async (
+export const resetList: LoadNewPage = (category, mediaType) => async (
   dispatch: ListDispatch
 ) => {
   dispatch({ type: RESET_LIST, payload: { category, mediaType } });
 };
 
-export const incrementPage: IncrementPage = (category, mediaType) => async (
+export const loadNewPage: LoadNewPage = (category, mediaType) => async (
   dispatch: ListDispatch
 ) => {
-  dispatch({ type: INCREMENT_PAGE, payload: { category, mediaType } });
+  dispatch({ type: LOAD_NEW_PAGE, payload: { category, mediaType } });
 };

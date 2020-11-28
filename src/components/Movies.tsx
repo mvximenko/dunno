@@ -1,16 +1,20 @@
 import React from 'react';
 import List from './list/List';
-import SimpleList from './list/SimpleList';
 import { MOVIES, COMPANIES } from '../config';
 
 const Movie = () => (
   <>
     {MOVIES.map((category) => (
-      <List category={category} mediaType='movie' />
+      <List category={category} mediaType='movie' key={category} />
     ))}
 
     {COMPANIES.map((company) => (
-      <SimpleList id={company.id} mediaType='movie' company={company.name} />
+      <List
+        id={company.id}
+        mediaType='movie'
+        category={company.name}
+        key={company.name}
+      />
     ))}
   </>
 );
