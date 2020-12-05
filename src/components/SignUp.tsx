@@ -1,4 +1,4 @@
-import React, { useState, FormEvent } from 'react';
+import { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { auth, createUserProfileDocument } from '../firebase/firebaseUtils';
 import { Container, Form, Heading, Input, Button, Link } from './SignInStyles';
@@ -24,7 +24,7 @@ const SignUp: React.FC<Props> = ({ isAuthenticated }) => {
 
   const { displayName, email, password, confirmPassword } = userCredentials;
 
-  const handleSubmit = async (event: FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     if (password !== confirmPassword) {
       alert("Passwords don't match");

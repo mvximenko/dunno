@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { API_URL, API_KEY } from '../../config';
-import { Container, Input, List, Item } from './SearchBarStyles';
+import { Container, Input, Item } from './SearchBarStyles';
 
 interface Props {
   closeMenu: () => void;
@@ -54,7 +54,7 @@ const SearchBar: React.FC<Props> = ({ closeMenu, isOpen }) => {
         ref={searchInput}
         onChange={(e) => setValue(e.target.value)}
       />
-      <List>
+      <ul>
         {search.length > 0 &&
           search
             .filter((item, index) => index < 5)
@@ -74,7 +74,7 @@ const SearchBar: React.FC<Props> = ({ closeMenu, isOpen }) => {
             search.
           </Item>
         )}
-      </List>
+      </ul>
     </Container>
   );
 };

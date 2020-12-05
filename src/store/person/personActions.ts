@@ -9,7 +9,7 @@ export function useFetchPerson(
   useEffect(() => {
     const key: string = `person_${personId}`;
     if (localStorage.getItem(key)) {
-      const data = JSON.parse(localStorage.getItem(key) as string);
+      const data = JSON.parse(localStorage.getItem(key)!);
       dispatch({ type: SET_DATA, name: data.name, titles: data.titles });
     } else {
       fetch(`${API_URL}person/${personId}?api_key=${API_KEY}&language=en-US`)

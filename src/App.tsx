@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import Tv from './components/Tv';
@@ -6,7 +6,7 @@ import Movies from './components/Movies';
 import Title from './components/Title';
 import Randomizer from './components/Randomizer';
 import Person from './components/Person';
-import Favorites from './components/Favorites';
+import MyList from './components/MyList';
 import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
 import Header from './components/layout/Header';
@@ -58,8 +58,8 @@ const App: React.FC = () => {
           <Route exact path='/person/:personId'>
             <Person />
           </Route>
-          <Route exact path='/favorites'>
-            <Favorites userId={currentUser ? currentUser.id : null} />
+          <Route exact path='/my-list'>
+            <MyList userId={currentUser ? currentUser.id : null} />
           </Route>
           <Route exact path='/signin'>
             <SignIn isAuthenticated={currentUser ? true : false} />

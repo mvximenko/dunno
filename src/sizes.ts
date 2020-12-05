@@ -1,7 +1,8 @@
 interface Sizes {
   [key: string]: string;
 }
-export default {
+
+const sizes = {
   up(size: string) {
     const sizes: Sizes = {
       xs: '480px',
@@ -23,3 +24,5 @@ export default {
     return `@media only screen and (max-width: ${sizes[size]})`;
   },
 };
+
+export default sizes;

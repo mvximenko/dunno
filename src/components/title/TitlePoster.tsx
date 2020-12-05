@@ -1,4 +1,3 @@
-import React from 'react';
 import useLoaded from '../../hooks/useLoaded';
 import PosterPng from '../../assets/poster.png';
 import { IMAGE_BASE_URL, POSTER_SIZE } from '../../config';

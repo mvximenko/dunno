@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Modal from './Modal';
 import useToggle from '../../hooks/useToggle';
@@ -49,11 +49,9 @@ const Header: React.FC<Props> = ({ currentUser }) => {
           <NavLink exact to='/randomizer'>
             Randomizer
           </NavLink>
-          {currentUser && (
-            <NavLink exact to='/favorites'>
-              Favorites
-            </NavLink>
-          )}
+          <NavLink exact to='/my-list'>
+            My List
+          </NavLink>
         </Nav>
 
         <Icons>
@@ -85,7 +83,7 @@ const Header: React.FC<Props> = ({ currentUser }) => {
         <MenuLink to='/'>TV Shows</MenuLink>
         <MenuLink to='/movie'>Movies</MenuLink>
         <MenuLink to='/randomizer'>Randomizer</MenuLink>
-        <MenuLink to='/favorites'>Favorites</MenuLink>
+        <MenuLink to='/my-list'>My List</MenuLink>
         {currentUser ? (
           <SignOut onClick={() => auth.signOut()}>Sign Out</SignOut>
         ) : (

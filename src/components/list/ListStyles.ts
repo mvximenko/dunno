@@ -3,7 +3,7 @@ import sizes from '../../sizes';
 
 export const Container = styled.div`
   &:nth-last-child(1) {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
   }
 `;
 
@@ -24,6 +24,10 @@ export const Heading = styled.h1`
   }
   ${[sizes.up('md')]} {
     font-size: 2vw;
+  }
+  ${[sizes.up('xl')]} {
+    margin-top: 16.8px;
+    margin-bottom: 16.8px;
   }
 `;
 
@@ -71,7 +75,7 @@ export const InitialSpace = styled.div<{ additionalSpace?: boolean }>`
         margin-right: 90px;
       }
     }
-`}
+  `}
 `;
 
 export const LoadMore = styled.div`

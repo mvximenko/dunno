@@ -24,33 +24,44 @@ export const Container = styled.div<{ isOpen: boolean }>`
 
 export const Input = styled.input`
   width: 100%;
+  height: 40px;
+  font-size: 16px;
+  padding: 0 20px;
   color: #fff;
   border: none;
   outline: none;
-  font-size: 16px;
-  padding: 10.5px 20px;
   box-sizing: border-box;
   background: #212121;
-  ${[sizes.up('md')]} {
-    padding: 18px 20px;
+  ${[sizes.up('xs')]} {
+    height: 50px;
+    font-size: 20px;
+    padding: 0 25px;
   }
-`;
-
-export const List = styled.ul`
-  margin: 0;
+  ${[sizes.up('xl')]} {
+    height: 70px;
+    font-size: 28px;
+    padding: 0 35px;
+  }
 `;
 
 export const Item = styled.li<{ noPointer?: boolean }>`
   width: 100%;
   cursor: pointer;
-  font-size: 13px;
-  text-align: left;
-  padding: 10px 15px;
+  font-size: 14px;
   box-sizing: border-box;
-  z-index: 3;
+  padding: 12px 20px;
   &:hover {
     background: rgb(128, 128, 128, 0.2);
   }
+  ${[sizes.up('xs')]} {
+    font-size: 18px;
+    padding: 13px 25px;
+  }
+  ${[sizes.up('xl')]} {
+    font-size: 25px;
+    padding: 14.4px 35px;
+  }
+
   ${({ noPointer }) =>
     noPointer &&
     `

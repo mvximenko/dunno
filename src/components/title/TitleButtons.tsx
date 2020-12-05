@@ -1,8 +1,7 @@
-import React from 'react';
 import { addTitle } from '../../firebase/firebaseUtils';
-import TitleSvgPlus from './TitleSvgPlus';
-import TitleSvgPlay from './TitleSvgPlay';
-import { Row, Button } from './TitleButtonsStyles';
+import PlusIcon from '../assets/PlusIcon';
+import PlayIcon from '../assets/PlayIcon';
+import { Row, Button, IconWrapper } from './TitleButtonsStyles';
 
 interface Props {
   id: string;
@@ -23,7 +22,9 @@ const TitleButtons: React.FC<Props> = ({
 }) => (
   <Row>
     <Button onClick={() => addTitle(userId, id, mediaType, posterPath, title)}>
-      <TitleSvgPlus />
+      <IconWrapper>
+        <PlusIcon />
+      </IconWrapper>
       My List
     </Button>
 
@@ -34,7 +35,9 @@ const TitleButtons: React.FC<Props> = ({
         target='_blank'
       >
         <Button>
-          <TitleSvgPlay />
+          <IconWrapper>
+            <PlayIcon />
+          </IconWrapper>
           Watch Trailer
         </Button>
       </a>

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import SearchBar from './SearchBar';
 import { Overlay } from './ModalStyles';
 
@@ -11,20 +11,20 @@ interface Props {
 const Modal: React.FC<Props> = ({ isOpen, setIsOpen, searchIcon }) => {
   const outside = useRef<HTMLDivElement>(null);
 
-  const handleClick = ({ target }: MouseEvent) => {
-    if (
-      outside.current!.contains(target as Node) ||
-      searchIcon.current!.contains(target as Node)
-    ) {
-      return;
-    }
-    setIsOpen(false);
-  };
-
   useEffect(() => {
+    const handleClick = ({ target }: MouseEvent) => {
+      if (
+        outside.current!.contains(target as Node) ||
+        searchIcon.current!.contains(target as Node)
+      ) {
+        return;
+      }
+      setIsOpen(false);
+    };
+
     document.addEventListener('click', handleClick);
     return () => document.removeEventListener('click', handleClick);
-  }, []);
+  }, [setIsOpen, searchIcon]);
 
   return (
     <>

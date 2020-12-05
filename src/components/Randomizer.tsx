@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import useWindowDimensions from '../hooks/useWindowDimensions';
 import PosterPng from '../assets/poster.png';
 import {

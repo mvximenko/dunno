@@ -9,15 +9,15 @@ export const Row = styled.div`
 `;
 
 export const Button = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: #fff;
   width: 150px;
   border: none;
   cursor: pointer;
   padding: 9px 11px;
   font-size: 14px;
-  font-weight: 400;
-  text-decoration: none;
-  text-transform: capitalize;
   background: rgba(51, 51, 51, 0.7);
   ${[sizes.up('md')]} {
     transition: all 350ms;
@@ -27,12 +27,7 @@ export const Button = styled.button`
   }
 `;
 
-export const Svg = styled.svg`
-  height: 1em;
+export const IconWrapper = styled.div`
   width: 14px;
-  margin-right: 4px;
-  display: inline-block;
-  vertical-align: -2px;
-  font-size: inherit;
-  overflow: visible;
+  margin-right: 8px;
 `;

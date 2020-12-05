@@ -3,6 +3,6 @@ export function titleCase(str: string) {
 }
 
 export function sliceOverview(str: string) {
-  if (str.length > 440) return str.slice(0, str.lastIndexOf('.', 440) + 1);
+  if (str.length > 300) return str.slice(0, str.lastIndexOf('.', 300) + 1);
   return str;
 }

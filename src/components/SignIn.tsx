@@ -1,4 +1,4 @@
-import React, { useState, FormEvent } from 'react';
+import { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { auth, signInWithGoogle } from '../firebase/firebaseUtils';
 import { Container, Form, Heading, Input, Button, Link } from './SignInStyles';
@@ -22,7 +22,7 @@ const SignIn: React.FC<Props> = ({ isAuthenticated }) => {
 
   const { email, password } = userCredentials;
 
-  const handleSubmit = async (event: FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     const { email, password } = userCredentials;
     try {

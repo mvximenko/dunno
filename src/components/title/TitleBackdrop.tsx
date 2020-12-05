@@ -1,4 +1,3 @@
-import React from 'react';
 import Backdrop from '../../assets/backdrop.png';
 import useLoaded from '../../hooks/useLoaded';
 import { IMAGE_BASE_URL, BACKDROP_SIZE } from '../../config';

@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import { useReducer } from 'react';
 import { useRouteMatch } from 'react-router-dom';
 import useWindowDimensions from '../hooks/useWindowDimensions';
 import titleReducer from '../store/title/titleReducer';
@@ -19,6 +19,8 @@ import {
   Overview,
   Info,
   Rating,
+  ImdbWrapper,
+  StarWrapper,
   Rank,
   Row,
 } from './TitleStyles';
@@ -72,9 +74,13 @@ const Title: React.FC<Props> = ({ userId }) => {
                   {width >= 991.98 ? sliceOverview(overview) : overview}
                 </Overview>
                 <Rating>
-                  <Imdb />
+                  <ImdbWrapper>
+                    <Imdb />
+                  </ImdbWrapper>
                   <Rank>{vote_average}/10</Rank>
-                  <StarIcon />
+                  <StarWrapper>
+                    <StarIcon />
+                  </StarWrapper>
                 </Rating>
                 <Row>
                   {cast.length > 0 &&

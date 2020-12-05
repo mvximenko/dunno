@@ -1,5 +1,3 @@
-import React from 'react';
-
 const StarIcon = () => (
   <svg
     version='1.1'
@@ -7,8 +5,6 @@ const StarIcon = () => (
     xmlnsXlink='http://www.w3.org/1999/xlink'
     preserveAspectRatio='xMidYMid meet'
     viewBox='0 0 575 289.83'
-    width={50}
-    height={25.2}
   >
     <defs>
       <path

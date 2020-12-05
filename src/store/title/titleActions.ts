@@ -10,7 +10,7 @@ export function useFetchTitle(
   useEffect(() => {
     const key: string = `${mediaType}_${titleId}`;
     if (localStorage.getItem(key)) {
-      const data = JSON.parse(localStorage.getItem(key) as string);
+      const data = JSON.parse(localStorage.getItem(key)!);
       dispatch({
         type: SET_DATA,
         title: data,

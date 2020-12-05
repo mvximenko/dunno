@@ -27,8 +27,11 @@ export const StyledHeader = styled.header`
   z-index: 5;
   ${blur};
   ${[sizes.up('xs')]} {
-    height: 40px;
+    height: 50px;
     padding: 0 3vw;
+  }
+  ${[sizes.up('xl')]} {
+    height: 70px;
   }
 `;
 
@@ -45,7 +48,11 @@ export const LogoLink = styled(RouterLink)`
   font-family: sans-serif;
   cursor: none;
   ${[sizes.up('sm')]} {
+    font-size: 26px;
     cursor: pointer;
+  }
+  ${[sizes.up('xl')]} {
+    font-size: 36.4px;
   }
 `;
 
@@ -61,12 +68,13 @@ export const Nav = styled.nav`
 export const NavLink = styled(RouterNavLink)`
   margin: 0 2vw;
   color: #aeaeae;
-  font-size: 14px;
-  font-weight: 400;
   transition: all 350ms;
   &:hover,
   &.active {
     color: #fff;
+  }
+  ${[sizes.up('xl')]} {
+    font-size: 22.4px;
   }
 `;
 
@@ -75,15 +83,23 @@ export const Icons = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  ${[sizes.up('xl')]} {
+    width: 140px;
+  }
 `;
 
 export const SearchWrapper = styled.div`
+  width: 24px;
   ${[sizes.up('sm')]} {
     cursor: pointer;
+  }
+  ${[sizes.up('xl')]} {
+    width: 33.6px;
   }
 `;
 
 export const MenuWrapper = styled.div`
+  width: 30px;
   ${[sizes.up('sm')]} {
     display: none;
   }
@@ -92,8 +108,12 @@ export const MenuWrapper = styled.div`
 export const ProfileWrapper = styled.div`
   display: none;
   ${[sizes.up('sm')]} {
+    width: 24px;
     display: block;
     cursor: pointer;
+  }
+  ${[sizes.up('xl')]} {
+    width: 33.6px;
   }
 `;
 

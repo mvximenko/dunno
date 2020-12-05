@@ -36,7 +36,6 @@ export const InnerDiv = styled.div`
 export const Info = styled.div`
   margin: 0 4vw;
   padding: 5px;
-  font-size: 15px;
   font-weight: lighter;
   font-family: sans-serif;
   ${[sizes.up('md')]} {
@@ -57,7 +56,6 @@ export const Heading = styled.h1`
 `;
 
 export const Overview = styled.span`
-  font-size: 0.9rem;
   line-height: 21px;
   display: block;
 `;
@@ -69,6 +67,14 @@ export const Rating = styled.div`
   background: #000;
   display: inline-flex;
   align-items: center;
+`;
+
+export const ImdbWrapper = styled.div`
+  width: 50px;
+`;
+
+export const StarWrapper = styled.div`
+  width: 22px;
 `;
 
 export const Rank = styled.span`
