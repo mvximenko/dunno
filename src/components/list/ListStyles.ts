@@ -13,19 +13,20 @@ export const Heading = styled.h1`
   margin-top: 5vw;
   margin-bottom: 3vw;
   margin-left: 5vw;
-  ${[sizes.up('xs')]} {
-    font-size: 3.5vw;
+  ${[sizes.up('sm')]} {
+    font-size: 3vw;
     margin-top: 12px;
     margin-bottom: 12px;
     margin-left: 3vw;
   }
-  ${[sizes.up('sm')]} {
-    font-size: 3vw;
-  }
   ${[sizes.up('md')]} {
-    font-size: 2vw;
+    font-size: 2.5vw;
+  }
+  ${[sizes.up('lg')]} {
+    font-size: 26px;
   }
   ${[sizes.up('xl')]} {
+    font-size: 36.4px;
     margin-top: 16.8px;
     margin-bottom: 16.8px;
   }
@@ -34,9 +35,6 @@ export const Heading = styled.h1`
 export const TitleListContainer = styled.div`
   height: 44vw;
   display: inline-flex;
-  ${[sizes.up('xs')]} {
-    height: 33vw;
-  }
   ${[sizes.up('sm')]} {
     height: 27vw;
   }
@@ -52,8 +50,7 @@ export const InitialSpace = styled.div<{ additionalSpace?: boolean }>`
   display: inline-flex;
   padding-left: 5vw;
   min-width: 100vw;
-  ${[sizes.up('xs')]} {
-    display: flex;
+  ${[sizes.up('sm')]} {
     padding-left: 3vw;
   }
 
@@ -62,9 +59,6 @@ export const InitialSpace = styled.div<{ additionalSpace?: boolean }>`
     `
     &:last-child {
       margin-right: 50px;
-      ${[sizes.up('xs')]} {
-        margin-right: 60px;
-      }
       ${[sizes.up('sm')]} {
         margin-right: 70px;
       }
@@ -82,9 +76,6 @@ export const LoadMore = styled.div`
   position: relative;
   margin-right: 15px;
   padding-right: 29vw;
-  ${[sizes.up('xs')]} {
-    padding-right: 22vw;
-  }
   ${[sizes.up('sm')]} {
     padding-right: 18vw;
   }

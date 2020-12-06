@@ -65,13 +65,13 @@ const Title: React.FC<Props> = ({ userId }) => {
           <TitleBackdrop title={heading} backdropPath={backdrop_path} />
           <OuterDiv>
             <InnerDiv>
-              {width >= 991.98 && (
+              {width >= 960 && (
                 <TitlePoster title={heading} posterPath={poster_path} />
               )}
               <Info>
                 <Heading>{heading}</Heading>
                 <Overview>
-                  {width >= 991.98 ? sliceOverview(overview) : overview}
+                  {width >= 960 ? sliceOverview(overview) : overview}
                 </Overview>
                 <Rating>
                   <ImdbWrapper>

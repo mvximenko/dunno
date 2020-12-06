@@ -26,7 +26,7 @@ export const StyledHeader = styled.header`
   box-sizing: border-box;
   z-index: 5;
   ${blur};
-  ${[sizes.up('xs')]} {
+  ${[sizes.up('sm')]} {
     height: 50px;
     padding: 0 3vw;
   }

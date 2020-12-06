@@ -11,9 +11,6 @@ export const Link = styled(RouterLink)`
   background: #101010;
   user-drag: none;
   user-select: none;
-  ${[sizes.up('xs')]} {
-    width: 22vw;
-  }
   ${[sizes.up('sm')]} {
     width: 18vw;
   }

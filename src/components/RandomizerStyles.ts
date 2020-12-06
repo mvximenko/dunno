@@ -25,9 +25,6 @@ export const Column = styled.div`
   width: 73.33vw;
   display: flex;
   flex-direction: column;
-  ${[sizes.up('xs')]} {
-    width: 70vw;
-  }
   ${[sizes.up('sm')]} {
     width: 60vw;
   }
@@ -46,9 +43,6 @@ export const Link = styled(RouterLink)`
   background: #101010;
   user-drag: none;
   user-select: none;
-  ${[sizes.up('xs')]} {
-    height: 105vw;
-  }
   ${[sizes.up('sm')]} {
     height: 90vw;
   }
@@ -96,5 +90,9 @@ export const Button = styled.button`
     background: #101010;
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
+  }
+  ${[sizes.up('xl')]} {
+    padding: 21px 0;
+    font-size: 22.4px;
   }
 `;

@@ -7,6 +7,9 @@ const common = css`
   border-radius: 4px;
   border: none;
   color: #fff;
+  ${[sizes.up('xl')]} {
+    margin-bottom: 28px;
+  }
 `;
 
 export const Container = styled.div<{ signUp?: boolean }>`
@@ -17,7 +20,7 @@ export const Container = styled.div<{ signUp?: boolean }>`
     signUp &&
     `
     margin-top: 8px;
-    ${[sizes.up('xs')]} {
+    ${[sizes.up('sm')]} {
       margin-top: 40px;
     }
   `}
@@ -28,8 +31,11 @@ export const Form = styled.form`
   flex-direction: column;
   border-radius: 4px;
   width: 80vw;
-  ${[sizes.up('xs')]} {
+  ${[sizes.up('sm')]} {
     width: 300px;
+  }
+  ${[sizes.up('xl')]} {
+    width: 420px;
   }
 `;
 
@@ -38,7 +44,10 @@ export const Heading = styled.h1`
   margin-bottom: 20px;
   font-size: 35px;
   font-weight: 600;
-  color: #fff;
+  ${[sizes.up('xl')]} {
+    font-size: 49px;
+    margin-bottom: 28px;
+  }
 `;
 
 export const Input = styled.input`
@@ -48,14 +57,24 @@ export const Input = styled.input`
   font-size: 16px;
   line-height: 50px;
   outline: none;
+  ${[sizes.up('xl')]} {
+    padding: 5.6px 25.2px;
+    font-size: 22.4px;
+    line-height: 70px;
+  }
 `;
 
 export const Button = styled.button<{ google?: boolean }>`
   ${common}
   padding: 16px;
-  background: #e50914;
   font-size: 14.5px;
+  background: #e50914;
   cursor: pointer;
+  ${[sizes.up('xl')]} {
+    padding: 22.4px;
+    font-size: 20.3px;
+  }
+
   ${({ google }) =>
     google &&
     `
@@ -64,6 +83,12 @@ export const Button = styled.button<{ google?: boolean }>`
 `;
 
 export const Link = styled(RouterLink)`
+  margin: auto;
   text-align: center;
-  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
+  ${[sizes.up('xl')]} {
+    font-size: 22.4px;
+  }
 `;

@@ -7,11 +7,6 @@ export const Container = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 6px;
-  ${[sizes.up('xs')]} {
-    padding: 3% 3%;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 15px;
-  }
   ${[sizes.up('sm')]} {
     grid-template-columns: repeat(5, 1fr);
   }
@@ -49,5 +44,10 @@ export const Button = styled.button`
   &:hover {
     color: black;
     background: rgba(255, 255, 255, 0.8);
+  }
+  ${[sizes.up('xl')]} {
+    width: 35px;
+    height: 35px;
+    font-size: 22.4px;
   }
 `;

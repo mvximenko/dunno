@@ -32,7 +32,7 @@ export const Input = styled.input`
   outline: none;
   box-sizing: border-box;
   background: #212121;
-  ${[sizes.up('xs')]} {
+  ${[sizes.up('sm')]} {
     height: 50px;
     font-size: 20px;
     padding: 0 25px;
@@ -53,7 +53,7 @@ export const Item = styled.li<{ noPointer?: boolean }>`
   &:hover {
     background: rgb(128, 128, 128, 0.2);
   }
-  ${[sizes.up('xs')]} {
+  ${[sizes.up('sm')]} {
     font-size: 18px;
     padding: 13px 25px;
   }
