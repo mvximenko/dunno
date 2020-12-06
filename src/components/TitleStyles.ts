@@ -23,6 +23,11 @@ export const OuterDiv = styled.div`
     webkit-backdrop-filter: blur(5px);
     background: rgba(0, 0, 0, 0.8);
   }
+  ${[sizes.up('xl')]} {
+    width: 1400px;
+    height: 742px;
+    margin-top: 119px;
+  }
 `;
 
 export const InnerDiv = styled.div`
@@ -42,6 +47,11 @@ export const Info = styled.div`
     margin-left: 15px;
     margin-right: 22px;
   }
+  ${[sizes.up('xl')]} {
+    padding: 7px;
+    margin-left: 21px;
+    margin-right: 30.8px;
+  }
 `;
 
 export const Heading = styled.h1`
@@ -53,11 +63,19 @@ export const Heading = styled.h1`
     padding-top: 20px;
     font-weight: 600;
   }
+  ${[sizes.up('xl')]} {
+    padding-top: 28px;
+    font-size: 32.2px;
+  }
 `;
 
 export const Overview = styled.span`
-  line-height: 21px;
   display: block;
+  line-height: 21px;
+  ${[sizes.up('xl')]} {
+    font-size: 22.4px;
+    line-height: 29.4px;
+  }
 `;
 
 export const Rating = styled.div`
@@ -67,19 +85,34 @@ export const Rating = styled.div`
   background: #000;
   display: inline-flex;
   align-items: center;
+  ${[sizes.up('xl')]} {
+    padding: 7px;
+    margin-top: 21px;
+    border-radius: 7px;
+  }
 `;
 
 export const ImdbWrapper = styled.div`
   width: 50px;
+  ${[sizes.up('xl')]} {
+    width: 70px;
+  }
 `;
 
 export const StarWrapper = styled.div`
   width: 22px;
+  ${[sizes.up('xl')]} {
+    width: 30.8px;
+  }
 `;
 
 export const Rank = styled.span`
   margin: 0 7px;
   font-size: 18px;
+  ${[sizes.up('xl')]} {
+    margin: 0 9.8px;
+    font-size: 25.2px;
+  }
 `;
 
 export const Row = styled.div`
@@ -87,4 +120,7 @@ export const Row = styled.div`
   margin-top: 20px;
   flex-direction: row;
   justify-content: center;
+  ${[sizes.up('xl')]} {
+    margin-top: 28px;
+  }
 `;

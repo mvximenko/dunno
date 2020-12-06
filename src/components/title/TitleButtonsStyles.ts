@@ -6,6 +6,10 @@ export const Row = styled.div`
   justify-content: space-around;
   margin-top: 25px;
   margin-bottom: 20px;
+  ${[sizes.up('xl')]} {
+    margin-top: 35px;
+    margin-bottom: 28px;
+  }
 `;
 
 export const Button = styled.button`
@@ -25,9 +29,18 @@ export const Button = styled.button`
       background: rgba(255, 255, 255, 0.2);
     }
   }
+  ${[sizes.up('xl')]} {
+    width: 210px;
+    padding: 12.6px 15.4px;
+    font-size: 19.6px;
+  }
 `;
 
 export const IconWrapper = styled.div`
   width: 14px;
   margin-right: 8px;
+  ${[sizes.up('xl')]} {
+    width: 19.6px;
+    margin-right: 11.2px;
+  }
 `;

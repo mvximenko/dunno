@@ -13,6 +13,11 @@ export const Column = styled.div`
       margin-right: 60px;
     }
   }
+  ${[sizes.up('xl')]} {
+    &:not(:last-child) {
+      margin-right: 84px;
+    }
+  }
 `;
 
 export const Photo = styled.div`
@@ -23,6 +28,10 @@ export const Photo = styled.div`
   ${[sizes.up('md')]} {
     width: 80px;
     padding-top: 80px;
+  }
+  ${[sizes.up('xl')]} {
+    width: 112px;
+    padding-top: 112px;
   }
 `;
 
@@ -45,6 +54,10 @@ export const Img = styled.img<FadeEffectTypes>`
         0 0 8px rgba(255, 255, 255, 0.2);
     }
   }
+  ${[sizes.up('xl')]} {
+    width: 112px;
+    padding: 4.2px;
+  }
 `;
 
 export const Name = styled.span`
@@ -55,5 +68,10 @@ export const Name = styled.span`
   padding: 50px 3px 0 3px;
   ${[sizes.up('md')]} {
     width: 80px;
+  }
+  ${[sizes.up('xl')]} {
+    width: 112px;
+    font-size: 22.4px;
+    padding: 70px 4.2px 0 4.2px;
   }
 `;
