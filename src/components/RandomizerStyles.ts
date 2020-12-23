@@ -14,7 +14,8 @@ export const Background = styled.img<FadeEffectTypes>`
   ${[sizes.up('lg')]} {
     top: 0;
     left: 0;
-    width: 100%;
+    width: 100vw;
+    height: 100vh;
     position: fixed;
     filter: brightness(70%);
     ${fadeEffect}

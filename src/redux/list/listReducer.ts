@@ -6,7 +6,7 @@ import {
   SET_TOTAL_PAGES,
   ListActionTypes,
   InitialState,
-} from '../types/listTypes';
+} from './listTypes';
 
 const entries = { titles: [], page: 1, totalPages: 2 };
 

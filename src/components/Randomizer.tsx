@@ -80,7 +80,7 @@ const Randomizer: React.FC = () => {
 
   return (
     <Container>
-      {backdrop_path && width >= 1199.98 && (
+      {backdrop_path && width >= 1280 && (
         <Background
           alt={name ? name : title}
           src={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${backdrop_path}`}
