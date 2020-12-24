@@ -41,7 +41,7 @@ export const InnerDiv = styled.div`
 export const Info = styled.div`
   margin: 0 4vw;
   padding: 5px;
-  font-weight: lighter;
+  font-weight: 300;
   font-family: sans-serif;
   ${[sizes.up('md')]} {
     margin-left: 15px;
