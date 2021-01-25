@@ -1,25 +1,17 @@
 import { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Modal from './Modal';
-import useToggle from '../../hooks/useToggle';
-import MenuIcon from '../assets/MenuIcon';
 import SearchIcon from '../assets/SearchIcon';
 import SignOutIcon from '../assets/SignOutIcon';
 import ProfileIcon from '../assets/ProfileIcon';
 import { auth } from '../../firebase/firebaseUtils';
 import {
   StyledHeader,
-  Logo,
   LogoLink,
   Nav,
   NavLink,
-  SearchWrapper,
-  MenuWrapper,
-  ProfileWrapper,
-  Menu,
-  MenuLink,
-  SignOut,
   Icons,
+  IconWrapper,
 } from './HeaderStyles';
 
 interface Props {
@@ -27,17 +19,13 @@ interface Props {
 }
 
 const Header: React.FC<Props> = ({ currentUser }) => {
-  const [drawer, toggleDrawer] = useToggle(false);
   const [isOpen, setIsOpen] = useState(false);
-
   const searchIcon = useRef<HTMLDivElement>(null);
 
   return (
     <>
       <StyledHeader>
-        <Logo>
-          <LogoLink to='/'>dunno</LogoLink>
-        </Logo>
+        <LogoLink to='/'>dunno</LogoLink>
 
         <Nav>
           <NavLink exact to='/'>
@@ -55,41 +43,25 @@ const Header: React.FC<Props> = ({ currentUser }) => {
         </Nav>
 
         <Icons>
-          <SearchWrapper ref={searchIcon} onClick={() => setIsOpen(true)}>
+          <IconWrapper ref={searchIcon} onClick={() => setIsOpen(true)}>
             <SearchIcon />
-          </SearchWrapper>
+          </IconWrapper>
 
           {currentUser ? (
-            <ProfileWrapper onClick={() => auth.signOut()}>
+            <IconWrapper onClick={() => auth.signOut()}>
               <SignOutIcon />
-            </ProfileWrapper>
+            </IconWrapper>
           ) : (
             <Link to='/signin'>
-              <ProfileWrapper>
+              <IconWrapper>
                 <ProfileIcon />
-              </ProfileWrapper>
+              </IconWrapper>
             </Link>
           )}
-
-          <MenuWrapper onClick={toggleDrawer}>
-            <MenuIcon />
-          </MenuWrapper>
         </Icons>
       </StyledHeader>
 
       <Modal isOpen={isOpen} setIsOpen={setIsOpen} searchIcon={searchIcon} />
-
-      <Menu active={drawer} onClick={toggleDrawer}>
-        <MenuLink to='/'>TV Shows</MenuLink>
-        <MenuLink to='/movie'>Movies</MenuLink>
-        <MenuLink to='/randomizer'>Randomizer</MenuLink>
-        <MenuLink to='/my-list'>My List</MenuLink>
-        {currentUser ? (
-          <SignOut onClick={() => auth.signOut()}>Sign Out</SignOut>
-        ) : (
-          <MenuLink to='/signin'>Sign In</MenuLink>
-        )}
-      </Menu>
     </>
   );
 };

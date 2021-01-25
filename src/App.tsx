@@ -10,6 +10,7 @@ import MyList from './components/MyList';
 import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
 import Header from './components/layout/Header';
+import BottomNavbar from './components/layout/BottomNavbar';
 import store from './redux/store';
 import { auth, createUserProfileDocument } from './firebase/firebaseUtils';
 import { GlobalStyle } from './GlobalStyles';
@@ -68,6 +69,7 @@ const App: React.FC = () => {
             <SignUp isAuthenticated={currentUser ? true : false} />
           </Route>
         </Switch>
+        <BottomNavbar currentUser={currentUser} />
       </Provider>
     </>
   );
