@@ -76,10 +76,10 @@ const Randomizer: React.FC = () => {
   };
 
   const { backdrop_path, poster_path, name, title, id } = state;
-  const { width } = useWindowDimensions();
+  const { width, height } = useWindowDimensions();
 
   return (
-    <Container>
+    <Container height={height}>
       {backdrop_path && width >= 1280 && (
         <Background
           alt={name ? name : title}

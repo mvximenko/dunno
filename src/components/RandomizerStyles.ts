@@ -3,11 +3,20 @@ import { Link as RouterLink } from 'react-router-dom';
 import sizes from '../sizes';
 import { fadeEffect, FadeEffectTypes } from '../CommonStyles';
 
-export const Container = styled.div`
+export const Container = styled.div<{ height: number }>`
   width: 100%;
-  margin: 40px 0;
   display: flex;
-  justify-content: center;
+  ${({ height }) =>
+    height &&
+    `
+    height: calc(${height}px - 44px);
+    ${[sizes.up('sm')]} {
+      height: calc(${height}px - 50px);
+    }
+    ${[sizes.up('xl')]} {
+      height: calc(${height}px - 70px);
+    }
+  `}
 `;
 
 export const Background = styled.img<FadeEffectTypes>`
@@ -25,6 +34,7 @@ export const Background = styled.img<FadeEffectTypes>`
 export const Column = styled.div`
   width: 73.33vw;
   display: flex;
+  margin: auto;
   flex-direction: column;
   ${[sizes.up('sm')]} {
     width: 60vw;
@@ -81,6 +91,7 @@ export const Button = styled.button`
   width: 50%;
   padding: 15px 0;
   color: white;
+  font-size: 15px;
   background: #0d0c0c;
   border: none;
   outline: none;
