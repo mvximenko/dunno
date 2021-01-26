@@ -14,17 +14,17 @@ const icon = css`
   }
 `;
 
-export const Container = styled.div`
+export const Navbar = styled.nav`
   ${[sizes.up('sm')]} {
     display: none;
   }
 `;
 
 export const Space = styled.div`
-  margin-top: 50px;
+  margin-top: 44px;
 `;
 
-export const Navbar = styled.nav`
+export const Container = styled.nav`
   width: 100%;
   height 44px;
   bottom: 0;

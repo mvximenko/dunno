@@ -22,9 +22,9 @@ const BottomNavbar: React.FC<Props> = ({ currentUser }) => {
   const { pathname } = useLocation();
 
   return (
-    <Container>
-      <Space></Space>
-      <Navbar>
+    <Navbar>
+      <Space />
+      <Container>
         <NavLink to='/' isActive={() => ['/', '/movie'].includes(pathname)}>
           <HomeIcon />
         </NavLink>
@@ -53,8 +53,8 @@ const BottomNavbar: React.FC<Props> = ({ currentUser }) => {
             <ProfileIcon />
           </NavLink>
         )}
-      </Navbar>
-    </Container>
+      </Container>
+    </Navbar>
   );
 };
 

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import sizes from '../../sizes';
 
 export const Container = styled.div`
-  &:nth-last-child(1) {
+  &:last-of-type {
     margin-bottom: 30px;
   }
 `;
@@ -48,10 +48,10 @@ export const TitleListContainer = styled.div`
 
 export const InitialSpace = styled.div<{ additionalSpace?: boolean }>`
   display: inline-flex;
-  padding-left: 5vw;
+  margin-left: 5vw;
   min-width: 100vw;
   ${[sizes.up('sm')]} {
-    padding-left: 3vw;
+    margin-left: 3vw;
   }
 
   ${({ additionalSpace }) =>

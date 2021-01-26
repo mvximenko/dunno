@@ -1,21 +1,25 @@
 import List from './list/List';
+import Categories from './layout/Categories';
 import { MOVIES, COMPANIES } from '../config';
 
-const Movie = () => (
+const Movies = () => (
   <>
-    {MOVIES.map((category) => (
-      <List category={category} mediaType='movie' key={category} />
-    ))}
+    <Categories />
+    <div>
+      {MOVIES.map((category) => (
+        <List category={category} mediaType='movie' key={category} />
+      ))}
 
-    {COMPANIES.map((company) => (
-      <List
-        id={company.id}
-        mediaType='movie'
-        category={company.name}
-        key={company.name}
-      />
-    ))}
+      {COMPANIES.map((company) => (
+        <List
+          id={company.id}
+          mediaType='movie'
+          category={company.name}
+          key={company.name}
+        />
+      ))}
+    </div>
   </>
 );
 
-export default Movie;
+export default Movies;
