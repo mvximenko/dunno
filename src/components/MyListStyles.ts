@@ -35,7 +35,7 @@ export const Button = styled.button`
   right: 0;
   width: 25px;
   height: 25px;
-  color: white;
+  color: #fff;
   background: rgba(0, 0, 0, 0.8);
   border: none;
   outline: none;

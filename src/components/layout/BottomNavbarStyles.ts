@@ -23,7 +23,7 @@ export const Space = styled.div`
   margin-top: 44px;
 `;
 
-export const Container = styled.nav`
+export const Container = styled.div`
   width: 100%;
   height 44px;
   bottom: 0;
@@ -43,7 +43,7 @@ export const NavLink = styled(RouterNavLink)`
   }
 `;
 
-export const SignOutWrapper = styled.div`
+export const IconWrapper = styled.div`
   ${icon}
   cursor: pointer;
 `;

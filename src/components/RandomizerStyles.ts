@@ -90,7 +90,7 @@ export const Buttons = styled.div`
 export const Button = styled.button`
   width: 50%;
   padding: 15px 0;
-  color: white;
+  color: #fff;
   font-size: 15px;
   background: #0d0c0c;
   border: none;

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import Tv from './components/Tv';
@@ -10,6 +10,7 @@ import MyList from './components/MyList';
 import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
 import Header from './components/layout/Header';
+import Modal from './components/layout/Modal';
 import BottomNavbar from './components/layout/BottomNavbar';
 import store from './redux/store';
 import { auth, createUserProfileDocument } from './firebase/firebaseUtils';
@@ -20,6 +21,10 @@ type UserAuth = { id: string } | null;
 const App: React.FC = () => {
   const [currentUser, setCurrentUser] = useState<UserAuth>(null);
 
+  const [isOpen, setIsOpen] = useState(false);
+  const searchIcon = useRef<HTMLDivElement>(null);
+  const mobileSearchIcon = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     const unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
@@ -28,7 +33,7 @@ const App: React.FC = () => {
           setCurrentUser({ id: snapShot.id, ...snapShot.data() })
         );
       } else {
-        setCurrentUser(userAuth);
+        setCurrentUser(null);
       }
     });
 
@@ -39,7 +44,17 @@ const App: React.FC = () => {
     <>
       <GlobalStyle />
       <Provider store={store}>
-        <Header currentUser={currentUser} />
+        <Header
+          currentUser={currentUser}
+          setIsOpen={setIsOpen}
+          searchIcon={searchIcon}
+        />
+        <Modal
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+          searchIcon={searchIcon}
+          mobileSearchIcon={mobileSearchIcon}
+        />
         <Switch>
           <Route exact path='/'>
             <Tv />
@@ -69,7 +84,11 @@ const App: React.FC = () => {
             <SignUp isAuthenticated={currentUser ? true : false} />
           </Route>
         </Switch>
-        <BottomNavbar currentUser={currentUser} />
+        <BottomNavbar
+          currentUser={currentUser}
+          setIsOpen={setIsOpen}
+          searchIcon={mobileSearchIcon}
+        />
       </Provider>
     </>
   );

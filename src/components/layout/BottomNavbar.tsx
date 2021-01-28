@@ -11,14 +11,20 @@ import {
   Space,
   Navbar,
   NavLink,
-  SignOutWrapper,
+  IconWrapper,
 } from './BottomNavbarStyles';
 
 interface Props {
   currentUser: object | null;
+  setIsOpen: (isOpen: boolean) => void;
+  searchIcon: React.RefObject<HTMLDivElement>;
 }
 
-const BottomNavbar: React.FC<Props> = ({ currentUser }) => {
+const BottomNavbar: React.FC<Props> = ({
+  currentUser,
+  setIsOpen,
+  searchIcon,
+}) => {
   const { pathname } = useLocation();
 
   return (
@@ -29,9 +35,9 @@ const BottomNavbar: React.FC<Props> = ({ currentUser }) => {
           <HomeIcon />
         </NavLink>
 
-        <NavLink exact to='/search'>
+        <IconWrapper ref={searchIcon} onClick={() => setIsOpen(true)}>
           <SearchIcon />
-        </NavLink>
+        </IconWrapper>
 
         <NavLink exact to='/randomizer'>
           <RandomizerIcon />
@@ -42,9 +48,9 @@ const BottomNavbar: React.FC<Props> = ({ currentUser }) => {
         </NavLink>
 
         {currentUser ? (
-          <SignOutWrapper onClick={() => auth.signOut()}>
+          <IconWrapper onClick={() => auth.signOut()}>
             <SignOutIcon />
-          </SignOutWrapper>
+          </IconWrapper>
         ) : (
           <NavLink
             to='/signin'

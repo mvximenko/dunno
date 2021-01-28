@@ -3,7 +3,6 @@ import {
   SET_LIST,
   RESET_LIST,
   LOAD_NEW_PAGE,
-  SET_TOTAL_PAGES,
   ListActionTypes,
   InitialState,
 } from './listTypes';
@@ -41,11 +40,9 @@ export default function listReducer(
   state: InitialState = initialState,
   action: ListActionTypes
 ) {
-  let key = '';
-
-  if (action.payload) {
-    key = `${action.payload.category}_${action.payload.mediaType}`;
-  }
+  const key = action.payload
+    ? `${action.payload.category}_${action.payload.mediaType}`
+    : '';
 
   switch (action.type) {
     case SET_LIST:
@@ -54,6 +51,7 @@ export default function listReducer(
         [key]: {
           ...state[key],
           titles: [...state[key].titles, ...action.payload.results],
+          totalPages: action.payload.totalPages,
         },
       };
     case RESET_LIST:
@@ -67,14 +65,6 @@ export default function listReducer(
         [key]: {
           ...state[key],
           page: state[key].page + 1,
-        },
-      };
-    case SET_TOTAL_PAGES:
-      return {
-        ...state,
-        [key]: {
-          ...state[key],
-          totalPages: action.payload.totalPages,
         },
       };
     default:

@@ -1,6 +1,4 @@
-import { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import Modal from './Modal';
 import SearchIcon from '../assets/SearchIcon';
 import SignOutIcon from '../assets/SignOutIcon';
 import ProfileIcon from '../assets/ProfileIcon';
@@ -16,54 +14,47 @@ import {
 
 interface Props {
   currentUser: object | null;
+  setIsOpen: (isOpen: boolean) => void;
+  searchIcon: React.RefObject<HTMLDivElement>;
 }
 
-const Header: React.FC<Props> = ({ currentUser }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const searchIcon = useRef<HTMLDivElement>(null);
+const Header: React.FC<Props> = ({ currentUser, setIsOpen, searchIcon }) => (
+  <StyledHeader>
+    <LogoLink to='/'>dunno</LogoLink>
 
-  return (
-    <>
-      <StyledHeader>
-        <LogoLink to='/'>dunno</LogoLink>
+    <Nav>
+      <NavLink exact to='/'>
+        TV Shows
+      </NavLink>
+      <NavLink exact to='/movie'>
+        Movies
+      </NavLink>
+      <NavLink exact to='/randomizer'>
+        Randomizer
+      </NavLink>
+      <NavLink exact to='/my-list'>
+        My List
+      </NavLink>
+    </Nav>
 
-        <Nav>
-          <NavLink exact to='/'>
-            TV Shows
-          </NavLink>
-          <NavLink exact to='/movie'>
-            Movies
-          </NavLink>
-          <NavLink exact to='/randomizer'>
-            Randomizer
-          </NavLink>
-          <NavLink exact to='/my-list'>
-            My List
-          </NavLink>
-        </Nav>
+    <Icons>
+      <IconWrapper ref={searchIcon} onClick={() => setIsOpen(true)}>
+        <SearchIcon />
+      </IconWrapper>
 
-        <Icons>
-          <IconWrapper ref={searchIcon} onClick={() => setIsOpen(true)}>
-            <SearchIcon />
+      {currentUser ? (
+        <IconWrapper onClick={() => auth.signOut()}>
+          <SignOutIcon />
+        </IconWrapper>
+      ) : (
+        <Link to='/signin'>
+          <IconWrapper>
+            <ProfileIcon />
           </IconWrapper>
-
-          {currentUser ? (
-            <IconWrapper onClick={() => auth.signOut()}>
-              <SignOutIcon />
-            </IconWrapper>
-          ) : (
-            <Link to='/signin'>
-              <IconWrapper>
-                <ProfileIcon />
-              </IconWrapper>
-            </Link>
-          )}
-        </Icons>
-      </StyledHeader>
-
-      <Modal isOpen={isOpen} setIsOpen={setIsOpen} searchIcon={searchIcon} />
-    </>
-  );
-};
+        </Link>
+      )}
+    </Icons>
+  </StyledHeader>
+);
 
 export default Header;

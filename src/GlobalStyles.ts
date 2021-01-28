@@ -8,14 +8,14 @@ export const GlobalStyle = createGlobalStyle`
       sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: #161616;
-    color: white;
+    background: #161616;
+    color: #fff;
   }
 
   a {
     margin: 0;
     padding: 0;
-    color: white;
+    color: #fff;
     text-decoration: none;
   }
 

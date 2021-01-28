@@ -24,7 +24,7 @@ export const Container = styled.div<{ isOpen: boolean }>`
 
 export const Input = styled.input`
   width: 100%;
-  height: 40px;
+  height: 44px;
   font-size: 16px;
   padding: 0 20px;
   color: #fff;

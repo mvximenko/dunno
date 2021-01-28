@@ -63,6 +63,10 @@ export const IconWrapper = styled.div`
   width: 24px;
   fill: #aeaeae;
   cursor: pointer;
+  transition: all 350ms;
+  &:hover {
+    fill: #fff;
+  }
   ${[sizes.up('xl')]} {
     width: 33.6px;
   }

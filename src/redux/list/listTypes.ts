@@ -3,7 +3,6 @@ import { ThunkDispatch } from 'redux-thunk';
 export const SET_LIST = 'SET_LIST';
 export const RESET_LIST = 'RESET_LIST';
 export const LOAD_NEW_PAGE = 'LOAD_NEW_PAGE';
-export const SET_TOTAL_PAGES = 'SET_TOTAL_PAGES';
 
 export interface InitialState {
   [x: string]: {
@@ -35,16 +34,10 @@ export interface LoadNewPageAction {
   payload: Payload;
 }
 
-export interface SetTotalPagesAction {
-  type: typeof SET_TOTAL_PAGES;
-  payload: Payload;
-}
-
 export type ListActionTypes =
   | SetListAction
   | ResetListAction
-  | LoadNewPageAction
-  | SetTotalPagesAction;
+  | LoadNewPageAction;
 
 export type LoadList = (
   category: string,
