@@ -20,7 +20,7 @@ export const Navbar = styled.nav`
 `;
 
 export const Space = styled.div`
-  margin-top: 44px;
+  height: 44px;
 `;
 
 export const Container = styled.div`

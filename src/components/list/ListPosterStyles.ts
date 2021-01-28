@@ -5,7 +5,6 @@ import { fadeEffect, FadeEffectTypes } from '../../CommonStyles';
 
 export const Link = styled(RouterLink)`
   width: 29vw;
-  height: 100%;
   margin-right: 6px;
   position: relative;
   background: #101010;

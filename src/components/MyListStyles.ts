@@ -1,9 +1,22 @@
 import styled from 'styled-components';
 import { Link as RouterLink } from 'react-router-dom';
 import sizes from '../sizes';
+import { fadeEffect, FadeEffectTypes } from '../CommonStyles';
+
+export const Heading = styled.h1`
+  font-size: 28px;
+  font-weight: 300;
+  margin-left: 5vw;
+  ${[sizes.up('lg')]} {
+    margin-left: 6vw;
+  }
+  ${[sizes.up('xl')]} {
+    font-size: 39.2px;
+  }
+`;
 
 export const Container = styled.div`
-  padding: 5% 5%;
+  margin: 0 5% 5% 5%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 6px;
@@ -15,6 +28,8 @@ export const Container = styled.div`
   }
   ${[sizes.up('lg')]} {
     grid-template-columns: repeat(7, 1fr);
+    margin: 0 6% 5% 6%;
+    grid-gap: 8.4px;
   }
   ${[sizes.up('xl')]} {
     grid-template-columns: repeat(8, 1fr);
@@ -23,31 +38,47 @@ export const Container = styled.div`
 
 export const Link = styled(RouterLink)`
   position: relative;
+  height: 0;
+  padding-top: calc(750 / 500 * 100%);
+  ${[sizes.up('lg')]} {
+    transition: all 350ms;
+    &:hover {
+      filter: brightness(1.15);
+    }
+  }
 `;
 
-export const Img = styled.img`
+export const Img = styled.img<FadeEffectTypes>`
   width: 100%;
+  min-height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  ${fadeEffect}
 `;
 
 export const Button = styled.button`
   position: absolute;
   top: 0;
   right: 0;
-  width: 25px;
-  height: 25px;
-  color: #fff;
+  width: 24px;
+  height: 24px;
+  fill: #fff;
   background: rgba(0, 0, 0, 0.8);
   border: none;
   outline: none;
   cursor: pointer;
   transition: 350ms;
   &:hover {
-    color: black;
+    fill: black;
     background: rgba(255, 255, 255, 0.8);
   }
+  ${[sizes.up('lg')]} {
+    width: 28px;
+    height: 28px;
+  }
   ${[sizes.up('xl')]} {
-    width: 35px;
-    height: 35px;
-    font-size: 22.4px;
+    width: 39.2px;
+    height: 39.2px;
   }
 `;

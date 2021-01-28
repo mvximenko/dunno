@@ -10,7 +10,7 @@ export const Wrapper = styled.div`
 
 export const Heading = styled.h1`
   font-size: 28px;
-  font-weight: 400;
+  font-weight: 300;
 `;
 
 export const Row = styled.div`

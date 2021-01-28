@@ -3,7 +3,10 @@ import sizes from '../../sizes';
 
 export const Container = styled.div`
   &:last-of-type {
-    margin-bottom: 30px;
+    margin-bottom: 5vw;
+    ${[sizes.up('sm')]} {
+      margin-bottom: 3vw;
+    }
   }
 `;
 
