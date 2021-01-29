@@ -8,7 +8,7 @@ export function useFetchTitle(
   dispatch: React.Dispatch<TitleActionTypes>
 ): void {
   useEffect(() => {
-    const key: string = `${mediaType}_${titleId}`;
+    const key = `${mediaType}_${titleId}`;
     if (localStorage.getItem(key)) {
       const data = JSON.parse(localStorage.getItem(key)!);
       dispatch({
@@ -18,24 +18,23 @@ export function useFetchTitle(
         videos: data.videos.results,
       });
     } else {
-      fetch(
-        `${API_URL}${mediaType}/${titleId}?api_key=${API_KEY}&append_to_response=videos,credits`
-      )
-        .then((res: Response) => res.json())
-        .then((data) => {
-          if (data.status_code) {
-            dispatch({ type: SET_ERROR, error: true });
-          } else {
-            dispatch({
-              type: SET_DATA,
-              title: data,
-              cast: data.credits.cast,
-              videos: data.videos.results,
-            });
-            dispatch({ type: SET_ERROR, error: false });
-            localStorage.setItem(key, JSON.stringify(data));
-          }
-        });
+      (async () => {
+        const title = `${API_URL}${mediaType}/${titleId}?api_key=${API_KEY}&append_to_response=videos,credits`;
+        const res = await fetch(title);
+        const data = await res.json();
+
+        if (data.status_code) {
+          dispatch({ type: SET_ERROR, error: true });
+        } else {
+          dispatch({
+            type: SET_DATA,
+            title: data,
+            cast: data.credits.cast,
+            videos: data.videos.results,
+          });
+          localStorage.setItem(key, JSON.stringify(data));
+        }
+      })();
     }
   }, [dispatch, mediaType, titleId]);
 }

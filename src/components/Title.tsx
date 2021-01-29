@@ -57,7 +57,6 @@ const Title: React.FC<Props> = ({ userId }) => {
 
   const { width } = useWindowDimensions();
   const heading: string = title || name;
-
   return (
     <>
       {heading && (

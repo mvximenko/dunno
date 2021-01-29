@@ -19,11 +19,9 @@ const List: React.FC<Props> = ({
   loadList,
   resetList,
   loadNewPage,
-  totalPages,
+  list: { titles, page, totalPages },
   mediaType,
   category,
-  titles,
-  page,
   id,
 }) => {
   useEffect(() => {
@@ -70,9 +68,7 @@ const List: React.FC<Props> = ({
 };
 
 const mapStateToProps = (state: any, { category, mediaType }: any) => ({
-  titles: state.list[`${category}_${mediaType}`].titles,
-  page: state.list[`${category}_${mediaType}`].page,
-  totalPages: state.list[`${category}_${mediaType}`].totalPages,
+  list: state.list[`${category}_${mediaType}`],
 });
 
 export default connect(mapStateToProps, {

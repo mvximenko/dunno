@@ -7,34 +7,27 @@ export function useFetchPerson(
   dispatch: React.Dispatch<PersonActionTypes>
 ): void {
   useEffect(() => {
-    const key: string = `person_${personId}`;
+    const key = `person_${personId}`;
     if (localStorage.getItem(key)) {
-      const data = JSON.parse(localStorage.getItem(key)!);
-      dispatch({ type: SET_DATA, name: data.name, titles: data.titles });
+      const { name, titles } = JSON.parse(localStorage.getItem(key)!);
+      dispatch({ type: SET_DATA, name, titles });
     } else {
-      fetch(`${API_URL}person/${personId}?api_key=${API_KEY}&language=en-US`)
-        .then((res: Response) => res.json())
-        .then((person) => {
-          if (person.status_code || person.errors) {
-            dispatch({ type: SET_ERROR, error: true });
-          } else {
-            fetch(
-              `${API_URL}person/${personId}/combined_credits?api_key=${API_KEY}`
-            )
-              .then((res) => res.json())
-              .then((titles) => {
-                dispatch({
-                  type: SET_DATA,
-                  name: person.name,
-                  titles: titles.cast,
-                });
-                localStorage.setItem(
-                  key,
-                  JSON.stringify({ name: person.name, titles: titles.cast })
-                );
-              });
-          }
-        });
+      (async () => {
+        const endpoint = `${API_URL}person/${personId}?api_key=${API_KEY}&language=en-US&append_to_response=combined_credits`;
+        const res = await fetch(endpoint);
+        const {
+          name,
+          status_code,
+          combined_credits: { cast: titles },
+        } = await res.json();
+
+        if (status_code) {
+          dispatch({ type: SET_ERROR, error: true });
+        } else {
+          dispatch({ type: SET_DATA, name, titles });
+          localStorage.setItem(key, JSON.stringify({ name, titles }));
+        }
+      })();
     }
   }, [dispatch, personId]);
 }

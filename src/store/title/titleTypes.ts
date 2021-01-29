@@ -1,4 +1,4 @@
-export const SET_DATA = 'SET_TITLE';
+export const SET_DATA = 'SET_DATA';
 export const SET_ERROR = 'SET_ERROR';
 
 interface Title {

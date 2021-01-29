@@ -50,7 +50,7 @@ export type LoadNewPage = (category: string, mediaType: string) => void;
 
 export type ListDispatch = ThunkDispatch<{}, void, ListActionTypes>;
 
-export interface Title {
+interface Title {
   id: number;
   name: string;
   title: string;
@@ -58,13 +58,17 @@ export interface Title {
 }
 
 export interface Props {
-  titles: Title[];
   category: string;
   mediaType: string;
+  id?: number;
+
   loadNewPage: LoadNewPage;
   resetList: LoadNewPage;
   loadList: LoadList;
-  totalPages: number;
-  page: number;
-  id?: number;
+
+  list: {
+    page: number;
+    titles: Title[];
+    totalPages: number;
+  };
 }

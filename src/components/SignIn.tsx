@@ -38,9 +38,7 @@ const SignIn: React.FC<Props> = ({ isAuthenticated }) => {
     setCredentials({ ...userCredentials, [name]: value });
   };
 
-  if (isAuthenticated) {
-    return <Redirect to='/' />;
-  }
+  if (isAuthenticated) return <Redirect to='/' />;
 
   return (
     <Container>
