@@ -4,7 +4,8 @@ import ScrollContainer from 'react-indiana-drag-scroll';
 import ListPoster from './ListPoster';
 import useInfiniteScroll from '../../hooks/useInfiniteScroll';
 import { loadList, resetList, loadNewPage } from '../../redux/list/listActions';
-import { Props } from '../../redux/list/listTypes';
+import { Props, DispatchProps } from '../../redux/list/listTypes';
+import { RootState } from '../../redux/rootReducer';
 import { IMAGE_BASE_URL, POSTER_SIZE } from '../../config';
 import { titleCase } from '../../helpers';
 import {
@@ -32,11 +33,9 @@ const List: React.FC<Props> = ({
     return () => resetList(category, mediaType);
   }, [category, mediaType, resetList]);
 
-  const handleLoad = useCallback(() => loadNewPage(category, mediaType), [
-    category,
-    mediaType,
-    loadNewPage,
-  ]);
+  const handleLoad = useCallback(() => {
+    loadNewPage(category, mediaType);
+  }, [category, mediaType, loadNewPage]);
 
   const bottomBoundaryRef = useRef<HTMLDivElement>(null);
   useInfiniteScroll(bottomBoundaryRef, handleLoad);
@@ -67,12 +66,13 @@ const List: React.FC<Props> = ({
   );
 };
 
-const mapStateToProps = (state: any, { category, mediaType }: any) => ({
+const mapStateToProps = (
+  state: RootState,
+  { category, mediaType }: DispatchProps
+) => ({
   list: state.list[`${category}_${mediaType}`],
 });
 
-export default connect(mapStateToProps, {
-  loadList,
-  resetList,
-  loadNewPage,
-})(List);
+export default connect(mapStateToProps, { loadList, resetList, loadNewPage })(
+  List
+);

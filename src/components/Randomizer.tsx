@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
+import PosterPng from '../assets/poster.png';
 import useWindowDimensions from '../hooks/useWindowDimensions';
 import {
   loadGenres,
@@ -8,6 +9,7 @@ import {
   resetLoaded,
 } from '../redux/randomizer/randomizerActions';
 import { Props } from '../redux/randomizer/randomizerTypes';
+import { RootState } from '../redux/rootReducer';
 import { IMAGE_BASE_URL, POSTER_SIZE, BACKDROP_SIZE } from '../config';
 import {
   Container,
@@ -33,7 +35,7 @@ const Randomizer: React.FC<Props> = ({
   },
 }) => {
   useEffect(() => loadGenres(), [loadGenres]);
-  useEffect(() => loadTitle(mediaType, genres), [mediaType, genres]);
+  useEffect(() => loadTitle(mediaType, genres), [mediaType, genres, loadTitle]);
 
   const { width, height } = useWindowDimensions();
   return (
@@ -50,7 +52,11 @@ const Randomizer: React.FC<Props> = ({
         <Link to={poster_path ? `${name ? 'tv' : 'movie'}/${id}` : `#`}>
           <Img
             alt={title || name}
-            src={`${IMAGE_BASE_URL}${POSTER_SIZE}${poster_path}`}
+            src={
+              poster_path
+                ? `${IMAGE_BASE_URL}${POSTER_SIZE}${poster_path}`
+                : PosterPng
+            }
             fade={poster}
             onLoad={() => setLoaded('poster')}
           />
@@ -64,7 +70,9 @@ const Randomizer: React.FC<Props> = ({
   );
 };
 
-const mapStateToProps = (state: any) => ({ randomizer: state.randomizer });
+const mapStateToProps = (state: RootState) => ({
+  randomizer: state.randomizer,
+});
 
 export default connect(mapStateToProps, {
   loadGenres,

@@ -4,40 +4,43 @@ export const SET_LIST = 'SET_LIST';
 export const RESET_LIST = 'RESET_LIST';
 export const LOAD_NEW_PAGE = 'LOAD_NEW_PAGE';
 
-export interface InitialState {
+export interface ListState {
   [x: string]: {
-    titles: [];
+    titles: Title[];
     page: number;
+    totalPages: number;
   };
 }
 
-interface Payload {
-  mediaType: string;
+export interface DispatchProps {
   category: string;
-  totalPages?: number;
+  mediaType: string;
 }
 
 export interface SetListAction {
   type: typeof SET_LIST;
-  payload: Payload & {
+  payload: DispatchProps & {
     results: [];
+    totalPages: number;
   };
 }
 
 export interface ResetListAction {
   type: typeof RESET_LIST;
-  payload: Payload;
+  payload: DispatchProps;
 }
 
 export interface LoadNewPageAction {
   type: typeof LOAD_NEW_PAGE;
-  payload: Payload;
+  payload: DispatchProps;
 }
 
 export type ListActionTypes =
   | SetListAction
   | ResetListAction
   | LoadNewPageAction;
+
+export type ListDispatch = ThunkDispatch<{}, void, ListActionTypes>;
 
 export type LoadList = (
   category: string,
@@ -47,8 +50,6 @@ export type LoadList = (
 ) => void;
 
 export type LoadNewPage = (category: string, mediaType: string) => void;
-
-export type ListDispatch = ThunkDispatch<{}, void, ListActionTypes>;
 
 interface Title {
   id: number;

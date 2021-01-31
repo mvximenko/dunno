@@ -12,11 +12,12 @@ interface Title {
   poster_path: string;
   backdrop_path: string;
 }
+
 interface Genres {
   [x: string]: { id: number; name: string }[];
 }
 
-export interface InitialState {
+export interface RandomizerState {
   title: Title;
   genres: Genres;
   poster: boolean;
@@ -50,15 +51,15 @@ export type RandomizerActionTypes =
   | SetLoadedAction
   | ResetLoadedAction;
 
+export type RandomizerDispatch = ThunkDispatch<{}, void, RandomizerActionTypes>;
+
 export type LoadGenres = () => void;
 export type LoadTitle = (category: string, genres: Genres) => void;
 export type SetLoaded = (loaded: string) => void;
 export type ResetLoaded = (type: string) => void;
 
-export type RandomizerDispatch = ThunkDispatch<{}, void, RandomizerActionTypes>;
-
 export interface Props {
-  randomizer: InitialState;
+  randomizer: RandomizerState;
   loadGenres: LoadGenres;
   loadTitle: LoadTitle;
   setLoaded: SetLoaded;

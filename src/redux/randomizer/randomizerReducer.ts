@@ -3,10 +3,11 @@ import {
   SET_TITLE,
   SET_LOADED,
   RESET_LOADED,
+  RandomizerState,
   RandomizerActionTypes,
 } from './randomizerTypes';
 
-const initialState = {
+const initialState: RandomizerState = {
   title: {
     id: 0,
     name: '',

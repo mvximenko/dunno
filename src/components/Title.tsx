@@ -1,8 +1,10 @@
-import { useReducer } from 'react';
+import { useEffect } from 'react';
 import { useRouteMatch } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { loadData, resetData } from '../redux/title/titleAction';
+import { Props } from '../redux/title/titleTypes';
+import { RootState } from '../redux/rootReducer';
 import useWindowDimensions from '../hooks/useWindowDimensions';
-import titleReducer from '../store/title/titleReducer';
-import { useFetchTitle } from '../store/title/titleActions';
 import { sliceOverview } from '../helpers';
 import StarIcon from './assets/StarIcon';
 import Imdb from './assets/Imdb';
@@ -25,38 +27,27 @@ import {
   Row,
 } from './TitleStyles';
 
-interface Props {
-  userId: string | null;
-}
-
-const Title: React.FC<Props> = ({ userId }) => {
-  const [data, dataDispatch] = useReducer(titleReducer, {
-    title: {
-      title: '',
-      name: '',
-      backdrop_path: null,
-      poster_path: null,
-      overview: '',
-      vote_average: 0,
-    },
-    cast: [],
-    videos: [],
-    error: false,
-  });
-
-  const { url } = useRouteMatch<{ url: string }>();
-  const [, mediaType, titleId] = url.split('/');
-  useFetchTitle(mediaType, titleId, dataDispatch);
-
-  const {
+const Title: React.FC<Props> = ({
+  loadData,
+  resetData,
+  userId,
+  title: {
     title: { title, name, backdrop_path, poster_path, overview, vote_average },
     cast,
     videos,
     error,
-  } = data;
+  },
+}) => {
+  const { url } = useRouteMatch<{ url: string }>();
+  const [, mediaType, titleId] = url.split('/');
+
+  useEffect(() => {
+    loadData(mediaType, titleId);
+    return () => resetData();
+  }, [mediaType, titleId, loadData, resetData]);
 
   const { width } = useWindowDimensions();
-  const heading: string = title || name;
+  const heading = title || name;
   return (
     <>
       {heading && (
@@ -84,8 +75,8 @@ const Title: React.FC<Props> = ({ userId }) => {
                 <Row>
                   {cast.length > 0 &&
                     cast
-                      .filter((person, index) => index < 4)
-                      .map((person) => (
+                      .filter((person: any, index: any) => index < 4)
+                      .map((person: any) => (
                         <TitleCast
                           profilePath={person.profile_path}
                           name={person.name}
@@ -113,4 +104,6 @@ const Title: React.FC<Props> = ({ userId }) => {
   );
 };
 
-export default Title;
+const mapStateToProps = (state: RootState) => ({ title: state.title });
+
+export default connect(mapStateToProps, { loadData, resetData })(Title);

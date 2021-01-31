@@ -4,32 +4,32 @@ import {
   RESET_LIST,
   LOAD_NEW_PAGE,
   ListActionTypes,
-  InitialState,
+  ListState,
 } from './listTypes';
 
 const entries = { titles: [], page: 1, totalPages: 2 };
 
-const tv: InitialState = TV.reduce(
+const tv: ListState = TV.reduce(
   (object, category) => ({ ...object, [`${category}_tv`]: entries }),
   {}
 );
 
-const movies: InitialState = MOVIES.reduce(
+const movies: ListState = MOVIES.reduce(
   (object, category) => ({ ...object, [`${category}_movie`]: entries }),
   {}
 );
 
-const networks: InitialState = NETWORKS.reduce(
+const networks: ListState = NETWORKS.reduce(
   (object, network) => ({ ...object, [`${network.name}_tv`]: entries }),
   {}
 );
 
-const companies: InitialState = COMPANIES.reduce(
+const companies: ListState = COMPANIES.reduce(
   (object, company) => ({ ...object, [`${company.name}_movie`]: entries }),
   {}
 );
 
-const initialState: InitialState = {
+const initialState: ListState = {
   ...movies,
   ...tv,
   ...networks,
@@ -37,7 +37,7 @@ const initialState: InitialState = {
 };
 
 export default function listReducer(
-  state: InitialState = initialState,
+  state = initialState,
   action: ListActionTypes
 ) {
   const key = action.payload
@@ -56,8 +56,7 @@ export default function listReducer(
       };
     case RESET_LIST:
       return {
-        ...state,
-        [key]: entries,
+        ...initialState,
       };
     case LOAD_NEW_PAGE:
       return {
