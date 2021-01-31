@@ -31,7 +31,7 @@ export interface TitleState {
   error: boolean;
 }
 
-export interface SetDataAction {
+interface SetDataAction {
   type: typeof SET_DATA;
   payload: {
     title: Title;
@@ -40,10 +40,10 @@ export interface SetDataAction {
   };
 }
 
-export interface SetErrorAction {
+interface SetErrorAction {
   type: typeof SET_ERROR;
 }
-export interface ResetDataAction {
+interface ResetDataAction {
   type: typeof RESET_DATA;
 }
 

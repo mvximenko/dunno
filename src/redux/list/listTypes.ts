@@ -4,12 +4,14 @@ export const SET_LIST = 'SET_LIST';
 export const RESET_LIST = 'RESET_LIST';
 export const LOAD_NEW_PAGE = 'LOAD_NEW_PAGE';
 
+interface List {
+  titles: Title[];
+  page: number;
+  totalPages: number;
+}
+
 export interface ListState {
-  [x: string]: {
-    titles: Title[];
-    page: number;
-    totalPages: number;
-  };
+  [x: string]: List;
 }
 
 export interface DispatchProps {
@@ -17,7 +19,7 @@ export interface DispatchProps {
   mediaType: string;
 }
 
-export interface SetListAction {
+interface SetListAction {
   type: typeof SET_LIST;
   payload: DispatchProps & {
     results: [];
@@ -25,12 +27,12 @@ export interface SetListAction {
   };
 }
 
-export interface ResetListAction {
+interface ResetListAction {
   type: typeof RESET_LIST;
   payload: DispatchProps;
 }
 
-export interface LoadNewPageAction {
+interface LoadNewPageAction {
   type: typeof LOAD_NEW_PAGE;
   payload: DispatchProps;
 }
@@ -63,13 +65,8 @@ export interface Props {
   mediaType: string;
   id?: number;
 
+  list: List;
   loadNewPage: LoadNewPage;
   resetList: LoadNewPage;
   loadList: LoadList;
-
-  list: {
-    page: number;
-    titles: Title[];
-    totalPages: number;
-  };
 }

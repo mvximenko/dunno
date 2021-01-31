@@ -25,22 +25,22 @@ export interface RandomizerState {
   mediaType: string;
 }
 
-export interface SetGenresAction {
+interface SetGenresAction {
   type: typeof SET_GENRES;
   payload: Genres;
 }
 
-export interface SetTitleAction {
+interface SetTitleAction {
   type: typeof SET_TITLE;
   payload: Title;
 }
 
-export interface SetLoadedAction {
+interface SetLoadedAction {
   type: typeof SET_LOADED;
   payload: string;
 }
 
-export interface ResetLoadedAction {
+interface ResetLoadedAction {
   type: typeof RESET_LOADED;
   payload: string;
 }

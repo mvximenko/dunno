@@ -1,11 +1,11 @@
 import { useCallback, useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
-import ScrollContainer from 'react-indiana-drag-scroll';
-import ListPoster from './ListPoster';
-import useInfiniteScroll from '../../hooks/useInfiniteScroll';
 import { loadList, resetList, loadNewPage } from '../../redux/list/listActions';
 import { Props, DispatchProps } from '../../redux/list/listTypes';
 import { RootState } from '../../redux/rootReducer';
+import ScrollContainer from 'react-indiana-drag-scroll';
+import ListPoster from './ListPoster';
+import useInfiniteScroll from '../../hooks/useInfiniteScroll';
 import { IMAGE_BASE_URL, POSTER_SIZE } from '../../config';
 import { titleCase } from '../../helpers';
 import {

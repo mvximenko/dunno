@@ -13,7 +13,7 @@ export const Container = styled.nav`
 
 export const NavLink = styled(RouterNavLink)`
   color: #aeaeae;
-  font-size: 18px;
+  font-size: 5vw;
   &.active {
     color: #fff;
   }

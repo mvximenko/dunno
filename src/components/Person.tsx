@@ -1,24 +1,26 @@
-import { useReducer } from 'react';
-import { useParams } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { loadPerson, resetPerson } from '../redux/person/personActions';
+import { Props } from '../redux/person/personTypes';
+import { RootState } from '../redux/rootReducer';
 import Spinner from './layout/Spinner';
 import PosterPng from '../assets/poster.png';
-import personReducer from '../store/person/personReducer';
-import { useFetchPerson } from '../store/person/personActions';
 import { IMAGE_BASE_URL, TINY_POSTER_SIZE } from '../config';
 import { Wrapper, Heading, Row, Placeholder, Img, Span } from './PersonStyles';
 
-const Person: React.FC = () => {
-  const [state, dispatch] = useReducer(personReducer, {
-    name: '',
-    titles: [],
-    error: false,
-  });
-
+const Person: React.FC<Props> = ({
+  loadPerson,
+  resetPerson,
+  person: { name, titles, error },
+}) => {
   const { personId } = useParams<{ personId: string }>();
-  useFetchPerson(personId, dispatch);
 
-  const { name, titles, error } = state;
+  useEffect(() => {
+    loadPerson(personId);
+    return () => resetPerson();
+  }, [personId, loadPerson, resetPerson]);
+
   return (
     <>
       {name && (
@@ -48,4 +50,6 @@ const Person: React.FC = () => {
   );
 };
 
-export default Person;
+const mapStateToProps = (state: RootState) => ({ person: state.person });
+
+export default connect(mapStateToProps, { loadPerson, resetPerson })(Person);

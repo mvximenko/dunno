@@ -3,8 +3,8 @@ import {
   SET_LIST,
   RESET_LIST,
   LOAD_NEW_PAGE,
-  ListActionTypes,
   ListState,
+  ListActionTypes,
 } from './listTypes';
 
 const entries = { titles: [], page: 1, totalPages: 2 };
