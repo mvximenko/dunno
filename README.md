@@ -4,6 +4,7 @@
 
 - [Typescript](https://www.typescriptlang.org/)
 - [React](https://reactjs.org/)
+- [Redux](https://react-redux.js.org/)
 - [Styled Components](https://styled-components.com/)
 - [The Movie Database API](https://developers.themoviedb.org/3)
 - [Firebase](https://firebase.google.com/)
