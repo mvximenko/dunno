@@ -12,7 +12,7 @@ interface Props {
   posterPath: string | null;
 }
 
-const TitleButtons: React.FC<Props> = ({
+const TitleButtons: React.VFC<Props> = ({
   id,
   title,
   mediaType,

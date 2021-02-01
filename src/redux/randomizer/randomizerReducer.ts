@@ -1,6 +1,6 @@
 import {
-  SET_GENRES,
-  SET_TITLE,
+  GET_GENRES,
+  GET_TITLE,
   SET_LOADED,
   RESET_LOADED,
   RandomizerState,
@@ -26,12 +26,12 @@ export default function randomizerReducer(
   action: RandomizerActionTypes
 ) {
   switch (action.type) {
-    case SET_GENRES:
+    case GET_GENRES:
       return {
         ...state,
         genres: action.payload,
       };
-    case SET_TITLE:
+    case GET_TITLE:
       return {
         ...state,
         title: action.payload,

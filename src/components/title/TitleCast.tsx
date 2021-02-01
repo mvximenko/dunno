@@ -10,7 +10,7 @@ interface Props {
   profilePath: string;
 }
 
-const TitleCast: React.FC<Props> = ({ id, name, profilePath }) => {
+const TitleCast: React.VFC<Props> = ({ id, name, profilePath }) => {
   const [loaded, setLoaded] = useState(false);
   return (
     <Column>

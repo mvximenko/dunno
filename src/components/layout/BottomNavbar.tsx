@@ -20,7 +20,7 @@ interface Props {
   searchIcon: React.RefObject<HTMLDivElement>;
 }
 
-const BottomNavbar: React.FC<Props> = ({
+const BottomNavbar: React.VFC<Props> = ({
   currentUser,
   setIsOpen,
   searchIcon,

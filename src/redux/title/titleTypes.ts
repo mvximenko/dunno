@@ -1,8 +1,8 @@
 import { ThunkDispatch } from 'redux-thunk';
 
-export const SET_DATA = 'SET_DATA';
+export const GET_DATA = 'GET_DATA';
 export const SET_ERROR = 'SET_ERROR';
-export const RESET_DATA = 'RESET_DATA';
+export const CLEAR_DATA = 'CLEAR_DATA';
 
 interface Title {
   title: string;
@@ -31,8 +31,8 @@ export interface TitleState {
   error: boolean;
 }
 
-interface SetDataAction {
-  type: typeof SET_DATA;
+interface GetDataAction {
+  type: typeof GET_DATA;
   payload: {
     title: Title;
     cast: Cast[];
@@ -43,20 +43,20 @@ interface SetDataAction {
 interface SetErrorAction {
   type: typeof SET_ERROR;
 }
-interface ResetDataAction {
-  type: typeof RESET_DATA;
+interface ClearDataAction {
+  type: typeof CLEAR_DATA;
 }
 
-export type TitleActionTypes = SetDataAction | SetErrorAction | ResetDataAction;
+export type TitleActionTypes = GetDataAction | SetErrorAction | ClearDataAction;
 export type TitleDispatch = ThunkDispatch<{}, void, TitleActionTypes>;
 
-export type LoadData = (mediatype: string, titleId: string) => void;
-export type ResetData = () => void;
+export type GetData = (mediatype: string, titleId: string) => void;
+export type ClearData = () => void;
 
 export interface Props {
   userId: string | null;
 
   title: TitleState;
-  loadData: LoadData;
-  resetData: ResetData;
+  getData: GetData;
+  clearData: ClearData;
 }

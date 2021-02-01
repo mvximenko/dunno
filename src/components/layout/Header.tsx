@@ -18,7 +18,7 @@ interface Props {
   searchIcon: React.RefObject<HTMLDivElement>;
 }
 
-const Header: React.FC<Props> = ({ currentUser, setIsOpen, searchIcon }) => (
+const Header: React.VFC<Props> = ({ currentUser, setIsOpen, searchIcon }) => (
   <StyledHeader>
     <LogoLink to='/'>dunno</LogoLink>
 

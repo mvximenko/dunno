@@ -1,16 +1,16 @@
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
-import PosterPng from '../assets/poster.png';
-import useWindowDimensions from '../hooks/useWindowDimensions';
+import PosterPng from '../../assets/poster.png';
+import useWindowDimensions from '../../hooks/useWindowDimensions';
 import {
-  loadGenres,
-  loadTitle,
+  getGenres,
+  getTitle,
   setLoaded,
   resetLoaded,
-} from '../redux/randomizer/randomizerActions';
-import { Props } from '../redux/randomizer/randomizerTypes';
-import { RootState } from '../redux/rootReducer';
-import { IMAGE_BASE_URL, POSTER_SIZE, BACKDROP_SIZE } from '../config';
+} from '../../redux/randomizer/randomizerActions';
+import { Props } from '../../redux/randomizer/randomizerTypes';
+import { RootState } from '../../redux/rootReducer';
+import { IMAGE_BASE_URL, POSTER_SIZE, BACKDROP_SIZE } from '../../config';
 import {
   Container,
   Background,
@@ -21,9 +21,9 @@ import {
   Button,
 } from './RandomizerStyles';
 
-const Randomizer: React.FC<Props> = ({
-  loadGenres,
-  loadTitle,
+const Randomizer: React.VFC<Props> = ({
+  getGenres,
+  getTitle,
   setLoaded,
   resetLoaded,
   randomizer: {
@@ -34,8 +34,8 @@ const Randomizer: React.FC<Props> = ({
     mediaType,
   },
 }) => {
-  useEffect(() => loadGenres(), [loadGenres]);
-  useEffect(() => loadTitle(mediaType, genres), [mediaType, genres, loadTitle]);
+  useEffect(() => getGenres(), [getGenres]);
+  useEffect(() => getTitle(mediaType, genres), [mediaType, genres, getTitle]);
 
   const { width, height } = useWindowDimensions();
   return (
@@ -75,8 +75,8 @@ const mapStateToProps = (state: RootState) => ({
 });
 
 export default connect(mapStateToProps, {
-  loadGenres,
-  loadTitle,
+  getGenres,
+  getTitle,
   setLoaded,
   resetLoaded,
 })(Randomizer);

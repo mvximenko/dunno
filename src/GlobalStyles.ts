@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle, css } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
   body {
@@ -28,4 +28,27 @@ export const GlobalStyle = createGlobalStyle`
   svg { 
     display: block; 
   }
+`;
+
+export interface FadeEffectTypes {
+  fade: boolean;
+}
+
+export const fadeEffect = css<FadeEffectTypes>`
+  ${({ fade }) =>
+    fade
+      ? `
+    animation: fadein 0.5s;
+    @keyframes fadein {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  `
+      : `
+      visibility: hidden;
+    `}
 `;

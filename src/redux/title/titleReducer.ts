@@ -1,7 +1,7 @@
 import {
-  SET_DATA,
+  GET_DATA,
   SET_ERROR,
-  RESET_DATA,
+  CLEAR_DATA,
   TitleState,
   TitleActionTypes,
 } from './titleTypes';
@@ -25,21 +25,21 @@ export default function randomizerReducer(
   action: TitleActionTypes
 ) {
   switch (action.type) {
-    case SET_DATA:
+    case GET_DATA:
       return {
         ...state,
         title: action.payload.title,
         cast: action.payload.cast,
         videos: action.payload.results,
       };
+    case CLEAR_DATA:
+      return {
+        ...initialState,
+      };
     case SET_ERROR:
       return {
         ...state,
         error: true,
-      };
-    case RESET_DATA:
-      return {
-        ...initialState,
       };
     default:
       return state;

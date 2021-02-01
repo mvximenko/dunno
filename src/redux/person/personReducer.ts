@@ -1,7 +1,7 @@
 import {
-  SET_PERSON,
+  GET_PERSON,
+  CLEAR_PERSON,
   SET_ERROR,
-  RESET_PERSON,
   PersonState,
   PersonActionTypes,
 } from './personTypes';
@@ -17,20 +17,20 @@ export default function personReducer(
   action: PersonActionTypes
 ) {
   switch (action.type) {
-    case SET_PERSON:
+    case GET_PERSON:
       return {
         ...state,
         name: action.payload.name,
         titles: action.payload.titles,
       };
+    case CLEAR_PERSON:
+      return {
+        ...initialState,
+      };
     case SET_ERROR:
       return {
         ...state,
         error: true,
-      };
-    case RESET_PERSON:
-      return {
-        ...initialState,
       };
     default:
       return state;

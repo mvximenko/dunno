@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import { Link as RouterLink } from 'react-router-dom';
-import sizes from '../sizes';
+import sizes from '../../sizes';
 
 const common = css`
   margin-bottom: 20px;

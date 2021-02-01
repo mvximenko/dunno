@@ -1,21 +1,21 @@
 import { API_URL, API_KEY } from '../../config';
 import {
-  SET_LIST,
-  RESET_LIST,
-  LOAD_NEW_PAGE,
-  LoadList,
-  LoadNewPage,
+  GET_LIST,
+  CLEAR_LIST,
+  INCREMENT_PAGE,
+  GetList,
+  IncrementPage,
   ListDispatch,
 } from './listTypes';
 
-export const loadList: LoadList = (category, mediaType, page, id) => async (
+export const getList: GetList = (category, mediaType, page, id) => async (
   dispatch: ListDispatch
 ) => {
   const key = `${mediaType}_${category}_${page}_${id}`;
   if (sessionStorage.getItem(key)) {
     const { results, totalPages } = JSON.parse(sessionStorage.getItem(key)!);
     dispatch({
-      type: SET_LIST,
+      type: GET_LIST,
       payload: { results, category, mediaType, totalPages },
     });
   } else {
@@ -28,21 +28,21 @@ export const loadList: LoadList = (category, mediaType, page, id) => async (
     const res = await fetch(endpoint);
     const { results, total_pages: totalPages } = await res.json();
     dispatch({
-      type: SET_LIST,
+      type: GET_LIST,
       payload: { results, category, mediaType, totalPages },
     });
     sessionStorage.setItem(key, JSON.stringify({ results, totalPages }));
   }
 };
 
-export const resetList: LoadNewPage = (category, mediaType) => async (
+export const clearList: IncrementPage = (category, mediaType) => async (
   dispatch: ListDispatch
 ) => {
-  dispatch({ type: RESET_LIST, payload: { category, mediaType } });
+  dispatch({ type: CLEAR_LIST, payload: { category, mediaType } });
 };
 
-export const loadNewPage: LoadNewPage = (category, mediaType) => async (
+export const incrementPage: IncrementPage = (category, mediaType) => async (
   dispatch: ListDispatch
 ) => {
-  dispatch({ type: LOAD_NEW_PAGE, payload: { category, mediaType } });
+  dispatch({ type: INCREMENT_PAGE, payload: { category, mediaType } });
 };

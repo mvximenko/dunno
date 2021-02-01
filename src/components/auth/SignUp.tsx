@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Redirect } from 'react-router-dom';
-import { auth, createUserProfileDocument } from '../firebase/firebaseUtils';
+import { auth, createUserProfileDocument } from '../../firebase/firebaseUtils';
 import { Container, Form, Heading, Input, Button, Link } from './SignInStyles';
 
 interface Props {
@@ -14,7 +14,7 @@ interface Event {
   };
 }
 
-const SignUp: React.FC<Props> = ({ isAuthenticated }) => {
+const SignUp: React.VFC<Props> = ({ isAuthenticated }) => {
   const [userCredentials, setUserCredentials] = useState({
     displayName: '',
     email: '',
@@ -94,7 +94,7 @@ const SignUp: React.FC<Props> = ({ isAuthenticated }) => {
           required
         />
         <Button type='submit'>Sign Up</Button>
-        <Link to='/signin'>{'Already have an account? Sign in'}</Link>
+        <Link to='/signin'>Already have an account? Sign in</Link>
       </Form>
     </Container>
   );

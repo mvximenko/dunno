@@ -1,7 +1,7 @@
 import { ThunkDispatch } from 'redux-thunk';
 
-export const SET_GENRES = 'SET_GENRES';
-export const SET_TITLE = 'SET_TITLE';
+export const GET_GENRES = 'GET_GENRES';
+export const GET_TITLE = 'GET_TITLE';
 export const SET_LOADED = 'SET_LOADED';
 export const RESET_LOADED = 'RESET_LOADED';
 
@@ -25,13 +25,13 @@ export interface RandomizerState {
   mediaType: string;
 }
 
-interface SetGenresAction {
-  type: typeof SET_GENRES;
+interface GetGenresAction {
+  type: typeof GET_GENRES;
   payload: Genres;
 }
 
-interface SetTitleAction {
-  type: typeof SET_TITLE;
+interface GetTitleAction {
+  type: typeof GET_TITLE;
   payload: Title;
 }
 
@@ -46,22 +46,22 @@ interface ResetLoadedAction {
 }
 
 export type RandomizerActionTypes =
-  | SetGenresAction
-  | SetTitleAction
+  | GetGenresAction
+  | GetTitleAction
   | SetLoadedAction
   | ResetLoadedAction;
 
 export type RandomizerDispatch = ThunkDispatch<{}, void, RandomizerActionTypes>;
 
-export type LoadGenres = () => void;
-export type LoadTitle = (category: string, genres: Genres) => void;
+export type GetGenres = () => void;
+export type GetTitle = (category: string, genres: Genres) => void;
 export type SetLoaded = (loaded: string) => void;
 export type ResetLoaded = (type: string) => void;
 
 export interface Props {
   randomizer: RandomizerState;
-  loadGenres: LoadGenres;
-  loadTitle: LoadTitle;
+  getGenres: GetGenres;
+  getTitle: GetTitle;
   setLoaded: SetLoaded;
   resetLoaded: ResetLoaded;
 }

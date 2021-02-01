@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Link as RouterLink } from 'react-router-dom';
-import sizes from '../sizes';
-import { fadeEffect, FadeEffectTypes } from '../CommonStyles';
+import sizes from '../../sizes';
+import { fadeEffect, FadeEffectTypes } from '../../GlobalStyles';
 
 export const Heading = styled.h1`
   font-size: 28px;

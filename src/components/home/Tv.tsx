@@ -1,11 +1,12 @@
-import List from './list/List';
-import Categories from './layout/Categories';
-import { TV, NETWORKS } from '../config';
+import List from './List';
+import Categories from './Categories';
+import { TV, NETWORKS } from '../../config';
+import { Container } from './HomeStyles';
 
 const Tv = () => (
   <>
     <Categories />
-    <div>
+    <Container>
       {TV.map((category) => (
         <List category={category} mediaType='tv' key={category} />
       ))}
@@ -18,7 +19,7 @@ const Tv = () => (
           key={network.name}
         />
       ))}
-    </div>
+    </Container>
   </>
 );
 

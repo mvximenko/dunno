@@ -1,24 +1,40 @@
 import styled from 'styled-components';
 import sizes from '../../sizes';
 
+export const Overlay = styled.div<{ isOpen: boolean }>`
+  ${({ isOpen }) =>
+    isOpen &&
+    `    
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 998;
+    opacity: 0.75;
+    background: #060606;
+  `}
+`;
+
 export const Container = styled.div<{ isOpen: boolean }>`
   top: 0;
   left: 0;
   margin: auto;
   border: none;
-  position: absolute;
+  position: fixed;
   background: #161616;
   z-index: 1000;
-
+  display: none;
   ${({ isOpen }) =>
     isOpen &&
     `    
     left: 13vw;
     width: 74vw;
+    display: block;
     ${[sizes.up('sm')]} {
       left: 20vw;
       width: 60vw;
-    }
+    } 
   `}
 `;
 

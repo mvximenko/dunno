@@ -1,25 +1,25 @@
 import { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { loadPerson, resetPerson } from '../redux/person/personActions';
-import { Props } from '../redux/person/personTypes';
-import { RootState } from '../redux/rootReducer';
-import Spinner from './layout/Spinner';
-import PosterPng from '../assets/poster.png';
-import { IMAGE_BASE_URL, TINY_POSTER_SIZE } from '../config';
+import { getPerson, clearPerson } from '../../redux/person/personActions';
+import { Props } from '../../redux/person/personTypes';
+import { RootState } from '../../redux/rootReducer';
+import Spinner from '../layout/Spinner';
+import PosterPng from '../../assets/poster.png';
+import { IMAGE_BASE_URL, TINY_POSTER_SIZE } from '../../config';
 import { Wrapper, Heading, Row, Placeholder, Img, Span } from './PersonStyles';
 
-const Person: React.FC<Props> = ({
-  loadPerson,
-  resetPerson,
+const Person: React.VFC<Props> = ({
+  getPerson,
+  clearPerson,
   person: { name, titles, error },
 }) => {
   const { personId } = useParams<{ personId: string }>();
 
   useEffect(() => {
-    loadPerson(personId);
-    return () => resetPerson();
-  }, [personId, loadPerson, resetPerson]);
+    getPerson(personId);
+    return () => clearPerson();
+  }, [personId, getPerson, clearPerson]);
 
   return (
     <>
@@ -52,4 +52,4 @@ const Person: React.FC<Props> = ({
 
 const mapStateToProps = (state: RootState) => ({ person: state.person });
 
-export default connect(mapStateToProps, { loadPerson, resetPerson })(Person);
+export default connect(mapStateToProps, { getPerson, clearPerson })(Person);

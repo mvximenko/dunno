@@ -1,11 +1,12 @@
-import List from './list/List';
-import Categories from './layout/Categories';
-import { MOVIES, COMPANIES } from '../config';
+import List from './List';
+import Categories from './Categories';
+import { MOVIES, COMPANIES } from '../../config';
+import { Container } from './HomeStyles';
 
 const Movies = () => (
   <>
     <Categories />
-    <div>
+    <Container>
       {MOVIES.map((category) => (
         <List category={category} mediaType='movie' key={category} />
       ))}
@@ -18,7 +19,7 @@ const Movies = () => (
           key={company.name}
         />
       ))}
-    </div>
+    </Container>
   </>
 );
 

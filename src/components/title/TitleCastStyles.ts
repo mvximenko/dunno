@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import sizes from '../../sizes';
-import { fadeEffect, FadeEffectTypes } from '../../CommonStyles';
+import { fadeEffect, FadeEffectTypes } from '../../GlobalStyles';
 
 export const Column = styled.div`
   display: flex;

@@ -1,16 +1,16 @@
 import { useState, useEffect, useRef } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import Tv from './components/Tv';
-import Movies from './components/Movies';
-import Title from './components/Title';
-import Randomizer from './components/Randomizer';
-import Person from './components/Person';
-import MyList from './components/MyList';
-import SignIn from './components/SignIn';
-import SignUp from './components/SignUp';
+import Tv from './components/home/Tv';
+import Movies from './components/home/Movies';
+import Title from './components/title/Title';
+import Randomizer from './components/randomizer/Randomizer';
+import Person from './components/person/Person';
+import MyList from './components/my-list/MyList';
+import SignIn from './components/auth/SignIn';
+import SignUp from './components/auth/SignUp';
 import Header from './components/layout/Header';
-import Modal from './components/layout/Modal';
+import SearchBar from './components/layout/SearchBar';
 import BottomNavbar from './components/layout/BottomNavbar';
 import store from './redux/store';
 import { auth, createUserProfileDocument } from './firebase/firebaseUtils';
@@ -18,7 +18,7 @@ import { GlobalStyle } from './GlobalStyles';
 
 type UserAuth = { id: string } | null;
 
-const App: React.FC = () => {
+const App: React.VFC = () => {
   const [currentUser, setCurrentUser] = useState<UserAuth>(null);
 
   const [isOpen, setIsOpen] = useState(false);
@@ -49,7 +49,7 @@ const App: React.FC = () => {
           setIsOpen={setIsOpen}
           searchIcon={searchIcon}
         />
-        <Modal
+        <SearchBar
           isOpen={isOpen}
           setIsOpen={setIsOpen}
           searchIcon={searchIcon}

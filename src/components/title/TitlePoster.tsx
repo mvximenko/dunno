@@ -8,7 +8,7 @@ interface Props {
   posterPath: string | null;
 }
 
-const TitlePosterDesktop: React.FC<Props> = ({ title, posterPath }) => {
+const TitlePosterDesktop: React.VFC<Props> = ({ title, posterPath }) => {
   const [loaded, setLoaded] = useLoaded(posterPath);
   return (
     <div>

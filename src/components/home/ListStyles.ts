@@ -1,26 +1,15 @@
 import styled from 'styled-components';
 import sizes from '../../sizes';
 
-export const Container = styled.div`
-  &:last-of-type {
-    margin-bottom: 5vw;
-    ${[sizes.up('sm')]} {
-      margin-bottom: 3vw;
-    }
-  }
-`;
-
 export const Heading = styled.h1`
   font-size: 18px;
   font-weight: 300;
   margin-top: 5vw;
   margin-bottom: 3vw;
-  margin-left: 5vw;
   ${[sizes.up('sm')]} {
     font-size: 3vw;
     margin-top: 12px;
     margin-bottom: 12px;
-    margin-left: 3vw;
   }
   ${[sizes.up('md')]} {
     font-size: 2.5vw;
@@ -35,7 +24,7 @@ export const Heading = styled.h1`
   }
 `;
 
-export const TitleListContainer = styled.div`
+export const Container = styled.div`
   height: 44vw;
   display: inline-flex;
   ${[sizes.up('sm')]} {
@@ -51,12 +40,7 @@ export const TitleListContainer = styled.div`
 
 export const InitialSpace = styled.div<{ additionalSpace?: boolean }>`
   display: inline-flex;
-  margin-left: 5vw;
   min-width: 100vw;
-  ${[sizes.up('sm')]} {
-    margin-left: 3vw;
-  }
-
   ${({ additionalSpace }) =>
     additionalSpace &&
     `

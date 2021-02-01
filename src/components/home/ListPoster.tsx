@@ -8,7 +8,7 @@ interface Props {
   posterPath: string;
 }
 
-const ListPoster: React.FC<Props> = ({ id, mediaType, title, posterPath }) => {
+const ListPoster: React.VFC<Props> = ({ id, mediaType, title, posterPath }) => {
   const [loaded, setLoaded] = useState(false);
   return (
     <Link to={`/${mediaType}/${id}`}>

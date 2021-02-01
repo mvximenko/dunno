@@ -1,20 +1,20 @@
 import { API_URL, API_KEY } from '../../config';
 import {
-  SET_DATA,
+  GET_DATA,
   SET_ERROR,
-  RESET_DATA,
-  LoadData,
-  ResetData,
+  CLEAR_DATA,
+  GetData,
+  ClearData,
   TitleDispatch,
 } from './titleTypes';
 
-export const loadData: LoadData = (mediaType, titleId) => async (
+export const getData: GetData = (mediaType, titleId) => async (
   dispatch: TitleDispatch
 ) => {
   const key = `${mediaType}_${titleId}`;
   if (localStorage.getItem(key)) {
     const data = JSON.parse(localStorage.getItem(key)!);
-    dispatch({ type: SET_DATA, payload: data });
+    dispatch({ type: GET_DATA, payload: data });
   } else {
     const endpoint = `${API_URL}${mediaType}/${titleId}?api_key=${API_KEY}&append_to_response=videos,credits`;
     const res = await fetch(endpoint);
@@ -28,12 +28,12 @@ export const loadData: LoadData = (mediaType, titleId) => async (
       dispatch({ type: SET_ERROR });
     } else {
       const data = { title, cast, results };
-      dispatch({ type: SET_DATA, payload: data });
+      dispatch({ type: GET_DATA, payload: data });
       localStorage.setItem(key, JSON.stringify(data));
     }
   }
 };
 
-export const resetData: ResetData = () => async (dispatch: TitleDispatch) => {
-  dispatch({ type: RESET_DATA });
+export const clearData: ClearData = () => async (dispatch: TitleDispatch) => {
+  dispatch({ type: CLEAR_DATA });
 };

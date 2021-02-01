@@ -1,8 +1,8 @@
 import { MOVIES, TV, NETWORKS, COMPANIES } from '../../config';
 import {
-  SET_LIST,
-  RESET_LIST,
-  LOAD_NEW_PAGE,
+  GET_LIST,
+  CLEAR_LIST,
+  INCREMENT_PAGE,
   ListState,
   ListActionTypes,
 } from './listTypes';
@@ -45,7 +45,7 @@ export default function listReducer(
     : '';
 
   switch (action.type) {
-    case SET_LIST:
+    case GET_LIST:
       return {
         ...state,
         [key]: {
@@ -54,11 +54,11 @@ export default function listReducer(
           totalPages: action.payload.totalPages,
         },
       };
-    case RESET_LIST:
+    case CLEAR_LIST:
       return {
         ...initialState,
       };
-    case LOAD_NEW_PAGE:
+    case INCREMENT_PAGE:
       return {
         ...state,
         [key]: {

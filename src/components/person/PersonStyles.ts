@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import sizes from '../sizes';
+import sizes from '../../sizes';
 
 export const Wrapper = styled.div`
   margin: 0 5vw 30px;

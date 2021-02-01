@@ -1,6 +1,10 @@
 import { useCallback, useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
-import { loadList, resetList, loadNewPage } from '../../redux/list/listActions';
+import {
+  getList,
+  clearList,
+  incrementPage,
+} from '../../redux/list/listActions';
 import { Props, DispatchProps } from '../../redux/list/listTypes';
 import { RootState } from '../../redux/rootReducer';
 import ScrollContainer from 'react-indiana-drag-scroll';
@@ -8,43 +12,37 @@ import ListPoster from './ListPoster';
 import useInfiniteScroll from '../../hooks/useInfiniteScroll';
 import { IMAGE_BASE_URL, POSTER_SIZE } from '../../config';
 import { titleCase } from '../../helpers';
-import {
-  Container,
-  Heading,
-  TitleListContainer,
-  InitialSpace,
-  LoadMore,
-} from './ListStyles';
+import { Heading, Container, InitialSpace, LoadMore } from './ListStyles';
 
-const List: React.FC<Props> = ({
-  loadList,
-  resetList,
-  loadNewPage,
+const List: React.VFC<Props> = ({
+  getList,
+  clearList,
+  incrementPage,
   list: { titles, page, totalPages },
   mediaType,
   category,
   id,
 }) => {
   useEffect(() => {
-    loadList(category, mediaType, page, id);
-  }, [category, mediaType, page, id, loadList]);
+    getList(category, mediaType, page, id);
+  }, [category, mediaType, page, id, getList]);
 
   useEffect(() => {
-    return () => resetList(category, mediaType);
-  }, [category, mediaType, resetList]);
+    return () => clearList(category, mediaType);
+  }, [category, mediaType, clearList]);
 
   const handleLoad = useCallback(() => {
-    loadNewPage(category, mediaType);
-  }, [category, mediaType, loadNewPage]);
+    incrementPage(category, mediaType);
+  }, [category, mediaType, incrementPage]);
 
   const bottomBoundaryRef = useRef<HTMLDivElement>(null);
   useInfiniteScroll(bottomBoundaryRef, handleLoad);
   return (
-    <Container>
+    <>
       <Heading>{titleCase(category)}</Heading>
       <ScrollContainer vertical={false}>
-        <TitleListContainer>
-          <InitialSpace additionalSpace={page === totalPages && true}>
+        <Container>
+          <InitialSpace additionalSpace={page === totalPages}>
             {titles &&
               titles.map(
                 (title) =>
@@ -60,9 +58,9 @@ const List: React.FC<Props> = ({
               )}
           </InitialSpace>
           {page < totalPages && <LoadMore ref={bottomBoundaryRef}></LoadMore>}
-        </TitleListContainer>
+        </Container>
       </ScrollContainer>
-    </Container>
+    </>
   );
 };
 
@@ -73,6 +71,8 @@ const mapStateToProps = (
   list: state.list[`${category}_${mediaType}`],
 });
 
-export default connect(mapStateToProps, { loadList, resetList, loadNewPage })(
-  List
-);
+export default connect(mapStateToProps, {
+  getList,
+  clearList,
+  incrementPage,
+})(List);

@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
-import XMark from './assets/XMark';
-import { displayTitles, deleteTitle } from '../firebase/firebaseUtils';
-import { IMAGE_BASE_URL, POSTER_SIZE } from '../config';
+import XMark from '../assets/XMark';
+import { displayTitles, deleteTitle } from '../../firebase/firebaseUtils';
+import { IMAGE_BASE_URL, POSTER_SIZE } from '../../config';
 import { Container, Link, Img, Button, Heading } from './MyListStyles';
 
 interface Props {
@@ -16,7 +16,7 @@ interface Titles {
   id: string;
 }
 
-const MyList: React.FC<Props> = ({ userId }) => {
+const MyList: React.VFC<Props> = ({ userId }) => {
   const [titles, setTitles] = useState<Titles[] | null>([]);
   const [loaded, setLoaded] = useState(false);
 

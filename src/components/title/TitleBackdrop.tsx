@@ -8,7 +8,7 @@ interface Props {
   backdropPath: string | null;
 }
 
-const TitleBackdrop: React.FC<Props> = ({ title, backdropPath }) => {
+const TitleBackdrop: React.VFC<Props> = ({ title, backdropPath }) => {
   const [loaded, setLoaded] = useLoaded(backdropPath);
   return (
     <>

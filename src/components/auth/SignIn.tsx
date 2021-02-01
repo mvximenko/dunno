@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Redirect } from 'react-router-dom';
-import { auth, signInWithGoogle } from '../firebase/firebaseUtils';
+import { auth, signInWithGoogle } from '../../firebase/firebaseUtils';
 import { Container, Form, Heading, Input, Button, Link } from './SignInStyles';
 
 interface Props {
@@ -14,7 +14,7 @@ interface Event {
   };
 }
 
-const SignIn: React.FC<Props> = ({ isAuthenticated }) => {
+const SignIn: React.VFC<Props> = ({ isAuthenticated }) => {
   const [userCredentials, setCredentials] = useState({
     email: '',
     password: '',

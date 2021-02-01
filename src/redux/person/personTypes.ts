@@ -1,8 +1,8 @@
 import { ThunkDispatch } from 'redux-thunk';
 
-export const SET_PERSON = 'SET_PERSON';
+export const GET_PERSON = 'GET_PERSON';
+export const CLEAR_PERSON = 'CLEAR_PERSON';
 export const SET_ERROR = 'SET_ERROR';
-export const RESET_PERSON = 'RESET_PERSON';
 
 interface Titles {
   id: number;
@@ -18,34 +18,34 @@ export interface PersonState {
   error: boolean;
 }
 
-interface SetPersonAction {
-  type: typeof SET_PERSON;
+interface GetPersonAction {
+  type: typeof GET_PERSON;
   payload: {
     name: string;
     titles: Titles[];
   };
 }
 
+interface ClearPersonAction {
+  type: typeof CLEAR_PERSON;
+}
+
 interface SetErrorAction {
   type: typeof SET_ERROR;
 }
 
-interface ResetPersonAction {
-  type: typeof RESET_PERSON;
-}
-
 export type PersonActionTypes =
-  | SetPersonAction
-  | SetErrorAction
-  | ResetPersonAction;
+  | GetPersonAction
+  | ClearPersonAction
+  | SetErrorAction;
 
 export type PersonDispatch = ThunkDispatch<{}, void, PersonActionTypes>;
 
-export type LoadPerson = (personId: string) => void;
-export type ResetPerson = () => void;
+export type GetPerson = (personId: string) => void;
+export type ClearPerson = () => void;
 
 export interface Props {
   person: PersonState;
-  loadPerson: LoadPerson;
-  resetPerson: ResetPerson;
+  getPerson: GetPerson;
+  clearPerson: ClearPerson;
 }
