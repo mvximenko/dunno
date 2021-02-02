@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import sizes from '../../sizes';
 
 export const SpinnerOverlay = styled.div`
   height: 75vh;
@@ -26,5 +27,10 @@ export const SpinnerContainer = styled.div`
     to {
       -webkit-transform: rotate(360deg);
     }
+  }
+  ${[sizes.up('xl')]} {
+    width: 75px;
+    height: 75px;
+    border: 4.2px solid rgba(195, 195, 195, 0.6);
   }
 `;

@@ -13,8 +13,6 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   a {
-    margin: 0;
-    padding: 0;
     color: #fff;
     text-decoration: none;
   }

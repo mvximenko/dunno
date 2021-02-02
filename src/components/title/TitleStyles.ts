@@ -3,7 +3,6 @@ import sizes from '../../sizes';
 
 export const Container = styled.div`
   ${[sizes.up('md')]} {
-    width: 100%;
     display: flex;
     justify-content: center;
   }
@@ -44,6 +43,7 @@ export const Info = styled.div`
   font-weight: 300;
   font-family: sans-serif;
   ${[sizes.up('md')]} {
+    width: 100%;
     margin-left: 15px;
     margin-right: 22px;
   }
@@ -55,23 +55,36 @@ export const Info = styled.div`
 `;
 
 export const Heading = styled.h1`
-  font-size: 23px;
+  font-size: 6.4vw;
   font-weight: 500;
   letter-spacing: 1px;
   text-transform: uppercase;
+  ${[sizes.up('sm')]} {
+    font-size: 4.4vw;
+  }
   ${[sizes.up('md')]} {
-    padding-top: 20px;
+    margin-top: 35px;
     font-weight: 600;
+    font-size: 23px;
   }
   ${[sizes.up('xl')]} {
-    padding-top: 28px;
+    margin-top: 49px;
     font-size: 32.2px;
   }
 `;
 
 export const Overview = styled.span`
   display: block;
-  line-height: 21px;
+  font-size: 4.45vw;
+  line-height: 5.9vw;
+  ${[sizes.up('sm')]} {
+    font-size: 3vw;
+    line-height: 4.5vw;
+  }
+  ${[sizes.up('md')]} {
+    font-size: 16px;
+    line-height: 21px;
+  }
   ${[sizes.up('xl')]} {
     font-size: 22.4px;
     line-height: 29.4px;
@@ -80,10 +93,15 @@ export const Overview = styled.span`
 
 export const Row = styled.div`
   display: flex;
-  margin-top: 20px;
-  flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
+  margin: 20px 0;
+  ${[sizes.up('sm')]} {
+    margin: 20px 10% 0 10%;
+  }
+  ${[sizes.up('md')]} {
+    margin: 20px 5% 0 5%;
+  }
   ${[sizes.up('xl')]} {
-    margin-top: 28px;
+    margin: 28px 5% 0 5%;
   }
 `;

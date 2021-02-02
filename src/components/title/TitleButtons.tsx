@@ -1,7 +1,7 @@
 import { addTitle } from '../../firebase/firebaseUtils';
 import PlusIcon from '../assets/PlusIcon';
 import PlayIcon from '../assets/PlayIcon';
-import { Row, Button, IconWrapper } from './TitleButtonsStyles';
+import { Row, Button, Link, IconWrapper } from './TitleButtonsStyles';
 
 interface Props {
   id: string;
@@ -12,7 +12,7 @@ interface Props {
   posterPath: string | null;
 }
 
-const TitleButtons: React.VFC<Props> = ({
+const TitleButtons: React.FC<Props> = ({
   id,
   title,
   mediaType,
@@ -29,18 +29,16 @@ const TitleButtons: React.VFC<Props> = ({
     </Button>
 
     {video && (
-      <a
+      <Link
         rel='noopener noreferrer'
         href={`https://www.youtube.com/watch?v=${video}`}
         target='_blank'
       >
-        <Button>
-          <IconWrapper>
-            <PlayIcon />
-          </IconWrapper>
-          Watch Trailer
-        </Button>
-      </a>
+        <IconWrapper>
+          <PlayIcon />
+        </IconWrapper>
+        Watch Trailer
+      </Link>
     )}
   </Row>
 );
