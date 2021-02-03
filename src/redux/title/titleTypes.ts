@@ -1,4 +1,5 @@
 import { ThunkDispatch } from 'redux-thunk';
+import { UserState, AddTitle } from '../user/userTypes';
 
 export const GET_DATA = 'GET_DATA';
 export const SET_ERROR = 'SET_ERROR';
@@ -8,7 +9,7 @@ interface Title {
   title: string;
   name: string;
   backdrop_path: string | null;
-  poster_path: string | null;
+  poster_path: string;
   overview: string;
   vote_average: number;
 }
@@ -54,9 +55,17 @@ export type GetData = (mediatype: string, titleId: string) => void;
 export type ClearData = () => void;
 
 export interface Props {
-  userId: string | null;
-
   title: TitleState;
   getData: GetData;
   clearData: ClearData;
+}
+
+export interface ButtonsProps {
+  id: string;
+  title: string;
+  mediaType: string;
+  video: string | null;
+  posterPath: string;
+  user: UserState;
+  addTitle: AddTitle;
 }

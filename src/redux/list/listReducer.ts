@@ -55,9 +55,7 @@ export default function listReducer(
         },
       };
     case CLEAR_LIST:
-      return {
-        ...initialState,
-      };
+      return initialState;
     case INCREMENT_PAGE:
       return {
         ...state,

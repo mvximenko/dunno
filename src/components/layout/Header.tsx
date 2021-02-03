@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { RootState } from '../../redux/rootReducer';
 import SearchIcon from '../assets/SearchIcon';
 import SignOutIcon from '../assets/SignOutIcon';
 import ProfileIcon from '../assets/ProfileIcon';
@@ -13,12 +15,12 @@ import {
 } from './HeaderStyles';
 
 interface Props {
-  currentUser: object | null;
+  userId: string | null;
   setIsOpen: (isOpen: boolean) => void;
   searchIcon: React.RefObject<HTMLDivElement>;
 }
 
-const Header: React.VFC<Props> = ({ currentUser, setIsOpen, searchIcon }) => (
+const Header: React.VFC<Props> = ({ userId, setIsOpen, searchIcon }) => (
   <StyledHeader>
     <LogoLink to='/'>dunno</LogoLink>
 
@@ -42,7 +44,7 @@ const Header: React.VFC<Props> = ({ currentUser, setIsOpen, searchIcon }) => (
         <SearchIcon />
       </IconWrapper>
 
-      {currentUser ? (
+      {userId ? (
         <IconWrapper onClick={() => auth.signOut()}>
           <SignOutIcon />
         </IconWrapper>
@@ -57,4 +59,6 @@ const Header: React.VFC<Props> = ({ currentUser, setIsOpen, searchIcon }) => (
   </StyledHeader>
 );
 
-export default Header;
+const mapStateToProps = (state: RootState) => ({ userId: state.user.userId });
+
+export default connect(mapStateToProps)(Header);

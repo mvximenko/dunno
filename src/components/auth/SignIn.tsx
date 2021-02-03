@@ -1,20 +1,12 @@
 import { useState } from 'react';
 import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { Props } from '../../redux/user/userTypes';
+import { RootState } from '../../redux/rootReducer';
 import { auth, signInWithGoogle } from '../../firebase/firebaseUtils';
 import { Container, Form, Heading, Input, Button, Link } from './SignInStyles';
 
-interface Props {
-  isAuthenticated: boolean;
-}
-
-interface Event {
-  target: {
-    name: string;
-    value: string;
-  };
-}
-
-const SignIn: React.VFC<Props> = ({ isAuthenticated }) => {
+const SignIn: React.VFC<Props> = ({ userId }) => {
   const [userCredentials, setCredentials] = useState({
     email: '',
     password: '',
@@ -33,12 +25,12 @@ const SignIn: React.VFC<Props> = ({ isAuthenticated }) => {
     }
   };
 
-  const handleChange = (event: Event) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name } = event.target;
     setCredentials({ ...userCredentials, [name]: value });
   };
 
-  if (isAuthenticated) return <Redirect to='/' />;
+  if (userId) return <Redirect to='/' />;
 
   return (
     <Container>
@@ -72,4 +64,6 @@ const SignIn: React.VFC<Props> = ({ isAuthenticated }) => {
   );
 };
 
-export default SignIn;
+const mapStateToProps = (state: RootState) => ({ userId: state.user.userId });
+
+export default connect(mapStateToProps)(SignIn);

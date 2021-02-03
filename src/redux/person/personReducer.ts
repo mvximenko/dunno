@@ -24,9 +24,7 @@ export default function personReducer(
         titles: action.payload.titles,
       };
     case CLEAR_PERSON:
-      return {
-        ...initialState,
-      };
+      return initialState;
     case SET_ERROR:
       return {
         ...state,

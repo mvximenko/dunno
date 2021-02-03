@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import store from './redux/store';
+import { getUser } from './redux/user/userActions';
 import Tv from './components/home/Tv';
 import Movies from './components/home/Movies';
 import Title from './components/title/Title';
@@ -12,43 +14,23 @@ import SignUp from './components/auth/SignUp';
 import Header from './components/layout/Header';
 import SearchBar from './components/layout/SearchBar';
 import BottomNavbar from './components/layout/BottomNavbar';
-import store from './redux/store';
-import { auth, createUserProfileDocument } from './firebase/firebaseUtils';
 import { GlobalStyle } from './GlobalStyles';
 
-type UserAuth = { id: string } | null;
-
 const App: React.VFC = () => {
-  const [currentUser, setCurrentUser] = useState<UserAuth>(null);
-
   const [isOpen, setIsOpen] = useState(false);
   const searchIcon = useRef<HTMLDivElement>(null);
   const mobileSearchIcon = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
-      if (userAuth) {
-        const userRef = await createUserProfileDocument(userAuth);
-        userRef!.onSnapshot((snapShot) =>
-          setCurrentUser({ id: snapShot.id, ...snapShot.data() })
-        );
-      } else {
-        setCurrentUser(null);
-      }
-    });
-
-    return () => unsubscribeFromAuth();
+    store.dispatch(getUser());
+    return () => store.dispatch(getUser());
   }, []);
 
   return (
     <>
       <GlobalStyle />
       <Provider store={store}>
-        <Header
-          currentUser={currentUser}
-          setIsOpen={setIsOpen}
-          searchIcon={searchIcon}
-        />
+        <Header setIsOpen={setIsOpen} searchIcon={searchIcon} />
         <SearchBar
           isOpen={isOpen}
           setIsOpen={setIsOpen}
@@ -56,39 +38,17 @@ const App: React.VFC = () => {
           mobileSearchIcon={mobileSearchIcon}
         />
         <Switch>
-          <Route exact path='/'>
-            <Tv />
-          </Route>
-          <Route exact path='/movie'>
-            <Movies />
-          </Route>
-          <Route exact path='/randomizer'>
-            <Randomizer />
-          </Route>
-          <Route exact path='/tv/:titleId'>
-            <Title userId={currentUser ? currentUser.id : null} />
-          </Route>
-          <Route exact path='/movie/:titleId'>
-            <Title userId={currentUser ? currentUser.id : null} />
-          </Route>
-          <Route exact path='/person/:personId'>
-            <Person />
-          </Route>
-          <Route exact path='/my-list'>
-            <MyList userId={currentUser ? currentUser.id : null} />
-          </Route>
-          <Route exact path='/signin'>
-            <SignIn isAuthenticated={currentUser ? true : false} />
-          </Route>
-          <Route exact path='/signup'>
-            <SignUp isAuthenticated={currentUser ? true : false} />
-          </Route>
+          <Route exact path='/' component={Tv} />
+          <Route exact path='/movie' component={Movies} />
+          <Route exact path='/randomizer' component={Randomizer} />
+          <Route exact path='/tv/:titleId' component={Title} />
+          <Route exact path='/movie/:titleId' component={Title} />
+          <Route exact path='/person/:personId' component={Person} />
+          <Route exact path='/my-list' component={MyList} />
+          <Route exact path='/signin' component={SignIn} />
+          <Route exact path='/signup' component={SignUp} />
         </Switch>
-        <BottomNavbar
-          currentUser={currentUser}
-          setIsOpen={setIsOpen}
-          searchIcon={mobileSearchIcon}
-        />
+        <BottomNavbar setIsOpen={setIsOpen} searchIcon={mobileSearchIcon} />
       </Provider>
     </>
   );

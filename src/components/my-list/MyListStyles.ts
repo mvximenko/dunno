@@ -15,11 +15,12 @@ export const Heading = styled.h1`
   }
 `;
 
-export const Container = styled.div`
+export const Container = styled.div<FadeEffectTypes>`
   margin: 0 5% 5% 5%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 6px;
+  ${fadeEffect}
   ${[sizes.up('sm')]} {
     grid-template-columns: repeat(5, 1fr);
   }
@@ -48,13 +49,12 @@ export const Link = styled(RouterLink)`
   }
 `;
 
-export const Img = styled.img<FadeEffectTypes>`
+export const Img = styled.img`
   width: 100%;
   min-height: 100%;
   position: absolute;
   top: 0;
   left: 0;
-  ${fadeEffect}
 `;
 
 export const Button = styled.button`

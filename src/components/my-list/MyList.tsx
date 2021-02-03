@@ -1,42 +1,30 @@
 import { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { setTitles, removeTitle } from '../../redux/user/userActions';
+import { MyListProps } from '../../redux/user/userTypes';
+import { RootState } from '../../redux/rootReducer';
 import XMark from '../assets/XMark';
-import { displayTitles, deleteTitle } from '../../firebase/firebaseUtils';
 import { IMAGE_BASE_URL, POSTER_SIZE } from '../../config';
 import { Container, Link, Img, Button, Heading } from './MyListStyles';
 
-interface Props {
-  userId: string | null;
-}
-
-interface Titles {
-  title: string;
-  mediaType: string;
-  posterPath: string;
-  id: string;
-}
-
-const MyList: React.VFC<Props> = ({ userId }) => {
-  const [titles, setTitles] = useState<Titles[] | null>([]);
+const MyList: React.VFC<MyListProps> = ({
+  setTitles,
+  removeTitle,
+  user: { userId, titles },
+}) => {
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    displayTitles(userId).then((res) => setTitles(res));
-  }, [userId]);
-
-  const handleDelete = (userId: string, id: string) => {
-    deleteTitle(userId, id);
-    setTitles(
-      titles!.filter((title) => `${title.mediaType}_${title.id}` !== id)
-    );
-  };
+    if (userId) setTitles(userId);
+  }, [userId, setTitles]);
 
   return (
     <>
       {userId ? (
         <>
           <Heading>My List</Heading>
-          <Container>
+          <Container fade={loaded}>
             {titles &&
               titles.map((title) => (
                 <Link
@@ -44,7 +32,6 @@ const MyList: React.VFC<Props> = ({ userId }) => {
                   key={`${title.mediaType}_${title.id}`}
                 >
                   <Img
-                    fade={loaded}
                     onLoad={() => setLoaded(true)}
                     alt={title.title}
                     src={`${IMAGE_BASE_URL}${POSTER_SIZE}${title.posterPath}`}
@@ -52,7 +39,7 @@ const MyList: React.VFC<Props> = ({ userId }) => {
                   <Button
                     onClick={(e) => {
                       e.preventDefault();
-                      handleDelete(userId!, `${title.mediaType}_${title.id}`);
+                      removeTitle(userId, `${title.mediaType}_${title.id}`);
                     }}
                   >
                     <XMark />
@@ -68,4 +55,6 @@ const MyList: React.VFC<Props> = ({ userId }) => {
   );
 };
 
-export default MyList;
+const mapStateToProps = (state: RootState) => ({ user: state.user });
+
+export default connect(mapStateToProps, { setTitles, removeTitle })(MyList);

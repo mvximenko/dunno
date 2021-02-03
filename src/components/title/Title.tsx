@@ -25,7 +25,6 @@ import {
 const Title: React.VFC<Props> = ({
   getData,
   clearData,
-  userId,
   title: {
     title: { title, name, backdrop_path, poster_path, overview, vote_average },
     cast,
@@ -74,7 +73,6 @@ const Title: React.VFC<Props> = ({
                 </Row>
                 <TitleButtons
                   title={heading}
-                  userId={userId}
                   id={titleId}
                   mediaType={mediaType}
                   posterPath={poster_path}

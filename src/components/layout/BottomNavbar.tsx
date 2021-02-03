@@ -1,4 +1,6 @@
 import { useLocation } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { RootState } from '../../redux/rootReducer';
 import HomeIcon from '../assets/HomeIcon';
 import SearchIcon from '../assets/SearchIcon';
 import FavoriteIcon from '../assets/FavoriteIcon';
@@ -15,18 +17,13 @@ import {
 } from './BottomNavbarStyles';
 
 interface Props {
-  currentUser: object | null;
+  userId: string | null;
   setIsOpen: (isOpen: boolean) => void;
   searchIcon: React.RefObject<HTMLDivElement>;
 }
 
-const BottomNavbar: React.VFC<Props> = ({
-  currentUser,
-  setIsOpen,
-  searchIcon,
-}) => {
+const BottomNavbar: React.VFC<Props> = ({ userId, setIsOpen, searchIcon }) => {
   const { pathname } = useLocation();
-
   return (
     <Navbar>
       <Space />
@@ -47,7 +44,7 @@ const BottomNavbar: React.VFC<Props> = ({
           <FavoriteIcon />
         </NavLink>
 
-        {currentUser ? (
+        {userId ? (
           <IconWrapper onClick={() => auth.signOut()}>
             <SignOutIcon />
           </IconWrapper>
@@ -64,4 +61,6 @@ const BottomNavbar: React.VFC<Props> = ({
   );
 };
 
-export default BottomNavbar;
+const mapStateToProps = (state: RootState) => ({ userId: state.user.userId });
+
+export default connect(mapStateToProps)(BottomNavbar);

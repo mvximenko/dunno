@@ -10,8 +10,8 @@ const initialState: TitleState = {
   title: {
     title: '',
     name: '',
-    backdrop_path: null,
-    poster_path: null,
+    backdrop_path: '',
+    poster_path: '',
     overview: '',
     vote_average: 0,
   },
@@ -33,9 +33,7 @@ export default function randomizerReducer(
         videos: action.payload.results,
       };
     case CLEAR_DATA:
-      return {
-        ...initialState,
-      };
+      return initialState;
     case SET_ERROR:
       return {
         ...state,

@@ -34,7 +34,7 @@ export const createUserProfileDocument = async (
   return userRef;
 };
 
-export const addTitle = (
+export const addTitleToFirebase = (
   userId: string | null,
   id: string,
   mediaType: string,
@@ -51,9 +51,7 @@ export const addTitle = (
     .set({ id, mediaType, posterPath, title });
 };
 
-export const displayTitles = async (userId: string | null) => {
-  if (!userId) return null;
-
+export const displayTitles = async (userId: string) => {
   let titles: any[] = [];
   const titleRef = await firestore()
     .collection('users')
@@ -72,7 +70,7 @@ export const displayTitles = async (userId: string | null) => {
   return titles;
 };
 
-export const deleteTitle = (userId: string, id: string) => {
+export const removeTitleFromFirebase = (userId: string, id: string) => {
   firestore()
     .collection('users')
     .doc(userId)

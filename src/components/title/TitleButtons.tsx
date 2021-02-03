@@ -1,27 +1,26 @@
-import { addTitle } from '../../firebase/firebaseUtils';
+import { connect } from 'react-redux';
+import { addTitle } from '../../redux/user/userActions';
+import { ButtonsProps } from '../../redux/title/titleTypes';
+import { RootState } from '../../redux/rootReducer';
 import PlusIcon from '../assets/PlusIcon';
 import PlayIcon from '../assets/PlayIcon';
 import { Row, Button, Link, IconWrapper } from './TitleButtonsStyles';
 
-interface Props {
-  id: string;
-  title: string;
-  mediaType: string;
-  video: string | null;
-  userId: string | null;
-  posterPath: string | null;
-}
-
-const TitleButtons: React.FC<Props> = ({
+const TitleButtons: React.FC<ButtonsProps> = ({
   id,
   title,
   mediaType,
-  video,
-  userId,
   posterPath,
+  video,
+  addTitle,
+  user: { userId },
 }) => (
   <Row>
-    <Button onClick={() => addTitle(userId, id, mediaType, posterPath, title)}>
+    <Button
+      onClick={() =>
+        userId && addTitle(userId, id, mediaType, posterPath, title)
+      }
+    >
       <IconWrapper>
         <PlusIcon />
       </IconWrapper>
@@ -43,4 +42,6 @@ const TitleButtons: React.FC<Props> = ({
   </Row>
 );
 
-export default TitleButtons;
+const mapStateToProps = (state: RootState) => ({ user: state.user });
+
+export default connect(mapStateToProps, { addTitle })(TitleButtons);
