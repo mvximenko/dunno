@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { Link as RouterLink } from 'react-router-dom';
 import sizes from '../../sizes';
-import { fadeEffect, FadeEffectTypes } from '../../GlobalStyles';
 
 export const Heading = styled.h1`
   font-size: 28px;
@@ -15,12 +14,11 @@ export const Heading = styled.h1`
   }
 `;
 
-export const Container = styled.div<FadeEffectTypes>`
+export const Container = styled.div`
   margin: 0 5% 5% 5%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 6px;
-  ${fadeEffect}
   ${[sizes.up('sm')]} {
     grid-template-columns: repeat(5, 1fr);
   }

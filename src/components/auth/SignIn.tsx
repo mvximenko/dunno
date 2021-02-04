@@ -1,22 +1,21 @@
 import { useState } from 'react';
 import { Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { Props } from '../../redux/user/userTypes';
+import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/rootReducer';
 import { auth, signInWithGoogle } from '../../firebase/firebaseUtils';
 import { Container, Form, Heading, Input, Button, Link } from './SignInStyles';
 
-const SignIn: React.VFC<Props> = ({ userId }) => {
+const SignIn = () => {
   const [userCredentials, setCredentials] = useState({
     email: '',
     password: '',
   });
 
+  const userId = useSelector((state: RootState) => state.user.userId);
   const { email, password } = userCredentials;
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    const { email, password } = userCredentials;
     try {
       await auth.signInWithEmailAndPassword(email, password);
       setCredentials({ email: '', password: '' });
@@ -64,6 +63,4 @@ const SignIn: React.VFC<Props> = ({ userId }) => {
   );
 };
 
-const mapStateToProps = (state: RootState) => ({ userId: state.user.userId });
-
-export default connect(mapStateToProps)(SignIn);
+export default SignIn;

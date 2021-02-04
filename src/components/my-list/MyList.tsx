@@ -1,30 +1,27 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { setTitles, removeTitle } from '../../redux/user/userActions';
-import { MyListProps } from '../../redux/user/userTypes';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchTitles, removeTitle } from '../../redux/slices/myListSlice';
 import { RootState } from '../../redux/rootReducer';
 import XMark from '../assets/XMark';
 import { IMAGE_BASE_URL, POSTER_SIZE } from '../../config';
 import { Container, Link, Img, Button, Heading } from './MyListStyles';
 
-const MyList: React.VFC<MyListProps> = ({
-  setTitles,
-  removeTitle,
-  user: { userId, titles },
-}) => {
-  const [loaded, setLoaded] = useState(false);
+const MyList = () => {
+  const dispatch = useDispatch();
+  const userId = useSelector((state: RootState) => state.user.userId);
+  const titles = useSelector((state: RootState) => state.myList.titles);
 
   useEffect(() => {
-    if (userId) setTitles(userId);
-  }, [userId, setTitles]);
+    if (userId) dispatch(fetchTitles(userId));
+  }, [userId, dispatch]);
 
   return (
     <>
       {userId ? (
         <>
           <Heading>My List</Heading>
-          <Container fade={loaded}>
+          <Container>
             {titles &&
               titles.map((title) => (
                 <Link
@@ -32,14 +29,19 @@ const MyList: React.VFC<MyListProps> = ({
                   key={`${title.mediaType}_${title.id}`}
                 >
                   <Img
-                    onLoad={() => setLoaded(true)}
                     alt={title.title}
                     src={`${IMAGE_BASE_URL}${POSTER_SIZE}${title.posterPath}`}
                   />
                   <Button
                     onClick={(e) => {
                       e.preventDefault();
-                      removeTitle(userId, `${title.mediaType}_${title.id}`);
+                      dispatch(
+                        removeTitle(
+                          userId,
+                          `${title.mediaType}_${title.id}`,
+                          title.firebaseId
+                        )
+                      );
                     }}
                   >
                     <XMark />
@@ -55,6 +57,4 @@ const MyList: React.VFC<MyListProps> = ({
   );
 };
 
-const mapStateToProps = (state: RootState) => ({ user: state.user });
-
-export default connect(mapStateToProps, { setTitles, removeTitle })(MyList);
+export default MyList;

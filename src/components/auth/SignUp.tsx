@@ -1,12 +1,11 @@
 import { useState } from 'react';
 import { Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { Props } from '../../redux/user/userTypes';
+import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/rootReducer';
 import { auth, createUserProfileDocument } from '../../firebase/firebaseUtils';
 import { Container, Form, Heading, Input, Button, Link } from './SignInStyles';
 
-const SignUp: React.VFC<Props> = ({ userId }) => {
+const SignUp = () => {
   const [userCredentials, setUserCredentials] = useState({
     displayName: '',
     email: '',
@@ -14,6 +13,7 @@ const SignUp: React.VFC<Props> = ({ userId }) => {
     confirmPassword: '',
   });
 
+  const userId = useSelector((state: RootState) => state.user.userId);
   const { displayName, email, password, confirmPassword } = userCredentials;
 
   const handleSubmit = async (event: React.FormEvent) => {
@@ -92,6 +92,4 @@ const SignUp: React.VFC<Props> = ({ userId }) => {
   );
 };
 
-const mapStateToProps = (state: RootState) => ({ userId: state.user.userId });
-
-export default connect(mapStateToProps)(SignUp);
+export default SignUp;

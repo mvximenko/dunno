@@ -34,7 +34,7 @@ export const createUserProfileDocument = async (
   return userRef;
 };
 
-export const addTitleToFirebase = (
+export const addTitleFB = async (
   userId: string | null,
   id: string,
   mediaType: string,
@@ -43,34 +43,52 @@ export const addTitleToFirebase = (
 ) => {
   if (!userId) return;
 
-  firestore()
-    .collection('users')
-    .doc(userId)
-    .collection('titles')
-    .doc(`${mediaType}_${id}`)
-    .set({ id, mediaType, posterPath, title });
+  try {
+    const titleRef = firestore()
+      .collection('users')
+      .doc(userId)
+      .collection('titles');
+
+    const titles = await titleRef.get();
+
+    for (let doc of titles.docs) {
+      const { mediaType: mediaTypeFB, id: idFB } = doc.data();
+      if (`${mediaType}_${id}` === `${mediaTypeFB}_${idFB}`) {
+        return false;
+      }
+    }
+
+    const firebaseId = new Date().getTime().toString();
+
+    titleRef
+      .doc(firebaseId)
+      .set({ id, mediaType, posterPath, title, firebaseId });
+
+    return true;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
-export const displayTitles = async (userId: string) => {
+export const getTitles = async (userId: string) => {
   let titles: any[] = [];
-  const titleRef = await firestore()
-    .collection('users')
-    .doc(userId)
-    .collection('titles')
-    .get();
-
   try {
+    const titleRef = await firestore()
+      .collection('users')
+      .doc(userId)
+      .collection('titles')
+      .get();
+
     titleRef.forEach((doc) => {
       titles.push(doc.data());
     });
   } catch (error) {
     console.log(error);
   }
-
   return titles;
 };
 
-export const removeTitleFromFirebase = (userId: string, id: string) => {
+export const deleteTitleFB = (userId: string, id: string) => {
   firestore()
     .collection('users')
     .doc(userId)
@@ -79,7 +97,8 @@ export const removeTitleFromFirebase = (userId: string, id: string) => {
     .delete();
 };
 
-firebase.initializeApp(config);
+!firebase.apps.length ? firebase.initializeApp(config) : firebase.app();
+// firebase.initializeApp(config);
 
 export const auth = firebase.auth();
 export const firestore = firebase.firestore;

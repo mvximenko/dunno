@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './redux/store';
-import { getUser } from './redux/user/userActions';
+import { getUser } from './redux/slices/userSlice';
 import Tv from './components/home/Tv';
 import Movies from './components/home/Movies';
 import Title from './components/title/Title';

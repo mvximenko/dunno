@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://m-dunno.netlify.app",
   "dependencies": {
+    "@reduxjs/toolkit": "^1.5.0",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.3",
     "@testing-library/user-event": "^12.6.2",
