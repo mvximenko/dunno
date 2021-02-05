@@ -18,9 +18,6 @@ export const OuterDiv = styled.div`
     height: 530px;
     margin-top: 85px;
     position: absolute;
-    backdrop-filter: blur(5px);
-    webkit-backdrop-filter: blur(5px);
-    background: rgba(0, 0, 0, 0.8);
   }
   ${[sizes.up('xl')]} {
     width: 1400px;
@@ -34,6 +31,7 @@ export const InnerDiv = styled.div`
   flex-direction: column;
   ${[sizes.up('md')]} {
     flex-direction: row;
+    background: rgba(0, 0, 0, 0.8);
   }
 `;
 
@@ -44,13 +42,13 @@ export const Info = styled.div`
   font-family: sans-serif;
   ${[sizes.up('md')]} {
     width: 100%;
-    margin-left: 15px;
-    margin-right: 22px;
+    margin: 0;
+    padding: 5px 22px;
+    backdrop-filter: blur(5px);
+    webkit-backdrop-filter: blur(5px);
   }
   ${[sizes.up('xl')]} {
-    padding: 7px;
-    margin-left: 21px;
-    margin-right: 30.8px;
+    padding: 7px 37.8px;
   }
 `;
 

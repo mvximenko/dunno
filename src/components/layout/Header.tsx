@@ -49,7 +49,7 @@ const Header: React.VFC<Props> = ({ userId, setIsOpen, searchIcon }) => (
           <SignOutIcon />
         </IconWrapper>
       ) : (
-        <Link to='/signin'>
+        <Link to='/signin' aria-label='Sign In'>
           <IconWrapper>
             <ProfileIcon />
           </IconWrapper>

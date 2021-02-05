@@ -41,7 +41,7 @@ const myList = createSlice({
     },
     deleteTitle: (state, action: PayloadAction<string>) => {
       state.titles = state.titles.filter(
-        (title: Title) => `${title.mediaType}_${title.id}` !== action.payload
+        (title: Title) => title.firebaseId !== action.payload
       );
     },
   },
@@ -66,11 +66,10 @@ export const fetchTitles = (userId: string): AppThunk => async (dispatch) => {
 
 export const removeTitle = (
   userId: string,
-  key: string,
   firebaseId: string
 ): AppThunk => async (dispatch) => {
   deleteTitleFB(userId, firebaseId);
-  dispatch(deleteTitle(key));
+  dispatch(deleteTitle(firebaseId));
 };
 
 export default myList.reducer;

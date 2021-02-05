@@ -1,7 +1,7 @@
 import useLoaded from '../../hooks/useLoaded';
 import PosterPng from '../../assets/poster.png';
 import { IMAGE_BASE_URL, POSTER_SIZE } from '../../config';
-import { Img } from './TitlePosterStyles';
+import { Container, Img } from './TitlePosterStyles';
 
 interface Props {
   title: string;
@@ -11,7 +11,7 @@ interface Props {
 const TitlePosterDesktop: React.VFC<Props> = ({ title, posterPath }) => {
   const [loaded, setLoaded] = useLoaded(posterPath);
   return (
-    <div>
+    <Container>
       <Img
         alt={title}
         src={
@@ -22,7 +22,7 @@ const TitlePosterDesktop: React.VFC<Props> = ({ title, posterPath }) => {
         fade={loaded}
         onLoad={setLoaded}
       />
-    </div>
+    </Container>
   );
 };
 
