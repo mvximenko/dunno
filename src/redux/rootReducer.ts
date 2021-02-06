@@ -1,12 +1,12 @@
 import { combineReducers } from '@reduxjs/toolkit';
 import listReducer from './list/listReducer';
-import titleReducer from './title/titleReducer';
 import randomizerReducer from './randomizer/randomizerReducer';
 import personReducer from './person/personReducer';
 
 import userReducer from './slices/userSlice';
 import myListReducer from './slices/myListSlice';
 import searchReducer from './slices/searchSlice';
+import titleReducer from './slices/titleSlice';
 
 const rootReducer = combineReducers({
   list: listReducer,

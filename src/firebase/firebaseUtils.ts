@@ -58,7 +58,7 @@ export const addTitleFB = async (
       }
     }
 
-    const firebaseId = new Date().getTime().toString();
+    const firebaseId = Date.now().toString();
 
     titleRef
       .doc(firebaseId)

@@ -5,12 +5,8 @@ import PlusIcon from '../assets/PlusIcon';
 import PlayIcon from '../assets/PlayIcon';
 import { Row, Button, Link, IconWrapper } from './TitleButtonsStyles';
 
-export interface Props {
-  id: string;
-  title: string;
-  mediaType: string;
-  video: string | null;
-  posterPath: string;
+interface Props {
+  [x: string]: string;
 }
 
 const TitleButtons: React.VFC<Props> = ({
@@ -18,10 +14,9 @@ const TitleButtons: React.VFC<Props> = ({
   title,
   mediaType,
   posterPath,
-  video,
 }) => {
   const userId = useSelector((state: RootState) => state.user.userId);
-
+  const videos = useSelector((state: RootState) => state.title.videos);
   return (
     <Row>
       <Button
@@ -33,10 +28,10 @@ const TitleButtons: React.VFC<Props> = ({
         My List
       </Button>
 
-      {video && (
+      {videos.length > 0 && (
         <Link
           rel='noopener noreferrer'
-          href={`https://www.youtube.com/watch?v=${video}`}
+          href={`https://www.youtube.com/watch?v=${videos[0].key}`}
           target='_blank'
         >
           <IconWrapper>

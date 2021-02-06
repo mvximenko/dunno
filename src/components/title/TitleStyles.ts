@@ -8,30 +8,25 @@ export const Container = styled.div`
   }
 `;
 
-export const OuterDiv = styled.div`
+export const Card = styled.div`
   width: 100%;
   margin-top: auto;
   position: relative;
+  display: flex;
+  flex-direction: column;
   ${[sizes.up('md')]} {
     top: 0;
     width: 1000px;
     height: 530px;
     margin-top: 85px;
     position: absolute;
+    flex-direction: row;
+    background: rgba(0, 0, 0, 0.8);
   }
   ${[sizes.up('xl')]} {
     width: 1400px;
     height: 742px;
     margin-top: 119px;
-  }
-`;
-
-export const InnerDiv = styled.div`
-  display: flex;
-  flex-direction: column;
-  ${[sizes.up('md')]} {
-    flex-direction: row;
-    background: rgba(0, 0, 0, 0.8);
   }
 `;
 

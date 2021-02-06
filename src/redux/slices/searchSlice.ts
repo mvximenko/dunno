@@ -42,13 +42,12 @@ const search = createSlice({
     getTitlesSuccess: (state, action: PayloadAction<Search[]>) => {
       state.titles = action.payload;
       state.loading = false;
-      state.error = null;
     },
     getTitlesFailure: (state, action: PayloadAction<string>) => {
       state.loading = false;
       state.error = action.payload;
     },
-    clearSearch: (state) => {
+    resetSearch: (state) => {
       state.isOpen = false;
       state.value = '';
       state.titles = [];
@@ -64,7 +63,7 @@ export const {
   getTitlesStart,
   getTitlesSuccess,
   getTitlesFailure,
-  clearSearch,
+  resetSearch,
 } = search.actions;
 
 export const fetchTitles = (value: string): AppThunk => async (dispatch) => {

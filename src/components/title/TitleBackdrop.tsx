@@ -1,5 +1,7 @@
+import { useSelector, useDispatch } from 'react-redux';
+import { setBackdrop } from '../../redux/slices/titleSlice';
+import { RootState } from '../../redux/rootReducer';
 import Backdrop from '../../assets/backdrop.png';
-import useLoaded from '../../hooks/useLoaded';
 import { IMAGE_BASE_URL, BACKDROP_SIZE } from '../../config';
 import { Placeholder, Img, Background } from './TitleBackdropStyles';
 
@@ -9,7 +11,8 @@ interface Props {
 }
 
 const TitleBackdrop: React.VFC<Props> = ({ title, backdropPath }) => {
-  const [loaded, setLoaded] = useLoaded(backdropPath);
+  const dispatch = useDispatch();
+  const isLoaded = useSelector((state: RootState) => state.title.backdrop);
   return (
     <>
       <Placeholder>
@@ -20,8 +23,8 @@ const TitleBackdrop: React.VFC<Props> = ({ title, backdropPath }) => {
               ? `${IMAGE_BASE_URL}${BACKDROP_SIZE}${backdropPath}`
               : Backdrop
           }
-          fade={loaded}
-          onLoad={setLoaded}
+          fade={isLoaded}
+          onLoad={() => dispatch(setBackdrop())}
         />
       </Placeholder>
 
@@ -29,8 +32,8 @@ const TitleBackdrop: React.VFC<Props> = ({ title, backdropPath }) => {
         <Background
           alt={title}
           src={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${backdropPath}`}
-          fade={loaded}
-          onLoad={setLoaded}
+          fade={isLoaded}
+          onLoad={() => dispatch(setBackdrop())}
         />
       )}
     </>

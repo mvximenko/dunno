@@ -33,7 +33,6 @@ const myList = createSlice({
     getTitlesSuccess: (state, action: PayloadAction<Title[]>) => {
       state.titles = action.payload;
       state.loading = false;
-      state.error = null;
     },
     getTitlesFailure: (state, action: PayloadAction<string>) => {
       state.loading = false;

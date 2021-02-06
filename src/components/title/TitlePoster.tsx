@@ -1,4 +1,6 @@
-import useLoaded from '../../hooks/useLoaded';
+import { useSelector, useDispatch } from 'react-redux';
+import { setPoster } from '../../redux/slices/titleSlice';
+import { RootState } from '../../redux/rootReducer';
 import PosterPng from '../../assets/poster.png';
 import { IMAGE_BASE_URL, POSTER_SIZE } from '../../config';
 import { Container, Img } from './TitlePosterStyles';
@@ -9,7 +11,8 @@ interface Props {
 }
 
 const TitlePosterDesktop: React.VFC<Props> = ({ title, posterPath }) => {
-  const [loaded, setLoaded] = useLoaded(posterPath);
+  const dispatch = useDispatch();
+  const isLoaded = useSelector((state: RootState) => state.title.poster);
   return (
     <Container>
       <Img
@@ -19,8 +22,8 @@ const TitlePosterDesktop: React.VFC<Props> = ({ title, posterPath }) => {
             ? `${IMAGE_BASE_URL}${POSTER_SIZE}${posterPath}`
             : PosterPng
         }
-        fade={loaded}
-        onLoad={setLoaded}
+        fade={isLoaded}
+        onLoad={() => dispatch(setPoster())}
       />
     </Container>
   );

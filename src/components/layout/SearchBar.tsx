@@ -1,17 +1,16 @@
 import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector, useDispatch, shallowEqual } from 'react-redux';
-import { RootState } from '../../redux/rootReducer';
+import { useSelector, useDispatch } from 'react-redux';
 import {
   setValue,
   fetchTitles,
-  clearSearch,
+  resetSearch,
 } from '../../redux/slices/searchSlice';
+import { RootState } from '../../redux/rootReducer';
 import { Overlay, Container, Input, Item } from './SearchBarStyles';
 
 interface Props {
-  searchIcon: React.RefObject<HTMLDivElement>;
-  mobileSearchIcon: React.RefObject<HTMLDivElement>;
+  [x: string]: React.RefObject<HTMLDivElement>;
 }
 
 const Modal: React.VFC<Props> = ({ searchIcon, mobileSearchIcon }) => {
@@ -30,7 +29,7 @@ const Modal: React.VFC<Props> = ({ searchIcon, mobileSearchIcon }) => {
     }, 500);
 
     return () => clearTimeout(timeout);
-  }, [value]);
+  }, [value, dispatch]);
 
   useEffect(() => {
     const handleClick = ({ target }: MouseEvent) => {
@@ -39,15 +38,14 @@ const Modal: React.VFC<Props> = ({ searchIcon, mobileSearchIcon }) => {
         searchIcon.current!.contains(target as Node) ||
         mobileSearchIcon.current!.contains(target as Node)
       ) {
-        searchInput.current!.focus();
-        return;
+        return searchInput.current!.focus();
       }
-      dispatch(clearSearch());
+      dispatch(resetSearch());
     };
 
     document.addEventListener('click', handleClick);
     return () => document.removeEventListener('click', handleClick);
-  }, [searchIcon, mobileSearchIcon]);
+  }, [searchIcon, mobileSearchIcon, dispatch]);
 
   return (
     <>
@@ -67,7 +65,7 @@ const Modal: React.VFC<Props> = ({ searchIcon, mobileSearchIcon }) => {
                 .map((item) => (
                   <Link
                     to={`/${item.media_type}/${item.id}`}
-                    onClick={() => dispatch(clearSearch())}
+                    onClick={() => dispatch(resetSearch())}
                     key={item.id}
                   >
                     <Item>{item.original_title || item.name}</Item>
