@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './redux/store';
@@ -17,7 +17,6 @@ import BottomNavbar from './components/layout/BottomNavbar';
 import { GlobalStyle } from './GlobalStyles';
 
 const App: React.VFC = () => {
-  const [isOpen, setIsOpen] = useState(false);
   const searchIcon = useRef<HTMLDivElement>(null);
   const mobileSearchIcon = useRef<HTMLDivElement>(null);
 
@@ -30,10 +29,8 @@ const App: React.VFC = () => {
     <>
       <GlobalStyle />
       <Provider store={store}>
-        <Header setIsOpen={setIsOpen} searchIcon={searchIcon} />
+        <Header searchIcon={searchIcon} />
         <SearchBar
-          isOpen={isOpen}
-          setIsOpen={setIsOpen}
           searchIcon={searchIcon}
           mobileSearchIcon={mobileSearchIcon}
         />
@@ -48,7 +45,7 @@ const App: React.VFC = () => {
           <Route exact path='/signin' component={SignIn} />
           <Route exact path='/signup' component={SignUp} />
         </Switch>
-        <BottomNavbar setIsOpen={setIsOpen} searchIcon={mobileSearchIcon} />
+        <BottomNavbar searchIcon={mobileSearchIcon} />
       </Provider>
     </>
   );

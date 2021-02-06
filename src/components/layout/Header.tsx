@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { setIsOpen } from '../../redux/slices/searchSlice';
 import { RootState } from '../../redux/rootReducer';
 import SearchIcon from '../assets/SearchIcon';
 import SignOutIcon from '../assets/SignOutIcon';
@@ -15,50 +16,51 @@ import {
 } from './HeaderStyles';
 
 interface Props {
-  userId: string | null;
-  setIsOpen: (isOpen: boolean) => void;
   searchIcon: React.RefObject<HTMLDivElement>;
 }
 
-const Header: React.VFC<Props> = ({ userId, setIsOpen, searchIcon }) => (
-  <StyledHeader>
-    <LogoLink to='/'>dunno</LogoLink>
+const Header: React.VFC<Props> = ({ searchIcon }) => {
+  const dispatch = useDispatch();
+  const userId = useSelector((state: RootState) => state.user.userId);
 
-    <Nav>
-      <NavLink exact to='/'>
-        TV Shows
-      </NavLink>
-      <NavLink exact to='/movie'>
-        Movies
-      </NavLink>
-      <NavLink exact to='/randomizer'>
-        Randomizer
-      </NavLink>
-      <NavLink exact to='/my-list'>
-        My List
-      </NavLink>
-    </Nav>
+  return (
+    <StyledHeader>
+      <LogoLink to='/'>dunno</LogoLink>
 
-    <Icons>
-      <IconWrapper ref={searchIcon} onClick={() => setIsOpen(true)}>
-        <SearchIcon />
-      </IconWrapper>
+      <Nav>
+        <NavLink exact to='/'>
+          TV Shows
+        </NavLink>
+        <NavLink exact to='/movie'>
+          Movies
+        </NavLink>
+        <NavLink exact to='/randomizer'>
+          Randomizer
+        </NavLink>
+        <NavLink exact to='/my-list'>
+          My List
+        </NavLink>
+      </Nav>
 
-      {userId ? (
-        <IconWrapper onClick={() => auth.signOut()}>
-          <SignOutIcon />
+      <Icons>
+        <IconWrapper ref={searchIcon} onClick={() => dispatch(setIsOpen())}>
+          <SearchIcon />
         </IconWrapper>
-      ) : (
-        <Link to='/signin' aria-label='Sign In'>
-          <IconWrapper>
-            <ProfileIcon />
+
+        {userId ? (
+          <IconWrapper onClick={() => auth.signOut()}>
+            <SignOutIcon />
           </IconWrapper>
-        </Link>
-      )}
-    </Icons>
-  </StyledHeader>
-);
+        ) : (
+          <Link to='/signin' aria-label='Sign In'>
+            <IconWrapper>
+              <ProfileIcon />
+            </IconWrapper>
+          </Link>
+        )}
+      </Icons>
+    </StyledHeader>
+  );
+};
 
-const mapStateToProps = (state: RootState) => ({ userId: state.user.userId });
-
-export default connect(mapStateToProps)(Header);
+export default Header;

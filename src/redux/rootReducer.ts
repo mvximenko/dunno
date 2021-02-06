@@ -6,6 +6,7 @@ import personReducer from './person/personReducer';
 
 import userReducer from './slices/userSlice';
 import myListReducer from './slices/myListSlice';
+import searchReducer from './slices/searchSlice';
 
 const rootReducer = combineReducers({
   list: listReducer,
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   person: personReducer,
   user: userReducer,
   myList: myListReducer,
+  search: searchReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

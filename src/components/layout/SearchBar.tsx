@@ -1,50 +1,32 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { API_URL, API_KEY } from '../../config';
+import { useSelector, useDispatch, shallowEqual } from 'react-redux';
+import { RootState } from '../../redux/rootReducer';
+import {
+  setValue,
+  fetchTitles,
+  clearSearch,
+} from '../../redux/slices/searchSlice';
 import { Overlay, Container, Input, Item } from './SearchBarStyles';
 
 interface Props {
-  isOpen: boolean;
-  setIsOpen: (isOpen: boolean) => void;
   searchIcon: React.RefObject<HTMLDivElement>;
   mobileSearchIcon: React.RefObject<HTMLDivElement>;
 }
 
-interface State {
-  search: {
-    id: number;
-    name: string;
-    media_type: string;
-    original_title: string;
-  }[];
-  loading: boolean;
-}
-
-const Modal: React.VFC<Props> = ({
-  isOpen,
-  setIsOpen,
-  searchIcon,
-  mobileSearchIcon,
-}) => {
+const Modal: React.VFC<Props> = ({ searchIcon, mobileSearchIcon }) => {
   const outside = useRef<HTMLDivElement>(null);
   const searchInput = useRef<HTMLInputElement>(null);
-  const [state, setState] = useState<State>({ search: [], loading: true });
-  const [value, setValue] = useState('');
 
-  const clearState = useCallback(() => {
-    setIsOpen(false);
-    setValue('');
-    setState({ search: [], loading: true });
-  }, [setIsOpen, setValue, setState]);
+  const dispatch = useDispatch();
+  const titles = useSelector((state: RootState) => state.search.titles);
+  const isOpen = useSelector((state: RootState) => state.search.isOpen);
+  const loading = useSelector((state: RootState) => state.search.loading);
+  const value = useSelector((state: RootState) => state.search.value);
 
   useEffect(() => {
-    const timeout = setTimeout(async () => {
-      if (value) {
-        const endpoint = `${API_URL}search/multi?api_key=${API_KEY}&language=en-US&query=${value}`;
-        const res = await fetch(endpoint);
-        const { results } = await res.json();
-        setState({ search: [...results], loading: false });
-      }
+    const timeout = setTimeout(() => {
+      if (value) dispatch(fetchTitles(value));
     }, 500);
 
     return () => clearTimeout(timeout);
@@ -60,14 +42,13 @@ const Modal: React.VFC<Props> = ({
         searchInput.current!.focus();
         return;
       }
-      clearState();
+      dispatch(clearSearch());
     };
 
     document.addEventListener('click', handleClick);
     return () => document.removeEventListener('click', handleClick);
-  }, [clearState, searchIcon, mobileSearchIcon]);
+  }, [searchIcon, mobileSearchIcon]);
 
-  const { search, loading } = state;
   return (
     <>
       <Overlay isOpen={isOpen} />
@@ -77,23 +58,23 @@ const Modal: React.VFC<Props> = ({
             type='text'
             value={value}
             ref={searchInput}
-            onChange={(e) => setValue(e.target.value)}
+            onChange={(e) => dispatch(setValue(e.target.value))}
           />
           <ul>
-            {search.length > 0 &&
-              search
+            {titles.length > 0 &&
+              titles
                 .filter((item, index) => index < 5)
                 .map((item) => (
                   <Link
                     to={`/${item.media_type}/${item.id}`}
-                    onClick={clearState}
+                    onClick={() => dispatch(clearSearch())}
                     key={item.id}
                   >
                     <Item>{item.original_title || item.name}</Item>
                   </Link>
                 ))}
 
-            {!loading && !search.length && (
+            {titles.length === 0 && !loading && (
               <Item noPointer={true}>
                 Sorry, we can't find what you're looking for. Try adjusting your
                 search.

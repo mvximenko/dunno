@@ -24,12 +24,9 @@ const MyList = () => {
             {titles &&
               titles.map((title) => (
                 <MyListPoster
-                  mediaType={title.mediaType}
-                  id={title.id}
-                  title={title.title}
-                  posterPath={title.posterPath}
-                  firebaseId={title.firebaseId}
+                  {...title}
                   userId={userId}
+                  key={title.firebaseId}
                 />
               ))}
           </Container>

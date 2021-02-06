@@ -1,5 +1,6 @@
 import { useLocation } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { setIsOpen } from '../../redux/slices/searchSlice';
 import { RootState } from '../../redux/rootReducer';
 import HomeIcon from '../assets/HomeIcon';
 import SearchIcon from '../assets/SearchIcon';
@@ -17,13 +18,14 @@ import {
 } from './BottomNavbarStyles';
 
 interface Props {
-  userId: string | null;
-  setIsOpen: (isOpen: boolean) => void;
   searchIcon: React.RefObject<HTMLDivElement>;
 }
 
-const BottomNavbar: React.VFC<Props> = ({ userId, setIsOpen, searchIcon }) => {
+const BottomNavbar: React.VFC<Props> = ({ searchIcon }) => {
+  const dispatch = useDispatch();
   const { pathname } = useLocation();
+  const userId = useSelector((state: RootState) => state.user.userId);
+
   return (
     <Navbar>
       <Space />
@@ -32,7 +34,7 @@ const BottomNavbar: React.VFC<Props> = ({ userId, setIsOpen, searchIcon }) => {
           <HomeIcon />
         </NavLink>
 
-        <IconWrapper ref={searchIcon} onClick={() => setIsOpen(true)}>
+        <IconWrapper ref={searchIcon} onClick={() => dispatch(setIsOpen())}>
           <SearchIcon />
         </IconWrapper>
 
@@ -61,6 +63,4 @@ const BottomNavbar: React.VFC<Props> = ({ userId, setIsOpen, searchIcon }) => {
   );
 };
 
-const mapStateToProps = (state: RootState) => ({ userId: state.user.userId });
-
-export default connect(mapStateToProps)(BottomNavbar);
+export default BottomNavbar;

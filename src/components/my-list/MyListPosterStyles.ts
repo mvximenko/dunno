@@ -4,8 +4,9 @@ import sizes from '../../sizes';
 import { fadeEffect, FadeEffectTypes } from '../../GlobalStyles';
 
 export const Link = styled(RouterLink)`
-  position: relative;
   height: 0;
+  position: relative;
+  background: #101010;
   padding-top: calc(750 / 500 * 100%);
   ${[sizes.up('lg')]} {
     transition: all 350ms;
@@ -17,7 +18,7 @@ export const Link = styled(RouterLink)`
 
 export const Img = styled.img<FadeEffectTypes>`
   width: 100%;
-  min-height: 100%;
+  height: 100%;
   position: absolute;
   top: 0;
   left: 0;
