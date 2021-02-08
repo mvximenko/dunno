@@ -120,21 +120,22 @@ export const fetchTitle = (
     } else {
       const endpoint = `${API_URL}${mediaType}/${titleId}?api_key=${API_KEY}&append_to_response=videos,credits`;
       const res = await fetch(endpoint);
+      const { status_message, ...rest } = await res.json();
+
+      if (status_message) throw status_message;
+
       const {
         credits: { cast },
         videos: { results },
         ...title
-      } = await res.json();
-      if (title.status_message) {
-        dispatch(getTitleFailure(title.status_message));
-      } else {
-        const data = { title, cast, results };
-        dispatch(getTitleSuccess(data));
-        localStorage.setItem(key, JSON.stringify(data));
-      }
+      } = rest;
+
+      const data = { title, cast, results };
+      dispatch(getTitleSuccess(data));
+      localStorage.setItem(key, JSON.stringify(data));
     }
   } catch (error) {
-    dispatch(getTitleFailure(error));
+    dispatch(getTitleFailure(error.toString()));
   }
 };
 

@@ -59,7 +59,7 @@ export const fetchTitles = (userId: string): AppThunk => async (dispatch) => {
     const titles = await getTitles(userId);
     dispatch(getTitlesSuccess(titles));
   } catch (error) {
-    dispatch(getTitlesFailure(error));
+    dispatch(getTitlesFailure(error.toString()));
   }
 };
 
