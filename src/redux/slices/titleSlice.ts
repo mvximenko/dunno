@@ -30,6 +30,7 @@ interface TitleState {
   error: string | null;
   poster: boolean;
   backdrop: boolean;
+  [key: string]: TitleState[keyof TitleState];
 }
 
 interface TitleLoaded {
@@ -89,11 +90,8 @@ const title = createSlice({
       state.backdrop = false;
       state.poster = false;
     },
-    setBackdrop: (state) => {
-      state.backdrop = true;
-    },
-    setPoster: (state) => {
-      state.poster = true;
+    setLoaded: (state, action: PayloadAction<string>) => {
+      state[action.payload] = true;
     },
   },
 });
@@ -103,8 +101,7 @@ export const {
   getTitleSuccess,
   getTitleFailure,
   resetTitle,
-  setBackdrop,
-  setPoster,
+  setLoaded,
 } = title.actions;
 
 export const fetchTitle = (

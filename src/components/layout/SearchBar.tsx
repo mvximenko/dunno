@@ -10,7 +10,7 @@ import { RootState } from '../../redux/rootReducer';
 import { Overlay, Container, Input, Item } from './SearchBarStyles';
 
 interface Props {
-  [x: string]: React.RefObject<HTMLDivElement>;
+  [key: string]: React.RefObject<HTMLDivElement>;
 }
 
 const Modal: React.VFC<Props> = ({ searchIcon, mobileSearchIcon }) => {
@@ -40,12 +40,12 @@ const Modal: React.VFC<Props> = ({ searchIcon, mobileSearchIcon }) => {
       ) {
         return searchInput.current!.focus();
       }
-      dispatch(resetSearch());
+      if (isOpen) dispatch(resetSearch());
     };
 
     document.addEventListener('click', handleClick);
     return () => document.removeEventListener('click', handleClick);
-  }, [searchIcon, mobileSearchIcon, dispatch]);
+  }, [isOpen, searchIcon, mobileSearchIcon, dispatch]);
 
   return (
     <>

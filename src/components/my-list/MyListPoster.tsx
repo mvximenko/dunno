@@ -6,7 +6,7 @@ import { IMAGE_BASE_URL, POSTER_SIZE } from '../../config';
 import { Link, Img, Button } from './MyListPosterStyles';
 
 interface Props {
-  [x: string]: string;
+  [key: string]: string;
 }
 
 const MyListPoster: React.VFC<Props> = ({

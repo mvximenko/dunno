@@ -1,6 +1,6 @@
 import { combineReducers } from '@reduxjs/toolkit';
 import listReducer from './list/listReducer';
-import randomizerReducer from './randomizer/randomizerReducer';
+import randomizerReducer from './slices/randomizerSlice';
 import personReducer from './slices/personSlice';
 import userReducer from './slices/userSlice';
 import myListReducer from './slices/myListSlice';

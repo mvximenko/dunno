@@ -6,7 +6,7 @@ import PlayIcon from '../assets/PlayIcon';
 import { Row, Button, Link, IconWrapper } from './TitleButtonsStyles';
 
 interface Props {
-  [x: string]: string;
+  [key: string]: string;
 }
 
 const TitleButtons: React.VFC<Props> = ({

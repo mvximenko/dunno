@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { setPoster } from '../../redux/slices/titleSlice';
+import { setLoaded } from '../../redux/slices/titleSlice';
 import { RootState } from '../../redux/rootReducer';
 import PosterPng from '../../assets/poster.png';
 import { IMAGE_BASE_URL, POSTER_SIZE } from '../../config';
@@ -23,7 +23,7 @@ const TitlePosterDesktop: React.VFC<Props> = ({ title, posterPath }) => {
             : PosterPng
         }
         fade={isLoaded}
-        onLoad={() => dispatch(setPoster())}
+        onLoad={() => dispatch(setLoaded('poster'))}
       />
     </Container>
   );

@@ -18,7 +18,7 @@ interface List {
 }
 
 export interface ListState {
-  [x: string]: List;
+  [key: string]: List;
 }
 
 export interface DispatchProps {
