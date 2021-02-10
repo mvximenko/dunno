@@ -47,13 +47,7 @@ const search = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
-    resetSearch: (state) => {
-      state.isOpen = false;
-      state.value = '';
-      state.titles = [];
-      state.error = null;
-      state.loading = true;
-    },
+    resetSearch: () => initialState,
   },
 });
 

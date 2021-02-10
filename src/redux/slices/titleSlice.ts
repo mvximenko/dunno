@@ -74,22 +74,7 @@ const title = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
-    resetTitle: (state) => {
-      state.title = {
-        title: '',
-        name: '',
-        backdrop_path: '',
-        poster_path: '',
-        overview: '',
-        vote_average: 0,
-      };
-      state.cast = [];
-      state.videos = [];
-      state.loading = false;
-      state.error = null;
-      state.backdrop = false;
-      state.poster = false;
-    },
+    resetTitle: () => initialState,
     setLoaded: (state, action: PayloadAction<string>) => {
       state[action.payload] = true;
     },

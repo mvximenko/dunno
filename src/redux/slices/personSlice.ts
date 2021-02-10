@@ -46,12 +46,7 @@ const person = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
-    resetPerson: (state) => {
-      state.name = '';
-      state.titles = [];
-      state.error = null;
-      state.loading = true;
-    },
+    resetPerson: () => initialState,
   },
 });
 

@@ -44,19 +44,14 @@ export const addTitleFB = async (
   if (!userId) return;
 
   try {
-    const titleRef = firestore()
+    const titleRef = await firestore()
       .collection('users')
       .doc(userId)
       .collection('titles');
 
-    const titles = await titleRef.get();
+    const titles = await titleRef.where('id', '==', id).get();
 
-    for (let doc of titles.docs) {
-      const { mediaType: mediaTypeFB, id: idFB } = doc.data();
-      if (`${mediaType}_${id}` === `${mediaTypeFB}_${idFB}`) {
-        return false;
-      }
-    }
+    if (titles.docs.length > 0) return false;
 
     const firebaseId = Date.now().toString();
 
