@@ -14,6 +14,7 @@ import SignUp from './components/auth/SignUp';
 import Header from './components/layout/Header';
 import SearchBar from './components/layout/SearchBar';
 import BottomNavbar from './components/layout/BottomNavbar';
+import PrivateRoute from './components/routing/PrivateRoute';
 import { GlobalStyle } from './GlobalStyles';
 
 const App: React.VFC = () => {
@@ -41,9 +42,9 @@ const App: React.VFC = () => {
           <Route exact path='/tv/:titleId' component={Title} />
           <Route exact path='/movie/:titleId' component={Title} />
           <Route exact path='/person/:personId' component={Person} />
-          <Route exact path='/my-list' component={MyList} />
           <Route exact path='/signin' component={SignIn} />
           <Route exact path='/signup' component={SignUp} />
+          <PrivateRoute exact path='/my-list' component={MyList} />
         </Switch>
         <BottomNavbar searchIcon={mobileSearchIcon} />
       </Provider>
