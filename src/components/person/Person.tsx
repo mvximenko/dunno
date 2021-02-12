@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { fetchPerson, resetPerson } from '../../redux/slices/personSlice';
 import { RootState } from '../../redux/rootReducer';
 import Spinner from '../layout/Spinner';
+import NotFound from '../layout/NotFound';
 import PosterPng from '../../assets/poster.png';
 import { IMAGE_BASE_URL, TINY_POSTER_SIZE } from '../../config';
 import { Wrapper, Heading, Row, Placeholder, Img, Span } from './PersonStyles';
@@ -47,7 +48,7 @@ const Person = () => {
         </Wrapper>
       )}
       {!error && !name && <Spinner />}
-      {error && 'NOT FOUND 404'}
+      {error && <NotFound />}
     </>
   );
 };

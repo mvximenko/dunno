@@ -6,6 +6,7 @@ import { RootState } from '../../redux/rootReducer';
 import useWindowDimensions from '../../hooks/useWindowDimensions';
 import { sliceOverview } from '../../helpers';
 import Spinner from '../layout/Spinner';
+import NotFound from '../layout/NotFound';
 import TitleBackdrop from '../title/TitleBackdrop';
 import TitlePoster from '../title/TitlePoster';
 import TitleRating from '../title/TitleRating';
@@ -76,7 +77,7 @@ const Title = () => {
         </Container>
       )}
       {!error && !heading && <Spinner />}
-      {error && 'NOT FOUND 404'}
+      {error && <NotFound />}
     </>
   );
 };
