@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
-import { useSelector, useDispatch, shallowEqual } from 'react-redux';
+import { useDispatch, shallowEqual } from 'react-redux';
+import { useSelector } from '../../redux/store';
 import PosterPng from '../../assets/poster.png';
 import useWindowDimensions from '../../hooks/useWindowDimensions';
 import {
@@ -8,7 +9,6 @@ import {
   setLoaded,
   resetLoaded,
 } from '../../redux/slices/randomizerSlice';
-import { RootState } from '../../redux/rootReducer';
 import { IMAGE_BASE_URL, POSTER_SIZE, BACKDROP_SIZE } from '../../config';
 import {
   Container,
@@ -33,7 +33,7 @@ const Randomizer = () => {
     title,
     poster_path,
     backdrop_path,
-  } = useSelector((state: RootState) => {
+  } = useSelector((state) => {
     return { ...state.randomizer, ...state.randomizer.title };
   }, shallowEqual);
 

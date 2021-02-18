@@ -5,18 +5,9 @@ import XMark from '../assets/XMark';
 import { IMAGE_BASE_URL, POSTER_SIZE } from '../../config';
 import { Link, Img, Button } from './MyListPosterStyles';
 
-interface Props {
+const MyListPoster: React.VFC<{
   [key: string]: string;
-}
-
-const MyListPoster: React.VFC<Props> = ({
-  mediaType,
-  id,
-  title,
-  posterPath,
-  firebaseId,
-  userId,
-}) => {
+}> = ({ mediaType, id, title, posterPath, firebaseId, userId }) => {
   const dispatch = useDispatch();
   const [loaded, setLoaded] = useState(false);
 

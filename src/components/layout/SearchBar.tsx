@@ -1,12 +1,12 @@
 import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { useSelector } from '../../redux/store';
 import {
   setValue,
   fetchTitles,
   resetSearch,
 } from '../../redux/slices/searchSlice';
-import { RootState } from '../../redux/rootReducer';
 import { Overlay, Container, Input, Item } from './SearchBarStyles';
 
 interface Props {
@@ -18,10 +18,10 @@ const Modal: React.VFC<Props> = ({ searchIcon, mobileSearchIcon }) => {
   const searchInput = useRef<HTMLInputElement>(null);
 
   const dispatch = useDispatch();
-  const titles = useSelector((state: RootState) => state.search.titles);
-  const isOpen = useSelector((state: RootState) => state.search.isOpen);
-  const loading = useSelector((state: RootState) => state.search.loading);
-  const value = useSelector((state: RootState) => state.search.value);
+  const titles = useSelector((state) => state.search.titles);
+  const isOpen = useSelector((state) => state.search.isOpen);
+  const loading = useSelector((state) => state.search.loading);
+  const value = useSelector((state) => state.search.value);
 
   useEffect(() => {
     const timeout = setTimeout(() => {

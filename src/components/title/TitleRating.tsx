@@ -2,11 +2,7 @@ import StarIcon from '../assets/StarIcon';
 import Imdb from '../assets/Imdb';
 import { Rating, ImdbWrapper, StarWrapper, Rank } from './TitleRatingStyles';
 
-interface Props {
-  rating: number;
-}
-
-const TitleRating: React.VFC<Props> = ({ rating }) => (
+const TitleRating: React.VFC<{ rating: number }> = ({ rating }) => (
   <Rating>
     <ImdbWrapper>
       <Imdb />

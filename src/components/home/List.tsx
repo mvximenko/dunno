@@ -1,11 +1,11 @@
 import { useCallback, useEffect, useRef } from 'react';
-import { useSelector, useDispatch, shallowEqual } from 'react-redux';
+import { useDispatch, shallowEqual } from 'react-redux';
+import { useSelector } from '../../redux/store';
 import {
   fetchList,
   incrementPage,
   ListTypes,
 } from '../../redux/slices/listSlice';
-import { RootState } from '../../redux/rootReducer';
 import ScrollContainer from 'react-indiana-drag-scroll';
 import ListPoster from './ListPoster';
 import useInfiniteScroll from '../../hooks/useInfiniteScroll';
@@ -23,7 +23,7 @@ const List: React.VFC<Props> = ({ mediaType, category, id }) => {
   const dispatch = useDispatch();
 
   const { titles, page, totalPages }: ListTypes = useSelector(
-    (state: RootState) => ({ ...state.list[`${category}_${mediaType}`] }),
+    (state) => ({ ...state.list[`${category}_${mediaType}`] }),
     shallowEqual
   );
 

@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { useSelector } from '../../redux/store';
 import { fetchTitle, resetTitle } from '../../redux/slices/titleSlice';
-import { RootState } from '../../redux/rootReducer';
 import useWindowDimensions from '../../hooks/useWindowDimensions';
 import { sliceOverview } from '../../helpers';
 import Spinner from '../layout/Spinner';
@@ -24,10 +24,10 @@ const Title = () => {
     poster_path,
     overview,
     vote_average,
-  } = useSelector((state: RootState) => state.title.title);
+  } = useSelector((state) => state.title.title);
 
-  const cast = useSelector((state: RootState) => state.title.cast);
-  const error = useSelector((state: RootState) => state.title.error);
+  const cast = useSelector((state) => state.title.cast);
+  const error = useSelector((state) => state.title.error);
 
   useEffect(() => {
     dispatch(fetchTitle(mediaType, titleId));

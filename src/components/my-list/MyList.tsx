@@ -1,14 +1,14 @@
 import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { useSelector } from '../../redux/store';
 import { fetchTitles } from '../../redux/slices/myListSlice';
-import { RootState } from '../../redux/rootReducer';
 import MyListPoster from './MyListPoster';
 import { Container, Heading } from './MyListStyles';
 
 const MyList = () => {
   const dispatch = useDispatch();
-  const userId = useSelector((state: RootState) => state.user.userId);
-  const titles = useSelector((state: RootState) => state.myList.titles);
+  const userId = useSelector((state) => state.user.userId);
+  const titles = useSelector((state) => state.myList.titles);
 
   useEffect(() => {
     dispatch(fetchTitles(userId!));

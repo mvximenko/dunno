@@ -1,6 +1,6 @@
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { useSelector } from '../../redux/store';
 import { setLoaded } from '../../redux/slices/titleSlice';
-import { RootState } from '../../redux/rootReducer';
 import PosterPng from '../../assets/poster.png';
 import { IMAGE_BASE_URL, POSTER_SIZE } from '../../config';
 import { Container, Img } from './TitlePosterStyles';
@@ -12,7 +12,7 @@ interface Props {
 
 const TitlePosterDesktop: React.VFC<Props> = ({ title, posterPath }) => {
   const dispatch = useDispatch();
-  const isLoaded = useSelector((state: RootState) => state.title.poster);
+  const isLoaded = useSelector((state) => state.title.poster);
   return (
     <Container>
       <Img

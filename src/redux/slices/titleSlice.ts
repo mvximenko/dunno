@@ -1,5 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AppThunk } from '../store';
+import {
+  checkTitleFB,
+  addTitleFB,
+  deleteTitleFB,
+} from '../../firebase/firebaseUtils';
 import { API_URL, API_KEY } from '../../config';
 
 interface Title {
@@ -30,6 +35,7 @@ interface TitleState {
   error: string | null;
   poster: boolean;
   backdrop: boolean;
+  firebaseId: string;
   [key: string]: TitleState[keyof TitleState];
 }
 
@@ -54,6 +60,7 @@ const initialState: TitleState = {
   error: null,
   poster: false,
   backdrop: false,
+  firebaseId: '',
 };
 
 const title = createSlice({
@@ -78,6 +85,9 @@ const title = createSlice({
     setLoaded: (state, action: PayloadAction<string>) => {
       state[action.payload] = true;
     },
+    setFirebaseId: (state, action: PayloadAction<string>) => {
+      state.firebaseId = action.payload;
+    },
   },
 });
 
@@ -87,6 +97,7 @@ export const {
   getTitleFailure,
   resetTitle,
   setLoaded,
+  setFirebaseId,
 } = title.actions;
 
 export const fetchTitle = (
@@ -118,6 +129,46 @@ export const fetchTitle = (
     }
   } catch (error) {
     dispatch(getTitleFailure(error.toString()));
+  }
+};
+
+export const checkTitle = (
+  userId: string,
+  id: string,
+  mediaType: string
+): AppThunk => async (dispatch) => {
+  try {
+    const firebaseId = await checkTitleFB(userId, id, mediaType);
+    if (firebaseId) dispatch(setFirebaseId(firebaseId));
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const toggle = (
+  userId: string,
+  id: string,
+  mediaType: string,
+  posterPath: string,
+  title: string,
+  firebaseId: string
+): AppThunk => async (dispatch) => {
+  try {
+    if (firebaseId) {
+      deleteTitleFB(userId, firebaseId);
+      dispatch(setFirebaseId(''));
+    } else {
+      const firebaseId = await addTitleFB(
+        userId,
+        id,
+        mediaType,
+        posterPath,
+        title
+      );
+      if (firebaseId) dispatch(setFirebaseId(firebaseId));
+    }
+  } catch (error) {
+    console.log(error);
   }
 };
 

@@ -1,6 +1,6 @@
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { useSelector } from '../../redux/store';
 import { setLoaded } from '../../redux/slices/titleSlice';
-import { RootState } from '../../redux/rootReducer';
 import Backdrop from '../../assets/backdrop.png';
 import { IMAGE_BASE_URL, BACKDROP_SIZE } from '../../config';
 import { Placeholder, Img, Background } from './TitleBackdropStyles';
@@ -12,7 +12,7 @@ interface Props {
 
 const TitleBackdrop: React.VFC<Props> = ({ title, backdropPath }) => {
   const dispatch = useDispatch();
-  const isLoaded = useSelector((state: RootState) => state.title.backdrop);
+  const isLoaded = useSelector((state) => state.title.backdrop);
   return (
     <>
       <Placeholder>

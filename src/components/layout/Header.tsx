@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { useSelector } from '../../redux/store';
 import { setIsOpen } from '../../redux/slices/searchSlice';
-import { RootState } from '../../redux/rootReducer';
 import SearchIcon from '../assets/SearchIcon';
 import SignOutIcon from '../assets/SignOutIcon';
 import ProfileIcon from '../assets/ProfileIcon';
@@ -21,7 +21,7 @@ interface Props {
 
 const Header: React.VFC<Props> = ({ searchIcon }) => {
   const dispatch = useDispatch();
-  const userId = useSelector((state: RootState) => state.user.userId);
+  const userId = useSelector((state) => state.user.userId);
 
   return (
     <StyledHeader>

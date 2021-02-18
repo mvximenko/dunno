@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { useSelector } from '../../redux/store';
 import { fetchPerson, resetPerson } from '../../redux/slices/personSlice';
-import { RootState } from '../../redux/rootReducer';
 import Spinner from '../layout/Spinner';
 import NotFound from '../layout/NotFound';
 import PosterPng from '../../assets/poster.png';
@@ -13,9 +13,9 @@ const Person = () => {
   const { personId } = useParams<{ personId: string }>();
 
   const dispatch = useDispatch();
-  const name = useSelector((state: RootState) => state.person.name);
-  const titles = useSelector((state: RootState) => state.person.titles);
-  const error = useSelector((state: RootState) => state.person.error);
+  const name = useSelector((state) => state.person.name);
+  const titles = useSelector((state) => state.person.titles);
+  const error = useSelector((state) => state.person.error);
 
   useEffect(() => {
     dispatch(fetchPerson(personId));

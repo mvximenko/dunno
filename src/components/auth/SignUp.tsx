@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Redirect } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../redux/rootReducer';
+import { useSelector } from '../../redux/store';
 import { auth, createUserProfileDocument } from '../../firebase/firebaseUtils';
 import { Container, Form, Heading, Input, Button, Link } from './SignInStyles';
 
@@ -13,7 +12,7 @@ const SignUp = () => {
     confirmPassword: '',
   });
 
-  const userId = useSelector((state: RootState) => state.user.userId);
+  const userId = useSelector((state) => state.user.userId);
   const { displayName, email, password, confirmPassword } = userCredentials;
 
   const handleSubmit = async (event: React.FormEvent) => {

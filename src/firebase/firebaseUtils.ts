@@ -35,31 +35,46 @@ export const createUserProfileDocument = async (
 };
 
 export const addTitleFB = async (
-  userId: string | null,
+  userId: string,
   id: string,
   mediaType: string,
   posterPath: string | null,
   title: string
 ) => {
-  if (!userId) return;
+  try {
+    const firebaseId = Date.now().toString();
 
+    firestore()
+      .collection('users')
+      .doc(userId)
+      .collection('titles')
+      .doc(firebaseId)
+      .set({ id, mediaType, posterPath, title, firebaseId });
+
+    return firebaseId;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const checkTitleFB = async (
+  userId: string,
+  id: string,
+  mediaType: string
+) => {
   try {
     const titleRef = await firestore()
       .collection('users')
       .doc(userId)
-      .collection('titles');
+      .collection('titles')
+      .where('id', '==', id)
+      .where('mediaType', '==', mediaType)
+      .get();
 
-    const titles = await titleRef.where('id', '==', id).get();
-
-    if (titles.docs.length > 0) return false;
-
-    const firebaseId = Date.now().toString();
-
-    titleRef
-      .doc(firebaseId)
-      .set({ id, mediaType, posterPath, title, firebaseId });
-
-    return true;
+    if (titleRef.docs.length > 0) {
+      const { firebaseId } = titleRef.docs[0].data();
+      return firebaseId;
+    }
   } catch (error) {
     console.log(error);
   }

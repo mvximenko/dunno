@@ -1,30 +1,39 @@
-import { useSelector } from 'react-redux';
-import { RootState } from '../../redux/rootReducer';
-import { addTitleFB } from '../../firebase/firebaseUtils';
+import { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useSelector } from '../../redux/store';
+import { checkTitle, toggle } from '../../redux/slices/titleSlice';
 import PlusIcon from '../assets/PlusIcon';
+import SuccessIcon from '../assets/SuccessIcon';
 import PlayIcon from '../assets/PlayIcon';
 import { Row, Button, Link, IconWrapper } from './TitleButtonsStyles';
 
-interface Props {
-  [key: string]: string;
-}
-
-const TitleButtons: React.VFC<Props> = ({
+const TitleButtons: React.VFC<{ [key: string]: string }> = ({
   id,
   title,
   mediaType,
   posterPath,
 }) => {
-  const userId = useSelector((state: RootState) => state.user.userId);
-  const videos = useSelector((state: RootState) => state.title.videos);
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const userId = useSelector((state) => state.user.userId);
+  const videos = useSelector((state) => state.title.videos);
+  const fbId = useSelector((state) => state.title.firebaseId);
+
+  useEffect(() => {
+    if (userId && !fbId) dispatch(checkTitle(userId, id, mediaType));
+  }, [userId, fbId, id, mediaType, dispatch]);
+
   return (
     <Row>
       <Button
-        onClick={() => addTitleFB(userId, id, mediaType, posterPath, title)}
+        onClick={() =>
+          userId
+            ? dispatch(toggle(userId, id, mediaType, posterPath, title, fbId))
+            : history.push('/signin')
+        }
       >
-        <IconWrapper>
-          <PlusIcon />
-        </IconWrapper>
+        <IconWrapper>{fbId ? <SuccessIcon /> : <PlusIcon />}</IconWrapper>
         My List
       </Button>
 

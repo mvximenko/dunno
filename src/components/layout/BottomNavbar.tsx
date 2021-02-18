@@ -1,7 +1,7 @@
 import { useLocation } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { useSelector } from '../../redux/store';
 import { setIsOpen } from '../../redux/slices/searchSlice';
-import { RootState } from '../../redux/rootReducer';
 import HomeIcon from '../assets/HomeIcon';
 import SearchIcon from '../assets/SearchIcon';
 import FavoriteIcon from '../assets/FavoriteIcon';
@@ -24,7 +24,7 @@ interface Props {
 const BottomNavbar: React.VFC<Props> = ({ searchIcon }) => {
   const dispatch = useDispatch();
   const { pathname } = useLocation();
-  const userId = useSelector((state: RootState) => state.user.userId);
+  const userId = useSelector((state) => state.user.userId);
 
   return (
     <Navbar>
