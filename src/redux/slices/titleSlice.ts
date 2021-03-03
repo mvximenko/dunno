@@ -1,11 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AppThunk } from '../store';
-import {
-  checkTitleFB,
-  addTitleFB,
-  deleteTitleFB,
-} from '../../firebase/firebaseUtils';
-import { API_URL, API_KEY } from '../../config';
+import { getTitle } from '../../api/tmdb';
+import { checkTitleFB, addTitleFB, deleteTitleFB } from '../../api/firebase';
 
 interface Title {
   title: string;
@@ -81,13 +77,13 @@ const title = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
-    resetTitle: () => initialState,
     setLoaded: (state, action: PayloadAction<string>) => {
       state[action.payload] = true;
     },
     setFirebaseId: (state, action: PayloadAction<string>) => {
       state.firebaseId = action.payload;
     },
+    resetTitle: () => initialState,
   },
 });
 
@@ -95,9 +91,9 @@ export const {
   getTitleStart,
   getTitleSuccess,
   getTitleFailure,
-  resetTitle,
   setLoaded,
   setFirebaseId,
+  resetTitle,
 } = title.actions;
 
 export const fetchTitle = (
@@ -106,27 +102,8 @@ export const fetchTitle = (
 ): AppThunk => async (dispatch) => {
   try {
     dispatch(getTitleStart());
-    const key = `${mediaType}_${titleId}`;
-    if (localStorage.getItem(key)) {
-      const data = JSON.parse(localStorage.getItem(key)!);
-      dispatch(getTitleSuccess(data));
-    } else {
-      const endpoint = `${API_URL}${mediaType}/${titleId}?api_key=${API_KEY}&append_to_response=videos,credits`;
-      const res = await fetch(endpoint);
-      const { status_message, ...rest } = await res.json();
-
-      if (status_message) throw status_message;
-
-      const {
-        credits: { cast },
-        videos: { results },
-        ...title
-      } = rest;
-
-      const data = { title, cast, results };
-      dispatch(getTitleSuccess(data));
-      localStorage.setItem(key, JSON.stringify(data));
-    }
+    const res = await getTitle(mediaType, titleId);
+    dispatch(getTitleSuccess(res));
   } catch (error) {
     dispatch(getTitleFailure(error.toString()));
   }

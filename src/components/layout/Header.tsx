@@ -5,7 +5,7 @@ import { setIsOpen } from '../../redux/slices/searchSlice';
 import SearchIcon from '../assets/SearchIcon';
 import SignOutIcon from '../assets/SignOutIcon';
 import ProfileIcon from '../assets/ProfileIcon';
-import { auth } from '../../firebase/firebaseUtils';
+import { auth } from '../../api/firebase';
 import {
   StyledHeader,
   LogoLink,

@@ -1,13 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AppThunk } from '../store';
-import {
-  API_URL,
-  API_KEY,
-  MOVIES,
-  TV,
-  NETWORKS,
-  COMPANIES,
-} from '../../config';
+import { getList } from '../../api/tmdb';
+import { MOVIES, TV, NETWORKS, COMPANIES } from '../../config';
 
 interface Title {
   id: number;
@@ -94,23 +88,8 @@ export const fetchList = (
   id?: number
 ): AppThunk => async (dispatch) => {
   try {
-    const key = `${mediaType}_${category}_${page}_${id}`;
-    const index = `${category}_${mediaType}`;
-    if (sessionStorage.getItem(key)) {
-      const { results, totalPages } = JSON.parse(sessionStorage.getItem(key)!);
-      dispatch(setList({ key: index, results, totalPages }));
-    } else {
-      const endpoint = id
-        ? mediaType === 'tv'
-          ? `${API_URL}discover/tv?api_key=${API_KEY}&language=en-US&with_networks=${id}&page=${page}`
-          : `${API_URL}discover/movie?api_key=${API_KEY}&language=en-US&with_companies=${id}&page=${page}`
-        : `${API_URL}${mediaType}/${category}?api_key=${API_KEY}&language=en-US&page=${page}`;
-
-      const res = await fetch(endpoint);
-      const { results, total_pages: totalPages } = await res.json();
-      dispatch(setList({ key: index, results, totalPages }));
-      sessionStorage.setItem(key, JSON.stringify({ results, totalPages }));
-    }
+    const res = await getList(category, mediaType, page, id);
+    dispatch(setList(res));
   } catch (error) {
     console.log(error);
   }

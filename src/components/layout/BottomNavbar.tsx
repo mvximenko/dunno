@@ -8,7 +8,7 @@ import FavoriteIcon from '../assets/FavoriteIcon';
 import RandomizerIcon from '../assets/RandomizerIcon';
 import ProfileIcon from '../assets/ProfileIcon';
 import SignOutIcon from '../assets/SignOutIcon';
-import { auth } from '../../firebase/firebaseUtils';
+import { auth } from '../../api/firebase';
 import {
   Container,
   Space,

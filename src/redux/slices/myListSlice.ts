@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AppThunk } from '../store';
-import { getTitles, deleteTitleFB } from '../../firebase/firebaseUtils';
+import { getTitles, deleteTitleFB } from '../../api/firebase';
 
 interface Title {
   id: string;

@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AppThunk } from '../store';
-import { API_URL, API_KEY } from '../../config';
+import { getTitles } from '../../api/tmdb';
 
 interface Search {
   id: number;
@@ -63,10 +63,8 @@ export const {
 export const fetchTitles = (value: string): AppThunk => async (dispatch) => {
   try {
     dispatch(getTitlesStart());
-    const endpoint = `${API_URL}search/multi?api_key=${API_KEY}&language=en-US&query=${value}`;
-    const res = await fetch(endpoint);
-    const { results: titles } = await res.json();
-    dispatch(getTitlesSuccess(titles));
+    const res = await getTitles(value);
+    dispatch(getTitlesSuccess(res));
   } catch (error) {
     dispatch(getTitlesFailure(error.toString()));
   }

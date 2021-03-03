@@ -42,7 +42,7 @@ const Randomizer = () => {
   }, [genres.tv.length, dispatch]);
 
   useEffect(() => {
-    dispatch(fetchTitle(mediaType, genres));
+    if (mediaType) dispatch(fetchTitle(mediaType, genres));
   }, [mediaType, genres, dispatch]);
 
   const { width, height } = useWindowDimensions();

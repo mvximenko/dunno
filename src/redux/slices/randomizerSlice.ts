@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AppThunk } from '../store';
-import { API_URL, API_KEY } from '../../config';
+import { getGenres, getRandomTitle } from '../../api/tmdb';
 
 interface Title {
   id: number;
@@ -10,7 +10,7 @@ interface Title {
   backdrop_path: string;
 }
 
-interface Genres {
+export interface Genres {
   [key: string]: { id: number; name: string }[];
 }
 
@@ -94,16 +94,8 @@ export const {
 export const fetchGenres = (): AppThunk => async (dispatch) => {
   try {
     dispatch(getGenresStart());
-
-    const movieEndpoint = `${API_URL}genre/tv/list?api_key=${API_KEY}&language=en-US`;
-    const res = await fetch(movieEndpoint);
-    const { genres: tv } = await res.json();
-
-    const tvEndpoint = `${API_URL}genre/movie/list?api_key=${API_KEY}&language=en-US`;
-    const response = await fetch(tvEndpoint);
-    const { genres: movie } = await response.json();
-
-    dispatch(getGenresSuccess({ tv, movie }));
+    const res = await getGenres();
+    dispatch(getGenresSuccess(res));
   } catch (error) {
     dispatch(getGenresFailure(error.toString()));
   }
@@ -113,25 +105,10 @@ export const fetchTitle = (
   mediaType: string,
   genres: Genres
 ): AppThunk => async (dispatch) => {
-  if (!mediaType) return;
   try {
     dispatch(getTitleStart());
-    const page = Math.floor(Math.random() * 5) + 1;
-    const random = Math.floor(Math.random() * genres[mediaType].length);
-    const genre = genres[mediaType][random].id;
-
-    const endpoint = `${API_URL}discover/${mediaType}?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc&page=${page}&with_genres=${genre}`;
-    const res = await fetch(endpoint);
-    const { results } = await res.json();
-
-    let title = results[Math.floor(Math.random() * results.length)];
-    if (!title.poster_path || !title.backdrop_path) {
-      while (!title.poster_path || !title.backdrop_path) {
-        title = results[Math.floor(Math.random() * results.length)];
-      }
-    }
-
-    dispatch(getTitleSuccess(title));
+    const res = await getRandomTitle(mediaType, genres);
+    dispatch(getTitleSuccess(res));
   } catch (error) {
     dispatch(getTitleFailure(error.toString()));
   }

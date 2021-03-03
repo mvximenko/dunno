@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { useSelector } from '../../redux/store';
-import { auth, signInWithGoogle } from '../../firebase/firebaseUtils';
+import { auth, signInWithGoogle } from '../../api/firebase';
 import { Container, Form, Heading, Input, Button, Link } from './SignInStyles';
 
 const SignIn = () => {
