@@ -28,11 +28,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 `;
 
-export interface FadeEffectTypes {
-  fade: boolean;
-}
-
-export const fadeEffect = css<FadeEffectTypes>`
+export const fadeEffect = css<{ fade: boolean }>`
   ${({ fade }) =>
     fade
       ? `
@@ -49,4 +45,15 @@ export const fadeEffect = css<FadeEffectTypes>`
       : `
       visibility: hidden;
     `}
+`;
+
+export const background = css`
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  object-fit: cover;
+  filter: brightness(70%);
+  ${fadeEffect}
 `;

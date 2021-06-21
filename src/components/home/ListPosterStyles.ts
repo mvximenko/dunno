@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Link as RouterLink } from 'react-router-dom';
 import sizes from '../../sizes';
-import { fadeEffect, FadeEffectTypes } from '../../GlobalStyles';
+import { fadeEffect } from '../../GlobalStyles';
 
 export const Link = styled(RouterLink)`
   width: 29vw;
@@ -26,7 +26,7 @@ export const Link = styled(RouterLink)`
   }
 `;
 
-export const Img = styled.img<FadeEffectTypes>`
+export const Img = styled.img`
   height: 100%;
   width: 100%;
   position: absolute;

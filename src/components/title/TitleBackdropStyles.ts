@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import sizes from '../../sizes';
-import { fadeEffect, FadeEffectTypes } from '../../GlobalStyles';
+import { fadeEffect, background } from '../../GlobalStyles';
 
 export const Placeholder = styled.div`
   position: relative;
@@ -11,7 +11,7 @@ export const Placeholder = styled.div`
   }
 `;
 
-export const Img = styled.img<FadeEffectTypes>`
+export const Img = styled.img`
   position: absolute;
   top: 0;
   left: 0;
@@ -19,14 +19,10 @@ export const Img = styled.img<FadeEffectTypes>`
   ${fadeEffect}
 `;
 
-export const Background = styled.img<FadeEffectTypes>`
+export const Background = styled.img`
   display: none;
-  ${[sizes.up('lg')]} {
-    top: 0;
-    left: 0;
-    width: 100%;
+  ${[sizes.up('md')]} {
     display: block;
-    position: fixed;
-    ${fadeEffect}
+    ${background}
   }
 `;

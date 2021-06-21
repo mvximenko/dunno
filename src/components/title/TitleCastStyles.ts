@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import sizes from '../../sizes';
-import { fadeEffect, FadeEffectTypes } from '../../GlobalStyles';
+import { fadeEffect } from '../../GlobalStyles';
 
 export const Column = styled.div`
   width: 22%;
@@ -21,7 +21,7 @@ export const Photo = styled.div`
   padding-top: calc(750 / 500 * 100%);
 `;
 
-export const Img = styled.img<FadeEffectTypes>`
+export const Img = styled.img`
   top: 0;
   left: 0;
   width: 100%;

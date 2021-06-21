@@ -48,7 +48,7 @@ const Randomizer = () => {
   const { width, height } = useWindowDimensions();
   return (
     <Container height={height}>
-      {backdrop_path && width >= 1280 && (
+      {backdrop_path && width >= 960 && (
         <Background
           alt={title || name}
           src={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${backdrop_path}`}

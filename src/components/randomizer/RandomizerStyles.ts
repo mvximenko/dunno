@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Link as RouterLink } from 'react-router-dom';
 import sizes from '../../sizes';
-import { fadeEffect, FadeEffectTypes } from '../../GlobalStyles';
+import { fadeEffect, background } from '../../GlobalStyles';
 
 export const Container = styled.div<{ height: number }>`
   width: 100%;
@@ -19,15 +19,9 @@ export const Container = styled.div<{ height: number }>`
   `}
 `;
 
-export const Background = styled.img<FadeEffectTypes>`
-  ${[sizes.up('lg')]} {
-    top: 0;
-    left: 0;
-    width: 100%;
-    position: fixed;
-    filter: brightness(70%);
-    ${fadeEffect}
-  }
+export const Background = styled.img`
+  ${[sizes.up('sm')]} {
+    ${background}
 `;
 
 export const Column = styled.div`
@@ -64,12 +58,9 @@ export const Link = styled(RouterLink)`
   }
 `;
 
-export const Img = styled.img<FadeEffectTypes>`
+export const Img = styled.img`
   width: 100%;
   height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
   user-drag: none;
   ${fadeEffect}
   ${[sizes.up('lg')]} {
