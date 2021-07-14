@@ -7,7 +7,16 @@ import {
   fetchTitles,
   resetSearch,
 } from '../../redux/slices/searchSlice';
-import { Overlay, Container, Input, Item } from './SearchBarStyles';
+import SearchIcon from '../assets/SearchIcon';
+import XMarkCircle from '../assets/XMarkCircle';
+import {
+  Overlay,
+  Container,
+  InputContainer,
+  Input,
+  Item,
+  IconWrapper,
+} from './SearchBarStyles';
 
 interface Props {
   [key: string]: React.RefObject<HTMLDivElement>;
@@ -52,12 +61,21 @@ const Modal: React.VFC<Props> = ({ searchIcon, mobileSearchIcon }) => {
       <Overlay isOpen={isOpen} />
       <div ref={outside}>
         <Container isOpen={isOpen}>
-          <Input
-            type='text'
-            value={value}
-            ref={searchInput}
-            onChange={(e) => dispatch(setValue(e.target.value))}
-          />
+          <InputContainer>
+            <IconWrapper>
+              <SearchIcon />
+            </IconWrapper>
+            <Input
+              type='text'
+              value={value}
+              ref={searchInput}
+              onChange={(e) => dispatch(setValue(e.target.value))}
+            />
+            <IconWrapper pointer onClick={() => dispatch(resetSearch())}>
+              <XMarkCircle />
+            </IconWrapper>
+          </InputContainer>
+
           <ul>
             {titles.length > 0 &&
               titles
