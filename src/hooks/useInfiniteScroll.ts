@@ -9,7 +9,6 @@ export default function useInfiniteScroll(
       new IntersectionObserver((entries): void => {
         entries.forEach((en) => {
           if (en.intersectionRatio > 0) {
-            console.log('NEW PAGE');
             dispatch();
           }
         });

@@ -30,7 +30,11 @@ const BottomNavbar: React.VFC<Props> = ({ searchIcon }) => {
     <Navbar>
       <Space />
       <Container>
-        <NavLink to='/' isActive={() => ['/', '/movie'].includes(pathname)}>
+        <NavLink
+          to='/'
+          aria-label='Home'
+          isActive={() => ['/', '/movie'].includes(pathname)}
+        >
           <HomeIcon />
         </NavLink>
 
@@ -38,11 +42,11 @@ const BottomNavbar: React.VFC<Props> = ({ searchIcon }) => {
           <SearchIcon />
         </IconWrapper>
 
-        <NavLink exact to='/randomizer'>
+        <NavLink exact to='/randomizer' aria-label='Randomizer'>
           <RandomizerIcon />
         </NavLink>
 
-        <NavLink exact to='/my-list'>
+        <NavLink exact to='/my-list' aria-label='My list'>
           <FavoriteIcon />
         </NavLink>
 
@@ -53,6 +57,7 @@ const BottomNavbar: React.VFC<Props> = ({ searchIcon }) => {
         ) : (
           <NavLink
             to='/signin'
+            aria-label='Sign in'
             isActive={() => ['/signin', '/signup'].includes(pathname)}
           >
             <ProfileIcon />

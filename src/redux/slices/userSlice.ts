@@ -4,10 +4,12 @@ import { auth, createUserProfileDocument } from '../../api/firebase';
 
 interface UserState {
   userId: string | null;
+  loading: boolean;
 }
 
 const initialState: UserState = {
   userId: null,
+  loading: true,
 };
 
 const user = createSlice({
@@ -16,8 +18,12 @@ const user = createSlice({
   reducers: {
     setUser: (state, action: PayloadAction<string>) => {
       state.userId = action.payload;
+      state.loading = false;
     },
-    clearUser: () => initialState,
+    clearUser: (state) => {
+      state.userId = null;
+      state.loading = false;
+    },
   },
 });
 
