@@ -3,20 +3,16 @@ import { Link as RouterLink } from 'react-router-dom';
 import sizes from '../../sizes';
 import { fadeEffect, background } from '../../GlobalStyles';
 
-export const Container = styled.div<{ height: number }>`
+export const Container = styled.div`
   width: 100%;
   display: flex;
-  ${({ height }) =>
-    height &&
-    `
-    height: calc(${height}px - 44px);
-    ${[sizes.up('sm')]} {
-      height: calc(${height}px - 50px);
-    }
-    ${[sizes.up('xl')]} {
-      height: calc(${height}px - 70px);
-    }
-  `}
+  height: calc(100% - 44px);
+  ${[sizes.up('sm')]} {
+    height: calc(100% - 50px);
+  }
+  ${[sizes.up('xl')]} {
+    height: calc(100% - 70px);
+  }
 `;
 
 export const Background = styled.img`

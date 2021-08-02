@@ -53,7 +53,7 @@ const SignIn = () => {
           required
         />
         <Button type='submit'>Sign In</Button>
-        <Button type='button' google={true} onClick={signInWithGoogle}>
+        <Button type='button' google onClick={signInWithGoogle}>
           Sign in with Google
         </Button>
         <Link to='/signup'>{'New to Dunno? Sign up'}</Link>

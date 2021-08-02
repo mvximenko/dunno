@@ -45,9 +45,9 @@ const Randomizer = () => {
     if (mediaType) dispatch(fetchTitle(mediaType, genres));
   }, [mediaType, genres, dispatch]);
 
-  const { width, height } = useWindowDimensions();
+  const { width } = useWindowDimensions();
   return (
-    <Container height={height}>
+    <Container>
       {backdrop_path && width >= 960 && (
         <Background
           alt={title || name}

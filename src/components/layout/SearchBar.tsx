@@ -91,7 +91,7 @@ const Modal: React.VFC<Props> = ({ searchIcon, mobileSearchIcon }) => {
                 ))}
 
             {titles.length === 0 && !loading && (
-              <Item noPointer={true}>
+              <Item noPointer>
                 Sorry, we can't find what you're looking for. Try adjusting your
                 search.
               </Item>
