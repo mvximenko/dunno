@@ -46,7 +46,7 @@ const SignUp = () => {
   if (userId) return <Redirect to='/' />;
 
   return (
-    <Container signUp>
+    <Container>
       <Form onSubmit={handleSubmit}>
         <Heading>Sign Up</Heading>
         <Input

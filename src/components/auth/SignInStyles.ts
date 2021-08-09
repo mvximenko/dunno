@@ -12,18 +12,14 @@ const common = css`
   }
 `;
 
-export const Container = styled.div<{ signUp?: boolean }>`
+export const Container = styled.div`
+  height: 85%;
   display: flex;
   justify-content: center;
-  margin-top: 40px;
-  ${({ signUp }) =>
-    signUp &&
-    `
-    margin-top: 8px;
-    ${[sizes.up('sm')]} {
-      margin-top: 40px;
-    }
-  `}
+  align-items: center;
+  ${[sizes.up('sm')]} {
+    height: 80%;
+  }
 `;
 
 export const Form = styled.form`
@@ -68,17 +64,24 @@ export const Button = styled.button<{ google?: boolean }>`
   ${common}
   padding: 16px;
   font-size: 14.5px;
+  font-weight: bold;
   background: #e50914;
   cursor: pointer;
+  transition: 150ms all;
+  &:hover {
+    background: #c40812;
+  }
   ${[sizes.up('xl')]} {
     padding: 22.4px;
     font-size: 20.3px;
   }
-
   ${({ google }) =>
     google &&
     `
-    background: #4a8cf6;
+    background: #437ede;
+    &:hover {
+      background: #266bd9;
+    }
   `}
 `;
 

@@ -72,14 +72,14 @@ export const IconWrapper = styled.div<{ pointer?: boolean }>`
   ${({ pointer }) =>
     pointer &&
     `
-  cursor: pointer;
-  svg {
-    transition: all 350ms;
-    &:hover {
-      fill: #fff;
+    cursor: pointer;
+    svg {
+      transition: all 350ms;
+      &:hover {
+        fill: #fff;
+      }
     }
-  }
-`}
+  `}
 `;
 
 export const Input = styled.input`
