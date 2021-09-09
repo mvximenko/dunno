@@ -78,9 +78,9 @@ export const Button = styled.button<{ google?: boolean }>`
   ${({ google }) =>
     google &&
     `
-    background: #437ede;
+    background: #4285f4;
     &:hover {
-      background: #266bd9;
+      background: #3367D6;
     }
   `}
 `;

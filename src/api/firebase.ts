@@ -1,6 +1,21 @@
-import firebase from 'firebase/app';
-import 'firebase/firestore';
-import 'firebase/auth';
+import { initializeApp } from 'firebase/app';
+import {
+  getAuth,
+  GoogleAuthProvider,
+  signInWithPopup,
+  User,
+} from 'firebase/auth';
+import {
+  getFirestore,
+  collection,
+  doc,
+  getDoc,
+  setDoc,
+  getDocs,
+  deleteDoc,
+  query,
+  where,
+} from 'firebase/firestore';
 
 const config = {
   apiKey: 'AIzaSyBo_Bsta3s7t4XBrqsuA4RZQzGMuax7VyQ',
@@ -14,19 +29,22 @@ const config = {
 };
 
 export const createUserProfileDocument = async (
-  userAuth: firebase.User | null,
+  userAuth: User,
   additionalData?: object
 ) => {
-  if (!userAuth) return;
-
-  const userRef = firestore().doc(`users/${userAuth.uid}`);
-  const snapShot = await userRef.get();
+  const userRef = doc(firestore, `users/${userAuth.uid}`);
+  const snapShot = await getDoc(userRef);
 
   if (!snapShot.exists) {
     const { displayName, email } = userAuth;
     const createdAt = new Date();
     try {
-      await userRef.set({ displayName, email, createdAt, ...additionalData });
+      await setDoc(userRef, {
+        displayName,
+        email,
+        createdAt,
+        ...additionalData,
+      });
     } catch (error) {
       console.error('Error creating user', error.message);
     }
@@ -43,14 +61,8 @@ export const addTitleFB = async (
 ) => {
   try {
     const firebaseId = Date.now().toString();
-
-    firestore()
-      .collection('users')
-      .doc(userId)
-      .collection('titles')
-      .doc(firebaseId)
-      .set({ id, mediaType, posterPath, title, firebaseId });
-
+    const userRef = doc(firestore, `users/${userId}/titles/${firebaseId}`);
+    await setDoc(userRef, { id, mediaType, posterPath, title, firebaseId });
     return firebaseId;
   } catch (error) {
     console.error(error);
@@ -63,16 +75,16 @@ export const checkTitleFB = async (
   mediaType: string
 ) => {
   try {
-    const titleRef = await firestore()
-      .collection('users')
-      .doc(userId)
-      .collection('titles')
-      .where('id', '==', id)
-      .where('mediaType', '==', mediaType)
-      .get();
+    const titleRef = query(
+      collection(firestore, `users/${userId}/titles`),
+      where('id', '==', id),
+      where('mediaType', '==', mediaType)
+    );
 
-    if (titleRef.docs.length > 0) {
-      const { firebaseId } = titleRef.docs[0].data();
+    const title = await getDocs(titleRef);
+
+    if (title.docs.length > 0) {
+      const { firebaseId } = title.docs[0].data();
       return firebaseId;
     }
   } catch (error) {
@@ -83,15 +95,9 @@ export const checkTitleFB = async (
 export const getTitles = async (userId: string) => {
   let titles: any[] = [];
   try {
-    const titleRef = await firestore()
-      .collection('users')
-      .doc(userId)
-      .collection('titles')
-      .get();
-
-    titleRef.forEach((doc) => {
-      titles.push(doc.data());
-    });
+    const titlesRef = collection(firestore, `users/${userId}/titles`);
+    const docs = await getDocs(titlesRef);
+    docs.forEach((doc) => titles.push(doc.data()));
   } catch (error) {
     console.error(error);
   }
@@ -99,22 +105,16 @@ export const getTitles = async (userId: string) => {
 };
 
 export const deleteTitleFB = (userId: string, id: string) => {
-  firestore()
-    .collection('users')
-    .doc(userId)
-    .collection('titles')
-    .doc(id)
-    .delete();
+  const titleRef = doc(firestore, `users/${userId}/titles/${id}`);
+  deleteDoc(titleRef);
 };
 
-!firebase.apps.length ? firebase.initializeApp(config) : firebase.app();
-// firebase.initializeApp(config);
+initializeApp(config);
+export const auth = getAuth();
+const firestore = getFirestore();
 
-export const auth = firebase.auth();
-export const firestore = firebase.firestore;
-
-export const googleProvider = new firebase.auth.GoogleAuthProvider();
-googleProvider.setCustomParameters({ prompt: 'select_account' });
-export const signInWithGoogle = () => auth.signInWithPopup(googleProvider);
-
-export default firebase;
+export const signInWithGoogle = async () => {
+  const googleProvider = new GoogleAuthProvider();
+  googleProvider.setCustomParameters({ prompt: 'select_account' });
+  await signInWithPopup(auth, googleProvider);
+};

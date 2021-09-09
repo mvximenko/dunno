@@ -5,6 +5,7 @@ import { setIsOpen } from '@/redux/slices/searchSlice';
 import { ReactComponent as SearchIcon } from '@/icons/search.svg';
 import { ReactComponent as SignOutIcon } from '@/icons/sign-out.svg';
 import { ReactComponent as ProfileIcon } from '@/icons/profile.svg';
+import { signOut } from 'firebase/auth';
 import { auth } from '@/api/firebase';
 import {
   StyledHeader,
@@ -31,12 +32,15 @@ const Header: React.VFC<Props> = ({ searchIcon }) => {
         <StyledNavLink exact to='/'>
           TV Shows
         </StyledNavLink>
+
         <StyledNavLink exact to='/movie'>
           Movies
         </StyledNavLink>
+
         <StyledNavLink exact to='/randomizer'>
           Randomizer
         </StyledNavLink>
+
         <StyledNavLink exact to='/my-list'>
           My List
         </StyledNavLink>
@@ -48,7 +52,7 @@ const Header: React.VFC<Props> = ({ searchIcon }) => {
         </IconWrapper>
 
         {userId ? (
-          <IconWrapper onClick={() => auth.signOut()}>
+          <IconWrapper onClick={() => signOut(auth)}>
             <SignOutIcon />
           </IconWrapper>
         ) : (

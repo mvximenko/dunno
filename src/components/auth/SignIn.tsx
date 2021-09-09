@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { useSelector } from '@/redux/store';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth, signInWithGoogle } from '@/api/firebase';
 import {
   Container,
@@ -23,7 +24,7 @@ const SignIn = () => {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     try {
-      await auth.signInWithEmailAndPassword(email, password);
+      await signInWithEmailAndPassword(auth, email, password);
       setCredentials({ email: '', password: '' });
     } catch (error) {
       console.error(error);

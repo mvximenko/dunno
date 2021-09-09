@@ -1,5 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AppThunk } from '../store';
+import { onAuthStateChanged } from 'firebase/auth';
+import { onSnapshot } from 'firebase/firestore';
 import { auth, createUserProfileDocument } from '@/api/firebase';
 
 interface UserState {
@@ -30,10 +32,10 @@ const user = createSlice({
 export const { setUser, clearUser } = user.actions;
 
 export const getUser = (): AppThunk => async (dispatch) => {
-  auth.onAuthStateChanged(async (userAuth) => {
+  onAuthStateChanged(auth, async (userAuth) => {
     if (userAuth) {
       const userRef = await createUserProfileDocument(userAuth);
-      userRef!.onSnapshot((snapShot) => dispatch(setUser(snapShot.id)));
+      onSnapshot(userRef, (snapShot) => dispatch(setUser(snapShot.id)));
     } else {
       dispatch(clearUser());
     }

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { useSelector } from '@/redux/store';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth, createUserProfileDocument } from '@/api/firebase';
 import {
   Container,
@@ -29,7 +30,8 @@ const SignUp = () => {
       return;
     }
     try {
-      const { user } = await auth.createUserWithEmailAndPassword(
+      const { user } = await createUserWithEmailAndPassword(
+        auth,
         email,
         password
       );

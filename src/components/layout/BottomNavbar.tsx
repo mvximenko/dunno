@@ -8,6 +8,7 @@ import { ReactComponent as FavoriteIcon } from '@/icons/favorite.svg';
 import { ReactComponent as RandomizerIcon } from '@/icons/randomizer.svg';
 import { ReactComponent as ProfileIcon } from '@/icons/profile.svg';
 import { ReactComponent as SignOutIcon } from '@/icons/sign-out.svg';
+import { signOut } from 'firebase/auth';
 import { auth } from '@/api/firebase';
 import {
   Container,
@@ -51,7 +52,7 @@ const BottomNavbar: React.VFC<Props> = ({ searchIcon }) => {
         </NavLink>
 
         {userId ? (
-          <IconWrapper onClick={() => auth.signOut()}>
+          <IconWrapper onClick={() => signOut(auth)}>
             <SignOutIcon />
           </IconWrapper>
         ) : (
