@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AppThunk } from '../store';
-import { getTitles, deleteTitleFB } from '../../api/firebase';
+import { getTitles, deleteTitleFB } from '@/api/firebase';
 
 interface Title {
   id: string;
@@ -53,22 +53,23 @@ export const {
   deleteTitle,
 } = myList.actions;
 
-export const fetchTitles = (userId: string): AppThunk => async (dispatch) => {
-  try {
-    dispatch(getTitlesStart());
-    const titles = await getTitles(userId);
-    dispatch(getTitlesSuccess(titles));
-  } catch (error) {
-    dispatch(getTitlesFailure(error.toString()));
-  }
-};
+export const fetchTitles =
+  (userId: string): AppThunk =>
+  async (dispatch) => {
+    try {
+      dispatch(getTitlesStart());
+      const titles = await getTitles(userId);
+      dispatch(getTitlesSuccess(titles));
+    } catch (error) {
+      dispatch(getTitlesFailure(error.toString()));
+    }
+  };
 
-export const removeTitle = (
-  userId: string,
-  firebaseId: string
-): AppThunk => async (dispatch) => {
-  deleteTitleFB(userId, firebaseId);
-  dispatch(deleteTitle(firebaseId));
-};
+export const removeTitle =
+  (userId: string, firebaseId: string): AppThunk =>
+  async (dispatch) => {
+    deleteTitleFB(userId, firebaseId);
+    dispatch(deleteTitle(firebaseId));
+  };
 
 export default myList.reducer;

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { Link as RouterLink } from 'react-router-dom';
-import sizes from '../../sizes';
-import { fadeEffect, background } from '../../GlobalStyles';
+import { Link } from 'react-router-dom';
+import sizes from '@/utils/sizes';
+import { fadeEffect, background } from '@/root/GlobalStyles';
 
 export const Container = styled.div`
   width: 100%;
@@ -36,7 +36,7 @@ export const Column = styled.div`
   }
 `;
 
-export const Link = styled(RouterLink)`
+export const StyledLink = styled(Link)`
   width: 100%;
   height: 110vw;
   position: relative;

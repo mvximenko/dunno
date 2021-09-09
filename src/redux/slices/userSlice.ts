@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AppThunk } from '../store';
-import { auth, createUserProfileDocument } from '../../api/firebase';
+import { auth, createUserProfileDocument } from '@/api/firebase';
 
 interface UserState {
   userId: string | null;

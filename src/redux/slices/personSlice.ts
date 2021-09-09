@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AppThunk } from '../store';
-import { getPerson } from '../../api/tmdb';
+import { getPerson } from '@/api/tmdb';
 
 interface Title {
   id: number;
@@ -57,14 +57,16 @@ export const {
   resetPerson,
 } = person.actions;
 
-export const fetchPerson = (personId: string): AppThunk => async (dispatch) => {
-  try {
-    dispatch(getPersonStart());
-    const res = await getPerson(personId);
-    dispatch(getPersonSuccess(res));
-  } catch (error) {
-    dispatch(getPersonFailure(error.toString()));
-  }
-};
+export const fetchPerson =
+  (personId: string): AppThunk =>
+  async (dispatch) => {
+    try {
+      dispatch(getPersonStart());
+      const res = await getPerson(personId);
+      dispatch(getPersonSuccess(res));
+    } catch (error) {
+      dispatch(getPersonFailure(error.toString()));
+    }
+  };
 
 export default person.reducer;

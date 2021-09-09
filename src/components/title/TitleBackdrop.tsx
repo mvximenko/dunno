@@ -1,8 +1,8 @@
 import { useDispatch } from 'react-redux';
-import { useSelector } from '../../redux/store';
-import { setLoaded } from '../../redux/slices/titleSlice';
-import Backdrop from '../../assets/backdrop.png';
-import { IMAGE_BASE_URL, BACKDROP_SIZE } from '../../config';
+import { useSelector } from '@/redux/store';
+import { setLoaded } from '@/redux/slices/titleSlice';
+import Backdrop from '@/assets/backdrop.png';
+import { IMAGE_BASE_URL, BACKDROP_SIZE } from '@/root/config';
 import { Placeholder, Img, Background } from './TitleBackdropStyles';
 
 interface Props {

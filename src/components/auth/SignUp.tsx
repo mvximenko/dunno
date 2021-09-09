@@ -1,8 +1,15 @@
 import { useState } from 'react';
 import { Redirect } from 'react-router-dom';
-import { useSelector } from '../../redux/store';
-import { auth, createUserProfileDocument } from '../../api/firebase';
-import { Container, Form, Heading, Input, Button, Link } from './SignInStyles';
+import { useSelector } from '@/redux/store';
+import { auth, createUserProfileDocument } from '@/api/firebase';
+import {
+  Container,
+  Form,
+  Heading,
+  Input,
+  Button,
+  StyledLink,
+} from './SignInStyles';
 
 const SignUp = () => {
   const [userCredentials, setUserCredentials] = useState({
@@ -85,7 +92,7 @@ const SignUp = () => {
           required
         />
         <Button type='submit'>Sign Up</Button>
-        <Link to='/signin'>Already have an account? Sign in</Link>
+        <StyledLink to='/signin'>Already have an account? Sign in</StyledLink>
       </Form>
     </Container>
   );

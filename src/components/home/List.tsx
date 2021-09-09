@@ -1,16 +1,12 @@
 import { useCallback, useEffect, useRef } from 'react';
 import { useDispatch, shallowEqual } from 'react-redux';
-import { useSelector } from '../../redux/store';
-import {
-  fetchList,
-  incrementPage,
-  ListTypes,
-} from '../../redux/slices/listSlice';
+import { useSelector } from '@/redux/store';
+import { fetchList, incrementPage, ListTypes } from '@/redux/slices/listSlice';
 import ScrollContainer from 'react-indiana-drag-scroll';
 import ListPoster from './ListPoster';
-import useInfiniteScroll from '../../hooks/useInfiniteScroll';
-import { IMAGE_BASE_URL, POSTER_SIZE } from '../../config';
-import { titleCase } from '../../helpers';
+import useInfiniteScroll from '@/hooks/useInfiniteScroll';
+import { IMAGE_BASE_URL, POSTER_SIZE } from '@/root/config';
+import titleCase from '@/utils/titleCase';
 import { Heading, Container, InitialSpace, LoadMore } from './ListStyles';
 
 interface Props {
@@ -57,7 +53,7 @@ const List: React.VFC<Props> = ({ mediaType, category, id }) => {
                   )
               )}
           </InitialSpace>
-          {page < totalPages && <LoadMore ref={bottomBoundaryRef}></LoadMore>}
+          {page < totalPages && <LoadMore ref={bottomBoundaryRef} />}
         </Container>
       </ScrollContainer>
     </>

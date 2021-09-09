@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { Link as RouterLink } from 'react-router-dom';
-import sizes from '../../sizes';
+import { Link } from 'react-router-dom';
+import sizes from '@/utils/sizes';
 
 export const Container = styled.div`
   height: 80vh;
@@ -37,7 +37,7 @@ export const Paragraph = styled.p`
   }
 `;
 
-export const Link = styled(RouterLink)`
+export const StyledLink = styled(Link)`
   width: 50vw;
   margin: 0 auto;
   padding: 3vw;

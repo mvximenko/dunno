@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AppThunk } from '../store';
-import { getList } from '../../api/tmdb';
-import { MOVIES, TV, NETWORKS, COMPANIES } from '../../config';
+import { getList } from '@/api/tmdb';
+import { MOVIES, TV, NETWORKS, COMPANIES } from '@/root/config';
 
 interface Title {
   id: number;
@@ -81,18 +81,15 @@ const list = createSlice({
 
 export const { setList, incrementPage, resetLists } = list.actions;
 
-export const fetchList = (
-  category: string,
-  mediaType: string,
-  page: number,
-  id?: number
-): AppThunk => async (dispatch) => {
-  try {
-    const res = await getList(category, mediaType, page, id);
-    dispatch(setList(res));
-  } catch (error) {
-    console.log(error);
-  }
-};
+export const fetchList =
+  (category: string, mediaType: string, page: number, id?: number): AppThunk =>
+  async (dispatch) => {
+    try {
+      const res = await getList(category, mediaType, page, id);
+      dispatch(setList(res));
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
 export default list.reducer;

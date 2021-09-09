@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import sizes from '../../sizes';
+import sizes from '@/utils/sizes';
 
 export const Heading = styled.h1`
   font-size: 18px;

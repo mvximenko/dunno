@@ -1,14 +1,14 @@
 import { useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { useSelector } from '../../redux/store';
-import { setIsOpen } from '../../redux/slices/searchSlice';
-import HomeIcon from '../assets/HomeIcon';
-import SearchIcon from '../assets/SearchIcon';
-import FavoriteIcon from '../assets/FavoriteIcon';
-import RandomizerIcon from '../assets/RandomizerIcon';
-import ProfileIcon from '../assets/ProfileIcon';
-import SignOutIcon from '../assets/SignOutIcon';
-import { auth } from '../../api/firebase';
+import { useSelector } from '@/redux/store';
+import { setIsOpen } from '@/redux/slices/searchSlice';
+import { ReactComponent as HomeIcon } from '@/icons/home.svg';
+import { ReactComponent as SearchIcon } from '@/icons/search.svg';
+import { ReactComponent as FavoriteIcon } from '@/icons/favorite.svg';
+import { ReactComponent as RandomizerIcon } from '@/icons/randomizer.svg';
+import { ReactComponent as ProfileIcon } from '@/icons/profile.svg';
+import { ReactComponent as SignOutIcon } from '@/icons/sign-out.svg';
+import { auth } from '@/api/firebase';
 import {
   Container,
   Space,

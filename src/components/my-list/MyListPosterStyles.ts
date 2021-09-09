@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-import { Link as RouterLink } from 'react-router-dom';
-import sizes from '../../sizes';
-import { fadeEffect } from '../../GlobalStyles';
+import { Link } from 'react-router-dom';
+import sizes from '@/utils/sizes';
+import { fadeEffect } from '@/root/GlobalStyles';
 
-export const Link = styled(RouterLink)`
+export const StyledLink = styled(Link)`
   height: 0;
   position: relative;
   background: #101010;

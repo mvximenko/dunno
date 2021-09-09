@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AppThunk } from '../store';
-import { getTitles } from '../../api/tmdb';
+import { getTitles } from '@/api/tmdb';
 
 interface Search {
   id: number;
@@ -60,14 +60,16 @@ export const {
   resetSearch,
 } = search.actions;
 
-export const fetchTitles = (value: string): AppThunk => async (dispatch) => {
-  try {
-    dispatch(getTitlesStart());
-    const res = await getTitles(value);
-    dispatch(getTitlesSuccess(res));
-  } catch (error) {
-    dispatch(getTitlesFailure(error.toString()));
-  }
-};
+export const fetchTitles =
+  (value: string): AppThunk =>
+  async (dispatch) => {
+    try {
+      dispatch(getTitlesStart());
+      const res = await getTitles(value);
+      dispatch(getTitlesSuccess(res));
+    } catch (error) {
+      dispatch(getTitlesFailure(error.toString()));
+    }
+  };
 
 export default search.reducer;

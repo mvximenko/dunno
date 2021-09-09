@@ -1,5 +1,5 @@
-import { API_URL, API_KEY } from '../config';
-import { Genres } from '../redux/slices/randomizerSlice';
+import { API_URL, API_KEY } from '@/root/config';
+import { Genres } from '@/redux/slices/randomizerSlice';
 
 export const getList = async (
   category: string,

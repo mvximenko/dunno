@@ -1,14 +1,10 @@
 import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { useSelector } from '../../redux/store';
-import {
-  setValue,
-  fetchTitles,
-  resetSearch,
-} from '../../redux/slices/searchSlice';
-import SearchIcon from '../assets/SearchIcon';
-import XMarkCircle from '../assets/XMarkCircle';
+import { useSelector } from '@/redux/store';
+import { setValue, fetchTitles, resetSearch } from '@/redux/slices/searchSlice';
+import { ReactComponent as SearchIcon } from '@/icons/search.svg';
+import { ReactComponent as XMarkCircle } from '@/icons/x-mark-circle.svg';
 import {
   Overlay,
   Container,

@@ -1,5 +1,5 @@
 import { Route, Redirect, RouteProps } from 'react-router-dom';
-import { useSelector } from '../../redux/store';
+import { useSelector } from '@/redux/store';
 import Spinner from '../layout/Spinner';
 
 interface PrivateRouteProps extends RouteProps {

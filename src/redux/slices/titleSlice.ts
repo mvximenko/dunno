@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AppThunk } from '../store';
-import { getTitle } from '../../api/tmdb';
-import { checkTitleFB, addTitleFB, deleteTitleFB } from '../../api/firebase';
+import { getTitle } from '@/api/tmdb';
+import { checkTitleFB, addTitleFB, deleteTitleFB } from '@/api/firebase';
 
 interface Title {
   title: string;
@@ -96,57 +96,56 @@ export const {
   resetTitle,
 } = title.actions;
 
-export const fetchTitle = (
-  mediaType: string,
-  titleId: string
-): AppThunk => async (dispatch) => {
-  try {
-    dispatch(getTitleStart());
-    const res = await getTitle(mediaType, titleId);
-    dispatch(getTitleSuccess(res));
-  } catch (error) {
-    dispatch(getTitleFailure(error.toString()));
-  }
-};
-
-export const checkTitle = (
-  userId: string,
-  id: string,
-  mediaType: string
-): AppThunk => async (dispatch) => {
-  try {
-    const firebaseId = await checkTitleFB(userId, id, mediaType);
-    if (firebaseId) dispatch(setFirebaseId(firebaseId));
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-export const toggle = (
-  userId: string,
-  id: string,
-  mediaType: string,
-  posterPath: string,
-  title: string,
-  firebaseId: string
-): AppThunk => async (dispatch) => {
-  try {
-    if (firebaseId) {
-      deleteTitleFB(userId, firebaseId);
-      dispatch(setFirebaseId(''));
-    } else {
-      const firebaseId = await addTitleFB(
-        userId,
-        id,
-        mediaType,
-        posterPath,
-        title
-      );
-      if (firebaseId) dispatch(setFirebaseId(firebaseId));
+export const fetchTitle =
+  (mediaType: string, titleId: string): AppThunk =>
+  async (dispatch) => {
+    try {
+      dispatch(getTitleStart());
+      const res = await getTitle(mediaType, titleId);
+      dispatch(getTitleSuccess(res));
+    } catch (error) {
+      dispatch(getTitleFailure(error.toString()));
     }
-  } catch (error) {
-    console.log(error);
-  }
-};
+  };
+
+export const checkTitle =
+  (userId: string, id: string, mediaType: string): AppThunk =>
+  async (dispatch) => {
+    try {
+      const firebaseId = await checkTitleFB(userId, id, mediaType);
+      if (firebaseId) dispatch(setFirebaseId(firebaseId));
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+export const toggle =
+  (
+    userId: string,
+    id: string,
+    mediaType: string,
+    posterPath: string,
+    title: string,
+    firebaseId: string
+  ): AppThunk =>
+  async (dispatch) => {
+    try {
+      if (firebaseId) {
+        deleteTitleFB(userId, firebaseId);
+        dispatch(setFirebaseId(''));
+      } else {
+        const firebaseId = await addTitleFB(
+          userId,
+          id,
+          mediaType,
+          posterPath,
+          title
+        );
+        if (firebaseId) dispatch(setFirebaseId(firebaseId));
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
 export default title.reducer;

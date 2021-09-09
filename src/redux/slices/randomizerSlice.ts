@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AppThunk } from '../store';
-import { getGenres, getRandomTitle } from '../../api/tmdb';
+import { getGenres, getRandomTitle } from '@/api/tmdb';
 
 interface Title {
   id: number;
@@ -101,17 +101,16 @@ export const fetchGenres = (): AppThunk => async (dispatch) => {
   }
 };
 
-export const fetchTitle = (
-  mediaType: string,
-  genres: Genres
-): AppThunk => async (dispatch) => {
-  try {
-    dispatch(getTitleStart());
-    const res = await getRandomTitle(mediaType, genres);
-    dispatch(getTitleSuccess(res));
-  } catch (error) {
-    dispatch(getTitleFailure(error.toString()));
-  }
-};
+export const fetchTitle =
+  (mediaType: string, genres: Genres): AppThunk =>
+  async (dispatch) => {
+    try {
+      dispatch(getTitleStart());
+      const res = await getRandomTitle(mediaType, genres);
+      dispatch(getTitleSuccess(res));
+    } catch (error) {
+      dispatch(getTitleFailure(error.toString()));
+    }
+  };
 
 export default randomizer.reducer;

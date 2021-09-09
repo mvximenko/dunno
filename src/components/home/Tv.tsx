@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { resetLists } from '../../redux/slices/listSlice';
+import { resetLists } from '@/redux/slices/listSlice';
 import List from './List';
 import Categories from './Categories';
-import { TV, NETWORKS } from '../../config';
+import { TV, NETWORKS } from '@/root/config';
 import { Container } from './HomeStyles';
 
 const Tv = () => {

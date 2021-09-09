@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { Link as RouterLink, NavLink as RouterNavLink } from 'react-router-dom';
-import sizes from '../../sizes';
+import { Link, NavLink } from 'react-router-dom';
+import sizes from '@/utils/sizes';
 
 export const StyledHeader = styled.header`
   display: none;
@@ -22,7 +22,7 @@ export const StyledHeader = styled.header`
   }
 `;
 
-export const LogoLink = styled(RouterLink)`
+export const LogoLink = styled(Link)`
   font-size: 26px;
   font-weight: 600;
   font-family: sans-serif;
@@ -36,7 +36,7 @@ export const Nav = styled.nav`
   text-align: center;
 `;
 
-export const NavLink = styled(RouterNavLink)`
+export const StyledNavLink = styled(NavLink)`
   margin: 0 2vw;
   color: #aeaeae;
   transition: all 350ms;

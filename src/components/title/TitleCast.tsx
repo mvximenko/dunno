@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { IMAGE_BASE_URL, PHOTO_SIZE } from '../../config';
-import Poster from '../../assets/poster.png';
+import { IMAGE_BASE_URL, PHOTO_SIZE } from '@/root/config';
+import Poster from '@/assets/poster.png';
 import { Column, Photo, Img, Name } from './TitleCastStyles';
 
 interface Props {

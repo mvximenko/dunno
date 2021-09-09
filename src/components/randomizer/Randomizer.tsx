@@ -1,20 +1,20 @@
 import { useEffect } from 'react';
 import { useDispatch, shallowEqual } from 'react-redux';
-import { useSelector } from '../../redux/store';
-import PosterPng from '../../assets/poster.png';
-import useWindowDimensions from '../../hooks/useWindowDimensions';
+import { useSelector } from '@/redux/store';
+import PosterPng from '@/assets/poster.png';
+import useWindowDimensions from '@/hooks/useWindowDimensions';
 import {
   fetchGenres,
   fetchTitle,
   setLoaded,
   resetLoaded,
-} from '../../redux/slices/randomizerSlice';
-import { IMAGE_BASE_URL, POSTER_SIZE, BACKDROP_SIZE } from '../../config';
+} from '@/redux/slices/randomizerSlice';
+import { IMAGE_BASE_URL, POSTER_SIZE, BACKDROP_SIZE } from '@/root/config';
 import {
   Container,
   Background,
   Column,
-  Link,
+  StyledLink,
   Img,
   Buttons,
   Button,
@@ -57,7 +57,7 @@ const Randomizer = () => {
         />
       )}
       <Column>
-        <Link to={poster_path ? `${name ? 'tv' : 'movie'}/${id}` : `#`}>
+        <StyledLink to={poster_path ? `${name ? 'tv' : 'movie'}/${id}` : `#`}>
           <Img
             alt={title || name}
             src={
@@ -68,7 +68,7 @@ const Randomizer = () => {
             fade={poster}
             onLoad={() => dispatch(setLoaded('poster'))}
           />
-        </Link>
+        </StyledLink>
         <Buttons>
           <Button onClick={() => dispatch(resetLoaded('tv'))}>TV SHOW</Button>
           <Button onClick={() => dispatch(resetLoaded('movie'))}>MOVIE</Button>

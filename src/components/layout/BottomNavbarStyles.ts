@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import { NavLink as RouterNavLink } from 'react-router-dom';
-import sizes from '../../sizes';
+import sizes from '@/utils/sizes';
 
 const icon = css`
   width: 100%;

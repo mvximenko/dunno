@@ -1,5 +1,5 @@
-import StarIcon from '../assets/StarIcon';
-import Imdb from '../assets/Imdb';
+import { ReactComponent as Star } from '@/assets/star.svg';
+import { ReactComponent as Imdb } from '@/assets/imdb.svg';
 import { Rating, ImdbWrapper, StarWrapper, Rank } from './TitleRatingStyles';
 
 const TitleRating: React.VFC<{ rating: number }> = ({ rating }) => (
@@ -9,7 +9,7 @@ const TitleRating: React.VFC<{ rating: number }> = ({ rating }) => (
     </ImdbWrapper>
     <Rank>{rating}/10</Rank>
     <StarWrapper>
-      <StarIcon />
+      <Star />
     </StarWrapper>
   </Rating>
 );

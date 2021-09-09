@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import sizes from '../../sizes';
+import sizes from '@/utils/sizes';
 
 const styles = css`
   display: flex;

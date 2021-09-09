@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { useSelector } from '../../redux/store';
-import { fetchPerson, resetPerson } from '../../redux/slices/personSlice';
+import { useSelector } from '@/redux/store';
+import { fetchPerson, resetPerson } from '@/redux/slices/personSlice';
 import Spinner from '../layout/Spinner';
 import NotFound from '../layout/NotFound';
-import PosterPng from '../../assets/poster.png';
-import { IMAGE_BASE_URL, TINY_POSTER_SIZE } from '../../config';
+import PosterPng from '@/assets/poster.png';
+import { IMAGE_BASE_URL, TINY_POSTER_SIZE } from '@/root/config';
 import { Wrapper, Heading, Row, Placeholder, Img, Span } from './PersonStyles';
 
 const Person = () => {

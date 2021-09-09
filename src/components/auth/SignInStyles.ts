@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
-import { Link as RouterLink } from 'react-router-dom';
-import sizes from '../../sizes';
+import { Link } from 'react-router-dom';
+import sizes from '@/utils/sizes';
 
 const common = css`
   margin-bottom: 20px;
@@ -85,7 +85,7 @@ export const Button = styled.button<{ google?: boolean }>`
   `}
 `;
 
-export const Link = styled(RouterLink)`
+export const StyledLink = styled(Link)`
   margin: auto;
   text-align: center;
   &:hover {

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { useSelector } from '../../redux/store';
-import { fetchTitles } from '../../redux/slices/myListSlice';
+import { useSelector } from '@/redux/store';
+import { fetchTitles } from '@/redux/slices/myListSlice';
 import MyListPoster from './MyListPoster';
 import { Container, Heading } from './MyListStyles';
 

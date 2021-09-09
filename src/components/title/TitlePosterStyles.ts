@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import sizes from '../../sizes';
-import { fadeEffect } from '../../GlobalStyles';
+import sizes from '@/utils/sizes';
+import { fadeEffect } from '@/root/GlobalStyles';
 
 export const Container = styled.div`
   width: 585px;

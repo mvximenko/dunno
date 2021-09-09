@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, Img } from './ListPosterStyles';
+import { StyledLink, Img } from './ListPosterStyles';
 
 interface Props {
   id: number;
@@ -11,7 +11,7 @@ interface Props {
 const ListPoster: React.VFC<Props> = ({ id, mediaType, title, posterPath }) => {
   const [loaded, setLoaded] = useState(false);
   return (
-    <Link to={`/${mediaType}/${id}`} aria-label={title}>
+    <StyledLink to={`/${mediaType}/${id}`} aria-label={title}>
       <Img
         loading='lazy'
         alt={title}
@@ -19,7 +19,7 @@ const ListPoster: React.VFC<Props> = ({ id, mediaType, title, posterPath }) => {
         fade={loaded}
         onLoad={() => setLoaded(true)}
       />
-    </Link>
+    </StyledLink>
   );
 };
 

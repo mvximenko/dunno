@@ -1,8 +1,15 @@
 import { useState } from 'react';
 import { Redirect } from 'react-router-dom';
-import { useSelector } from '../../redux/store';
-import { auth, signInWithGoogle } from '../../api/firebase';
-import { Container, Form, Heading, Input, Button, Link } from './SignInStyles';
+import { useSelector } from '@/redux/store';
+import { auth, signInWithGoogle } from '@/api/firebase';
+import {
+  Container,
+  Form,
+  Heading,
+  Input,
+  Button,
+  StyledLink,
+} from './SignInStyles';
 
 const SignIn = () => {
   const [userCredentials, setCredentials] = useState({
@@ -56,7 +63,7 @@ const SignIn = () => {
         <Button type='button' google onClick={signInWithGoogle}>
           Sign in with Google
         </Button>
-        <Link to='/signup'>{'New to Dunno? Sign up'}</Link>
+        <StyledLink to='/signup'>New to Dunno? Sign up</StyledLink>
       </Form>
     </Container>
   );

@@ -1,14 +1,14 @@
-import { Container, NavLink } from './CategoriesStyles';
+import { Container, StyledNavLink } from './CategoriesStyles';
 
 const Categories = () => (
   <Container>
-    <NavLink exact to='/'>
+    <StyledNavLink exact to='/'>
       TV SHOWS
-    </NavLink>
+    </StyledNavLink>
 
-    <NavLink exact to='/movie'>
+    <StyledNavLink exact to='/movie'>
       MOVIES
-    </NavLink>
+    </StyledNavLink>
   </Container>
 );
 

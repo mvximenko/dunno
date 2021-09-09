@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { removeTitle } from '../../redux/slices/myListSlice';
-import XMark from '../assets/XMark';
-import { IMAGE_BASE_URL, POSTER_SIZE } from '../../config';
-import { Link, Img, Button } from './MyListPosterStyles';
+import { removeTitle } from '@/redux/slices/myListSlice';
+import { ReactComponent as XMark } from '@/icons/x-mark.svg';
+import { IMAGE_BASE_URL, POSTER_SIZE } from '@/root/config';
+import { StyledLink, Img, Button } from './MyListPosterStyles';
 
 const MyListPoster: React.VFC<{
   [key: string]: string;
@@ -12,7 +12,7 @@ const MyListPoster: React.VFC<{
   const [loaded, setLoaded] = useState(false);
 
   return (
-    <Link to={`/${mediaType}/${id}`} key={firebaseId}>
+    <StyledLink to={`/${mediaType}/${id}`} key={firebaseId}>
       <Img
         onLoad={() => setLoaded(true)}
         alt={title}
@@ -27,7 +27,7 @@ const MyListPoster: React.VFC<{
       >
         <XMark />
       </Button>
-    </Link>
+    </StyledLink>
   );
 };
 

@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { useSelector } from '../../redux/store';
-import { checkTitle, toggle } from '../../redux/slices/titleSlice';
-import PlusIcon from '../assets/PlusIcon';
-import SuccessIcon from '../assets/SuccessIcon';
-import PlayIcon from '../assets/PlayIcon';
+import { useSelector } from '@/redux/store';
+import { checkTitle, toggle } from '@/redux/slices/titleSlice';
+import { ReactComponent as PlusIcon } from '@/icons/plus.svg';
+import { ReactComponent as SuccessIcon } from '@/icons/success.svg';
+import { ReactComponent as PlayIcon } from '@/icons/play.svg';
 import { Row, Button, Link, IconWrapper } from './TitleButtonsStyles';
 
 const TitleButtons: React.VFC<{ [key: string]: string }> = ({

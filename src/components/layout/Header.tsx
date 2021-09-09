@@ -1,16 +1,16 @@
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { useSelector } from '../../redux/store';
-import { setIsOpen } from '../../redux/slices/searchSlice';
-import SearchIcon from '../assets/SearchIcon';
-import SignOutIcon from '../assets/SignOutIcon';
-import ProfileIcon from '../assets/ProfileIcon';
-import { auth } from '../../api/firebase';
+import { useSelector } from '@/redux/store';
+import { setIsOpen } from '@/redux/slices/searchSlice';
+import { ReactComponent as SearchIcon } from '@/icons/search.svg';
+import { ReactComponent as SignOutIcon } from '@/icons/sign-out.svg';
+import { ReactComponent as ProfileIcon } from '@/icons/profile.svg';
+import { auth } from '@/api/firebase';
 import {
   StyledHeader,
   LogoLink,
   Nav,
-  NavLink,
+  StyledNavLink,
   Icons,
   IconWrapper,
 } from './HeaderStyles';
@@ -28,18 +28,18 @@ const Header: React.VFC<Props> = ({ searchIcon }) => {
       <LogoLink to='/'>dunno</LogoLink>
 
       <Nav>
-        <NavLink exact to='/'>
+        <StyledNavLink exact to='/'>
           TV Shows
-        </NavLink>
-        <NavLink exact to='/movie'>
+        </StyledNavLink>
+        <StyledNavLink exact to='/movie'>
           Movies
-        </NavLink>
-        <NavLink exact to='/randomizer'>
+        </StyledNavLink>
+        <StyledNavLink exact to='/randomizer'>
           Randomizer
-        </NavLink>
-        <NavLink exact to='/my-list'>
+        </StyledNavLink>
+        <StyledNavLink exact to='/my-list'>
           My List
-        </NavLink>
+        </StyledNavLink>
       </Nav>
 
       <Icons>

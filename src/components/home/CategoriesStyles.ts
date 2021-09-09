@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { NavLink as RouterNavLink } from 'react-router-dom';
-import sizes from '../../sizes';
+import { NavLink } from 'react-router-dom';
+import sizes from '@/utils/sizes';
 
 export const Container = styled.nav`
   display: flex;
@@ -11,7 +11,7 @@ export const Container = styled.nav`
   }
 `;
 
-export const NavLink = styled(RouterNavLink)`
+export const StyledNavLink = styled(NavLink)`
   color: #aeaeae;
   font-size: 5vw;
   &.active {

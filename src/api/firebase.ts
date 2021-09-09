@@ -28,7 +28,7 @@ export const createUserProfileDocument = async (
     try {
       await userRef.set({ displayName, email, createdAt, ...additionalData });
     } catch (error) {
-      console.log('error creating user', error.message);
+      console.error('Error creating user', error.message);
     }
   }
   return userRef;
@@ -53,7 +53,7 @@ export const addTitleFB = async (
 
     return firebaseId;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 
@@ -76,7 +76,7 @@ export const checkTitleFB = async (
       return firebaseId;
     }
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 
@@ -93,7 +93,7 @@ export const getTitles = async (userId: string) => {
       titles.push(doc.data());
     });
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
   return titles;
 };

@@ -1,8 +1,8 @@
 import { useDispatch } from 'react-redux';
-import { useSelector } from '../../redux/store';
-import { setLoaded } from '../../redux/slices/titleSlice';
-import PosterPng from '../../assets/poster.png';
-import { IMAGE_BASE_URL, POSTER_SIZE } from '../../config';
+import { useSelector } from '@/redux/store';
+import { setLoaded } from '@/redux/slices/titleSlice';
+import PosterPng from '@/assets/poster.png';
+import { IMAGE_BASE_URL, POSTER_SIZE } from '@/root/config';
 import { Container, Img } from './TitlePosterStyles';
 
 interface Props {
