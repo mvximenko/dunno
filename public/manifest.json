@@ -15,11 +15,12 @@
     {
       "src": "logo512.png",
       "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "512x512",
+      "purpose": "maskable"
     }
   ],
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#161616",
-  "background_color": "#504F5F"
+  "background_color": "#222222"
 }
