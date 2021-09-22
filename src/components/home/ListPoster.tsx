@@ -13,9 +13,9 @@ const ListPoster: React.VFC<Props> = ({ id, mediaType, title, posterPath }) => {
   return (
     <StyledLink to={`/${mediaType}/${id}`} aria-label={title}>
       <Img
-        loading='lazy'
         alt={title}
-        src={posterPath}
+        className='lazy'
+        data-src={posterPath}
         fade={loaded}
         onLoad={() => setLoaded(true)}
       />

@@ -5,6 +5,7 @@ import { fetchList, incrementPage, ListTypes } from '@/redux/slices/listSlice';
 import ScrollContainer from 'react-indiana-drag-scroll';
 import ListPoster from './ListPoster';
 import useInfiniteScroll from '@/hooks/useInfiniteScroll';
+import useLazyLoading from '@/hooks/useLazyLoading';
 import { IMAGE_BASE_URL, POSTER_SIZE } from '@/root/config';
 import titleCase from '@/utils/titleCase';
 import { Heading, Container, InitialSpace, LoadMore } from './ListStyles';
@@ -33,6 +34,7 @@ const List: React.VFC<Props> = ({ mediaType, category, id }) => {
 
   const bottomBoundaryRef = useRef<HTMLDivElement>(null);
   useInfiniteScroll(bottomBoundaryRef, handleLoad);
+  useLazyLoading('.lazy', titles);
   return (
     <>
       <Heading>{titleCase(category)}</Heading>

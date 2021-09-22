@@ -5,7 +5,7 @@ export const GlobalStyle = createGlobalStyle`
   body,
   #root {
     height: 100%;
-  } 
+  }
 
   body {
     margin: 0;
@@ -29,8 +29,8 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
   }
 
-  svg { 
-    display: block; 
+  svg {
+    display: block;
   }
 `;
 

@@ -3,12 +3,12 @@ import { useEffect, useCallback } from 'react';
 export default function useInfiniteScroll(
   scrollRef: React.RefObject<HTMLDivElement>,
   dispatch: () => void
-): void {
+) {
   const scrollObserver = useCallback(
     (node: HTMLDivElement) => {
-      new IntersectionObserver((entries): void => {
-        entries.forEach((en) => {
-          if (en.intersectionRatio > 0) {
+      new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.intersectionRatio > 0) {
             dispatch();
           }
         });
