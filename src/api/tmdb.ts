@@ -1,53 +1,61 @@
 import { API_URL, API_KEY } from '@/root/config';
-import { Genres } from '@/redux/slices/randomizerSlice';
+import {
+  GetList,
+  GetPerson,
+  GetGenres,
+  GetRandomTitle,
+  GetTitles,
+  GetTitle,
+} from '@/types/tmdb';
 
-export const getList = async (
-  category: string,
-  mediaType: string,
-  page: number,
-  id?: number
-) => {
+export const getList: GetList = async (category, mediaType, page, id?) => {
   const key = `${mediaType}_${category}_${page}_${id}`;
   const index = `${category}_${mediaType}`;
+
   if (sessionStorage.getItem(key)) {
     const { results, totalPages } = JSON.parse(sessionStorage.getItem(key)!);
-    return { key: index, results, totalPages };
-  } else {
-    const endpoint = id
-      ? mediaType === 'tv'
-        ? `${API_URL}discover/tv?api_key=${API_KEY}&language=en-US&with_networks=${id}&page=${page}`
-        : `${API_URL}discover/movie?api_key=${API_KEY}&language=en-US&with_companies=${id}&page=${page}`
-      : `${API_URL}${mediaType}/${category}?api_key=${API_KEY}&language=en-US&page=${page}`;
-
-    const res = await fetch(endpoint);
-    const { results, total_pages: totalPages } = await res.json();
-    sessionStorage.setItem(key, JSON.stringify({ results, totalPages }));
-    return { key: index, results, totalPages };
+    return {
+      key: index,
+      results,
+      totalPages,
+    };
   }
+
+  const endpoint = id
+    ? mediaType === 'tv'
+      ? `${API_URL}discover/tv?api_key=${API_KEY}&language=en-US&with_networks=${id}&page=${page}`
+      : `${API_URL}discover/movie?api_key=${API_KEY}&language=en-US&with_companies=${id}&page=${page}`
+    : `${API_URL}${mediaType}/${category}?api_key=${API_KEY}&language=en-US&page=${page}`;
+
+  const res = await fetch(endpoint);
+  const { results, total_pages: totalPages } = await res.json();
+  sessionStorage.setItem(key, JSON.stringify({ results, totalPages }));
+
+  return {
+    key: index,
+    results,
+    totalPages,
+  };
 };
 
-export const getPerson = async (personId: string) => {
+export const getPerson: GetPerson = async (personId) => {
   const key = `person_${personId}`;
   if (localStorage.getItem(key)) {
     return JSON.parse(localStorage.getItem(key)!);
-  } else {
-    const endpoint = `${API_URL}person/${personId}?api_key=${API_KEY}&language=en-US&append_to_response=combined_credits`;
-    const res = await fetch(endpoint);
-    const { status_message, ...rest } = await res.json();
-
-    if (status_message) throw status_message;
-
-    const {
-      name,
-      combined_credits: { cast: titles },
-    } = rest;
-
-    localStorage.setItem(key, JSON.stringify({ name, titles }));
-    return { name, titles };
   }
+
+  const endpoint = `${API_URL}person/${personId}?api_key=${API_KEY}&language=en-US&append_to_response=combined_credits`;
+  const res = await fetch(endpoint);
+  const {
+    name,
+    combined_credits: { cast: titles },
+  } = await res.json();
+
+  localStorage.setItem(key, JSON.stringify({ name, titles }));
+  return { name, titles };
 };
 
-export const getGenres = async () => {
+export const getGenres: GetGenres = async () => {
   const tvEndpoint = `${API_URL}genre/tv/list?api_key=${API_KEY}&language=en-US`;
   const res = await fetch(tvEndpoint);
   const { genres: tv } = await res.json();
@@ -59,7 +67,7 @@ export const getGenres = async () => {
   return { tv, movie };
 };
 
-export const getRandomTitle = async (mediaType: string, genres: Genres) => {
+export const getRandomTitle: GetRandomTitle = async (mediaType, genres) => {
   const page = Math.floor(Math.random() * 5) + 1;
   const random = Math.floor(Math.random() * genres[mediaType].length);
   const genre = genres[mediaType][random].id;
@@ -77,32 +85,27 @@ export const getRandomTitle = async (mediaType: string, genres: Genres) => {
   return title;
 };
 
-export const getTitles = async (value: string) => {
+export const getTitles: GetTitles = async (value) => {
   const endpoint = `${API_URL}search/multi?api_key=${API_KEY}&language=en-US&query=${value}`;
   const res = await fetch(endpoint);
   const { results: titles } = await res.json();
   return titles;
 };
 
-export const getTitle = async (mediaType: string, titleId: string) => {
+export const getTitle: GetTitle = async (mediaType, titleId) => {
   const key = `${mediaType}_${titleId}`;
   if (localStorage.getItem(key)) {
     return JSON.parse(localStorage.getItem(key)!);
-  } else {
-    const endpoint = `${API_URL}${mediaType}/${titleId}?api_key=${API_KEY}&append_to_response=videos,credits`;
-    const res = await fetch(endpoint);
-    const { status_message, ...rest } = await res.json();
-
-    if (status_message) throw status_message;
-
-    const {
-      credits: { cast },
-      videos: { results },
-      ...title
-    } = rest;
-
-    const data = { title, cast, results };
-    localStorage.setItem(key, JSON.stringify(data));
-    return data;
   }
+
+  const endpoint = `${API_URL}${mediaType}/${titleId}?api_key=${API_KEY}&append_to_response=videos,credits`;
+  const res = await fetch(endpoint);
+  const {
+    credits: { cast },
+    videos: { results },
+    ...title
+  } = await res.json();
+
+  localStorage.setItem(key, JSON.stringify({ title, cast, results }));
+  return { title, cast, results };
 };

@@ -10,7 +10,7 @@ interface Props {
   posterPath: string | null;
 }
 
-const TitlePosterDesktop: React.VFC<Props> = ({ title, posterPath }) => {
+const TitlePoster: React.VFC<Props> = ({ title, posterPath }) => {
   const dispatch = useDispatch();
   const isLoaded = useSelector((state) => state.title.poster);
   return (
@@ -29,4 +29,4 @@ const TitlePosterDesktop: React.VFC<Props> = ({ title, posterPath }) => {
   );
 };
 
-export default TitlePosterDesktop;
+export default TitlePoster;

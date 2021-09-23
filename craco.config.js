@@ -12,6 +12,7 @@ module.exports = {
       '@/redux': resolvePath('./src/redux'),
       '@/hooks': resolvePath('./src/hooks'),
       '@/utils': resolvePath('./src/utils'),
+      '@/types': resolvePath('./src/types'),
     },
   },
 };

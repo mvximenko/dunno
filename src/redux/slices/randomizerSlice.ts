@@ -1,21 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AppThunk } from '../store';
 import { getGenres, getRandomTitle } from '@/api/tmdb';
-
-interface Title {
-  id: number;
-  name: string;
-  title: string;
-  poster_path: string;
-  backdrop_path: string;
-}
-
-export interface Genres {
-  [key: string]: { id: number; name: string }[];
-}
+import { Genres, RandomTitle } from '@/types/tmdb';
 
 interface RandomizerState {
-  title: Title;
+  title: RandomTitle;
   genres: Genres;
   poster: boolean;
   backdrop: boolean;
@@ -61,7 +50,7 @@ const randomizer = createSlice({
       state.loading = true;
       state.error = null;
     },
-    getTitleSuccess: (state, action: PayloadAction<Title>) => {
+    getTitleSuccess: (state, action: PayloadAction<RandomTitle>) => {
       state.title = action.payload;
       state.mediaType = '';
     },

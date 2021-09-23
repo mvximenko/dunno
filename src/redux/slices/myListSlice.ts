@@ -1,22 +1,15 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AppThunk } from '../store';
 import { getTitles, deleteTitleFB } from '@/api/firebase';
+import { MyListTitle } from '@/types/firebase';
 
-interface Title {
-  id: string;
-  title: string;
-  mediaType: string;
-  posterPath: string;
-  firebaseId: string;
-}
-
-interface UserState {
-  titles: Title[];
+interface MyListState {
+  titles: MyListTitle[];
   loading: boolean;
   error: string | null;
 }
 
-const initialState: UserState = {
+const initialState: MyListState = {
   titles: [],
   loading: false,
   error: null,
@@ -30,7 +23,7 @@ const myList = createSlice({
       state.loading = true;
       state.error = null;
     },
-    getTitlesSuccess: (state, action: PayloadAction<Title[]>) => {
+    getTitlesSuccess: (state, action: PayloadAction<MyListTitle[]>) => {
       state.titles = action.payload;
       state.loading = false;
     },
@@ -40,7 +33,7 @@ const myList = createSlice({
     },
     deleteTitle: (state, action: PayloadAction<string>) => {
       state.titles = state.titles.filter(
-        (title: Title) => title.firebaseId !== action.payload
+        (title: MyListTitle) => title.firebaseId !== action.payload
       );
     },
   },

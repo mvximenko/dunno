@@ -1,25 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AppThunk } from '../store';
 import { getPerson } from '@/api/tmdb';
-
-interface Title {
-  id: number;
-  name: string;
-  title: string;
-  media_type: string;
-  poster_path: string;
-}
+import { PersonTitle, Person } from '@/types/tmdb';
 
 interface PersonState {
   name: string;
-  titles: Title[];
+  titles: PersonTitle[];
   loading: boolean;
   error: string | null;
-}
-
-interface PersonLoaded {
-  name: string;
-  titles: Title[];
 }
 
 const initialState: PersonState = {
@@ -37,7 +25,7 @@ const person = createSlice({
       state.loading = true;
       state.error = null;
     },
-    getPersonSuccess: (state, action: PayloadAction<PersonLoaded>) => {
+    getPersonSuccess: (state, action: PayloadAction<Person>) => {
       state.name = action.payload.name;
       state.titles = action.payload.titles;
       state.loading = false;

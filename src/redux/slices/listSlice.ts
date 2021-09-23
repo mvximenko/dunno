@@ -1,50 +1,52 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AppThunk } from '../store';
 import { getList } from '@/api/tmdb';
+import { ListTitle, List } from '@/types/tmdb';
 import { MOVIES, TV, NETWORKS, COMPANIES } from '@/root/config';
 
-interface Title {
-  id: number;
-  name: string;
-  title: string;
-  poster_path: string;
-}
-
-export interface ListTypes {
-  page: number;
-  titles: Title[];
-  totalPages: number;
-}
-
 interface ListState {
-  [key: string]: ListTypes;
+  [key: string]: {
+    page: number;
+    titles: ListTitle[];
+    totalPages: number;
+  };
 }
 
-interface SetList {
-  key: string;
-  results: Title[];
-  totalPages: number;
-}
-
-const entries = { titles: [], page: 1, totalPages: 2 };
+const entries = {
+  titles: [],
+  page: 1,
+  totalPages: 2,
+};
 
 const tv = TV.reduce(
-  (object, category) => ({ ...object, [`${category}_tv`]: entries }),
+  (object, category) => ({
+    ...object,
+    [`${category}_tv`]: entries,
+  }),
   {}
 );
 
 const movies = MOVIES.reduce(
-  (object, category) => ({ ...object, [`${category}_movie`]: entries }),
+  (object, category) => ({
+    ...object,
+    [`${category}_movie`]: entries,
+  }),
   {}
 );
 
 const networks = NETWORKS.reduce(
-  (object, network) => ({ ...object, [`${network.name}_tv`]: entries }),
+  (object, network) => ({
+    ...object,
+    [`${network.name}_tv`]: entries,
+  }),
   {}
 );
 
 const companies = COMPANIES.reduce(
-  (object, company) => ({ ...object, [`${company.name}_movie`]: entries }),
+  (object, company) => ({
+    ...object,
+    [`${company.name}_movie`]: entries,
+  }),
   {}
 );
 
@@ -59,7 +61,7 @@ const list = createSlice({
   name: 'list',
   initialState,
   reducers: {
-    setList: (state, action: PayloadAction<SetList>) => {
+    setList: (state, action: PayloadAction<List>) => {
       state[action.payload.key] = {
         titles: [
           ...state[action.payload.key].titles,

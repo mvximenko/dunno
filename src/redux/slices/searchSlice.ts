@@ -1,16 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AppThunk } from '../store';
 import { getTitles } from '@/api/tmdb';
-
-interface Search {
-  id: number;
-  name: string;
-  media_type: string;
-  original_title: string;
-}
+import { Titles } from '@/types/tmdb';
 
 interface UserState {
-  titles: Search[];
+  titles: Titles[];
   loading: boolean;
   error: string | null;
   isOpen: boolean;
@@ -39,7 +33,7 @@ const search = createSlice({
       state.loading = true;
       state.error = null;
     },
-    getTitlesSuccess: (state, action: PayloadAction<Search[]>) => {
+    getTitlesSuccess: (state, action: PayloadAction<Titles[]>) => {
       state.titles = action.payload;
       state.loading = false;
     },

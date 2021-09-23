@@ -2,43 +2,18 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AppThunk } from '../store';
 import { getTitle } from '@/api/tmdb';
 import { checkTitleFB, addTitleFB, deleteTitleFB } from '@/api/firebase';
-
-interface Title {
-  title: string;
-  name: string;
-  backdrop_path: string | null;
-  poster_path: string;
-  overview: string;
-  vote_average: number;
-}
-
-interface Cast {
-  profile_path: string;
-  name: string;
-  id: number;
-  credit_id: number;
-}
-
-interface Videos {
-  key: string;
-}
+import { TitleInfo, Cast, Video, Title } from '@/types/tmdb';
 
 interface TitleState {
-  title: Title;
+  title: TitleInfo;
   cast: Cast[];
-  videos: Videos[];
+  videos: Video[];
   loading: boolean;
   error: string | null;
   poster: boolean;
   backdrop: boolean;
   firebaseId: string;
   [key: string]: TitleState[keyof TitleState];
-}
-
-interface TitleLoaded {
-  title: Title;
-  cast: Cast[];
-  results: Videos[];
 }
 
 const initialState: TitleState = {
@@ -67,7 +42,7 @@ const title = createSlice({
       state.loading = true;
       state.error = null;
     },
-    getTitleSuccess: (state, action: PayloadAction<TitleLoaded>) => {
+    getTitleSuccess: (state, action: PayloadAction<Title>) => {
       state.title = action.payload.title;
       state.cast = action.payload.cast;
       state.videos = action.payload.results;

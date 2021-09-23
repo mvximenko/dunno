@@ -1,25 +1,20 @@
-interface Sizes {
+interface Breakpoints {
   [key: string]: string;
 }
 
+const breakpoints: Breakpoints = {
+  sm: '600px',
+  md: '960px',
+  lg: '1280px',
+  xl: '1920px',
+};
+
 const sizes = {
   up(size: string) {
-    const sizes: Sizes = {
-      sm: '600px',
-      md: '960px',
-      lg: '1280px',
-      xl: '1920px',
-    };
-    return `@media only screen and (min-width: ${sizes[size]})`;
+    return `@media only screen and (min-width: ${breakpoints[size]})`;
   },
   down(size: string) {
-    const sizes: Sizes = {
-      sm: '600px',
-      md: '960px',
-      lg: '1280px',
-      xl: '1920px',
-    };
-    return `@media only screen and (max-width: ${sizes[size]})`;
+    return `@media only screen and (max-width: ${breakpoints[size]})`;
   },
 };
 
