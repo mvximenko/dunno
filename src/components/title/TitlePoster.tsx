@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { useSelector } from '@/redux/store';
 import { setLoaded } from '@/redux/slices/titleSlice';
-import PosterPng from '@/assets/poster.png';
+import PosterPng from '@/assets/poster.webp';
 import { IMAGE_BASE_URL, POSTER_SIZE } from '@/root/config';
 import { Container, Img } from './TitlePosterStyles';
 

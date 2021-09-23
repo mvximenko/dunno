@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, shallowEqual } from 'react-redux';
 import { useSelector } from '@/redux/store';
-import PosterPng from '@/assets/poster.png';
+import PosterPng from '@/assets/poster.webp';
 import useWindowDimensions from '@/hooks/useWindowDimensions';
 import {
   fetchGenres,
