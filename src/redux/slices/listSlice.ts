@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AppThunk } from '../store';
 import { getList } from '@/api/tmdb';
 import { ListTitle, List } from '@/types/tmdb';
-import { MOVIES, TV, NETWORKS, COMPANIES } from '@/root/config';
+import { MOVIES, TV, NETWORKS, COMPANIES } from '@/src/config';
 
 interface ListState {
   [key: string]: {

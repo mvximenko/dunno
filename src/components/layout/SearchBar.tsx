@@ -86,6 +86,15 @@ const Modal: React.VFC<Props> = ({ searchIcon, mobileSearchIcon }) => {
                   </Link>
                 ))}
 
+            {titles.length > 5 && (
+              <Link
+                to={{ pathname: `/search/${value}`, state: titles }}
+                onClick={() => dispatch(resetSearch())}
+              >
+                <Item style={{ fontWeight: 500 }}>DISPLAY ALL RESULTS</Item>
+              </Link>
+            )}
+
             {titles.length === 0 && !loading && (
               <Item noPointer>
                 Sorry, we can't find what you're looking for. Try adjusting your

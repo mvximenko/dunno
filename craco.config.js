@@ -5,7 +5,7 @@ const resolvePath = (p) => path.resolve(__dirname, p);
 module.exports = {
   webpack: {
     alias: {
-      '@/root': resolvePath('./src'),
+      '@/src': resolvePath('./src'),
       '@/api': resolvePath('./src/api'),
       '@/assets': resolvePath('./src/assets'),
       '@/icons': resolvePath('./src/assets/icons'),

@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { resetLists } from '@/redux/slices/listSlice';
 import List from './List';
 import Categories from './Categories';
-import { MOVIES, COMPANIES } from '@/root/config';
+import { MOVIES, COMPANIES } from '@/src/config';
 import { Container } from './HomeStyles';
 
 const Movies = () => {

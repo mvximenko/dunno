@@ -6,7 +6,7 @@ import ScrollContainer from 'react-indiana-drag-scroll';
 import ListPoster from './ListPoster';
 import useInfiniteScroll from '@/hooks/useInfiniteScroll';
 import useLazyLoading from '@/hooks/useLazyLoading';
-import { IMAGE_BASE_URL, POSTER_SIZE } from '@/root/config';
+import { IMAGE_BASE_URL, POSTER_SIZE } from '@/src/config';
 import titleCase from '@/utils/titleCase';
 import { Heading, Container, InitialSpace, LoadMore } from './ListStyles';
 

@@ -57,6 +57,9 @@ export interface Titles {
   name: string;
   media_type: string;
   original_title: string;
+  poster_path?: string;
+  profile_path?: string;
+  title?: string;
 }
 
 export type GetTitles = (value: string) => Promise<Titles[]>;

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import sizes from '@/utils/sizes';
-import { fadeEffect } from '@/root/GlobalStyles';
+import { fadeEffect } from '@/src/GlobalStyles';
 
 export const Column = styled.div`
   width: 22%;

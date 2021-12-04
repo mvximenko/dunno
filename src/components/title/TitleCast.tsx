@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { IMAGE_BASE_URL, PHOTO_SIZE } from '@/root/config';
+import { IMAGE_BASE_URL, PHOTO_SIZE } from '@/src/config';
 import Poster from '@/assets/poster.webp';
 import { Column, Photo, Img, Name } from './TitleCastStyles';
 

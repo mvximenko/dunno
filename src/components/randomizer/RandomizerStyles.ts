@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import sizes from '@/utils/sizes';
-import { fadeEffect, background } from '@/root/GlobalStyles';
+import { fadeEffect, background } from '@/src/GlobalStyles';
 
 export const Container = styled.div`
   width: 100%;

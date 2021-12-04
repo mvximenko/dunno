@@ -1,15 +1,15 @@
 import { useEffect } from 'react';
 import { useDispatch, shallowEqual } from 'react-redux';
 import { useSelector } from '@/redux/store';
-import PosterPng from '@/assets/poster.webp';
-import useWindowDimensions from '@/hooks/useWindowDimensions';
 import {
   fetchGenres,
   fetchTitle,
   setLoaded,
   resetLoaded,
 } from '@/redux/slices/randomizerSlice';
-import { IMAGE_BASE_URL, POSTER_SIZE, BACKDROP_SIZE } from '@/root/config';
+import PosterPng from '@/assets/poster.webp';
+import useWindowDimensions from '@/hooks/useWindowDimensions';
+import { IMAGE_BASE_URL, POSTER_SIZE, BACKDROP_SIZE } from '@/src/config';
 import {
   Container,
   Background,

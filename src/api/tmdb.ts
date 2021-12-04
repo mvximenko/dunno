@@ -1,4 +1,4 @@
-import { API_URL, API_KEY } from '@/root/config';
+import { API_URL, API_KEY } from '@/src/config';
 import {
   GetList,
   GetPerson,

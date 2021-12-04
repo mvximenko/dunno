@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import sizes from '@/utils/sizes';
-import { fadeEffect, background } from '@/root/GlobalStyles';
+import { fadeEffect, background } from '@/src/GlobalStyles';
 
 export const Placeholder = styled.div`
   position: relative;

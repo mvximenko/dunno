@@ -4,7 +4,7 @@ import sizes from '@/utils/sizes';
 export const Overlay = styled.div<{ isOpen: boolean }>`
   ${({ isOpen }) =>
     isOpen &&
-    `    
+    `
     position: fixed;
     top: 0;
     right: 0;
@@ -27,14 +27,14 @@ export const Container = styled.div<{ isOpen: boolean }>`
   display: none;
   ${({ isOpen }) =>
     isOpen &&
-    `    
+    `
     left: 13vw;
     width: 74vw;
     display: block;
     ${[sizes.up('sm')]} {
       left: 20vw;
       width: 60vw;
-    } 
+    }
   `}
 `;
 
@@ -108,7 +108,7 @@ export const Item = styled.li<{ noPointer?: boolean }>`
   box-sizing: border-box;
   padding: 12px 5.8%;
   &:hover {
-    background: rgb(128, 128, 128, 0.2);
+    background: rgba(128, 128, 128, 0.2);
   }
   ${[sizes.up('sm')]} {
     font-size: 18px;
@@ -128,7 +128,7 @@ export const Item = styled.li<{ noPointer?: boolean }>`
     `
     cursor: default;
     &:hover {
-      background: #161616;  
+      background: #161616;
     }
   `}
 `;

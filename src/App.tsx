@@ -11,6 +11,7 @@ import Person from './components/person/Person';
 import MyList from './components/my-list/MyList';
 import SignIn from './components/auth/SignIn';
 import SignUp from './components/auth/SignUp';
+import Search from './components/search/Search';
 import NotFound from './components/layout/NotFound';
 import Header from './components/layout/Header';
 import SearchBar from './components/layout/SearchBar';
@@ -46,6 +47,11 @@ const App: React.VFC = () => {
           <Route exact path='/signin' component={SignIn} />
           <Route exact path='/signup' component={SignUp} />
           <PrivateRoute exact path='/my-list' component={MyList} />
+          <Route
+            exact
+            path={['/search', '/search/:query']}
+            component={Search}
+          />
           <Route component={NotFound} />
         </Switch>
         <BottomNavbar searchIcon={mobileSearchIcon} />

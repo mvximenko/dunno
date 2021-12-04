@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from '@/redux/store';
 import { setLoaded } from '@/redux/slices/titleSlice';
 import Backdrop from '@/assets/backdrop.webp';
-import { IMAGE_BASE_URL, BACKDROP_SIZE } from '@/root/config';
+import { IMAGE_BASE_URL, BACKDROP_SIZE } from '@/src/config';
 import { Placeholder, Img, Background } from './TitleBackdropStyles';
 
 interface Props {
