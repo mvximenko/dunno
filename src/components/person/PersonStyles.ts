@@ -2,65 +2,44 @@ import styled from 'styled-components';
 import sizes from '@/utils/sizes';
 
 export const Wrapper = styled.div`
-  margin: 0 5vw 30px;
+  margin: 0 5vw 3rem;
   ${[sizes.up('lg')]} {
-    margin: 0 12vw 30px;
-  }
-  ${[sizes.up('xl')]} {
-    margin: 0 12vw 42px;
+    margin: 0 12vw 3rem;
   }
 `;
 
 export const Heading = styled.h1`
-  font-size: 28px;
+  font-size: 2.8em;
   font-weight: 300;
-  ${[sizes.up('xl')]} {
-    font-size: 39.2px;
-  }
 `;
 
 export const Row = styled.div`
-  height: 75px;
+  height: 7.5rem;
   display: flex;
-  margin-bottom: 10px;
+  margin-bottom: 1rem;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  ${[sizes.up('xl')]} {
-    height: 105px;
-    margin-bottom: 14px;
-  }
 `;
 
 export const Placeholder = styled.div`
-  width: 50px;
+  width: 5rem;
   user-drag: none;
   user-select: none;
   position: relative;
   background: #101010;
-  ${[sizes.up('xl')]} {
-    width: 70px;
-  }
 `;
 
 export const Img = styled.img`
-  width: 50px;
-  height: 75px;
+  width: 5rem;
+  height: 7.5rem;
   position: absolute;
   top: 0;
   left: 0;
-  ${[sizes.up('xl')]} {
-    width: 70px;
-    height: 105px;
-  }
 `;
 
 export const Span = styled.span`
   width: 80%;
   display: flex;
-  margin: 0 20px;
+  margin: 0 2rem;
   align-items: center;
-  font-size: 16px;
-  ${[sizes.up('xl')]} {
-    margin: 0 28px;
-    font-size: 22.4px;
-  }
+  font-size: 1.6em;
 `;

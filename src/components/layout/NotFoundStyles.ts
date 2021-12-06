@@ -16,10 +16,7 @@ export const Heading = styled.h1`
   font-size: 30vw;
   font-weight: 300;
   ${[sizes.up('sm')]} {
-    font-size: 230px;
-  }
-  ${[sizes.up('xl')]} {
-    font-size: 322px;
+    font-size: 23rem;
   }
 `;
 
@@ -28,12 +25,8 @@ export const Paragraph = styled.p`
   font-size: 6vw;
   font-weight: 300;
   ${[sizes.up('sm')]} {
-    margin: 0 0 50px 0;
-    font-size: 35px;
-  }
-  ${[sizes.up('xl')]} {
-    margin: 0 0 70px 0;
-    font-size: 49px;
+    margin: 0 0 5rem 0;
+    font-size: 3.5em;
   }
 `;
 
@@ -45,17 +38,12 @@ export const StyledLink = styled(Link)`
   font-weight: 300;
   border: 1px solid;
   ${[sizes.up('sm')]} {
-    width: 200px;
-    padding: 10px;
-    font-size: 25px;
+    width: 20rem;
+    padding: 1rem;
+    font-size: 2.5em;
     transition: all 350ms;
     &:hover {
       background: rgba(255, 255, 255, 0.15);
     }
-  }
-  ${[sizes.up('xl')]} {
-    width: 280px;
-    padding: 14px;
-    font-size: 35px;
   }
 `;

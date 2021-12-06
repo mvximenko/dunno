@@ -5,7 +5,7 @@ import sizes from '@/utils/sizes';
 export const Container = styled.nav`
   display: flex;
   justify-content: center;
-  margin: 19px 5vw 24px 5vw;
+  margin: 1.9rem 5vw 2.4rem 5vw;
   ${[sizes.up('sm')]} {
     display: none;
   }

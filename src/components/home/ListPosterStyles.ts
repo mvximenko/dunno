@@ -5,7 +5,7 @@ import { fadeEffect } from '@/src/GlobalStyles';
 
 export const StyledLink = styled(Link)`
   width: 29vw;
-  margin-right: 6px;
+  margin-right: 0.6rem;
   position: relative;
   background: #101010;
   user-drag: none;

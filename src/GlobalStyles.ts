@@ -1,6 +1,14 @@
 import { createGlobalStyle, css } from 'styled-components';
+import sizes from '@/utils/sizes';
 
 export const GlobalStyle = createGlobalStyle`
+  html {
+    font-size: 62.5%;
+    ${[sizes.up('xl')]} {
+      font-size: 87.5%;
+    }
+  }
+
   html,
   body,
   #root {

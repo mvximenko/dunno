@@ -30,7 +30,7 @@ export const Img = styled.img`
   border: 1px solid rgba(255, 255, 255, 0.1);
   ${fadeEffect}
   ${[sizes.up('md')]} {
-    padding: 3px;
+    padding: 0.3rem;
     transition: all 350ms;
     box-shadow: 0 0 20px rgba(255, 255, 255, 0.1),
       0 0 8px rgba(255, 255, 255, 0.1);
@@ -38,9 +38,6 @@ export const Img = styled.img`
       box-shadow: 0 0 20px rgba(255, 255, 255, 0.2),
         0 0 8px rgba(255, 255, 255, 0.2);
     }
-  }
-  ${[sizes.up('xl')]} {
-    padding: 4.2px;
   }
 `;
 
@@ -50,16 +47,12 @@ export const Name = styled.span`
   font-size: 3.9vw;
   text-align: center;
   justify-content: center;
-  padding-top: 10px;
+  padding-top: 1rem;
   ${[sizes.up('sm')]} {
     font-size: 2.5vw;
   }
   ${[sizes.up('md')]} {
-    font-size: 16px;
-    padding: 10px 3px 0 3px;
-  }
-  ${[sizes.up('xl')]} {
-    font-size: 22.4px;
-    padding: 14px 4.2px 0 4.2px;
+    font-size: 1.6em;
+    padding: 1rem 0.3rem 0 0.3rem;
   }
 `;

@@ -2,25 +2,20 @@ import styled from 'styled-components';
 import sizes from '@/utils/sizes';
 
 export const Heading = styled.h1`
-  font-size: 18px;
+  font-size: 1.8em;
   font-weight: 300;
   margin-top: 5vw;
   margin-bottom: 3vw;
   ${[sizes.up('sm')]} {
     font-size: 3vw;
-    margin-top: 12px;
-    margin-bottom: 12px;
+    margin-top: 1.2rem;
+    margin-bottom: 1.2rem;
   }
   ${[sizes.up('md')]} {
     font-size: 2.5vw;
   }
   ${[sizes.up('lg')]} {
-    font-size: 26px;
-  }
-  ${[sizes.up('xl')]} {
-    font-size: 36.4px;
-    margin-top: 16.8px;
-    margin-bottom: 16.8px;
+    font-size: 2.6em;
   }
 `;
 
@@ -45,15 +40,15 @@ export const InitialSpace = styled.div<{ additionalSpace?: boolean }>`
     additionalSpace &&
     `
     &:last-child {
-      margin-right: 50px;
+      margin-right: 5rem;
       ${[sizes.up('sm')]} {
-        margin-right: 70px;
+        margin-right: 7rem;
       }
       ${[sizes.up('md')]} {
-        margin-right: 80px;
+        margin-right: 8rem;
       }
       ${[sizes.up('lg')]} {
-        margin-right: 90px;
+        margin-right: 9rem;
       }
     }
   `}
@@ -61,7 +56,7 @@ export const InitialSpace = styled.div<{ additionalSpace?: boolean }>`
 
 export const LoadMore = styled.div`
   position: relative;
-  margin-right: 15px;
+  margin-right: 1.5rem;
   padding-right: 29vw;
   ${[sizes.up('sm')]} {
     padding-right: 18vw;

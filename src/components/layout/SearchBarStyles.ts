@@ -49,12 +49,12 @@ export const IconWrapper = styled.div<{ pointer?: boolean }>`
   justify-content: center;
   align-items: center;
   svg {
-    width: 22px;
+    width: 2.2rem;
     fill: #aeaeae;
   }
   ${[sizes.up('sm')]} {
     svg {
-      width: 26px;
+      width: 2.6rem;
     }
   }
   ${[sizes.up('md')]} {
@@ -62,11 +62,6 @@ export const IconWrapper = styled.div<{ pointer?: boolean }>`
   }
   ${[sizes.up('lg')]} {
     width: 10%;
-  }
-  ${[sizes.up('xl')]} {
-    svg {
-      width: 36.4px;
-    }
   }
 
   ${({ pointer }) =>
@@ -84,44 +79,37 @@ export const IconWrapper = styled.div<{ pointer?: boolean }>`
 
 export const Input = styled.input`
   width: 100%;
-  height: 44px;
-  font-size: 16px;
+  height: 4.4rem;
+  font-size: 1.6em;
   color: #fff;
   border: none;
   outline: none;
   box-sizing: border-box;
   background: #212121;
   ${[sizes.up('sm')]} {
-    height: 50px;
-    font-size: 20px;
-  }
-  ${[sizes.up('xl')]} {
-    height: 70px;
-    font-size: 28px;
+    height: 5rem;
+    font-size: 2em;
   }
 `;
 
 export const Item = styled.li<{ noPointer?: boolean }>`
   width: 100%;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 1.4em;
   box-sizing: border-box;
-  padding: 12px 5.8%;
+  padding: 1.2rem 5.8%;
   &:hover {
     background: rgba(128, 128, 128, 0.2);
   }
   ${[sizes.up('sm')]} {
-    font-size: 18px;
-    padding: 13px 5.8%;
+    font-size: 1.8em;
+    padding: 1.3rem 5.8%;
   }
   ${[sizes.up('sm')]} {
-    padding: 13px 5.5%;
+    padding: 1.3rem 5.5%;
   }
   ${[sizes.up('lg')]} {
-    padding: 14.4px 4.5%;
-  }
-  ${[sizes.up('xl')]} {
-    font-size: 25px;
+    padding: 1.44rem 4.5%;
   }
   ${({ noPointer }) =>
     noPointer &&

@@ -1,39 +1,23 @@
 import styled from 'styled-components';
-import sizes from '@/utils/sizes';
 
 export const Rating = styled.div`
-  padding: 5px;
-  margin-top: 15px;
-  border-radius: 5px;
+  padding: 0.5rem;
+  margin-top: 1.5rem;
+  border-radius: 0.5rem;
   background: #000;
   display: inline-flex;
   align-items: center;
-  ${[sizes.up('xl')]} {
-    padding: 7px;
-    margin-top: 21px;
-    border-radius: 7px;
-  }
 `;
 
 export const ImdbWrapper = styled.div`
-  width: 50px;
-  ${[sizes.up('xl')]} {
-    width: 70px;
-  }
+  width: 5rem;
 `;
 
 export const StarWrapper = styled.div`
-  width: 22px;
-  ${[sizes.up('xl')]} {
-    width: 30.8px;
-  }
+  width: 2.2rem;
 `;
 
 export const Rank = styled.span`
-  margin: 0 7px;
-  font-size: 18px;
-  ${[sizes.up('xl')]} {
-    margin: 0 9.8px;
-    font-size: 25.2px;
-  }
+  margin: 0 0.7rem;
+  font-size: 1.8em;
 `;

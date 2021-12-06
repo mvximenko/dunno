@@ -8,7 +8,7 @@ const icon = css`
   justify-content: center;
   align-items: center;
   svg {
-    width: 24px;
+    width: 2.4rem;
     fill: #aeaeae;
   }
 `;
@@ -20,12 +20,12 @@ export const Navbar = styled.nav`
 `;
 
 export const Space = styled.div`
-  height: 44px;
+  height: 4.4rem;
 `;
 
 export const Container = styled.div`
   width: 100%;
-  height 44px;
+  height 4.4rem;
   bottom: 0;
   display: flex;
   position: fixed;

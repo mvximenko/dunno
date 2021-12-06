@@ -6,7 +6,7 @@ const styles = css`
   align-items: center;
   justify-content: center;
   width: 48%;
-  padding: 9px 0;
+  padding: 0.9rem 0;
   font-size: 3.9vw;
   background: rgba(51, 51, 51, 0.7);
   ${[sizes.up('sm')]} {
@@ -16,26 +16,20 @@ const styles = css`
   }
   ${[sizes.up('md')]} {
     width: 32%;
-    font-size: 14px;
+    font-size: 1.4em;
     transition: all 350ms;
     &:hover {
       background: rgba(255, 255, 255, 0.2);
     }
-  }
-  ${[sizes.up('xl')]} {
-    font-size: 19.6px;
   }
 `;
 
 export const Row = styled.div`
   display: flex;
   justify-content: space-between;
-  margin: 25px 0;
+  margin: 2.5rem 0;
   ${[sizes.up('sm')]} {
-    margin: 25px 10%;
-  }
-  ${[sizes.up('xl')]} {
-    margin: 35px 10%;
+    margin: 2.5rem 10%;
   }
 `;
 
@@ -52,10 +46,6 @@ export const Link = styled.a`
 `;
 
 export const IconWrapper = styled.div`
-  width: 14px;
-  margin-right: 8px;
-  ${[sizes.up('xl')]} {
-    width: 19.6px;
-    margin-right: 11.2px;
-  }
+  width: 1.4rem;
+  margin-right: 0.8rem;
 `;

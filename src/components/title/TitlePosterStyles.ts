@@ -1,14 +1,9 @@
 import styled from 'styled-components';
-import sizes from '@/utils/sizes';
 import { fadeEffect } from '@/src/GlobalStyles';
 
 export const Container = styled.div`
-  width: 585px;
-  height: 530px;
-  ${[sizes.up('xl')]} {
-    width: 819px;
-    height: 742px;
-  }
+  width: 58.5rem;
+  height: 53rem;
 `;
 
 export const Img = styled.img`

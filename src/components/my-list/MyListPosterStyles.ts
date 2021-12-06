@@ -29,8 +29,9 @@ export const Button = styled.button`
   position: absolute;
   top: 0;
   right: 0;
-  width: 24px;
-  height: 24px;
+  width: 2.4rem;
+  height: 2.4rem;
+  padding: 0.1rem 0.6rem;
   fill: #fff;
   background: rgba(0, 0, 0, 0.8);
   border: none;
@@ -42,11 +43,7 @@ export const Button = styled.button`
     background: rgba(255, 255, 255, 0.8);
   }
   ${[sizes.up('lg')]} {
-    width: 28px;
-    height: 28px;
-  }
-  ${[sizes.up('xl')]} {
-    width: 39.2px;
-    height: 39.2px;
+    width: 2.8rem;
+    height: 2.8rem;
   }
 `;

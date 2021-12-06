@@ -3,13 +3,10 @@ import { Link } from 'react-router-dom';
 import sizes from '@/utils/sizes';
 
 const common = css`
-  margin-bottom: 20px;
-  border-radius: 4px;
+  margin-bottom: 2rem;
+  border-radius: 0.4rem;
   border: none;
   color: #fff;
-  ${[sizes.up('xl')]} {
-    margin-bottom: 28px;
-  }
 `;
 
 export const Container = styled.div`
@@ -25,55 +22,39 @@ export const Container = styled.div`
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
-  border-radius: 4px;
+  border-radius: 0.4rem;
   width: 80vw;
   ${[sizes.up('sm')]} {
-    width: 300px;
-  }
-  ${[sizes.up('xl')]} {
-    width: 420px;
+    width: 30rem;
   }
 `;
 
 export const Heading = styled.h1`
   text-align: center;
-  margin-bottom: 20px;
-  font-size: 35px;
+  margin-bottom: 2rem;
+  font-size: 3.5em;
   font-weight: 600;
-  ${[sizes.up('xl')]} {
-    font-size: 49px;
-    margin-bottom: 28px;
-  }
 `;
 
 export const Input = styled.input`
   ${common}
-  padding: 4px 18px;
+  padding: 0.4rem 1.8rem;
   background: #333;
-  font-size: 16px;
-  line-height: 50px;
+  font-size: 1.6em;
+  line-height: 5rem;
   outline: none;
-  ${[sizes.up('xl')]} {
-    padding: 5.6px 25.2px;
-    font-size: 22.4px;
-    line-height: 70px;
-  }
 `;
 
 export const Button = styled.button<{ google?: boolean }>`
   ${common}
-  padding: 16px;
-  font-size: 14.5px;
+  padding: 1.6rem;
+  font-size: 1.45em;
   font-weight: bold;
   background: #e50914;
   cursor: pointer;
   transition: 150ms all;
   &:hover {
     background: #c40812;
-  }
-  ${[sizes.up('xl')]} {
-    padding: 22.4px;
-    font-size: 20.3px;
   }
   ${({ google }) =>
     google &&
@@ -88,10 +69,8 @@ export const Button = styled.button<{ google?: boolean }>`
 export const StyledLink = styled(Link)`
   margin: auto;
   text-align: center;
+  font-size: 1.6em;
   &:hover {
     text-decoration: underline;
-  }
-  ${[sizes.up('xl')]} {
-    font-size: 22.4px;
   }
 `;

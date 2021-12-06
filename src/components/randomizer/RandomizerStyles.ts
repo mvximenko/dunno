@@ -6,12 +6,9 @@ import { fadeEffect, background } from '@/src/GlobalStyles';
 export const Container = styled.div`
   width: 100%;
   display: flex;
-  height: calc(100% - 44px);
+  height: calc(100% - 4.4rem);
   ${[sizes.up('sm')]} {
-    height: calc(100% - 50px);
-  }
-  ${[sizes.up('xl')]} {
-    height: calc(100% - 70px);
+    height: calc(100% - 5rem);
   }
 `;
 
@@ -75,9 +72,9 @@ export const Buttons = styled.div`
 
 export const Button = styled.button`
   width: 50%;
-  padding: 15px 0;
+  padding: 1.5rem 0;
   color: #fff;
-  font-size: 15px;
+  font-size: 1.5em;
   background: #0d0c0c;
   border: none;
   outline: none;
@@ -88,9 +85,5 @@ export const Button = styled.button`
     background: #101010;
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
-  }
-  ${[sizes.up('xl')]} {
-    padding: 21px 0;
-    font-size: 22.4px;
   }
 `;

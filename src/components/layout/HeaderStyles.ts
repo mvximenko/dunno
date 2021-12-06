@@ -6,7 +6,7 @@ export const StyledHeader = styled.header`
   display: none;
   ${[sizes.up('sm')]} {
     width: 100%;
-    height: 50px;
+    height: 5rem;
     display: flex;
     padding: 0 3vw;
     position: relative;
@@ -17,18 +17,12 @@ export const StyledHeader = styled.header`
     -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);
   }
-  ${[sizes.up('xl')]} {
-    height: 70px;
-  }
 `;
 
 export const LogoLink = styled(Link)`
-  font-size: 26px;
+  font-size: 2.6rem;
   font-weight: 600;
   font-family: sans-serif;
-  ${[sizes.up('xl')]} {
-    font-size: 36.4px;
-  }
 `;
 
 export const Nav = styled.nav`
@@ -39,35 +33,27 @@ export const Nav = styled.nav`
 export const StyledNavLink = styled(NavLink)`
   margin: 0 2vw;
   color: #aeaeae;
+  font-size: 1.6em;
   transition: all 350ms;
   &:hover,
   &.active {
     color: #fff;
   }
-  ${[sizes.up('xl')]} {
-    font-size: 22.4px;
-  }
 `;
 
 export const Icons = styled.div`
-  width: 100px;
+  width: 10rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  ${[sizes.up('xl')]} {
-    width: 140px;
-  }
 `;
 
 export const IconWrapper = styled.div`
-  width: 24px;
+  width: 2.4rem;
   fill: #aeaeae;
   cursor: pointer;
   transition: all 350ms;
   &:hover {
     fill: #fff;
-  }
-  ${[sizes.up('xl')]} {
-    width: 33.6px;
   }
 `;

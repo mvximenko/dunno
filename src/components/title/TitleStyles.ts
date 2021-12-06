@@ -16,34 +16,26 @@ export const Card = styled.div`
   flex-direction: column;
   ${[sizes.up('md')]} {
     top: 0;
-    width: 1000px;
-    height: 530px;
-    margin-top: 85px;
+    width: 100rem;
+    height: 53rem;
+    margin-top: 8.5rem;
     position: absolute;
     flex-direction: row;
     background: rgba(0, 0, 0, 0.8);
-  }
-  ${[sizes.up('xl')]} {
-    width: 1400px;
-    height: 742px;
-    margin-top: 119px;
   }
 `;
 
 export const Info = styled.div`
   margin: 0 4vw;
-  padding: 5px;
+  padding: 0.5rem;
   font-weight: 300;
   font-family: sans-serif;
   ${[sizes.up('md')]} {
     width: 100%;
     margin: 0;
-    padding: 5px 22px;
+    padding: 0.5rem 2.2rem;
     backdrop-filter: blur(5px);
     webkit-backdrop-filter: blur(5px);
-  }
-  ${[sizes.up('xl')]} {
-    padding: 7px 37.8px;
   }
 `;
 
@@ -56,13 +48,9 @@ export const Heading = styled.h1`
     font-size: 4.4vw;
   }
   ${[sizes.up('md')]} {
-    margin-top: 35px;
+    margin-top: 3.5rem;
     font-weight: 600;
-    font-size: 23px;
-  }
-  ${[sizes.up('xl')]} {
-    margin-top: 49px;
-    font-size: 32.2px;
+    font-size: 2.3em;
   }
 `;
 
@@ -75,26 +63,19 @@ export const Overview = styled.span`
     line-height: 4.5vw;
   }
   ${[sizes.up('md')]} {
-    font-size: 16px;
-    line-height: 21px;
-  }
-  ${[sizes.up('xl')]} {
-    font-size: 22.4px;
-    line-height: 29.4px;
+    font-size: 1.6em;
+    line-height: 2.1rem;
   }
 `;
 
 export const Row = styled.div`
   display: flex;
   justify-content: space-between;
-  margin: 20px 0;
+  margin: 2rem 0;
   ${[sizes.up('sm')]} {
-    margin: 20px 10% 0 10%;
+    margin: 2rem 10% 0 10%;
   }
   ${[sizes.up('md')]} {
-    margin: 20px 5% 0 5%;
-  }
-  ${[sizes.up('xl')]} {
-    margin: 28px 5% 0 5%;
+    margin: 2rem 5% 0 5%;
   }
 `;
