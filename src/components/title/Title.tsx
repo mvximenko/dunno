@@ -49,7 +49,7 @@ const Title = () => {
           <Row>
             {cast.length > 0 &&
               cast
-                .filter((person, index) => index < 4)
+                .slice(0, 4)
                 .map((person) => (
                   <TitleCast
                     profilePath={person.profile_path}

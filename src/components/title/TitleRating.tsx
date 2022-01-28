@@ -7,7 +7,7 @@ const TitleRating: React.VFC<{ rating: number }> = ({ rating }) => (
     <ImdbWrapper>
       <Imdb />
     </ImdbWrapper>
-    <Rank>{rating}/10</Rank>
+    <Rank>{Math.round(rating * 10) / 10}/10</Rank>
     <StarWrapper>
       <Star />
     </StarWrapper>
