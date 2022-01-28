@@ -24,32 +24,29 @@ const Person = () => {
     };
   }, [personId, dispatch]);
 
+  if (!error && !name) return <Spinner />;
+  if (error) return <NotFound />;
+
   return (
-    <>
-      {name && (
-        <Wrapper>
-          <Heading>{name}</Heading>
-          {titles.map((title) => (
-            <Link to={`/${title.media_type}/${title.id}`} key={title.id}>
-              <Row>
-                <Placeholder>
-                  <Img
-                    src={
-                      title.poster_path
-                        ? `${IMAGE_BASE_URL}${TINY_POSTER_SIZE}${title.poster_path}`
-                        : PosterPng
-                    }
-                  />
-                </Placeholder>
-                <Span>{title.name || title.title}</Span>
-              </Row>
-            </Link>
-          ))}
-        </Wrapper>
-      )}
-      {!error && !name && <Spinner />}
-      {error && <NotFound />}
-    </>
+    <Wrapper>
+      <Heading>{name}</Heading>
+      {titles.map((title) => (
+        <Link to={`/${title.media_type}/${title.id}`} key={title.id}>
+          <Row>
+            <Placeholder>
+              <Img
+                src={
+                  title.poster_path
+                    ? `${IMAGE_BASE_URL}${TINY_POSTER_SIZE}${title.poster_path}`
+                    : PosterPng
+                }
+              />
+            </Placeholder>
+            <Span>{title.name || title.title}</Span>
+          </Row>
+        </Link>
+      ))}
+    </Wrapper>
   );
 };
 

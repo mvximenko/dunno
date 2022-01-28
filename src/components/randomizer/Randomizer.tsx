@@ -8,7 +8,7 @@ import {
   resetLoaded,
 } from '@/redux/slices/randomizerSlice';
 import PosterPng from '@/assets/poster.webp';
-import useWindowDimensions from '@/hooks/useWindowDimensions';
+import useMediaQuery from '../../hooks/useMediaQuery';
 import { IMAGE_BASE_URL, POSTER_SIZE, BACKDROP_SIZE } from '@/src/config';
 import {
   Container,
@@ -22,6 +22,7 @@ import {
 
 const Randomizer = () => {
   const dispatch = useDispatch();
+  const matches = useMediaQuery('(min-width: 960px)');
 
   const {
     genres,
@@ -45,10 +46,9 @@ const Randomizer = () => {
     if (mediaType) dispatch(fetchTitle(mediaType, genres));
   }, [mediaType, genres, dispatch]);
 
-  const { width } = useWindowDimensions();
   return (
     <Container>
-      {backdrop_path && width >= 960 && (
+      {backdrop_path && matches && (
         <Background
           alt={title || name}
           src={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${backdrop_path}`}
